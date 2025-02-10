@@ -32,3 +32,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+
+# Crashlytics generated file
+crashlytics-build.properties
