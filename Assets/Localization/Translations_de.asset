@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Translations_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: f1f9dc8052b79a64481bbf1da35b7873, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 882107211776
+    m_Localized: Englisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 927854485504
+    m_Localized: Deutsch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3536866762752
+    m_Localized: Tasten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2825701548032
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7315393601536
+    m_Localized: 'Vollbild:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8591573508096
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28129958551552
+    m_Localized: Statistiken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27977285885952
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28340927848448
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28457986678784
+    m_Localized: Ausfahrt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28643895009280
+    m_Localized: "M\xFCnzen weltweit:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28717769285632
+    m_Localized: "Spezialm\xFCnzen:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281697273765888
+    m_Localized: "Demn\xE4chst verf\xFCgbar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281772112732160
+    m_Localized: "Spezialm\xFCnzen:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281788667650048
+    m_Localized: "M\xFCnzen weltweit:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282066724839424
+    m_Localized: 'LEVEL AUSWAHL:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282212132970496
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428740310982656
+    m_Localized: "Punkte global:\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434377241649152
+    m_Localized: 'Leben:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 437357454024704
+    m_Localized: 'Leben:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 437370271817728
+    m_Localized: 'Munition:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 591391360016384
+    m_Localized: "M\xFCnzen:"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

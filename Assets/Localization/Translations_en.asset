@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Translations_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f1f9dc8052b79a64481bbf1da35b7873, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 882107211776
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 927854485504
+    m_Localized: German
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3536866762752
+    m_Localized: Keys
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2825701548032
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7315393601536
+    m_Localized: "Full screen:\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8591573508096
+    m_Localized: 'Volume:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28717769285632
+    m_Localized: 'Spezial Coins:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28643895009280
+    m_Localized: 'Coins Global:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28457986678784
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28340927848448
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27977285885952
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28129958551552
+    m_Localized: Statistics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281697273765888
+    m_Localized: Coming Soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281772112732160
+    m_Localized: 'Spezial Coins:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 281788667650048
+    m_Localized: 'Coins Global:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282066724839424
+    m_Localized: "LEVEL SELECTION:\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 282212132970496
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 428740310982656
+    m_Localized: 'Points global:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 434377241649152
+    m_Localized: 'Lives:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 437357454024704
+    m_Localized: 'Lives:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 437370271817728
+    m_Localized: 'Ammu:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 591391360016384
+    m_Localized: 'Coins:'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
