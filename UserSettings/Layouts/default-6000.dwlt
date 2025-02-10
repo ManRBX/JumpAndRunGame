@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 106
+  controlID: 55
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 107
+  controlID: 56
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -454,9 +454,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 84520100
       m_LastClickedID: 0
-      m_ExpandedIDs: 00fbffff
+      m_ExpandedIDs: f002feff4003feff9403fefff003feff4a04feffa604feffc008feff1a09feffac12feff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -825,7 +825,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: Floating
-      displayed: 1
+      displayed: 0
       id: Scene View/Tilemap Focus
       index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":true,"m_FloatingSnapOffset":{"x":-143.0,"y":-45.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -1158,9 +1158,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 57.199516, y: -10.14055, z: -0.3567677}
+    m_Target: {x: 840.73694, y: 492.20728, z: -7.545411}
     speed: 2
-    m_Value: {x: 57.199516, y: -10.14055, z: -0.3567677}
+    m_Value: {x: 840.73694, y: 492.20728, z: -7.545411}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1210,9 +1210,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 49.38618
+    m_Target: 768.25336
     speed: 2
-    m_Value: 49.38618
+    m_Value: 768.25336
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1636,7 +1636,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1646,16 +1646,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: 75
-  m_LastProjectPath: F:\unity\project\Backup von jump and run 1.0\Jump and run 1.0\Git
+  m_LastProjectPath: F:\GIT\repository\2D-JumpAndRun
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 23}
-    m_SelectedIDs: 56f60000
-    m_LastClickedID: 63062
-    m_ExpandedIDs: 0000000002d5000004d5000006d5000008d500000ad500000cd500000ed5000010d5000012d5000014d5000016d5000018d500001ad500001cd500001ed5000020d5000022d5000024d5000026d5000028d500002ad500002cd500002ed5000030d5000032d5000034d5000036d5000038d500003ad500003cd500003ed5000040d5000042d5000044d5000046d5000048d500004ad500004cd500004ed5000000ca9a3b
+    scrollPos: {x: 0, y: 243}
+    m_SelectedIDs: 7c590100
+    m_LastClickedID: 88444
+    m_ExpandedIDs: 00000000ec4c010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1684,7 +1684,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000002d5000004d5000006d5000008d500000ad500000cd500000ed5000010d5000012d5000014d5000016d5000018d500001ad500001cd500001ed5000020d5000022d5000024d5000026d5000028d500002ad500002cd500002ed5000030d5000032d5000034d5000036d5000038d500003ad500003cd500003ed5000040d5000042d5000044d5000046d5000048d500004ad500004cd500004ed50000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1712,7 +1712,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000f66f0000ee8d0000fe6500008a9100009461000012650000a0960000b4650000c40f01005c7400007661000058810000e07100007e6b00002692000034990000a6740000a2740000687c000002ac0000faac00000000000004f0000012f0000008bc00005c3f0100669001000edc000024dc00003adc0000aaee000034bc000076b80000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
