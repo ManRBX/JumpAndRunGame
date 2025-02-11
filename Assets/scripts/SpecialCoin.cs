@@ -2,29 +2,29 @@ using UnityEngine;
 
 public class SpecialCoin : MonoBehaviour
 {
-    public int coinIndex;  // Index der Münze (z. B. 0, 1, 2)
-    public AudioClip collectSound;  // Sound beim Einsammeln
+    public int coinIndex;  // Index of the coin (e.g., 0, 1, 2)
+    public AudioClip collectSound;  // Sound effect when collected
 
     private AudioSource audioSource;
-    private string coinKey;  // Key für diese spezielle Münze im PlayerPrefs
-    private SpriteRenderer spriteRenderer;  // Renderer der Münze
+    private string coinKey;  // Key for this specific coin in PlayerPrefs
+    private SpriteRenderer spriteRenderer;  // Renderer of the coin
 
     void Start()
     {
         string currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        coinKey = $"{currentLevel}.Coin{coinIndex}";  // Einzigartiger Key für diese Münze
+        coinKey = $"{currentLevel}.Coin{coinIndex}";  // Unique key for this coin
 
-        // SpriteRenderer referenzieren
+        // Reference the SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Prüfen, ob die Münze schon eingesammelt wurde
+        // Check if the coin has already been collected
         if (PlayerPrefs.HasKey(coinKey))
         {
-            // Münze transparent machen
+            // Make the coin transparent
             SetTransparency(0.5f);
         }
 
-        // AudioSource hinzufügen
+        // Add AudioSource
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = collectSound;
         audioSource.playOnAwake = false;
@@ -34,29 +34,29 @@ public class SpecialCoin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Spezialmünzen nur einsammeln, wenn sie noch nicht eingesammelt wurde
+            // Only collect the special coin if it hasn't been collected yet
             if (!PlayerPrefs.HasKey(coinKey))
             {
                 AddSpecialCoin();
 
-                // Sound abspielen
+                // Play sound effect
                 if (collectSound != null)
                 {
                     audioSource.Play();
                 }
 
-                // Münze im PlayerPrefs speichern
+                // Save the coin in PlayerPrefs
                 PlayerPrefs.SetInt(coinKey, 1);
                 PlayerPrefs.Save();
 
-                // UI aktualisieren
+                // Update the UI
                 SpecialCoinUI uiManager = FindObjectOfType<SpecialCoinUI>();
                 if (uiManager != null)
                 {
-                    uiManager.CollectCoin(coinIndex);  // Zeige die Münze in der UI
+                    uiManager.CollectCoin(coinIndex);  // Show the coin in the UI
                 }
 
-                // Münze transparent machen
+                // Make the coin transparent
                 SetTransparency(0.1f);
             }
         }
@@ -64,15 +64,15 @@ public class SpecialCoin : MonoBehaviour
 
     void AddSpecialCoin()
     {
-        const string globalKey = "GlobalSpecialCoins";  // Key für globale Spezialmünzen
+        const string globalKey = "GlobalSpecialCoins";  // Key for global special coins
         int globalSpecialCoins = PlayerPrefs.GetInt(globalKey, 0);
         globalSpecialCoins += 1;
         PlayerPrefs.SetInt(globalKey, globalSpecialCoins);
 
-        Debug.Log($"Spezialmünze eingesammelt! Globale Spezialmünzen: {globalSpecialCoins}");
+        Debug.Log($"Special coin collected! Total global special coins: {globalSpecialCoins}");
     }
 
-    // Sichtbarkeit der Münze ändern
+    // Change the visibility of the coin
     private void SetTransparency(float alpha)
     {
         if (spriteRenderer != null)

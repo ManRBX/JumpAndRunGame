@@ -1,10 +1,10 @@
 using UnityEngine;
-using TMPro;  // Für TextMeshPro UI
+using TMPro;  // For TextMeshPro UI
 
 public class LivesPickup : MonoBehaviour
 {
-    public int livesToAdd = 1;  // Anzahl der Leben, die hinzugefügt werden
-    public AudioClip pickupSound;  // Sound beim Einsammeln (optional)
+    public int livesToAdd = 1;  // Number of lives to add
+    public AudioClip pickupSound;  // Sound played when picked up (optional)
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -14,15 +14,15 @@ public class LivesPickup : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.AddLives(livesToAdd);  // Leben hinzufügen
+                playerHealth.AddLives(livesToAdd);  // Add lives
 
-                // Soundeffekt abspielen (optional)
+                // Play sound effect (optional)
                 if (pickupSound != null)
                 {
                     AudioSource.PlayClipAtPoint(pickupSound, transform.position);
                 }
 
-                // Pickup zerstören
+                // Destroy the pickup object
                 Destroy(gameObject);
             }
         }

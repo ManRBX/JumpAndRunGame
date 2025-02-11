@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Killzone : MonoBehaviour
 {
-    public int damage = 100;  // Schaden, der in der Killzone verursacht wird (z.B. tödlich)
+    public int damage = 100;  // Damage inflicted by the killzone (e.g., fatal)
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +12,7 @@ public class Killzone : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);  // Spieler erleidet vollen Schaden
+                playerHealth.TakeDamage(damage);  // Player takes full damage
             }
         }
     }

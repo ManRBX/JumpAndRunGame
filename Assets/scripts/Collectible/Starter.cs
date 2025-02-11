@@ -2,25 +2,25 @@
 
 public class Starter : MonoBehaviour
 {
-    [Header("Starter Einstellungen")]
-    [Tooltip("Anzahl der Collectible Items, die in diesem MiniGame eingesammelt werden müssen.")]
+    [Header("Starter Settings")]
+    [Tooltip("Number of collectible items that need to be collected in this MiniGame.")]
     public int numberOfCollectibles = 3;
 
-    [Tooltip("MiniGame-Dauer in Sekunden.")]
+    [Tooltip("MiniGame duration in seconds.")]
     public float miniGameDuration = 10f;
 
-    [Tooltip("Sammel-Objekte, die beim Starter sichtbar werden sollen.")]
+    [Tooltip("Collectible objects that become visible when the starter is activated.")]
     public GameObject[] collectibleItems;
 
-    [Tooltip("Prefab für die Münzen, in die die Collectibles verwandelt werden sollen.")]
+    [Tooltip("Prefab for the coins that the collectibles should transform into.")]
     public GameObject coinPrefab;
 
     private bool isActivated = false;
-    private bool rewardGiven = false; // Verhindert mehrfaches Belohnen
+    private bool rewardGiven = false; // Prevents multiple rewards
 
     private void Start()
     {
-        // Stelle sicher, dass die Collectible Items zu Beginn deaktiviert sind.
+        // Ensure that collectible items are initially disabled
         foreach (var item in collectibleItems)
         {
             if (item != null)
@@ -42,64 +42,64 @@ public class Starter : MonoBehaviour
     private void ActivateStarter()
     {
         isActivated = true;
-        Debug.Log("Starter aktiviert – MiniGame startet!");
+        Debug.Log("Starter activated – MiniGame is starting!");
 
         if (MiniGameManager.Instance != null)
         {
-            // MiniGame starten und Callback setzen
+            // Start the MiniGame and set success & failure callbacks
             MiniGameManager.Instance.StartMiniGame(numberOfCollectibles, miniGameDuration, OnMiniGameComplete, OnMiniGameFailed);
         }
 
-        // Alle Collectibles sichtbar machen
+        // Make all collectible items visible
         foreach (var item in collectibleItems)
         {
             if (item != null)
                 item.SetActive(true);
         }
 
-        // Deaktiviere den Starter selbst
+        // Disable the starter itself
         gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Wenn der Spieler ALLE Collectibles innerhalb der Zeit einsammelt
+    /// Called when the player successfully collects all collectibles within the time limit.
     /// </summary>
     private void OnMiniGameComplete()
     {
         if (rewardGiven) return;
         rewardGiven = true;
 
-        Debug.Log("✅ MiniGame erfolgreich abgeschlossen! +1 Leben erhalten!");
+        Debug.Log("✅ MiniGame successfully completed! +1 Life awarded!");
 
-        // +1 Leben geben
+        // Increase player lives by 1
         int currentLives = PlayerPrefs.GetInt("GlobalLives", 3);
         currentLives++;
         PlayerPrefs.SetInt("GlobalLives", currentLives);
         PlayerPrefs.Save();
 
-        // Falls eine UI existiert, aktualisieren
+        // Update UI if available
         PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
         if (healthUI != null)
         {
-            healthUI.UpdateLebenUI();
+            healthUI.UpdateLivesUI();
         }
     }
 
     /// <summary>
-    /// Wenn das MiniGame fehlschlägt (Zeit abgelaufen)
+    /// Called when the MiniGame fails (time runs out).
     /// </summary>
     private void OnMiniGameFailed()
     {
-        Debug.Log("❌ MiniGame gescheitert – Collectibles werden zu Coins!");
+        Debug.Log("❌ MiniGame failed – Collectibles are being converted into coins!");
 
-        // Alle übrig gebliebenen Collectibles in Coins umwandeln
+        // Convert all remaining collectible items into coins
         foreach (var item in collectibleItems)
         {
-            if (item != null && item.activeSelf) // Nur aktive Items umwandeln
+            if (item != null && item.activeSelf) // Convert only active items
             {
                 Vector3 spawnPosition = item.transform.position;
-                Destroy(item); // Entferne das Collectible-Item
-                Instantiate(coinPrefab, spawnPosition, Quaternion.identity); // Ersetze es durch eine Münze
+                Destroy(item); // Remove the collectible item
+                Instantiate(coinPrefab, spawnPosition, Quaternion.identity); // Replace it with a coin
             }
         }
     }

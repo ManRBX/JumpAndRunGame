@@ -13,8 +13,8 @@ public class OptionsMenu : MonoBehaviour
     [Header("Text References")]
     public TMP_Text fullscreenText;
 
-    private const string LanguageKey = "SelectedLanguage"; // Key für gespeicherte Sprache
-    private bool isSwitching = false; // Verhindert mehrfaches Umschalten
+    private const string LanguageKey = "SelectedLanguage"; // Key for saved language
+    private bool isSwitching = false; // Prevents multiple switching
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class OptionsMenu : MonoBehaviour
     {
         yield return LocalizationSettings.InitializationOperation;
 
-        // Gespeicherte Sprache aus PlayerPrefs setzen (Standard: Englisch)
+        // Set saved language from PlayerPrefs (default: English)
         int savedLocaleID = PlayerPrefs.GetInt(LanguageKey, 0);
         SetLanguage(savedLocaleID);
     }
@@ -55,7 +55,7 @@ public class OptionsMenu : MonoBehaviour
 
         if (localeID < 0 || localeID >= LocalizationSettings.AvailableLocales.Locales.Count)
         {
-            Debug.LogError($"Ungültige Locale-ID: {localeID}. Setze Standardwert (0).");
+            Debug.LogError($"Invalid Locale ID: {localeID}. Setting to default (0).");
             localeID = 0;
         }
 
@@ -63,9 +63,9 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt(LanguageKey, localeID);
         PlayerPrefs.Save();
 
-        Debug.Log($"🌍 Sprache gewechselt zu: {LocalizationSettings.SelectedLocale.LocaleName}");
+        Debug.Log($"🌍 Language changed to: {LocalizationSettings.SelectedLocale.LocaleName}");
 
-        // UI aktualisieren nach Sprachwechsel
+        // Update UI after language change
         UpdateFullscreenText(fullscreenToggle.isOn);
 
         isSwitching = false;
@@ -95,7 +95,7 @@ public class OptionsMenu : MonoBehaviour
     {
         if (languageCode == "de")
         {
-            return isOn ? "An" : "Aus";
+            return isOn ? "On" : "Off";
         }
         else
         {

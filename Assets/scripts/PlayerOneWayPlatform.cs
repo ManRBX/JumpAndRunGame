@@ -9,9 +9,9 @@ public class PlayerOneWayPlatform : MonoBehaviour
 
     void Update()
     {
-        // Statt (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
-        // fragst du jetzt nur noch EINE Aktion ab,
-        // z.B. "DropPlatform". Standardwert ist S oder DownArrow (wie du es eingestellt hast).
+        // Instead of checking (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)), 
+        // now you only check ONE action: "DropPlatform".
+        // Default is S or DownArrow (as set in the key bindings).
         if (KeyBindManager.Instance != null &&
             Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("DropPlatform")))
         {
@@ -38,6 +38,10 @@ public class PlayerOneWayPlatform : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Temporarily disables collision with the one-way platform, 
+    /// allowing the player to drop through it.
+    /// </summary>
     private IEnumerator DisableCollision()
     {
         BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();

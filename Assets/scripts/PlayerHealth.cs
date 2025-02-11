@@ -7,10 +7,10 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
-    private const string LivesKey = "GlobalLives"; // Key für PlayerPrefs
+    private const string LivesKey = "GlobalLives"; // Key for PlayerPrefs
 
     [Header("Lives Settings")]
-    public int defaultLives = 3; // Standardanzahl der Leben
+    public int defaultLives = 3; // Default number of lives
 
     private bool isInvincible = false;
 
@@ -24,18 +24,18 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private PlayerHealthUI playerHealthUI;
 
-    // Respawn-Position (wird durch Checkpoints aktualisiert)
+    // Respawn position (updated by checkpoints)
     private Vector3 startPosition;
 
     void Start()
     {
         currentHealth = maxHealth;
-        startPosition = transform.position;  // Speichere die Startposition
+        startPosition = transform.position;  // Store the starting position
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerHealthUI = FindObjectOfType<PlayerHealthUI>();
 
-        // Lade die globalen Leben oder setze Standardwert
+        // Load global lives or set default value
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
@@ -73,17 +73,17 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        // Leben aus den PlayerPrefs abrufen & reduzieren
+        // Retrieve lives from PlayerPrefs & reduce them
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
-        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Verhindert negative Leben
+        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Prevent negative lives
         PlayerPrefs.Save();
 
-        // Spieler-Tode in PlayerPrefs speichern
+        // Store player deaths in PlayerPrefs
         int deathCount = PlayerPrefs.GetInt("DeathCount", 0) + 1;
         PlayerPrefs.SetInt("DeathCount", deathCount);
         PlayerPrefs.Save();
 
-        Debug.Log($"Spieler ist gestorben. Tode: {deathCount}, Verbleibende Leben: {lives}");
+        Debug.Log($"Player died. Death count: {deathCount}, Remaining lives: {lives}");
 
         if (lives > 0)
         {
@@ -119,7 +119,7 @@ public class PlayerHealth : MonoBehaviour
 
     void RestartGame()
     {
-        PlayerPrefs.SetInt(LivesKey, defaultLives); // Leben zurücksetzen
+        PlayerPrefs.SetInt(LivesKey, defaultLives); // Reset lives
         PlayerPrefs.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -136,14 +136,14 @@ public class PlayerHealth : MonoBehaviour
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) + amount;
         PlayerPrefs.SetInt(LivesKey, lives);
         PlayerPrefs.Save();
-        Debug.Log($"Leben hinzugefügt: {lives}");
+        Debug.Log($"Lives added: {lives}");
         UpdateUI();
     }
 
     public void AddHealth(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log($"Heilung: {currentHealth}");
+        Debug.Log($"Healing: {currentHealth}");
         UpdateUI();
     }
 
@@ -151,14 +151,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (playerHealthUI)
         {
-            playerHealthUI.UpdateLebenUI();
+            playerHealthUI.UpdateLivesUI();
         }
     }
 
     public void Heal(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log("Spieler geheilt! Aktuelles Leben: " + currentHealth);
+        Debug.Log("Player healed! Current health: " + currentHealth);
         UpdateUI();
     }
 }

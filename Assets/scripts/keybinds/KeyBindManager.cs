@@ -6,10 +6,10 @@ public class KeyBindManager : MonoBehaviour
 {
     public static KeyBindManager Instance;
 
-    // In diesem Dictionary speichere ich pro Aktion (z. B. "Jump") den zugehörigen KeyCode (z. B. KeyCode.Space).
+    // I store the KeyCode for each action (e.g., "Jump" -> KeyCode.Space) in this dictionary.
     private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
 
-    // Liste aller Aktionen, die ich umbelegen möchte.
+    // List of all actions I want to remap.
     private string[] allActions = new string[]
     {
         "Jump",
@@ -26,7 +26,7 @@ public class KeyBindManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Überlebt Szenenwechsel
+            DontDestroyOnLoad(gameObject);  // Survives scene transitions
         }
         else
         {
@@ -34,51 +34,51 @@ public class KeyBindManager : MonoBehaviour
             return;
         }
 
-        // Standardwerte für jede Aktion festlegen
+        // Set default values for each action
         keys["Jump"] = KeyCode.Space;
         keys["MoveLeft"] = KeyCode.A;
         keys["MoveRight"] = KeyCode.D;
         keys["ClimbUp"] = KeyCode.W;
         keys["ClimbDown"] = KeyCode.S;
-        keys["DropPlatform"] = KeyCode.S;      // Zum Durchfallen durch OneWay-Plattformen
-        keys["Shoot"] = KeyCode.Mouse0; // Linke Maustaste
+        keys["DropPlatform"] = KeyCode.S;      // To fall through one-way platforms
+        keys["Shoot"] = KeyCode.Mouse0; // Left mouse button
 
         LoadKeysFromPrefs();
     }
 
     /// <summary>
-    /// Gibt den KeyCode zurück, den du für die angegebene Aktion festgelegt hast.
-    /// Beispiel: GetKeyCodeForAction("Jump") -> KeyCode.Space
+    /// Returns the KeyCode set for the specified action.
+    /// Example: GetKeyCodeForAction("Jump") -> KeyCode.Space
     /// </summary>
     public KeyCode GetKeyCodeForAction(string actionName)
     {
         if (keys.ContainsKey(actionName))
             return keys[actionName];
-        return KeyCode.None; // Falls die Aktion nicht existiert
+        return KeyCode.None; // If the action doesn't exist
     }
 
     /// <summary>
-    /// Legt eine neue Taste für die angegebene Aktion fest und speichert das in PlayerPrefs.
-    /// Beispiel: SetKey("DropPlatform", KeyCode.DownArrow)
+    /// Sets a new key for the specified action and saves it in PlayerPrefs.
+    /// Example: SetKey("DropPlatform", KeyCode.DownArrow)
     /// </summary>
     public void SetKey(string actionName, KeyCode newKey)
     {
         if (keys.ContainsKey(actionName))
         {
             keys[actionName] = newKey;
-            Debug.Log($"Aktion '{actionName}' ist jetzt '{newKey}'.");
+            Debug.Log($"Action '{actionName}' is now set to '{newKey}'.");
         }
         else
         {
             keys.Add(actionName, newKey);
-            Debug.Log($"Neue Aktion '{actionName}' angelegt und auf '{newKey}' gesetzt.");
+            Debug.Log($"New action '{actionName}' created and set to '{newKey}'.");
         }
 
         SaveKeysToPrefs();
     }
 
     /// <summary>
-    /// Lädt alle Keybinds aus den PlayerPrefs, falls bereits gespeichert.
+    /// Loads all keybinds from PlayerPrefs if already saved.
     /// </summary>
     private void LoadKeysFromPrefs()
     {
@@ -87,7 +87,7 @@ public class KeyBindManager : MonoBehaviour
             string storedKeyString = PlayerPrefs.GetString(actionName, "");
             if (!string.IsNullOrEmpty(storedKeyString))
             {
-                // Den String in einen KeyCode umwandeln
+                // Convert the string to a KeyCode
                 if (Enum.TryParse(storedKeyString, out KeyCode parsedKey))
                 {
                     keys[actionName] = parsedKey;
@@ -97,7 +97,7 @@ public class KeyBindManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Speichert alle Keybinds in PlayerPrefs (z. B. "Jump" -> "Space").
+    /// Saves all keybinds in PlayerPrefs (e.g., "Jump" -> "Space").
     /// </summary>
     private void SaveKeysToPrefs()
     {

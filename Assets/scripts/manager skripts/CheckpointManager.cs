@@ -7,28 +7,28 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton: Nur eine Instanz pro Szene
+        // Singleton: Only one instance per scene
         if (instance == null)
         {
             instance = this;
         }
         else if (instance != this)
         {
-            Destroy(gameObject);  // Doppelte Instanzen entfernen
+            Destroy(gameObject);  // Remove duplicate instances
         }
 
-        // Setze eine Standardposition für den Checkpoint
+        // Set a default position for the checkpoint
         checkpointPosition = transform.position;
     }
 
-    // Setzt den Checkpoint auf eine neue Position
+    // Sets the checkpoint to a new position
     public void SetCheckpoint(Vector3 newPosition)
     {
         checkpointPosition = newPosition;
-        Debug.Log("Checkpoint gesetzt: " + checkpointPosition);
+        Debug.Log("Checkpoint set: " + checkpointPosition);
     }
 
-    // Gibt die aktuelle Checkpoint-Position zurück
+    // Returns the current checkpoint position
     public Vector3 GetCheckpointPosition()
     {
         return checkpointPosition;

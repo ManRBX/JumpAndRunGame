@@ -3,30 +3,30 @@ using UnityEngine.UI;
 
 public class SpecialCoinUI : MonoBehaviour
 {
-    public Image[] coinImages;   // Bilder für die speziellen Coins
+    public Image[] coinImages;   // Images for the special coins
     private string levelName;
 
     void Start()
     {
         levelName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        UpdateCoinUI();  // Aktualisiere die UI beim Start
+        UpdateCoinUI();  // Update the UI at the start
     }
 
-    // Münze auf Basis des Index in der UI anzeigen
+    // Display the coin in the UI based on its index
     public void CollectCoin(int coinIndex)
     {
         if (coinIndex < 0 || coinIndex >= coinImages.Length) return;
 
-        // Volle Sichtbarkeit aktivieren
+        // Enable full visibility
         coinImages[coinIndex].color = new Color(1, 1, 1, 1);
 
-        // Münze speichern
+        // Save the collected coin
         string coinKey = $"{levelName}.Coin{coinIndex}";
         PlayerPrefs.SetInt(coinKey, 1);
         PlayerPrefs.Save();
     }
 
-    // UI wird beim Levelstart aktualisiert
+    // Update the UI at the start of the level
     public void UpdateCoinUI()
     {
         for (int i = 0; i < coinImages.Length; i++)
@@ -34,12 +34,12 @@ public class SpecialCoinUI : MonoBehaviour
             string coinKey = $"{levelName}.Coin{i}";
             if (PlayerPrefs.HasKey(coinKey))
             {
-                // Volle Sichtbarkeit, wenn eingesammelt
+                // Full visibility if collected
                 coinImages[i].color = new Color(1, 1, 1, 1);
             }
             else
             {
-                // Halbtransparent, wenn nicht eingesammelt
+                // Semi-transparent if not collected
                 coinImages[i].color = new Color(1, 1, 1, 0.1f);
             }
         }

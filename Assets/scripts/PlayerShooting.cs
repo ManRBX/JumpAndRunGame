@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;  // Für TextMeshPro (Schussanzahl im UI)
+using TMPro;  // For TextMeshPro (shot count in UI)
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletForce = 20f;
-    public int maxAmmo = 30; // Globale maximale Munition
+    public int maxAmmo = 30; // Global maximum ammo
     private int currentAmmo;
 
     [Header("Cooldown Settings")]
@@ -15,15 +15,15 @@ public class PlayerShooting : MonoBehaviour
     private float nextFireTime = 0f;
 
     [Header("UI Settings")]
-    public TMP_Text ammoText;  // UI für Munition
-    public TMP_Text shotText;  // UI für Schüsse
+    public TMP_Text ammoText;  // UI for ammo count
+    public TMP_Text shotText;  // UI for total shots fired
 
     private void Start()
     {
-        // Lade globale Munition aus PlayerPrefs oder setze Standardwert
+        // Load global ammo from PlayerPrefs or set default value
         currentAmmo = PlayerPrefs.GetInt("GlobalAmmo", maxAmmo);
 
-        // Lade Schussanzahl aus PlayerPrefs
+        // Load total shots fired from PlayerPrefs
         int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0);
 
         UpdateAmmoUI();
@@ -32,7 +32,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Prüfe, ob der Spieler schießen kann (KeyBindManager oder Standard-Taste)
+        // Check if the player can shoot (KeyBindManager or default key)
         KeyCode shootKey = KeyBindManager.Instance?.GetKeyCodeForAction("Shoot") ?? KeyCode.Mouse0;
 
         if (Input.GetKeyDown(shootKey) && Time.time >= nextFireTime && currentAmmo > 0)
@@ -44,7 +44,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        // Schuss-Logik
+        // Shooting logic
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
@@ -59,11 +59,11 @@ public class PlayerShooting : MonoBehaviour
             rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
         }
 
-        // Munition reduzieren und speichern
+        // Reduce ammo and save to PlayerPrefs
         currentAmmo--;
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
 
-        // Schüsse zählen und speichern
+        // Increase shots fired count and save to PlayerPrefs
         int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0) + 1;
         PlayerPrefs.SetInt("ShotsFired", shotsFired);
 
@@ -72,28 +72,28 @@ public class PlayerShooting : MonoBehaviour
         UpdateAmmoUI();
         UpdateShotsUI(shotsFired);
 
-        Debug.Log("Schuss abgefeuert! Gesamt: " + shotsFired + " | Verbleibende Munition: " + currentAmmo);
+        Debug.Log("Shot fired! Total: " + shotsFired + " | Remaining ammo: " + currentAmmo);
     }
 
-    // Aktualisiert die UI für Munition
+    // Updates the UI for ammo count
     void UpdateAmmoUI()
     {
         if (ammoText != null)
         {
-            ammoText.text = currentAmmo.ToString(); // Zeigt nur die Zahl an
+            ammoText.text = currentAmmo.ToString(); // Display only the number
         }
     }
 
-    // Aktualisiert die UI für Schüsse
+    // Updates the UI for total shots fired
     void UpdateShotsUI(int shots)
     {
         if (shotText != null)
         {
-            shotText.text = shots.ToString(); // Zeigt nur die Zahl an
+            shotText.text = shots.ToString(); // Display only the number
         }
     }
 
-    // Munition aufladen (z. B. durch Items)
+    // Reloads ammo (e.g., from pickups)
     public void AddAmmo(int amount)
     {
         currentAmmo += amount;
@@ -102,11 +102,11 @@ public class PlayerShooting : MonoBehaviour
             currentAmmo = maxAmmo;
         }
 
-        // Speichere neue Munition
+        // Save new ammo count
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
         PlayerPrefs.Save();
 
         UpdateAmmoUI();
-        Debug.Log("Munition aufgeladen! Aktuell: " + currentAmmo);
+        Debug.Log("Ammo reloaded! Current: " + currentAmmo);
     }
 }

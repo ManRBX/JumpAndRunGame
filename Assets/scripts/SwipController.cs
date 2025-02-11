@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class SwipController : MonoBehaviour
+public class SwipeController : MonoBehaviour
 {
-    [SerializeField] int maxPage;  // Maximale Anzahl an Seiten
+    [SerializeField] int maxPage;  // Maximum number of pages
     int currentPage;
     Vector3 targetPos;
-    [SerializeField] Vector3 pageStep;  // Abstand zwischen den Seiten
+    [SerializeField] Vector3 pageStep;  // Distance between pages
     [SerializeField] RectTransform levelPageRect;
 
-    [SerializeField] float tweenTime;  // Animationsdauer
-    [SerializeField] LeanTweenType tweenType;  // Animations-Typ (Ease-In, Out usw.)
+    [SerializeField] float tweenTime;  // Animation duration
+    [SerializeField] LeanTweenType tweenType;  // Animation type (Ease-In, Out, etc.)
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class SwipController : MonoBehaviour
         if (currentPage < maxPage)
         {
             currentPage++;
-            targetPos += pageStep;  // Nächste Seite (vorwärts)
+            targetPos += pageStep;  // Move to the next page
             MovePage();
         }
     }
@@ -32,7 +32,7 @@ public class SwipController : MonoBehaviour
         if (currentPage > 1)
         {
             currentPage--;
-            targetPos -= pageStep;  // Vorherige Seite (rückwärts)
+            targetPos -= pageStep;  // Move to the previous page
             MovePage();
         }
     }
