@@ -32,8 +32,8 @@ public class Enemy : MonoBehaviour
     private bool isJumping = false;
     private bool isFalling = false;
 
-    [Header("Punkte-Einstellungen")]
-    public int pointsOnDeath = 50; // Punkte, die beim Tod des Gegners vergeben werden
+    [Header("Point Settings")]
+    public int pointsOnDeath = 50; // Points awarded when the enemy dies
 
     private Vector2 leftLimit;
     private Vector2 rightLimit;
@@ -163,7 +163,7 @@ public class Enemy : MonoBehaviour
         if (isDead || isTakingDamage) return;
 
         health -= damage;
-        Debug.Log("Enemy getroffen! Aktuelle HP: " + health);
+        Debug.Log("Enemy hit! Current HP: " + health);
 
         if (health <= 0)
         {
@@ -197,9 +197,9 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        Debug.Log("Enemy getötet!");
+        Debug.Log("Enemy killed!");
 
-        // Punkte hinzufügen
+        // Add points
         AddPointsOnDeath();
 
         animator.SetTrigger("Die");
@@ -211,14 +211,14 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Vergibt Punkte, wenn der Gegner stirbt.
+    /// Awards points when the enemy dies.
     /// </summary>
     private void AddPointsOnDeath()
     {
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.AddPoints(pointsOnDeath);
-            Debug.Log($"+{pointsOnDeath} Punkte erhalten!");
+            Debug.Log($"+{pointsOnDeath} points received!");
         }
     }
 }

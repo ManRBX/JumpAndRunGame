@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenuCoinUI : MonoBehaviour
 {
-    public Image[] coinImages;  // Bilder für die gesammelten Coins
-    public TMP_Text totalCoinText;  // Zeigt nur die Anzahl gesammelter Spezialmünzen
+    public Image[] coinImages;  // Images for the collected coins
+    public TMP_Text totalCoinText;  // Displays the total number of collected special coins
 
     void Start()
     {
@@ -14,14 +14,14 @@ public class MainMenuCoinUI : MonoBehaviour
 
     void UpdateMainMenuUI()
     {
-        // Gesamtzahl der globalen Spezialmünzen laden
+        // Load the total number of global special coins
         int globalCoins = PlayerPrefs.GetInt("Global.SpecialCoins", 0);
         if (totalCoinText != null)
         {
-            totalCoinText.text = globalCoins.ToString();  // Zeigt nur die Zahl, ohne zusätzlichen Text
+            totalCoinText.text = globalCoins.ToString();  // Displays only the number, without additional text
         }
 
-        // Bilder für Spezialmünzen je nach Fortschritt anzeigen
+        // Show images for special coins based on progress
         for (int i = 0; i < coinImages.Length; i++)
         {
             string coinKey = $"Level0{i + 1}.Coin{i + 1}";
@@ -29,7 +29,7 @@ public class MainMenuCoinUI : MonoBehaviour
 
             if (coinImages[i] != null)
             {
-                coinImages[i].gameObject.SetActive(coinCollected); // Zeigt das Bild nur, wenn Münze gesammelt wurde
+                coinImages[i].gameObject.SetActive(coinCollected); // Only shows the image if the coin is collected
             }
         }
     }

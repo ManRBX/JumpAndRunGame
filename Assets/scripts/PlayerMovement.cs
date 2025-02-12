@@ -52,46 +52,36 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Bewegt den Spieler basierend auf Eingaben
+    /// Moves the player based on input.
     /// </summary>
     void HandleMovement()
     {
-        // Abfragen, ob MoveLeft oder MoveRight-Taste gedrückt sind
         bool leftPressed = false;
         bool rightPressed = false;
 
-        // Sicherstellen, dass der KeyBindManager existiert
         if (KeyBindManager.Instance != null)
         {
             leftPressed = Input.GetKey(KeyBindManager.Instance.GetKeyCodeForAction("MoveLeft"));
             rightPressed = Input.GetKey(KeyBindManager.Instance.GetKeyCodeForAction("MoveRight"));
         }
 
-        // Aus diesen Infos berechne ich das "move"-Ergebnis
         float move = 0f;
         if (leftPressed && !rightPressed)
         {
-            // Nur links gedrückt
             move = -1f;
         }
         else if (rightPressed && !leftPressed)
         {
-            // Nur rechts gedrückt
             move = 1f;
         }
-        // Wenn beide oder keine Taste gedrückt sind, bleibt move = 0f
 
-        // Animation: true, wenn wir uns bewegen (move != 0)
         anim.SetBool("IsRunning", move != 0);
 
-        // Wenn wir keinen Wall Jump ausführen, kann die x-Geschwindigkeit
-        // geändert werden:
         if (!wallJumping)
         {
             rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
         }
 
-        // Flippen, wenn nötig
         if (move > 0 && !facingRight)
         {
             Flip();
@@ -103,16 +93,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Verarbeitet den Sprung-Input des Spielers
-    /// Hier nutze ich jetzt den KeyBindManager statt KeyCode.Space.
+    /// Handles player jump input.
     /// </summary>
     void HandleJumpInput()
     {
-        // Ich hole mir die gebundene Taste für "Jump" vom KeyBindManager
         if (KeyBindManager.Instance != null
             && Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("Jump")))
         {
-            // Prüfungen bleiben gleich
             if (coyoteTimeCounter > 0f && isGrounded)
             {
                 Jump();
@@ -125,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Aktualisiert die Animationszustände basierend auf dem Zustand des Spielers
+    /// Updates animation states based on player movement.
     /// </summary>
     void UpdateAnimationStates()
     {
@@ -172,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Überprüft, ob der Spieler den Boden berührt
+    /// Checks if the player is touching the ground.
     /// </summary>
     void GroundCheck()
     {
@@ -211,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Überprüft, ob der Spieler eine Wand berührt
+    /// Checks if the player is touching a wall.
     /// </summary>
     void WallCheck()
     {
@@ -240,7 +227,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Führt einen normalen Sprung aus
+    /// Performs a normal jump.
     /// </summary>
     void Jump()
     {
@@ -249,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Führt einen Wall Jump aus
+    /// Performs a wall jump.
     /// </summary>
     void WallJump()
     {
@@ -275,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Dreht den Spieler um
+    /// Flips the player sprite.
     /// </summary>
     void Flip()
     {

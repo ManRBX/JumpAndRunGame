@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [Header("Einstellungen")]
-    public int pointValue = 100;  // Punktewert der Münze
-    public int coinValue = 1;     // Anzahl der Münzen, die der Spieler erhält
+    [Header("Settings")]
+    public int pointValue = 100;  // Point value of the coin
+    public int coinValue = 1;     // Number of coins the player receives
     public AudioClip collectSound;
 
     private AudioSource audioSource;
 
     private void Start()
     {
-        // Audio-Komponente initialisieren
+        // Initialize audio component
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.clip = collectSound;
@@ -21,22 +21,22 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Punkte und Coins vergeben
+            // Award points and coins
             AddPointsAndCoinsToPlayer();
 
-            Debug.Log($"Münze eingesammelt. Punkte: {pointValue}, Coins: {coinValue}");
+            Debug.Log($"Coin collected. Points: {pointValue}, Coins: {coinValue}");
 
-            // Sound abspielen
+            // Play sound effect
             PlayCollectSound();
 
-            // Münze zerstören
+            // Destroy the coin
             Destroy(gameObject, 0.1f);
         }
     }
 
     private void AddPointsAndCoinsToPlayer()
     {
-        // Punkte erhöhen
+        // Increase points
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.AddPoints(pointValue);

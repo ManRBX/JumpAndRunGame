@@ -2,7 +2,7 @@
 
 public class AmmoPickup : MonoBehaviour
 {
-    public int ammoAmount = 5;  // Wie viel Munition wird hinzugefügt
+    public int ammoAmount = 5;  // Amount of ammo added
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,7 +13,7 @@ public class AmmoPickup : MonoBehaviour
             if (playerShooting != null)
             {
                 playerShooting.AddAmmo(ammoAmount);
-                Destroy(gameObject);  // Munition nach dem Einsammeln entfernen
+                Destroy(gameObject);  // Remove ammo pickup after collection
             }
         }
     }

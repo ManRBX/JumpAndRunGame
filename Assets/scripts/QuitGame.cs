@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class QuitGame : MonoBehaviour
 {
-    // Methode für den Button
+    /// <summary>
+    /// Method for the quit button.
+    /// </summary>
     public void Quit()
     {
-        Debug.Log("Spiel wird beendet...");
+        Debug.Log("Game is quitting...");
 
-        // Editor-Modus: Beenden der Play-Session
+        // Editor mode: Stop the play session
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        // Build-Modus: Spiel beenden
+        // Build mode: Exit the game
         Application.Quit();
 #endif
     }

@@ -3,12 +3,12 @@ using TMPro;
 using System;
 
 /// <summary>
-/// Ein UI-Skript, das Buttons & Labels für alle Actions (Jump, MoveLeft, MoveRight, usw.) enthält.
-/// So kannst du sie mit einem Klick neu belegen, indem das Skript auf den nächsten Tastendruck wartet.
+/// A UI script that contains buttons and labels for all actions (Jump, MoveLeft, MoveRight, etc.).
+/// This allows you to rebind keys by waiting for the next key press when you click the button.
 /// </summary>
 public class KeyBindUI : MonoBehaviour
 {
-    [Header("UI-Labels für Aktionen")]
+    [Header("UI Labels for Actions")]
 
     public TMP_Text jumpKeyLabel;
     public TMP_Text leftKeyLabel;
@@ -23,13 +23,12 @@ public class KeyBindUI : MonoBehaviour
 
     private void Start()
     {
-        // Direkt beim Start die Labels aktualisieren, damit der Spieler sieht,
-        // welche Tasten derzeit gebunden sind.
+        // Update the labels at the start so the player can see the current key bindings
         UpdateKeyLabels();
     }
 
     // -------------------------------------------------------------------
-    // Diese Button-Methoden rufst du je im OnClick der Buttons im Inspector auf:
+    // These button methods are called via the OnClick in the Inspector:
     //   "Rebind Jump"          -> OnClick_RebindJump()
     //   "Rebind Left"          -> OnClick_RebindLeft()
     //   "Rebind Right"         -> OnClick_RebindRight()
@@ -75,15 +74,14 @@ public class KeyBindUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Zentraler Einstieg fürs Neu-Belegen einer Aktion.
-    /// Ich lege fest, welche Aktion geändert wird und welches Label
-    /// währenddessen "Drücke jetzt eine Taste..." anzeigen soll.
+    /// Central entry point for rebinding an action.
+    /// Specifies which action will be changed and which label will display "Press a key now...".
     /// </summary>
     private void StartRebind(string actionName, TMP_Text labelToChange)
     {
         if (waitingForKey)
         {
-            Debug.Log("Warte bereits auf einen Tastendruck – bitte erst eine Taste drücken!");
+            Debug.Log("Already waiting for a key press – please press a key first!");
             return;
         }
 
@@ -92,33 +90,33 @@ public class KeyBindUI : MonoBehaviour
 
         if (labelToChange != null)
         {
-            labelToChange.text = "Drücke jetzt eine Taste...";
+            labelToChange.text = "Press a key now...";
         }
 
-        Debug.Log($"Rebind '{actionName}': Bitte eine Taste drücken...");
+        Debug.Log($"Rebind '{actionName}': Please press a key...");
     }
 
     private void Update()
     {
         if (!waitingForKey) return;
 
-        // Durchlaufe alle KeyCodes und prüfe, ob einer gedrückt wurde
+        // Loop through all KeyCodes and check if one was pressed
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(key))
             {
-                Debug.Log($"Neue Taste für {currentAction}: {key}");
+                Debug.Log($"New key for {currentAction}: {key}");
 
-                // An den KeyBindManager übergeben, falls vorhanden
+                // Pass to the KeyBindManager if available
                 if (KeyBindManager.Instance != null)
                 {
                     KeyBindManager.Instance.SetKey(currentAction, key);
                 }
 
-                // Labels aktualisieren
+                // Update the labels
                 UpdateKeyLabels();
 
-                // Warten beenden
+                // Stop waiting for key press
                 waitingForKey = false;
                 currentAction = "";
                 break;
@@ -127,8 +125,7 @@ public class KeyBindUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Aktualisiert die UI-Labels, damit der Spieler sieht,
-    /// welche Tasten aktuell gebunden sind.
+    /// Updates the UI labels to show the currently bound keys.
     /// </summary>
     private void UpdateKeyLabels()
     {
@@ -137,49 +134,49 @@ public class KeyBindUI : MonoBehaviour
         // Jump
         if (jumpKeyLabel != null)
         {
-            jumpKeyLabel.text = "Sprung: " +
+            jumpKeyLabel.text = "Jump: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("Jump");
         }
 
         // Left
         if (leftKeyLabel != null)
         {
-            leftKeyLabel.text = "Links: " +
+            leftKeyLabel.text = "Move Left: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("MoveLeft");
         }
 
         // Right
         if (rightKeyLabel != null)
         {
-            rightKeyLabel.text = "Rechts: " +
+            rightKeyLabel.text = "Move Right: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("MoveRight");
         }
 
         // ClimbUp
         if (climbUpKeyLabel != null)
         {
-            climbUpKeyLabel.text = "Hoch: " +
+            climbUpKeyLabel.text = "Climb Up: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("ClimbUp");
         }
 
         // ClimbDown
         if (climbDownKeyLabel != null)
         {
-            climbDownKeyLabel.text = "Runter: " +
+            climbDownKeyLabel.text = "Climb Down: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("ClimbDown");
         }
 
         // DropPlatform
         if (dropPlatformKeyLabel != null)
         {
-            dropPlatformKeyLabel.text = "Durchfallen: " +
+            dropPlatformKeyLabel.text = "Drop Platform: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("DropPlatform");
         }
 
         // Shoot
         if (shootKeyLabel != null)
         {
-            shootKeyLabel.text = "Schießen: " +
+            shootKeyLabel.text = "Shoot: " +
                 KeyBindManager.Instance.GetKeyCodeForAction("Shoot");
         }
     }

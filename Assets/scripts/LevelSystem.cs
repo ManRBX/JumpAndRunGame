@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour
 {
-    public Button[] levelButtons;  // Array für Level-Buttons im Menü
+    public Button[] levelButtons;  // Array for level buttons in the menu
 
     void Start()
     {
@@ -15,9 +15,9 @@ public class LevelSystem : MonoBehaviour
     {
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            string levelKey = "Level" + (i + 1).ToString("00") + "_Freigeschaltet";
+            string levelKey = "Level" + (i + 1).ToString("00") + "_Unlocked";
 
-            // Level01 bleibt immer freigeschaltet
+            // Level01 is always unlocked
             if (i == 0)
             {
                 levelButtons[i].interactable = true;
@@ -37,7 +37,7 @@ public class LevelSystem : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Szene '" + levelName + "' existiert nicht oder ist nicht im Build!");
+            Debug.LogError("Scene '" + levelName + "' does not exist or is not in the build!");
         }
     }
 }

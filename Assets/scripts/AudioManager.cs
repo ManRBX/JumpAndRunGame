@@ -16,11 +16,11 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // BLOCKADE FIX: Entferne jegliche UI-Blockierung
+            // FIX: Remove any UI blocking
             Canvas canvas = GetComponentInChildren<Canvas>();
             if (canvas != null)
             {
-                Destroy(canvas.gameObject);  // Löscht jegliches Canvas unter AudioManager
+                Destroy(canvas.gameObject);  // Deletes any Canvas under AudioManager
             }
         }
         else
@@ -46,6 +46,6 @@ public class AudioManager : MonoBehaviour
     void ApplyVolume()
     {
         AudioListener.volume = volume;
-        Debug.Log("Lautstärke gesetzt: " + Mathf.RoundToInt(volume * 100) + "%");
+        Debug.Log("Volume set to: " + Mathf.RoundToInt(volume * 100) + "%");
     }
 }

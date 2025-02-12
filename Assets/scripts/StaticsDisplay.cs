@@ -6,8 +6,8 @@ using System.Collections;
 
 public class StaticsDisplay : MonoBehaviour
 {
-    public TMP_Text outputText;  // TextMeshPro Textfeld für die Statistiken
-    private const string LanguageKey = "SelectedLanguage"; // PlayerPrefs Key für die Sprache
+    public TMP_Text outputText;  // TextMeshPro text field for displaying statistics
+    private const string LanguageKey = "SelectedLanguage"; // PlayerPrefs key for the language
 
     void Start()
     {
@@ -17,35 +17,35 @@ public class StaticsDisplay : MonoBehaviour
     private IEnumerator InitializeLocalization()
     {
         yield return LocalizationSettings.InitializationOperation;
-        ShowStats(); // Statistiken mit der richtigen Sprache anzeigen
+        ShowStats(); // Display statistics in the correct language
     }
 
     void ShowStats()
     {
-        // Aktuelle Sprache aus PlayerPrefs holen (Standard: Englisch)
+        // Get the current language from PlayerPrefs (default: English)
         int localeID = PlayerPrefs.GetInt(LanguageKey, 0);
         string languageCode = LocalizationSettings.AvailableLocales.Locales[localeID].Identifier.Code;
 
-        // Strings für die jeweilige Sprache
-        string title = (languageCode == "de") ? "SPIEL-STATISTIKEN:\n" : "GAME STATS:\n";
-        string kills = (languageCode == "de") ? "Besiegte Gegner: " : "Enemy Kills: ";
-        string shots = (languageCode == "de") ? "Abgefeuerte Schüsse: " : "Shots Fired: ";
-        string deaths = (languageCode == "de") ? "Tode: " : "Death Count: ";
+        // Strings for each language
+        string title = (languageCode == "de") ? "GAME STATISTICS:\n" : "GAME STATS:\n";
+        string kills = (languageCode == "de") ? "Enemies Defeated: " : "Enemy Kills: ";
+        string shots = (languageCode == "de") ? "Shots Fired: " : "Shots Fired: ";
+        string deaths = (languageCode == "de") ? "Deaths: " : "Death Count: ";
 
-        // Werte aus den PlayerPrefs auslesen
+        // Retrieve values from PlayerPrefs
         string stats = title;
         stats += kills + PlayerPrefs.GetInt("EnemyKills", 0) + "\n";
         stats += shots + PlayerPrefs.GetInt("ShotsFired", 0) + "\n";
         stats += deaths + PlayerPrefs.GetInt("DeathCount", 0) + "\n";
 
-        // Text anzeigen
+        // Display the text
         if (outputText != null)
         {
             outputText.text = stats;
         }
         else
         {
-            Debug.Log(stats);  // Falls kein TMP-Text vorhanden ist, in die Konsole ausgeben
+            Debug.Log(stats);  // If no TMP text is assigned, output to console
         }
     }
 }

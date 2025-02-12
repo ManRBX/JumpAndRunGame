@@ -1,26 +1,26 @@
 ﻿using UnityEngine;
-using TMPro;  // TMP-Import
+using TMPro;  // TMP import
 
 public class PlayerHealthUI : MonoBehaviour
 {
-    private const string LivesKey = "GlobalLives"; // Key für gespeicherte Leben
-    public TMP_Text lebenText;  // TMP_Text für die Lebensanzeige
+    private const string LivesKey = "GlobalLives"; // Key for stored lives
+    public TMP_Text livesText;  // TMP_Text for the lives display
 
     void Start()
     {
-        UpdateLebenUI(); // UI beim Start aktualisieren
+        UpdateLivesUI(); // Update UI on start
     }
 
-    public void UpdateLebenUI()
+    public void UpdateLivesUI()
     {
-        if (lebenText != null)
+        if (livesText != null)
         {
-            int currentLives = PlayerPrefs.GetInt(LivesKey, 3); // Leben aus PlayerPrefs holen (Standard: 3)
-            lebenText.text = currentLives.ToString(); // Zeigt nur die Zahl an
+            int currentLives = PlayerPrefs.GetInt(LivesKey, 3); // Retrieve lives from PlayerPrefs (default: 3)
+            livesText.text = currentLives.ToString(); // Display only the number
         }
         else
         {
-            Debug.LogWarning("lebenText ist nicht zugewiesen!");
+            Debug.LogWarning("livesText is not assigned!");
         }
     }
 }

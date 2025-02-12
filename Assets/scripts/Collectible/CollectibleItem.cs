@@ -4,8 +4,8 @@ public class CollectibleItem : MonoBehaviour
 {
     private bool collected = false;
 
-    // Achte darauf, dass dieses GameObject einen 2D-Collider (z. B. BoxCollider2D oder CircleCollider2D)
-    // besitzt und die Option "Is Trigger" aktiviert ist.
+    // Make sure this GameObject has a 2D collider (e.g., BoxCollider2D or CircleCollider2D)
+    // and that the "Is Trigger" option is enabled.
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,15 +21,15 @@ public class CollectibleItem : MonoBehaviour
     private void Collect()
     {
         collected = true;
-        Debug.Log("Ein Collectible wurde eingesammelt!");
+        Debug.Log("A collectible has been collected!");
 
-        // Informiere den Manager, dass dieses Item eingesammelt wurde, sofern das MiniGame aktiv ist.
+        // Inform the manager that this item has been collected, if the MiniGame is active.
         if (MiniGameManager.Instance != null && MiniGameManager.Instance.miniGameActive)
         {
             MiniGameManager.Instance.CollectiblePicked();
         }
 
-        // Deaktiviere das Item, damit es nicht erneut eingesammelt wird.
+        // Disable the item so it cannot be collected again.
         gameObject.SetActive(false);
     }
 }

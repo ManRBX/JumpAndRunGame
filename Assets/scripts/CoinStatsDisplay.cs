@@ -4,10 +4,10 @@ using TMPro;
 public class CoinStatsDisplay : MonoBehaviour
 {
     [Header("UI Elements")]
-    public TMP_Text globalPointsText;  // Zeigt nur die globale Punktzahl
-    public TMP_Text levelPointsText;   // Zeigt nur die Punktzahl des Levels
-    public TMP_Text globalCoinsText;   // Zeigt nur die globale Münzenanzahl
-    public TMP_Text levelCoinsText;    // Zeigt nur die Münzen des Levels
+    public TMP_Text globalPointsText;  // Displays only the global point total
+    public TMP_Text levelPointsText;   // Displays only the level-specific point total
+    public TMP_Text globalCoinsText;   // Displays only the global coin count
+    public TMP_Text levelCoinsText;    // Displays only the level-specific coin count
 
     void Start()
     {
@@ -16,34 +16,34 @@ public class CoinStatsDisplay : MonoBehaviour
 
     public void UpdatePointStats()
     {
-        // Globale Werte abrufen
+        // Retrieve global values
         int globalPoints = PlayerPrefs.GetInt("GlobalPoints", 0);
         int globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0);
 
-        // Level-spezifische Werte abrufen
+        // Retrieve level-specific values
         string currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         int levelPoints = PlayerPrefs.GetInt($"{currentLevel}_Points", 0);
         int levelCoins = PlayerPrefs.GetInt($"{currentLevel}_Coins", 0);
 
-        // Globale Punkte anzeigen
+        // Display global points
         if (globalPointsText != null)
         {
             globalPointsText.text = globalPoints.ToString();
         }
 
-        // Level-spezifische Punkte anzeigen
+        // Display level-specific points
         if (levelPointsText != null)
         {
             levelPointsText.text = levelPoints.ToString();
         }
 
-        // Globale Münzen anzeigen
+        // Display global coins
         if (globalCoinsText != null)
         {
             globalCoinsText.text = globalCoins.ToString();
         }
 
-        // Level-spezifische Münzen anzeigen
+        // Display level-specific coins
         if (levelCoinsText != null)
         {
             levelCoinsText.text = levelCoins.ToString();

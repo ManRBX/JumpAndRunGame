@@ -3,42 +3,42 @@ using UnityEngine.SceneManagement;
 
 public class LevelEnd : MonoBehaviour
 {
-    public string nextLevelName;  // Name des nächsten Levels (z.B. "Level02")
-    public string currentLevelName;  // Aktuelles Level (z.B. "Level01")
-    public string returnScene = "Menu";  // Szene, zu der zurückgekehrt wird
+    public string nextLevelName;  // Name of the next level (e.g., "Level02")
+    public string currentLevelName;  // Current level (e.g., "Level01")
+    public string returnScene = "Menu";  // Scene to return to
 
     private void Start()
     {
-        // Level01 ist immer freigeschaltet
+        // Level01 is always unlocked
         if (currentLevelName == "Level01")
         {
-            PlayerPrefs.SetInt(currentLevelName + "_Freigeschaltet", 1);
+            PlayerPrefs.SetInt(currentLevelName + "_Unlocked", 1);
         }
 
-        // Markiere das Level als besucht
+        // Mark the level as visited
         PlayerPrefs.SetInt(currentLevelName + "_Visited", 1);
         PlayerPrefs.Save();
-        Debug.Log(currentLevelName + " betreten.");
+        Debug.Log(currentLevelName + " entered.");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // Speichere Level als abgeschlossen
-            PlayerPrefs.SetInt(currentLevelName + "_Beendet", 1);
-            Debug.Log(currentLevelName + " beendet!");
+            // Save level as completed
+            PlayerPrefs.SetInt(currentLevelName + "_Completed", 1);
+            Debug.Log(currentLevelName + " completed!");
 
-            // Nächstes Level freischalten (außer es ist das letzte Level)
+            // Unlock the next level (unless it's the last level)
             if (!string.IsNullOrEmpty(nextLevelName))
             {
-                PlayerPrefs.SetInt(nextLevelName + "_Freigeschaltet", 1);
-                Debug.Log(nextLevelName + " freigeschaltet!");
+                PlayerPrefs.SetInt(nextLevelName + "_Unlocked", 1);
+                Debug.Log(nextLevelName + " unlocked!");
             }
 
             PlayerPrefs.Save();
 
-            // Zurück ins Menü
+            // Return to the menu
             SceneManager.LoadScene(returnScene);
         }
     }

@@ -3,29 +3,33 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // Szene über Button-Click laden
+    /// <summary>
+    /// Loads a scene via button click.
+    /// </summary>
     public void LoadScene(string sceneName)
     {
         if (!string.IsNullOrEmpty(sceneName))
         {
-            // Prüfen, ob die Szene im Build existiert
+            // Check if the scene exists in the build settings
             if (SceneExists(sceneName))
             {
                 SceneManager.LoadScene(sceneName);
-                Debug.Log("Szene geladen: " + sceneName);
+                Debug.Log("Scene loaded: " + sceneName);
             }
             else
             {
-                Debug.LogError("Szene '" + sceneName + "' ist nicht im Build Settings hinzugefügt!");
+                Debug.LogError("Scene '" + sceneName + "' is not added to the Build Settings!");
             }
         }
         else
         {
-            Debug.LogWarning("Kein Szenenname angegeben!");
+            Debug.LogWarning("No scene name provided!");
         }
     }
 
-    // Szene überprüfen, ob sie im Build Settings vorhanden ist
+    /// <summary>
+    /// Checks if the scene exists in the Build Settings.
+    /// </summary>
     private bool SceneExists(string sceneName)
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
@@ -39,14 +43,16 @@ public class SceneLoader : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("Szene '" + sceneName + "' nicht gefunden.");
+        Debug.LogWarning("Scene '" + sceneName + "' not found.");
         return false;
     }
 
-    // Debugging: Liste aller Szenen im Build ausgeben
+    /// <summary>
+    /// Debugging: Outputs a list of all scenes included in the build.
+    /// </summary>
     void Start()
     {
-        Debug.Log("Szenen im Build:");
+        Debug.Log("Scenes in Build:");
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             string scenePath = SceneUtility.GetScenePathByBuildIndex(i);

@@ -6,25 +6,25 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().gravityScale = 0;  // Keine Schwerkraft
-        Destroy(gameObject, lifeTime);  // Bullet zerstört sich nach Zeit
+        GetComponent<Rigidbody2D>().gravityScale = 0;  // No gravity
+        Destroy(gameObject, lifeTime);  // Bullet destroys itself after a set time
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("ground"))
         {
-            Debug.Log("Bullet trifft Boden.");
+            Debug.Log("Bullet hit the ground.");
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Enemy"))
         {
-            Debug.Log("Bullet trifft Gegner!");
+            Debug.Log("Bullet hit an enemy!");
 
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1);  // Gegner erleidet 1 Schaden
+                enemy.TakeDamage(1);  // Enemy takes 1 damage
 
                 if (enemy.health <= 0)
                 {
@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
                     PlayerPrefs.SetInt("EnemyKills", kills);
                     PlayerPrefs.Save();
 
-                    Debug.Log($"Gegner getötet! Gesamtzahl: {kills}");
+                    Debug.Log($"Enemy killed! Total count: {kills}");
                 }
             }
 
