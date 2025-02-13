@@ -1,4 +1,4 @@
-🕹️ 2D Jump and Run Game / English
+🕹️ 2D Jump and Run Game
 
 My own open-source Jump and Run game, developed with Unity! 🚀🎮 📌 Features
 
