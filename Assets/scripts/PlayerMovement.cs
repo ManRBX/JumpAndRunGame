@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections; // <-- Needed for Coroutines
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private bool canWallJump = true;
 
+    // -----------------------------
+    // Double Jump Variables
+    // -----------------------------
+    private bool doubleJumpActive = false;  // Whether double jump is currently powered-up
+    private float doubleJumpTimer = 0f;      // How long double jump stays active
+    private bool usedDoubleJump = false;    // Has the extra jump already been used?
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +51,19 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJumpInput();
         UpdateAnimationStates();
+
+        // -----------------------------
+        // Handle Double Jump Duration
+        // -----------------------------
+        if (doubleJumpActive)
+        {
+            doubleJumpTimer -= Time.deltaTime;
+            if (doubleJumpTimer <= 0f)
+            {
+                doubleJumpActive = false;
+                usedDoubleJump = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -100,10 +121,18 @@ public class PlayerMovement : MonoBehaviour
         if (KeyBindManager.Instance != null
             && Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("Jump")))
         {
+            // Normal jump if still within coyoteTime and grounded
             if (coyoteTimeCounter > 0f && isGrounded)
             {
                 Jump();
             }
+            // Use the extra jump if double jump is active and not yet used
+            else if (doubleJumpActive && !usedDoubleJump)
+            {
+                Jump();
+                usedDoubleJump = true;
+            }
+            // Otherwise, check if the player can wall jump
             else if (isTouchingWall)
             {
                 WallJump();
@@ -190,6 +219,8 @@ public class PlayerMovement : MonoBehaviour
         {
             coyoteTimeCounter = coyoteTime;
             canWallJump = true;
+            // Reset double jump usage whenever we land
+            usedDoubleJump = false;
         }
         else
         {
@@ -207,7 +238,10 @@ public class PlayerMovement : MonoBehaviour
         for (int i = 0; i < wallCheckPoints.Length; i++)
         {
             Transform point = wallCheckPoints[i];
-            RaycastHit2D wallHit = Physics2D.Raycast(point.position, Vector2.right * (facingRight ? 1 : -1), wallCheckDistance, wallLayer);
+            RaycastHit2D wallHit = Physics2D.Raycast(point.position,
+                                                     Vector2.right * (facingRight ? 1 : -1),
+                                                     wallCheckDistance,
+                                                     wallLayer);
 
             wallLineRenderers[i].SetPosition(0, point.position);
             wallLineRenderers[i].SetPosition(1, point.position + Vector3.right * (facingRight ? 1 : -1) * wallCheckDistance);
@@ -270,5 +304,28 @@ public class PlayerMovement : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    // -----------------------------------------------------------
+    // SPEED BOOST COROUTINE
+    // Called by SpeedBoostPickup.cs
+    // -----------------------------------------------------------
+    public IEnumerator ApplySpeedBoost(float multiplier, float boostDuration)
+    {
+        float originalSpeed = speed;
+        speed *= multiplier; // Increase speed
+        yield return new WaitForSeconds(boostDuration);
+        speed = originalSpeed; // Revert to normal speed
+    }
+
+    // -----------------------------------------------------------
+    // DOUBLE JUMP ACTIVATION
+    // Called by DoubleJumpPickup.cs
+    // -----------------------------------------------------------
+    public void ActivateDoubleJump(float duration)
+    {
+        doubleJumpActive = true;
+        doubleJumpTimer = duration;
+        usedDoubleJump = false; // Reset so the player can use the extra jump
     }
 }

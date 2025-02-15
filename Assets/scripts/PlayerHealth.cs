@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible = false;
 
     [Header("Invincibility Settings")]
-    public float invincibilityDuration = 1f;
+    public float invincibilityDuration = 1f;  // For damage invincibility
 
     [Header("Damage Feedback")]
     public Color damageColor = Color.red;
@@ -57,6 +57,8 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             Die();
         }
+
+        // Apply short invincibility after taking damage
         StartCoroutine(Invincibility());
         UpdateUI();
     }
@@ -124,10 +126,23 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    /// <summary>
+    /// Short invincibility applied after taking damage.
+    /// </summary>
     private IEnumerator Invincibility()
     {
         isInvincible = true;
         yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
+
+    /// <summary>
+    /// Applies invincibility for a specified duration (used by the Invincibility power-up).
+    /// </summary>
+    public IEnumerator ApplyInvincibility(float powerUpDuration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(powerUpDuration);
         isInvincible = false;
     }
 
