@@ -12,6 +12,7 @@ TagManager:
   - KillZone
   - Collectible
   - CollectibleItem
+  - InvincibilityPickup
   layers:
   - Default
   - TransparentFX
