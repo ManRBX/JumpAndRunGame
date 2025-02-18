@@ -12,7 +12,7 @@ TagManager:
   - KillZone
   - Collectible
   - CollectibleItem
-  - InvincibilityPickup
+  - Spike
   layers:
   - Default
   - TransparentFX
