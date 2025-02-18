@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 189023173}
   - component: {fileID: 189023172}
   m_Layer: 5
-  m_Name: Weltweit 0
+  m_Name: Worldwide 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 753785883}
   - component: {fileID: 753785882}
   m_Layer: 5
-  m_Name: Spezial 0
+  m_Name: Special 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 757189859}
   - component: {fileID: 757189858}
   m_Layer: 5
-  m_Name: punkte 0
+  m_Name: points  0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1138,7 +1138,7 @@ GameObject:
   - component: {fileID: 818316046}
   - component: {fileID: 818316045}
   m_Layer: 5
-  m_Name: Statics
+  m_Name: Static
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1784,7 +1784,7 @@ GameObject:
   - component: {fileID: 1378066713}
   - component: {fileID: 1378066712}
   m_Layer: 5
-  m_Name: Shop
+  m_Name: Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1862,7 +1862,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Shop
+          m_StringArgument: Store
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1378066713
@@ -2008,7 +2008,7 @@ GameObject:
   - component: {fileID: 1702712101}
   - component: {fileID: 1702712104}
   m_Layer: 5
-  m_Name: 'Spezial Coins:'
+  m_Name: Special Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2183,7 +2183,7 @@ GameObject:
   - component: {fileID: 1790356519}
   - component: {fileID: 1790356518}
   m_Layer: 5
-  m_Name: Punkte global
+  m_Name: Points globally
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2555,7 +2555,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Optionen
+          m_StringArgument: Options
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1855274194
@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 1906485386}
   - component: {fileID: 1906485385}
   m_Layer: 5
-  m_Name: Start
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2756,7 +2756,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level Auswahl
+          m_StringArgument: Level selection
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1906485386
@@ -2810,7 +2810,7 @@ GameObject:
   - component: {fileID: 2134513019}
   - component: {fileID: 2134513018}
   m_Layer: 5
-  m_Name: Beenden
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

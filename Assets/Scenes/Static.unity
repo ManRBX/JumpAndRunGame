@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 719825305}
   - component: {fileID: 719825304}
   m_Layer: 0
-  m_Name: Gesammte Musik
+  m_Name: All music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 1402335476}
   - component: {fileID: 1402335475}
   m_Layer: 5
-  m_Name: "Zur\xFCck"
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
