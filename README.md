@@ -12,4 +12,6 @@ git clone https://github.com/ManRBX/JumpAndRunGame
 
 If you want to help improve the game: 1️⃣ Fork the repository 2️⃣ Make your changes 3️⃣ Create a Pull Request! 📜 License
 
+Discord servers: https://discord.gg/PRRqQ5nEr9
+
 This project is licensed under the MIT License – feel free to use & improve it! 🔥
