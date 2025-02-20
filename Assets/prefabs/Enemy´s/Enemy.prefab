@@ -267,7 +267,7 @@ MonoBehaviour:
   speed: 2
   leftDistance: 5
   rightDistance: 5
-  jumpForce: 6
+  jumpForce: 5
   groundCheck: {fileID: 8870517841995521546}
   groundLayer:
     serializedVersion: 2
@@ -275,11 +275,11 @@ MonoBehaviour:
   wallCheck: {fileID: 5518160696484785788}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   wallCheckDistance: 0.5
   attackCooldown: 1
   damageStunTime: 0.5
-  pointsOnDeath: 50
+  pointsOnDeath: 20
 --- !u!1 &6612225463405395668
 GameObject:
   m_ObjectHideFlags: 0

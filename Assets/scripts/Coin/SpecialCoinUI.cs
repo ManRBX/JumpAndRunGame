@@ -39,8 +39,8 @@ public class SpecialCoinUI : MonoBehaviour
             }
             else
             {
-                // Semi-transparent if not collected
-                coinImages[i].color = new Color(1, 1, 1, 0.1f);
+                // Semi-transparent (alpha = 0) if not collected
+                coinImages[i].color = new Color(1, 1, 1, 0f);
             }
         }
     }

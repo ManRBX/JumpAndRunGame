@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1359245858419106276}
   - component: {fileID: 2694294294698703339}
   - component: {fileID: 4499866313002116838}
+  - component: {fileID: -9205636991663203842}
   m_Layer: 0
   m_Name: CoinBlueCollect
   m_TagString: Collectible
@@ -170,3 +171,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95ad2cc2c58ce041a6d375be971cae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9205636991663203842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243612040783997799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9643ae1de1eed44b9826fd12b48de0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointValue: 250
+  coinValue: 5
+  collectSound: {fileID: 8300000, guid: 3acc1bb15c7a97145952df7de1ab4f62, type: 3}

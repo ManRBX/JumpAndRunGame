@@ -21,7 +21,7 @@ public class SpecialCoin : MonoBehaviour
         if (PlayerPrefs.HasKey(coinKey))
         {
             // Make the coin transparent
-            SetTransparency(0.5f);
+            SetTransparency(0f);
         }
 
         // Add AudioSource
@@ -57,7 +57,7 @@ public class SpecialCoin : MonoBehaviour
                 }
 
                 // Make the coin transparent
-                SetTransparency(0.1f);
+                SetTransparency(0f);
             }
         }
     }
