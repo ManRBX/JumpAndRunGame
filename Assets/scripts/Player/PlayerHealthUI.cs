@@ -8,19 +8,26 @@ public class PlayerHealthUI : MonoBehaviour
 
     void Start()
     {
-        UpdateLivesUI(); // Update UI on start
+        // Setze die Start-Leben auf 5, falls sie noch nicht gesetzt wurden
+        if (!PlayerPrefs.HasKey(LivesKey))
+        {
+            PlayerPrefs.SetInt(LivesKey, 5); // Setze den Anfangswert der Leben auf 5
+            PlayerPrefs.Save();  // Speichern der Änderung
+        }
+
+        UpdateLivesUI(); // UI beim Start aktualisieren
     }
 
     public void UpdateLivesUI()
     {
         if (livesText != null)
         {
-            int currentLives = PlayerPrefs.GetInt(LivesKey, 3); // Retrieve lives from PlayerPrefs (default: 3)
-            livesText.text = currentLives.ToString(); // Display only the number
+            int currentLives = PlayerPrefs.GetInt(LivesKey, 5); // Hole die Leben aus den PlayerPrefs (Standardwert: 5)
+            livesText.text = currentLives.ToString(); // Setze die Textanzeige auf die aktuelle Anzahl der Leben
         }
         else
         {
-            Debug.LogWarning("livesText is not assigned!");
+            Debug.LogWarning("livesText ist nicht zugewiesen!");
         }
     }
 }

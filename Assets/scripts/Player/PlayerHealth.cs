@@ -75,17 +75,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        // Retrieve lives from PlayerPrefs & reduce them
-        int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
-        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Prevent negative lives
-        PlayerPrefs.Save();
+        // Leben von PlayerPrefs holen und um 1 verringern
+        int lives = PlayerPrefs.GetInt(LivesKey, 5) - 1;
+        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Sicherstellen, dass die Leben nicht negativ werden
+        PlayerPrefs.Save(); // Speichern der neuen Leben
 
-        // Store player deaths in PlayerPrefs
-        int deathCount = PlayerPrefs.GetInt("DeathCount", 0) + 1;
-        PlayerPrefs.SetInt("DeathCount", deathCount);
-        PlayerPrefs.Save();
-
-        Debug.Log($"Player died. Death count: {deathCount}, Remaining lives: {lives}");
+        Debug.Log($"Spieler gestorben. Verbleibende Leben: {lives}");
 
         if (lives > 0)
         {
@@ -95,7 +90,12 @@ public class PlayerHealth : MonoBehaviour
         {
             RestartGame();
         }
-        UpdateUI();
+
+        // UI aktualisieren
+        if (playerHealthUI != null)
+        {
+            playerHealthUI.UpdateLivesUI();
+        }
     }
 
     void Respawn()
