@@ -46,7 +46,7 @@ public class MovingPlatform : MonoBehaviour
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = Vector2.zero; // Prevents the platform from pulling the player through the air
+                rb.linearVelocity = Vector2.zero; // Prevents the platform from pulling the player through the air
             }
         }
     }
@@ -62,7 +62,7 @@ public class MovingPlatform : MonoBehaviour
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = Vector2.zero; // Reset the velocity if needed
+                rb.linearVelocity = Vector2.zero; // Reset the velocity if needed
             }
         }
     }
