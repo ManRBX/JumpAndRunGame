@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class LadderMovement : MonoBehaviour
 {
-    [Header("Klettereinstellungen")]
-    public float climbSpeed = 5f; // Geschwindigkeit des Kletterns
-    private Rigidbody2D playerRB; // Spieler Rigidbody
-    private bool onLadder = false; // Gibt an, ob der Spieler auf der Leiter ist
+    [Header("Climbing Settings")]
+    public float climbSpeed = 5f; // Speed of climbing
+    private Rigidbody2D playerRB; // Player's Rigidbody
+    private bool onLadder = false; // Indicates whether the player is on the ladder
 
     private void Start()
     {
-        // Spieler finden
+        // Find the player
         playerRB = GameObject.FindWithTag("Player")?.GetComponent<Rigidbody2D>();
         if (playerRB == null)
         {
-            Debug.LogError("Spieler mit Tag 'Player' nicht gefunden!");
+            Debug.LogError("Player with tag 'Player' not found!");
         }
     }
 
@@ -21,11 +21,11 @@ public class LadderMovement : MonoBehaviour
     {
         if (onLadder)
         {
-            // Hole KeyCodes für ClimbUp und ClimbDown vom Manager
+            // Get KeyCodes for ClimbUp and ClimbDown from the manager
             bool upPressed = false;
             bool downPressed = false;
 
-            // Prüfen, ob ein KeyBindManager vorhanden ist
+            // Check if a KeyBindManager exists
             if (KeyBindManager.Instance != null)
             {
                 upPressed = Input.GetKey(KeyBindManager.Instance.GetKeyCodeForAction("ClimbUp"));
@@ -35,39 +35,39 @@ public class LadderMovement : MonoBehaviour
             float verticalVelocity = 0f;
             if (upPressed && !downPressed)
             {
-                // Nur hoch
+                // Only moving up
                 verticalVelocity = climbSpeed;
             }
             else if (downPressed && !upPressed)
             {
-                // Nur runter
+                // Only moving down
                 verticalVelocity = -climbSpeed;
             }
 
-            // Setze nur die vertikale Geschwindigkeit
+            // Set only the vertical velocity
             playerRB.linearVelocity = new Vector2(playerRB.linearVelocity.x, verticalVelocity);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Spieler betritt die Leiter
+        // Player enters the ladder
         if (collision.CompareTag("Player"))
         {
             playerRB.gravityScale = 0f;
             onLadder = true;
-            Debug.Log("Spieler betritt die Leiter.");
+            Debug.Log("Player entered the ladder.");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // Spieler verlässt die Leiter
+        // Player exits the ladder
         if (collision.CompareTag("Player"))
         {
             playerRB.gravityScale = 2f;
             onLadder = false;
-            Debug.Log("Spieler verlässt die Leiter.");
+            Debug.Log("Player exited the ladder.");
         }
     }
 }

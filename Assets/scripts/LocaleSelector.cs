@@ -5,7 +5,7 @@ using UnityEngine.Localization.Settings;
 public class LocaleSelector : MonoBehaviour
 {
     private const string LanguageKey = "SelectedLanguage";
-    private bool isSwitching = false; // Verhindert mehrfaches Umschalten
+    private bool isSwitching = false; // Prevents switching multiple times
 
     private void Start()
     {
@@ -14,25 +14,25 @@ public class LocaleSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// Wechselt die Sprache anhand der übergebenen ID.
+    /// Switches the language based on the passed locale ID.
     /// </summary>
     public void ChangeLocale(int localeID)
     {
-        if (isSwitching) return; // Falls gerade eine Umstellung läuft, abbrechen
+        if (isSwitching) return; // If a switch is in progress, abort
         StartCoroutine(SetLocale(localeID));
     }
 
     /// <summary>
-    /// Stellt die Sprache ein und speichert sie in den PlayerPrefs.
+    /// Sets the language and saves it in PlayerPrefs.
     /// </summary>
     private IEnumerator SetLocale(int localeID)
     {
         isSwitching = true;
-        yield return LocalizationSettings.InitializationOperation; // Warten, bis das Localization-System bereit ist
+        yield return LocalizationSettings.InitializationOperation; // Wait until the localization system is ready
 
         if (localeID < 0 || localeID >= LocalizationSettings.AvailableLocales.Locales.Count)
         {
-            Debug.LogError($"Ungültige Locale-ID: {localeID}. Setze Standardwert (0).");
+            Debug.LogError($"Invalid Locale ID: {localeID}. Setting to default value (0).");
             localeID = 0;
         }
 
@@ -40,7 +40,7 @@ public class LocaleSelector : MonoBehaviour
         PlayerPrefs.SetInt(LanguageKey, localeID);
         PlayerPrefs.Save();
 
-        Debug.Log($"🌍 Sprache gewechselt zu: {LocalizationSettings.SelectedLocale.LocaleName}");
+        Debug.Log($"🌍 Language changed to: {LocalizationSettings.SelectedLocale.LocaleName}");
 
         isSwitching = false;
     }

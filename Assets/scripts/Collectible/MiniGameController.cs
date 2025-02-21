@@ -7,24 +7,24 @@ public class MiniGameManager : MonoBehaviour
 {
     public static MiniGameManager Instance;
 
-    [Header("Globale MiniGame Einstellungen")]
-    [Tooltip("Dauer des Mini-Games in Sekunden.")]
+    [Header("Global MiniGame Settings")]
+    [Tooltip("Duration of the mini-game in seconds.")]
     public float gameDuration = 10f;
 
-    [Tooltip("TMP Textfeld zur Anzeige des Timers.")]
+    [Tooltip("TMP Text field for displaying the timer.")]
     public TMP_Text timerText;
 
-    [Header("Aktueller MiniGame Status")]
+    [Header("Current MiniGame Status")]
     public bool miniGameActive = false;
 
-    [Tooltip("Anzahl der Collectible Items, die eingesammelt werden müssen.")]
+    [Tooltip("Number of collectible items that need to be collected.")]
     public int requiredCollectibles = 0;
 
     private int collectedCount = 0;
     private Coroutine timerCoroutine;
 
-    private const string LivesKey = "GlobalLives"; // Gleicher Key wie in PlayerHealth
-    private bool rewardGiven = false; // Verhindert doppeltes Leben hinzufügen
+    private const string LivesKey = "GlobalLives"; // Same key as in PlayerHealth
+    private bool rewardGiven = false; // Prevents giving rewards multiple times
 
     public event Action<bool> OnMiniGameEnded;
 
@@ -55,13 +55,13 @@ public class MiniGameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Startet das MiniGame mit Erfolgs- und Fehlgeschlagen-Callback
+    /// Starts the mini-game with success and failure callbacks
     /// </summary>
     public void StartMiniGame(int requiredCollectibles, float duration, Action onComplete, Action onFailed)
     {
         if (miniGameActive)
         {
-            Debug.LogWarning("MiniGame ist bereits aktiv!");
+            Debug.LogWarning("MiniGame is already active!");
             return;
         }
 
@@ -69,7 +69,7 @@ public class MiniGameManager : MonoBehaviour
         collectedCount = 0;
         gameDuration = duration;
         miniGameActive = true;
-        rewardGiven = false; // **Sicherstellen, dass Belohnung zurückgesetzt wird**
+        rewardGiven = false; // **Ensure reward is reset**
 
         if (timerText != null)
         {
@@ -77,7 +77,7 @@ public class MiniGameManager : MonoBehaviour
         }
 
         timerCoroutine = StartCoroutine(TimerCountdown(onComplete, onFailed));
-        Debug.Log($"MiniGame gestartet! Sammle {requiredCollectibles} Items in {duration} Sekunden.");
+        Debug.Log($"MiniGame started! Collect {requiredCollectibles} items in {duration} seconds.");
     }
 
     public void CollectiblePicked()
@@ -85,7 +85,7 @@ public class MiniGameManager : MonoBehaviour
         if (!miniGameActive) return;
 
         collectedCount++;
-        Debug.Log($"Collectible eingesammelt! ({collectedCount} von {requiredCollectibles})");
+        Debug.Log($"Collectible collected! ({collectedCount} of {requiredCollectibles})");
 
         if (collectedCount >= requiredCollectibles)
         {
@@ -102,7 +102,7 @@ public class MiniGameManager : MonoBehaviour
             timer -= Time.deltaTime;
             if (timerText != null)
             {
-                timerText.text = "Zeit: " + Mathf.Ceil(timer);
+                timerText.text = "Time: " + Mathf.Ceil(timer);
             }
             yield return null;
         }
@@ -121,10 +121,10 @@ public class MiniGameManager : MonoBehaviour
 
     public void EndMiniGame(bool success)
     {
-        if (!miniGameActive || rewardGiven) return; // **Doppelten Aufruf verhindern!**
+        if (!miniGameActive || rewardGiven) return; // **Prevent double call!**
 
         miniGameActive = false;
-        rewardGiven = true; // **Setze, damit nur einmalig Belohnung vergeben wird**
+        rewardGiven = true; // **Set to ensure reward is given only once**
 
         if (timerCoroutine != null)
         {
@@ -138,24 +138,24 @@ public class MiniGameManager : MonoBehaviour
 
         if (success)
         {
-            Debug.Log("🎉 Glückwunsch! Du hast alle Items eingesammelt!");
+            Debug.Log("🎉 Congratulations! You collected all items!");
 
-            // Leben **einmalig** erhöhen
+            // Increase life **only once**
             int currentLives = PlayerPrefs.GetInt(LivesKey, 3) + 1;
             PlayerPrefs.SetInt(LivesKey, currentLives);
             PlayerPrefs.Save();
-            Debug.Log($"✅ Neues Leben hinzugefügt! Gesamtleben: {currentLives}");
+            Debug.Log($"✅ New life added! Total lives: {currentLives}");
 
-            // UI aktualisieren
+            // Update UI
             PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
             if (healthUI != null)
             {
-                healthUI.UpdateLebenUI();
+                healthUI.UpdateLivesUI();
             }
         }
         else
         {
-            Debug.Log("⏳ Zeit abgelaufen! MiniGame nicht erfolgreich.");
+            Debug.Log("⏳ Time's up! MiniGame not successful.");
         }
 
         OnMiniGameEnded?.Invoke(success);

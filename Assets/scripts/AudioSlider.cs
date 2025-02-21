@@ -5,11 +5,11 @@ using TMPro;
 public class AudioSlider : MonoBehaviour
 {
     public Slider volumeSlider;
-    public TMP_Text volumeText;  // Nur die Prozentanzeige
+    public TMP_Text volumeText;  // Only the percentage display
 
     void Start()
     {
-        // Initialisiere den Slider mit gespeicherter Lautstärke (Standard: 50%)
+        // Initialize the slider with the saved volume (default: 50%)
         if (volumeSlider != null)
         {
             volumeSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
@@ -23,13 +23,13 @@ public class AudioSlider : MonoBehaviour
     {
         float newVolume = volumeSlider.value;
 
-        // Falls du einen AudioManager hast, hier die Lautstärke setzen
+        // If an AudioManager exists, update the volume
         if (AudioManager.instance != null)
         {
             AudioManager.instance.SetVolume(newVolume);
         }
 
-        // Lautstärke speichern
+        // Save the volume setting
         PlayerPrefs.SetFloat("Volume", newVolume);
         PlayerPrefs.Save();
 

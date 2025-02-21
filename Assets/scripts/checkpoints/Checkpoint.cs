@@ -6,11 +6,11 @@ public class Checkpoint : MonoBehaviour
 
     private void Start()
     {
-        // Referenz auf den SpriteRenderer holen
+        // Get the reference to the SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
-            Debug.LogError("SpriteRenderer fehlt am Checkpoint-Objekt!");
+            Debug.LogError("SpriteRenderer is missing from the checkpoint object!");
         }
     }
 
@@ -20,11 +20,11 @@ public class Checkpoint : MonoBehaviour
         {
             if (CheckpointManager.instance != null)
             {
-                // Setze die aktuelle Position als neuen Checkpoint
+                // Set the current position as the new checkpoint
                 CheckpointManager.instance.SetCheckpoint(transform.position);
-                Debug.Log("Checkpoint erreicht!");
+                Debug.Log("Checkpoint reached!");
 
-                // Farbe auf Blau ändern
+                // Change the color to Blue
                 if (spriteRenderer != null)
                 {
                     spriteRenderer.color = Color.red;
@@ -32,7 +32,7 @@ public class Checkpoint : MonoBehaviour
             }
             else
             {
-                Debug.LogError("CheckpointManager ist nicht vorhanden!");
+                Debug.LogError("CheckpointManager is missing!");
             }
         }
     }

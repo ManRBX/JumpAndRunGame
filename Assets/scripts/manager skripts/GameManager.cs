@@ -8,14 +8,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton-Pattern, aber ohne DontDestroyOnLoad
+        // Singleton pattern, but without DontDestroyOnLoad
         if (instance == null)
         {
             instance = this;
         }
         else if (instance != this)
         {
-            Destroy(gameObject);  // Zerstört doppelte Instanzen beim Szenen-Neustart
+            Destroy(gameObject);  // Destroys duplicate instances when the scene restarts
         }
     }
 
@@ -25,32 +25,32 @@ public class GameManager : MonoBehaviour
 
         if (playerLives <= 0)
         {
-            // Wenn alle Leben verloren sind, lade Game Over Szene
+            // If all lives are lost, load the Game Over scene
             SceneManager.LoadScene("GameOver");
         }
         else
         {
-            // Spieler respawnt (z.B. an Checkpoint)
+            // Respawn the player (e.g., at a checkpoint)
             RespawnPlayer();
         }
     }
 
-    // Spieler-Respawn-Logik
+    // Player respawn logic
     private void RespawnPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            // CheckpointManager wird verwendet, um die Respawn-Position zu bestimmen
+            // CheckpointManager is used to determine the respawn position
             Vector3 respawnPosition = CheckpointManager.instance != null
                 ? CheckpointManager.instance.GetCheckpointPosition()
-                : Vector3.zero;  // Fallback zu Ursprung
+                : Vector3.zero;  // Fallback to origin
 
-            respawnPosition.y += 1f;  // Spieler leicht über dem Boden spawnen
+            respawnPosition.y += 1f;  // Spawn the player slightly above the ground
             player.transform.position = respawnPosition;
 
-            Debug.Log("Spieler respawnt bei: " + respawnPosition);
+            Debug.Log("Player respawned at: " + respawnPosition);
         }
     }
 }

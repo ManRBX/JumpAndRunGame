@@ -12,6 +12,7 @@ TagManager:
   - KillZone
   - Collectible
   - CollectibleItem
+  - Spike
   layers:
   - Default
   - TransparentFX
