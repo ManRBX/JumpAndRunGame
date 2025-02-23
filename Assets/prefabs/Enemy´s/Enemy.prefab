@@ -279,3 +279,6 @@ MonoBehaviour:
   attackCooldown: 1
   damageStunTime: 0.5
   pointsOnDeath: 20
+  respawnTime: 300
+  deathAnimationDuration: 1
+  deathEffect: {fileID: 0}
