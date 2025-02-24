@@ -35,13 +35,6 @@ public class Enemy : MonoBehaviour
     [Header("Point Settings")]
     public int pointsOnDeath = 50; // Points awarded when the enemy dies
 
-    [Header("Respawn Settings")]
-    public float respawnTime = 300f; // Respawn time in seconds (can be set in the Inspector)
-    public float deathAnimationDuration = 6f; // Duration of the death animation (in seconds)
-
-    [Header("Death Effect Settings")]
-    public ParticleSystem deathEffect; // Particle system for the death effect (e.g., smoke)
-
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
@@ -49,8 +42,6 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-
-    private Vector3 spawnPosition;
 
     void Start()
     {
@@ -62,7 +53,6 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         movingRight = true;
-        spawnPosition = transform.position;  // Save the spawn position for respawning
     }
 
     void Update()
@@ -217,42 +207,13 @@ public class Enemy : MonoBehaviour
         rb.isKinematic = true;
         GetComponent<Collider2D>().enabled = false;
 
-        // Trigger the death effect (e.g., smoke)
-        if (deathEffect != null)
-        {
-            deathEffect.Play();
-        }
-
-        // Start respawn coroutine but don't deactivate immediately
-        StartCoroutine(HandleDeathAnimation());
+        Destroy(gameObject, 1.5f);
     }
 
-    IEnumerator HandleDeathAnimation()
-    {
-        // Wait for the death animation to finish
-        yield return new WaitForSeconds(deathAnimationDuration);
-
-        // Now deactivate and wait for respawn
-        GetComponent<SpriteRenderer>().enabled = false; // Deactivate renderer
-        GetComponent<Collider2D>().enabled = false;     // Disable collider
-        yield return new WaitForSeconds(respawnTime);    // Wait for respawn time
-
-        Respawn();
-    }
-
-    void Respawn()
-    {
-        isDead = false;
-        GetComponent<SpriteRenderer>().enabled = true; // Reactivate renderer
-        GetComponent<Collider2D>().enabled = true;      // Enable collider
-        rb.isKinematic = false;
-        transform.position = spawnPosition; // Reset to spawn position
-        health = 3; // Reset health (you can modify as needed)
-        animator.SetTrigger("Walk");  // Trigger walk animation after respawn
-        Debug.Log("Enemy respawned!");
-    }
-
-    void AddPointsOnDeath()
+    /// <summary>
+    /// Awards points when the enemy dies.
+    /// </summary>
+    private void AddPointsOnDeath()
     {
         if (CoinManager.Instance != null)
         {
