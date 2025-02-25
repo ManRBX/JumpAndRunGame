@@ -248,6 +248,9 @@ MonoBehaviour:
   attackCooldown: 1
   damageStunTime: 0.5
   pointsOnDeath: 65
+  respawnTime: 300
+  deathAnimationDuration: 1
+  deathEffect: {fileID: 0}
 --- !u!1 &4850043380442554230
 GameObject:
   m_ObjectHideFlags: 0
