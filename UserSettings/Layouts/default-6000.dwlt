@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 116
+  controlID: 55
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 117
+  controlID: 56
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 68
+  controlID: 57
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -693,7 +693,7 @@ MonoBehaviour:
       sizeOverridden: 0
     - dockPosition: 0
       containerId: Floating
-      displayed: 1
+      displayed: 0
       id: Scene View/Tilemap Focus
       index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Floating":true,"m_FloatingSnapOffset":{"x":-143.0,"y":-45.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
@@ -1026,9 +1026,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 624.1332, y: 373.68835, z: -10.249165}
+    m_Target: {x: 224.32704, y: 0.4564906, z: -0.114898585}
     speed: 2
-    m_Value: {x: 624.1332, y: 373.68835, z: -10.249165}
+    m_Value: {x: 224.42358, y: 0.79164547, z: -0.12502606}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1078,9 +1078,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1034.9191
+    m_Target: 21.492823
     speed: 2
-    m_Value: 1034.9191
+    m_Value: 22.505573
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1150,9 +1150,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: a6f60000
       m_LastClickedID: 0
-      m_ExpandedIDs: 06fbffff
+      m_ExpandedIDs: ecf2ffff34f3ffff06fbffff46d00000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1654,7 +1654,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1664,16 +1664,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 75
   m_LastFolders:
-  - Assets
+  - Assets/Scenes
   m_LastFoldersGridSize: 75
   m_LastProjectPath: F:\unity\project\Backup von jump and run 1.0\Jump and run 1.0\Git
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c0d50000
-    m_LastClickedID: 54720
-    m_ExpandedIDs: 00000000bed5000000ca9a3b
+    scrollPos: {x: 0, y: 185}
+    m_SelectedIDs: bed50000
+    m_LastClickedID: 54718
+    m_ExpandedIDs: 00000000bed5000070f6000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1702,7 +1702,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000bed50000c0d50000
+    m_ExpandedIDs: 00000000bed50000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1730,7 +1730,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000f66f0000ee8d0000fe6500008a9100009461000012650000a0960000b4650000c40f01005c7400007661000058810000e07100007e6b00002692000034990000a6740000a2740000687c000002ac0000faac000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
