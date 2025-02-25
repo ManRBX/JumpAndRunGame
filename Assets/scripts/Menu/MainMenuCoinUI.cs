@@ -15,7 +15,7 @@ public class MainMenuCoinUI : MonoBehaviour
     void UpdateMainMenuUI()
     {
         // Load the total number of global special coins
-        int globalCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
+        int globalCoins = PlayerPrefs.GetInt("Global.SpecialCoins", 0);
         if (totalCoinText != null)
         {
             totalCoinText.text = globalCoins.ToString();  // Displays only the number, without additional text
