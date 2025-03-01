@@ -152,8 +152,11 @@ MonoBehaviour:
   - {fileID: 5297575253198917907, guid: 31fc916fd43a0b441b6af8b6db7064a6, type: 3}
   - {fileID: 6915942937389115347, guid: 45a0047001f784943ad8c1392e22ba77, type: 3}
   - {fileID: 4295464146758783622, guid: 8de8e7d115dcf754783d30cda238c666, type: 3}
+  - {fileID: 4861833167383457531, guid: aa3d22132c3d2ed478997ab5dae0bd46, type: 3}
   explosionForce: 300
   explosionRadius: 5
-  destructionEffectPrefab: {fileID: 0}
+  destructionEffectPrefab: {fileID: 5536416601973027563, guid: ed59b8ef8c882a6469a3a293c2aa1a1e, type: 3}
   brokenSprite: {fileID: -1208778187, guid: fac67baf6bfe7ba4ebc31b21eba0fd6c, type: 3}
   destroyOnBreak: 0
+  awardedPoints: 10
+  randomSettings: {fileID: 11400000, guid: 2d217281c05c2654ca0d360dd21a568f, type: 2}
