@@ -13,6 +13,7 @@ TagManager:
   - Collectible
   - CollectibleItem
   - Spike
+  - BreakableBox
   layers:
   - Default
   - TransparentFX
