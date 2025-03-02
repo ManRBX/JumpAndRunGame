@@ -158,5 +158,5 @@ MonoBehaviour:
   destructionEffectPrefab: {fileID: 5536416601973027563, guid: ed59b8ef8c882a6469a3a293c2aa1a1e, type: 3}
   brokenSprite: {fileID: -1208778187, guid: fac67baf6bfe7ba4ebc31b21eba0fd6c, type: 3}
   destroyOnBreak: 0
-  awardedPoints: 10
+  awardedPoints: 100
   randomSettings: {fileID: 11400000, guid: 2d217281c05c2654ca0d360dd21a568f, type: 2}
