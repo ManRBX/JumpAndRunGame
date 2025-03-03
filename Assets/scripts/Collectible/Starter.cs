@@ -78,7 +78,7 @@ public class Starter : MonoBehaviour
         PlayerPrefs.Save();
 
         // Update UI if available
-        PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
+        PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
         if (healthUI != null)
         {
             healthUI.UpdateLivesUI();

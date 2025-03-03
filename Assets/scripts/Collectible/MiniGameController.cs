@@ -147,7 +147,7 @@ public class MiniGameManager : MonoBehaviour
             Debug.Log($"✅ New life added! Total lives: {currentLives}");
 
             // Update UI
-            PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
+            PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
             if (healthUI != null)
             {
                 healthUI.UpdateLivesUI();

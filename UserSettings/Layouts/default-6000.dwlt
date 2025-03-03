@@ -370,8 +370,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 218
-    y: 79
+    x: 219
+    y: 24
     width: 1215
     height: 586
   m_SerializedDataModeController:
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 217
     height: 586
   m_SerializedDataModeController:
@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1ef10000
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 8cf8ffffdcf8ffff06fbffff
       m_RenameOverlay:
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 691
+    y: 636
     width: 1434
     height: 343
   m_SerializedDataModeController:
@@ -1701,7 +1701,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 797}
     m_SelectedIDs: 20cf0000
     m_LastClickedID: 53024
-    m_ExpandedIDs: 0000000020cf000022cf000024cf000026cf000028cf00002acf00002ccf00002ecf000030cf00009ef0000000ca9a3b
+    m_ExpandedIDs: 0000000030d0000032d0000034d0000036d0000038d000003ad000003cd000003ed0000040d00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1730,7 +1730,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000020cf000022cf000024cf000026cf000028cf00002acf00002ccf00002ecf000030cf0000
+    m_ExpandedIDs: 0000000030d0000032d0000034d0000036d0000038d000003ad000003cd000003ed0000040d00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1933,8 +1933,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "UnityEditor.Tilemaps.GridPaintPaletteWindow\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1435
-    y: 79
+    x: 1436
+    y: 24
     width: 484
     height: 955
   m_SerializedDataModeController:

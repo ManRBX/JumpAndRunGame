@@ -7,7 +7,7 @@ public class MovingPlatform : MonoBehaviour
     public float moveSpeed = 3f; // Movement speed
 
     private int currentPointIndex = 0; // Index of the current target point
-    private bool isActivated = false; // Flag for activation of the movement
+    [SerializeField] private bool isActivated = false; // Flag for activation of the movement
 
     void Update()
     {

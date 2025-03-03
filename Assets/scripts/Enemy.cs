@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Jump & Fall Animation Settings")]
     private bool isJumping = false;
-    private bool isFalling = false;
+    [SerializeField] private bool isFalling = false;
 
     [Header("Point Settings")]
     public int pointsOnDeath = 50; // Points awarded when the enemy dies
@@ -214,7 +214,7 @@ public class Enemy : MonoBehaviour
 
         animator.SetTrigger("Die");
         rb.linearVelocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
 
         // Trigger the death effect (e.g., smoke)
@@ -245,7 +245,7 @@ public class Enemy : MonoBehaviour
         isDead = false;
         GetComponent<SpriteRenderer>().enabled = true; // Reactivate renderer
         GetComponent<Collider2D>().enabled = true;      // Enable collider
-        rb.isKinematic = false;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         transform.position = spawnPosition; // Reset to spawn position
         health = 3; // Reset health (you can modify as needed)
         animator.SetTrigger("Walk");  // Trigger walk animation after respawn

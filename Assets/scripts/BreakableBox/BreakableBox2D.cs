@@ -123,7 +123,7 @@ public class BreakableBox2D : MonoBehaviour
         PlayerPrefs.Save();
 
         // Update UI if a CoinStatsDisplay exists.
-        CoinStatsDisplay statsDisplay = FindObjectOfType<CoinStatsDisplay>();
+        CoinStatsDisplay statsDisplay = FindFirstObjectByType<CoinStatsDisplay>();
         if (statsDisplay != null)
         {
             statsDisplay.UpdatePointStats();

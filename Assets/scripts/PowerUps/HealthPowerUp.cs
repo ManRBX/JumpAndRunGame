@@ -21,7 +21,7 @@ public class HealthPowerUp : MonoBehaviour
             PlayerPrefs.Save(); // Speichere die Änderung
 
             // Suche das PlayerHealthUI-Script und aktualisiere die Anzeige.
-            PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
+            PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
             if (healthUI != null)
             {
                 healthUI.UpdateLivesUI();

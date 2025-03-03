@@ -56,7 +56,7 @@ public class SpecialCoin : MonoBehaviour
                 PlayerPrefs.Save();
 
                 // Update the UI
-                SpecialCoinUI uiManager = FindObjectOfType<SpecialCoinUI>();
+                SpecialCoinUI uiManager = FindFirstObjectByType<SpecialCoinUI>();
                 if (uiManager != null)
                 {
                     uiManager.UpdateCoinUI();  // Update the coin count in the UI
