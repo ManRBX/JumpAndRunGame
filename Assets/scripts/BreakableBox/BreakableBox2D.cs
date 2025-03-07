@@ -48,10 +48,23 @@ public class BreakableBox2D : MonoBehaviour
     // Flag, ob die Box bereits zerbrochen ist.
     private bool isBroken = false;
 
+    // Neuer Parameter: Soll die Box am Anfang unsichtbar sein?
+    public bool startInvisible = false;
+
     void Start()
     {
         // Initialisiere die aktuellen Trefferpunkte.
         currentHitPoints = hitPoints;
+
+        // Falls die Box unsichtbar starten soll, deaktiviere den SpriteRenderer.
+        if (startInvisible)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.enabled = false;
+            }
+        }
     }
 
     // Wird aufgerufen, wenn die Anwendung beendet wird.
@@ -66,6 +79,13 @@ public class BreakableBox2D : MonoBehaviour
         // Überprüfe, ob das kollidierende Objekt den Tag "Player" hat.
         if (collision.gameObject.CompareTag("Player"))
         {
+            // Falls die Box unsichtbar ist, mache sie sichtbar.
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null && !sr.enabled)
+            {
+                sr.enabled = true;
+            }
+
             // Gehe alle Kontaktpunkte der Kollision durch.
             foreach (ContactPoint2D contact in collision.contacts)
             {
