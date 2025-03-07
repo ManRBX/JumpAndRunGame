@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 289
+  controlID: 54
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 290
+  controlID: 55
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 55
+  controlID: 56
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 56
+  controlID: 57
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -1026,9 +1026,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 72.309235, y: -11.457911, z: -0.05284137}
+    m_Target: {x: 21.394194, y: -9.796914, z: -0.05679026}
     speed: 2
-    m_Value: {x: 72.309235, y: -11.457911, z: -0.05284137}
+    m_Value: {x: 21.394194, y: -9.796914, z: -0.05679026}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1078,9 +1078,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 36.47974
+    m_Target: 15.679315
     speed: 2
-    m_Value: 36.47974
+    m_Value: 15.679315
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1152,7 +1152,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e446ffffec94ffff90abffffb6faffff32da00006edc000098460100
+      m_ExpandedIDs: 04fbffffc8d9000034dc0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: c24cc9f17f86e7449ba73446ea9e186a
+  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &22
 MonoBehaviour:
@@ -1699,9 +1699,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 1539}
-    m_SelectedIDs: 30df0000
-    m_LastClickedID: 57136
-    m_ExpandedIDs: 0000000028df00002adf00002cdf00002edf000030df000032df000034df000036df000038df00003adf00003cdf00003edf000062000100c8000100543f010000ca9a3b
+    m_SelectedIDs: 6edf0000
+    m_LastClickedID: 57198
+    m_ExpandedIDs: 0000000066df000068df00006adf00006cdf00006edf000070df000072df000074df000076df000078df00007adf00007cdf00007edf000080df0000a400010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1730,7 +1730,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000028df00002adf00002cdf00002edf000030df000032df000034df000036df000038df00003adf00003cdf00003edf0000
+    m_ExpandedIDs: 0000000066df000068df00006adf00006cdf00006edf000070df000072df000074df000076df000078df00007adf00007cdf00007edf000080df0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
