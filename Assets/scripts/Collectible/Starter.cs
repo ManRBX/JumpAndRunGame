@@ -44,10 +44,10 @@ public class Starter : MonoBehaviour
         isActivated = true;
         Debug.Log("Starter activated – MiniGame is starting!");
 
-        if (MiniGameManager.Instance != null)
+        if (MiniGameController.Instance != null)
         {
             // Start the MiniGame and set success & failure callbacks
-            MiniGameManager.Instance.StartMiniGame(numberOfCollectibles, miniGameDuration, OnMiniGameComplete, OnMiniGameFailed);
+            MiniGameController.Instance.StartMiniGame(numberOfCollectibles, miniGameDuration, OnMiniGameComplete, OnMiniGameFailed);
         }
 
         // Make all collectible items visible
@@ -78,7 +78,7 @@ public class Starter : MonoBehaviour
         PlayerPrefs.Save();
 
         // Update UI if available
-        PlayerHealthUI healthUI = FindObjectOfType<PlayerHealthUI>();
+        PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
         if (healthUI != null)
         {
             healthUI.UpdateLivesUI();

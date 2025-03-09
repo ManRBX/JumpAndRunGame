@@ -9,15 +9,31 @@ public class PlayerMagnet : MonoBehaviour
     public float magnetForce = 5f;
 
     private bool magnetActive = false;
+    private Coroutine magnetCoroutine;
 
     /// <summary>
-    /// Called by MagnetPickup when collected.
+    /// Wird vom MagnetPickup aufgerufen, wenn dieser eingesammelt wird.
     /// </summary>
+    /// <param name="duration">Wie lange der Magnet-Effekt aktiv sein soll.</param>
     public void ActivateMagnet(float duration)
     {
         if (!magnetActive)
         {
-            StartCoroutine(MagnetRoutine(duration));
+            magnetCoroutine = StartCoroutine(MagnetRoutine(duration));
+        }
+    }
+
+    /// <summary>
+    /// Stoppt den Magnet-Effekt vorzeitig.
+    /// </summary>
+    public void DeactivateMagnet()
+    {
+        if (magnetActive)
+        {
+            // Stoppe den laufenden Magnet-Coroutine
+            StopCoroutine(magnetCoroutine);
+            magnetActive = false;
+            Debug.Log("Magnet deactivated via DeactivateMagnet().");
         }
     }
 
@@ -34,10 +50,11 @@ public class PlayerMagnet : MonoBehaviour
         }
 
         magnetActive = false;
+        Debug.Log("Magnet effect duration ended.");
     }
 
     /// <summary>
-    /// Pull all coins within 'magnetRadius' toward the player.
+    /// Zieht alle Coins im Umkreis 'magnetRadius' in Richtung Spieler.
     /// </summary>
     private void AttractCoins()
     {
@@ -53,7 +70,7 @@ public class PlayerMagnet : MonoBehaviour
         }
     }
 
-    // Optional: visualize the magnet radius in the Scene view
+    // Visualisierung des Magnetradius im Scene-View
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;

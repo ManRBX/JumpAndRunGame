@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
         startPosition = transform.position;  // Store the starting position
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        playerHealthUI = FindObjectOfType<PlayerHealthUI>();
+        playerHealthUI = FindFirstObjectByType<PlayerHealthUI>();
 
         // Load global lives or set default value
         if (!PlayerPrefs.HasKey(LivesKey))

@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool wallJumping = false;
     private bool facingRight = true;
     private float coyoteTimeCounter;
-    private bool canWallJump = true;
+    [SerializeField] private bool canWallJump = true;
 
     // -----------------------------
     // Double Jump Variables

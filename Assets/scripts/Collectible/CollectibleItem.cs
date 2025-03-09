@@ -24,9 +24,9 @@ public class CollectibleItem : MonoBehaviour
         Debug.Log("A collectible has been collected!");
 
         // Inform the manager that this item has been collected, if the MiniGame is active.
-        if (MiniGameManager.Instance != null && MiniGameManager.Instance.miniGameActive)
+        if (MiniGameController.Instance != null && MiniGameController.Instance.miniGameActive)
         {
-            MiniGameManager.Instance.CollectiblePicked();
+            MiniGameController.Instance.CollectiblePicked();
         }
 
         // Disable the item so it cannot be collected again.

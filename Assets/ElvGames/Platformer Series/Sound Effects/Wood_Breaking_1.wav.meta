@@ -21,3 +21,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 273964
+  packageName: 2D Platformer Tilesets Bundle 16x16 Pixelart
+  packageVersion: 
+  assetPath: Assets/ElvGames/Platformer Series/Sound Effects/Wood_Breaking_1.wav
+  uploadId: 0

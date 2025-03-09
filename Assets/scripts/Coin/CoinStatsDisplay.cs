@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CoinStatsDisplay : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class CoinStatsDisplay : MonoBehaviour
         int globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0);
 
         // Retrieve level-specific values
-        string currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string currentLevel = SceneManager.GetActiveScene().name;
         int levelPoints = PlayerPrefs.GetInt($"{currentLevel}_Points", 0);
         int levelCoins = PlayerPrefs.GetInt($"{currentLevel}_Coins", 0);
 
