@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 5148947181656992046}
   - component: {fileID: 7447181837291683123}
   - component: {fileID: 8644015588767400232}
+  - component: {fileID: 3079355632990167078}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -278,7 +279,26 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   attackCooldown: 1
   damageStunTime: 0.5
+  isFalling: 0
   pointsOnDeath: 20
   respawnTime: 300
   deathAnimationDuration: 1
   deathEffect: {fileID: 0}
+--- !u!114 &3079355632990167078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3534144463567304933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c118c84fcb8f14591d0a3e72d37c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletForce: 20
+  fireRate: 1
+  shootRange: 15
+  player: {fileID: 0}

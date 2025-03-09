@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections;  // Import TMP namespace
+using System.Collections;
 
 public class LevelEnd : MonoBehaviour
 {
     public string nextLevelName;  // Name of the next level (e.g., "Level02")
     public string currentLevelName;  // Current level (e.g., "Level01")
-    public string returnScene = "Menu";  // Scene to return to
-    public int requiredSpecialCoins = 5; // Number of special coins required to unlock the next level
+    public string returnScene = "Menu";  // Scene to return to after completing the level
+    public int requiredSpecialCoins = 5; // Total number of special coins required to unlock the next level
 
-    public TMP_Text coinProgressText; // Reference to the TMP_Text element for showing coin progress
+    public TMP_Text coinProgressText; // UI element for displaying coin progress
 
     private void Start()
     {
@@ -34,13 +34,13 @@ public class LevelEnd : MonoBehaviour
 
     private void UpdateCoinProgressUI()
     {
-        // Get the number of special coins collected in this level
-        int collectedSpecialCoins = PlayerPrefs.GetInt(currentLevelName + "-special-coins", 0);
+        // Load the total number of collected special coins from GlobalSpecialCoins
+        int collectedGlobalSpecialCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
 
-        // Display the progress in the format "Collected/Required" (e.g., "1/5")
+        // Update the UI with the format "Collected / Required" (e.g., "3/5")
         if (coinProgressText != null)
         {
-            coinProgressText.text = $"{collectedSpecialCoins}/{requiredSpecialCoins}";
+            coinProgressText.text = $"{collectedGlobalSpecialCoins}/{requiredSpecialCoins}";
         }
     }
 
@@ -48,17 +48,17 @@ public class LevelEnd : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Get the number of special coins collected in this level
-            int collectedSpecialCoins = PlayerPrefs.GetInt(currentLevelName + "-special-coins", 0);
+            // Load the total amount of GlobalSpecialCoins
+            int collectedGlobalSpecialCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
 
-            // Check if the player has collected enough special coins
-            if (collectedSpecialCoins >= requiredSpecialCoins)
+            // Check if the required number of special coins has been collected
+            if (collectedGlobalSpecialCoins >= requiredSpecialCoins)
             {
-                // Save level as completed
+                // Mark the level as completed
                 PlayerPrefs.SetInt(currentLevelName + "_Completed", 1);
                 Debug.Log(currentLevelName + " completed!");
 
-                // Unlock the next level (unless it's the last level)
+                // Unlock the next level (if it exists)
                 if (!string.IsNullOrEmpty(nextLevelName))
                 {
                     PlayerPrefs.SetInt(nextLevelName + "_Unlocked", 1);
@@ -67,16 +67,15 @@ public class LevelEnd : MonoBehaviour
 
                 PlayerPrefs.Save();
 
-                // Return to the menu
+                // Load the menu scene
                 SceneManager.LoadScene(returnScene);
             }
             else
             {
-                Debug.Log("Not enough special coins. You need " + requiredSpecialCoins + " special coins to proceed.");
-                // Optionally show a message to the player, telling them they need more coins
+                Debug.Log($"❌ Not enough special coins! You need {requiredSpecialCoins}, but only have {collectedGlobalSpecialCoins}.");
             }
 
-            // Show the coin progress UI and start a coroutine to hide it after 10 seconds
+            // Show the coin progress UI and hide it after 5 seconds
             ShowCoinProgress();
         }
     }
@@ -86,22 +85,20 @@ public class LevelEnd : MonoBehaviour
         // Update the coin progress UI
         UpdateCoinProgressUI();
 
-        // Show the coin progress text
+        // Show the coin progress UI
         if (coinProgressText != null)
         {
             coinProgressText.gameObject.SetActive(true);
         }
 
-        // Start a coroutine to hide the UI after 10 seconds
+        // Hide the UI after 5 seconds
         StartCoroutine(HideCoinProgress());
     }
 
     IEnumerator HideCoinProgress()
     {
-        // Wait for 10 seconds
         yield return new WaitForSeconds(5f);
 
-        // Hide the coin progress UI after 10 seconds
         if (coinProgressText != null)
         {
             coinProgressText.gameObject.SetActive(false);

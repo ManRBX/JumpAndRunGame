@@ -4,7 +4,8 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int health = 3;
+    public int health = 3;  // Set this value in the Inspector
+    private int maxHealth;  // Stores the original health value
 
     [Header("Movement Settings")]
     public float speed = 3f;
@@ -36,8 +37,8 @@ public class Enemy : MonoBehaviour
     public int pointsOnDeath = 50; // Points awarded when the enemy dies
 
     [Header("Respawn Settings")]
-    public float respawnTime = 300f; // Respawn time in seconds (can be set in the Inspector)
-    public float deathAnimationDuration = 6f; // Duration of the death animation (in seconds)
+    public float respawnTime = 300f; // Respawn time in seconds
+    public float deathAnimationDuration = 6f; // Duration of the death animation
 
     [Header("Death Effect Settings")]
     public ParticleSystem deathEffect; // Particle system for the death effect (e.g., smoke)
@@ -54,6 +55,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        // Store the original health value from the Inspector
+        maxHealth = health;
+
         Vector2 startPosition = transform.position;
         leftLimit = new Vector2(startPosition.x - leftDistance, startPosition.y);
         rightLimit = new Vector2(startPosition.x + rightDistance, startPosition.y);
@@ -62,7 +66,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         movingRight = true;
-        spawnPosition = transform.position;  // Save the spawn position for respawning
+        spawnPosition = transform.position;  // Save the respawn point
     }
 
     void Update()
@@ -73,7 +77,6 @@ public class Enemy : MonoBehaviour
         bool isNearWall = Physics2D.Raycast(wallCheck.position, movingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
 
         HandleJumpAndFallAnimation();
-
         Patrol();
 
         if (isGrounded && isNearWall)
@@ -172,15 +175,15 @@ public class Enemy : MonoBehaviour
     {
         if (isDead || isTakingDamage) return;
 
-        health -= damage;
-        Debug.Log("Enemy hit! Current HP: " + health);
-
-        if (health <= 0)
+        int newHealth = health - damage;
+        if (newHealth <= 0)
         {
             Die();
         }
         else
         {
+            health = newHealth;
+            Debug.Log("Enemy hit! Current HP: " + health);
             StartCoroutine(DamageReaction());
         }
     }
@@ -209,47 +212,54 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Enemy killed!");
 
-        // Add points
         AddPointsOnDeath();
 
         animator.SetTrigger("Die");
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<EnemyShooting>().enabled = false; // Disable shooting script
 
-        // Trigger the death effect (e.g., smoke)
         if (deathEffect != null)
         {
             deathEffect.Play();
         }
 
-        // Start respawn coroutine but don't deactivate immediately
         StartCoroutine(HandleDeathAnimation());
     }
 
     IEnumerator HandleDeathAnimation()
     {
-        // Wait for the death animation to finish
+        // Wait until the death animation is finished
         yield return new WaitForSeconds(deathAnimationDuration);
 
-        // Now deactivate and wait for respawn
-        GetComponent<SpriteRenderer>().enabled = false; // Deactivate renderer
-        GetComponent<Collider2D>().enabled = false;     // Disable collider
-        yield return new WaitForSeconds(respawnTime);    // Wait for respawn time
+        // Disable the SpriteRenderer and Collider, then wait for respawn
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(respawnTime);
 
         Respawn();
     }
 
     void Respawn()
     {
+        // Reset the animator and immediately start the Walk animation
+        animator.ResetTrigger("Die");
+        animator.SetBool("IsWalking", true);
+        animator.Play("Walk");
+
+        // Reset health to the original Inspector value
+        health = maxHealth;
+
         isDead = false;
-        GetComponent<SpriteRenderer>().enabled = true; // Reactivate renderer
-        GetComponent<Collider2D>().enabled = true;      // Enable collider
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        transform.position = spawnPosition; // Reset to spawn position
-        health = 3; // Reset health (you can modify as needed)
-        animator.SetTrigger("Walk");  // Trigger walk animation after respawn
-        Debug.Log("Enemy respawned!");
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        GetComponent<EnemyShooting>().enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;  // Re-enable normal physics
+        rb.linearVelocity = Vector2.zero;
+        transform.position = spawnPosition;
+
+        Debug.Log("Enemy respawned with " + health + " HP!");
     }
 
     void AddPointsOnDeath()

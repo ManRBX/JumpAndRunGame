@@ -1,44 +1,71 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BreakableBox2D : MonoBehaviour
 {
-    // Number of hits before the box is considered broken.
-    // One hit is enough because the player stomps on the box from above.
+    // Number of hits required before the box is considered broken.
     public int hitPoints = 1;
+    private int currentHitPoints;
 
-    // Array of prefabs that contain the broken fragments (optional).
-    // You can add multiple prefabs here, one of which will be randomly selected.
+    // Array of prefabs containing the broken fragments (optional).
     public GameObject[] fragmentsPrefabs;
 
     // The force applied to the fragments (if used).
     public float explosionForce = 300f;
 
-    // Optional: The radius in which the force is applied (for further adjustments).
+    // Optional: The radius within which the force is applied (for fine tuning).
     public float explosionRadius = 2f;
 
     // Prefab for the destruction effect (e.g., particle effect).
     public GameObject destructionEffectPrefab;
 
-    // The sprite to display when the box is broken.
+    // The sprite that will be shown when the box is broken.
     public Sprite brokenSprite;
 
-    // If true, the box will be destroyed and the destruction effect will be played when breaking.
-    // If false, only the sprite is changed (no effect, no destruction).
+    // Determines whether the box is destroyed upon breaking.
     public bool destroyOnBreak = false;
 
-    // Points are always awarded.
+    // Points that are always awarded.
     public int awardedPoints = 10;
 
-    // Use the RandomSettings to control coins and fragment spawning.
+    // Controls coin and fragment spawning.
     public RandomSettings randomSettings;
 
-    // Flag to indicate if the application is quitting.
+    // Y-offset for fragment spawn position (so they appear slightly above the box).
+    [SerializeField] private float fragmentSpawnYOffset = 1f;
+
+    // Cooldown in seconds for each fragment (how long until it can spawn again).
+    [SerializeField] private float fragmentCooldown = 20f;
+
+    // Static dictionary storing the last spawn time for each fragment index.
+    private static Dictionary<int, float> fragmentCooldownTimers = new Dictionary<int, float>();
+
+    // Flag indicating if the application is quitting (to prevent playing effects on quit).
     private static bool isQuitting = false;
 
-    // Flag to indicate if the box is already broken.
+    // Flag indicating whether the box is already broken.
     private bool isBroken = false;
+
+    // New parameter: Should the box start off invisible?
+    public bool startInvisible = false;
+
+    void Start()
+    {
+        // Initialize current hit points.
+        currentHitPoints = hitPoints;
+
+        // If the box should start invisible, disable the SpriteRenderer.
+        if (startInvisible)
+        {
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.enabled = false;
+            }
+        }
+    }
 
     // Called when the application is quitting.
     void OnApplicationQuit()
@@ -52,54 +79,122 @@ public class BreakableBox2D : MonoBehaviour
         // Check if the colliding object has the tag "Player".
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Loop through all contact points of the collision.
+            // If the box is invisible, make it visible.
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null && !sr.enabled)
+            {
+                sr.enabled = true;
+            }
+
+            // Iterate through all contact points.
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                // Check if the contact comes from above.
+                // If the contact comes from above.
                 if (contact.normal.y > 0.5f)
                 {
-                    BreakBox();
+                    ApplyHit();
                     break;
                 }
             }
         }
     }
 
-    // Method that handles breaking the box.
-    void BreakBox()
+    // Reduces the hit points and triggers the break if no hit points remain.
+    void ApplyHit()
     {
+        // If already broken, do nothing.
         if (isBroken)
             return;
 
-        isBroken = true;
+        currentHitPoints--;
 
-        // Spawn fragment only if the random chance passes.
-        int selectedIndex = -1;
+        // If hit points drop to zero or below, mark the box as broken and break it.
+        if (currentHitPoints <= 0)
+        {
+            isBroken = true;
+            BreakBox();
+        }
+    }
+
+    // Handles the breaking of the box.
+    void BreakBox()
+    {
+        // Ensure the box is marked as broken.
+        if (!isBroken)
+            isBroken = true;
+
+        // Spawn fragments if prefabs are provided.
         if (fragmentsPrefabs != null && fragmentsPrefabs.Length > 0)
         {
             if (Random.value <= randomSettings.fragmentSpawnChance)
             {
-                selectedIndex = Random.Range(0, fragmentsPrefabs.Length);
-                GameObject selectedPrefab = fragmentsPrefabs[selectedIndex];
-                GameObject fragments = Instantiate(selectedPrefab, transform.position, transform.rotation);
+                // Create a list of indices whose cooldown has expired.
+                List<int> availableIndices = new List<int>();
+                float currentTime = Time.time;
 
-                // Apply an explosion force to all Rigidbody2D components in the fragments.
-                foreach (Rigidbody2D rb in fragments.GetComponentsInChildren<Rigidbody2D>())
+                for (int i = 0; i < fragmentsPrefabs.Length; i++)
                 {
-                    Vector2 direction = (rb.transform.position - transform.position).normalized;
-                    rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+                    // If there is no previous spawn record or the cooldown has expired:
+                    if (!fragmentCooldownTimers.ContainsKey(i) ||
+                        (currentTime - fragmentCooldownTimers[i]) >= fragmentCooldown)
+                    {
+                        availableIndices.Add(i);
+                    }
+                }
+
+                // If at least one fragment is available, choose one randomly.
+                if (availableIndices.Count > 0)
+                {
+                    int randomAvailableIndex = availableIndices[Random.Range(0, availableIndices.Count)];
+                    fragmentCooldownTimers[randomAvailableIndex] = currentTime; // Set the cooldown for this fragment
+
+                    GameObject selectedPrefab = fragmentsPrefabs[randomAvailableIndex];
+
+                    // Calculate the spawn position with a Y-offset (above the box)
+                    Vector3 spawnPos = transform.position + new Vector3(0, fragmentSpawnYOffset, 0);
+                    GameObject fragments = Instantiate(selectedPrefab, spawnPos, transform.rotation);
+
+                    // Disable all children and only activate one randomly.
+                    Transform[] allChildren = fragments.GetComponentsInChildren<Transform>(true);
+                    List<GameObject> childObjects = new List<GameObject>();
+
+                    // Index 0 is usually the parent itself, so start from 1.
+                    for (int c = 1; c < allChildren.Length; c++)
+                    {
+                        childObjects.Add(allChildren[c].gameObject);
+                    }
+
+                    // Disable all child objects.
+                    foreach (GameObject child in childObjects)
+                    {
+                        child.SetActive(false);
+                    }
+
+                    // Activate one random child.
+                    if (childObjects.Count > 0)
+                    {
+                        int randomChildIndex = Random.Range(0, childObjects.Count);
+                        childObjects[randomChildIndex].SetActive(true);
+                    }
+
+                    // Apply explosion force to all Rigidbody2D components in the active fragments.
+                    foreach (Rigidbody2D rb in fragments.GetComponentsInChildren<Rigidbody2D>())
+                    {
+                        Vector2 direction = (rb.transform.position - transform.position).normalized;
+                        rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+                    }
                 }
             }
         }
 
-        // Change the sprite to indicate that the box is broken.
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null && brokenSprite != null)
+        // Change the sprite to indicate the box is broken.
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && brokenSprite != null)
         {
-            sr.sprite = brokenSprite;
+            spriteRenderer.sprite = brokenSprite;
         }
 
-        // Always award points.
+        // Award points.
         int globalPoints = PlayerPrefs.GetInt("GlobalPoints", 0);
         globalPoints += awardedPoints;
         PlayerPrefs.SetInt("GlobalPoints", globalPoints);
@@ -109,7 +204,7 @@ public class BreakableBox2D : MonoBehaviour
         levelPoints += awardedPoints;
         PlayerPrefs.SetInt($"{currentLevel}_Points", levelPoints);
 
-        // Award coins only if the random chance passes.
+        // Award coins if the random chance allows.
         if (Random.value <= randomSettings.coinAwardChance)
         {
             int globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0);
@@ -122,7 +217,7 @@ public class BreakableBox2D : MonoBehaviour
         }
         PlayerPrefs.Save();
 
-        // Update UI if a CoinStatsDisplay exists.
+        // Update the UI if a CoinStatsDisplay is present.
         CoinStatsDisplay statsDisplay = FindFirstObjectByType<CoinStatsDisplay>();
         if (statsDisplay != null)
         {
@@ -137,7 +232,7 @@ public class BreakableBox2D : MonoBehaviour
         }
     }
 
-    // Method to play the destruction effect.
+    // Plays the destruction effect.
     void PlayDestructionEffect()
     {
         if (isQuitting)
