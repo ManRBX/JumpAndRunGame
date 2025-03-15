@@ -14,6 +14,7 @@ TagManager:
   - CollectibleItem
   - Spike
   - BreakableBox
+  - Enemy_Projectil
   layers:
   - Default
   - TransparentFX

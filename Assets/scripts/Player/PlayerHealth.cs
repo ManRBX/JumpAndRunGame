@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Invincibility Settings")]
     public float invincibilityDuration = 1f;  // For damage invincibility
+    // Tags, bei denen w�hrend der Invincibility kein Schaden ausgel�st werden soll.
+    public string[] invincibleSafeTags = new string[] { "Enemy", "Spike", "Enemy_Projectil" };
 
     [Header("Damage Feedback")]
     public Color damageColor = Color.red;
@@ -30,12 +32,12 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        startPosition = transform.position;  // Store the starting position
+        startPosition = transform.position;  // Speichere die Startposition
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerHealthUI = FindFirstObjectByType<PlayerHealthUI>();
 
-        // Load global lives or set default value
+        // Globales Leben laden oder den Standardwert setzen
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
@@ -45,9 +47,38 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
     }
 
+    // �berladung f�r R�ckw�rtskompatibilit�t: Wird aufgerufen, wenn kein Tag �bergeben wird.
     public void TakeDamage(int damage)
     {
-        if (isInvincible) return;
+        TakeDamage(damage, "");
+    }
+
+    /// <summary>
+    /// Wendet Schaden am Spieler an.
+    /// Wenn der Schaden von der "KillZone" kommt, stirbt der Spieler unabh�ngig von der Invincibility.
+    /// Ist der Spieler invincible und stammt der Schaden von einem sicheren Tag (Enemy, Spike, Enemy_Projectil), wird er ignoriert.
+    /// </summary>
+    public void TakeDamage(int damage, string sourceTag)
+    {
+        // Bei KillZone immer sterben, egal ob invincible oder nicht.
+        if (sourceTag == "KillZone")
+        {
+            Die();
+            return;
+        }
+
+        // Wenn der Spieler invincible ist und der Schaden von einem sicheren Tag kommt, ignoriere den Schaden.
+        if (isInvincible)
+        {
+            if (!string.IsNullOrEmpty(sourceTag) && invincibleSafeTags != null && System.Array.IndexOf(invincibleSafeTags, sourceTag) != -1)
+            {
+                return;
+            }
+            else if (string.IsNullOrEmpty(sourceTag))
+            {
+                return;
+            }
+        }
 
         currentHealth -= damage;
         StartCoroutine(DamageFlash());
@@ -57,9 +88,11 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = 0;
             Die();
         }
-
-        // Apply short invincibility after taking damage
-        StartCoroutine(Invincibility());
+        else
+        {
+            // Kurze Invincibility nach Schaden, au�er bei KillZone-Schaden.
+            StartCoroutine(Invincibility());
+        }
         UpdateUI();
     }
 
@@ -75,8 +108,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        // Leben von PlayerPrefs holen und um 1 verringern
-        int lives = PlayerPrefs.GetInt(LivesKey, 5) - 1;
+        // Leben aus PlayerPrefs holen und um 1 verringern
+        int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
         PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Sicherstellen, dass die Leben nicht negativ werden
         PlayerPrefs.Save(); // Speichern der neuen Leben
 
@@ -121,13 +154,13 @@ public class PlayerHealth : MonoBehaviour
 
     void RestartGame()
     {
-        PlayerPrefs.SetInt(LivesKey, defaultLives); // Reset lives
+        PlayerPrefs.SetInt(LivesKey, defaultLives); // Leben zur�cksetzen
         PlayerPrefs.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     /// <summary>
-    /// Short invincibility applied after taking damage.
+    /// Kurze Invincibility, die nach erlittenem Schaden angewendet wird.
     /// </summary>
     private IEnumerator Invincibility()
     {
@@ -137,7 +170,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     /// <summary>
-    /// Applies invincibility for a specified duration (used by the Invincibility power-up).
+    /// Wendet eine l�ngere Invincibility an (z. B. durch einen Power-Up).
     /// </summary>
     public IEnumerator ApplyInvincibility(float powerUpDuration)
     {
