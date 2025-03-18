@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections; // <-- Needed for Coroutines
+using System.Collections; // Needed for Coroutines
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.2f;
     public float wallCheckDistance = 0.5f;
     public float coyoteTime = 0.2f;
+
+    [Header("Slide Settings")]
+    public bool enableSliding = true; // Toggle the ice effect on/off
+    public float acceleration = 10f;  // Acceleration rate on ice (slower start)
+    public float deceleration = 8f;   // Deceleration rate when sliding
+    [Range(0f, 1f)] public float slideFactor = 0.5f;
 
     [Header("Ground Check Settings")]
     public Transform[] groundCheckPoints;
@@ -32,9 +38,12 @@ public class PlayerMovement : MonoBehaviour
     // -----------------------------
     // Double Jump Variables
     // -----------------------------
-    private bool doubleJumpActive = false;  // Whether double jump is currently powered-up
-    private float doubleJumpTimer = 0f;      // How long double jump stays active
-    private bool usedDoubleJump = false;    // Has the extra jump already been used?
+    private bool doubleJumpActive = false;  // Is double jump currently active?
+    private float doubleJumpTimer = 0f;       // How long the double jump remains active
+    private bool usedDoubleJump = false;      // Has the extra jump already been used?
+
+    // Variable for current horizontal speed
+    private float currentSpeed = 0f;
 
     void Start()
     {
@@ -53,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimationStates();
 
         // -----------------------------
-        // Handle Double Jump Duration
+        // Manage double jump duration
         // -----------------------------
         if (doubleJumpActive)
         {
@@ -74,6 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
     /// <summary>
     /// Moves the player based on input.
+    /// If the ice effect (sliding) is enabled:
+    /// - The player accelerates gradually and decelerates smoothly when the key is released.
+    /// If disabled, the target speed is applied immediately.
     /// </summary>
     void HandleMovement()
     {
@@ -88,52 +100,58 @@ public class PlayerMovement : MonoBehaviour
 
         float move = 0f;
         if (leftPressed && !rightPressed)
-        {
             move = -1f;
-        }
         else if (rightPressed && !leftPressed)
-        {
             move = 1f;
-        }
 
         anim.SetBool("IsRunning", move != 0);
 
-        if (!wallJumping)
+        float targetSpeed = move * speed;
+
+        if (move != 0)
         {
-            rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+            if (enableSliding)
+                currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
+            else
+                currentSpeed = targetSpeed;
+        }
+        else
+        {
+            if (enableSliding)
+                currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.deltaTime);
+            else
+                currentSpeed = 0f;
         }
 
+        if (!wallJumping)
+            rb.linearVelocity = new Vector2(currentSpeed, rb.linearVelocity.y);
+
         if (move > 0 && !facingRight)
-        {
             Flip();
-        }
         else if (move < 0 && facingRight)
-        {
             Flip();
-        }
     }
 
     /// <summary>
-    /// Handles player jump input.
+    /// Processes jump input.
     /// </summary>
     void HandleJumpInput()
     {
-        if (KeyBindManager.Instance != null
-            && Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("Jump")))
+        if (KeyBindManager.Instance != null && Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("Jump")))
         {
-            // Normal jump if still within coyoteTime and grounded
+            // Normal jump if within coyote time and grounded
             if (coyoteTimeCounter > 0f && isGrounded)
             {
                 Jump();
             }
-            // Use the extra jump if double jump is active and not yet used
+            // Double jump if active and not yet used
             else if (doubleJumpActive && !usedDoubleJump)
             {
                 Jump();
                 usedDoubleJump = true;
             }
-            // Otherwise, check if the player can wall jump
-            else if (isTouchingWall)
+            // Wall jump if touching a wall and allowed
+            else if (isTouchingWall && canWallJump)
             {
                 WallJump();
             }
@@ -141,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates animation states based on player movement.
+    /// Updates animations based on movement.
     /// </summary>
     void UpdateAnimationStates()
     {
@@ -194,38 +212,24 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = false;
 
-        for (int i = 0; i < groundCheckPoints.Length; i++)
+        foreach (Transform point in groundCheckPoints)
         {
-            Transform point = groundCheckPoints[i];
-            RaycastHit2D groundHit = Physics2D.Raycast(point.position, Vector2.down, groundCheckDistance, groundLayer);
+            RaycastHit2D hit = Physics2D.Raycast(point.position, Vector2.down, groundCheckDistance, groundLayer);
+            int idx = System.Array.IndexOf(groundCheckPoints, point);
+            groundLineRenderers[idx].SetPosition(0, point.position);
+            groundLineRenderers[idx].SetPosition(1, point.position + Vector3.down * groundCheckDistance);
 
-            groundLineRenderers[i].SetPosition(0, point.position);
-            groundLineRenderers[i].SetPosition(1, point.position + Vector3.down * groundCheckDistance);
-
-            if (groundHit.collider != null)
+            if (hit.collider != null)
             {
                 isGrounded = true;
-                groundLineRenderers[i].startColor = Color.green;
-                groundLineRenderers[i].endColor = Color.green;
-            }
-            else
-            {
-                groundLineRenderers[i].startColor = Color.red;
-                groundLineRenderers[i].endColor = Color.red;
+                coyoteTimeCounter = coyoteTime;
+                usedDoubleJump = false;
+                break;
             }
         }
 
-        if (isGrounded)
-        {
-            coyoteTimeCounter = coyoteTime;
-            canWallJump = true;
-            // Reset double jump usage whenever we land
-            usedDoubleJump = false;
-        }
-        else
-        {
+        if (!isGrounded)
             coyoteTimeCounter -= Time.fixedDeltaTime;
-        }
     }
 
     /// <summary>
@@ -235,27 +239,17 @@ public class PlayerMovement : MonoBehaviour
     {
         isTouchingWall = false;
 
-        for (int i = 0; i < wallCheckPoints.Length; i++)
+        foreach (Transform point in wallCheckPoints)
         {
-            Transform point = wallCheckPoints[i];
-            RaycastHit2D wallHit = Physics2D.Raycast(point.position,
-                                                     Vector2.right * (facingRight ? 1 : -1),
-                                                     wallCheckDistance,
-                                                     wallLayer);
+            int idx = System.Array.IndexOf(wallCheckPoints, point);
+            RaycastHit2D hit = Physics2D.Raycast(point.position, facingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
+            wallLineRenderers[idx].SetPosition(0, point.position);
+            wallLineRenderers[idx].SetPosition(1, point.position + (facingRight ? Vector3.right : Vector3.left) * wallCheckDistance);
 
-            wallLineRenderers[i].SetPosition(0, point.position);
-            wallLineRenderers[i].SetPosition(1, point.position + Vector3.right * (facingRight ? 1 : -1) * wallCheckDistance);
-
-            if (wallHit.collider != null)
+            if (hit.collider != null)
             {
                 isTouchingWall = true;
-                wallLineRenderers[i].startColor = Color.green;
-                wallLineRenderers[i].endColor = Color.green;
-            }
-            else
-            {
-                wallLineRenderers[i].startColor = Color.red;
-                wallLineRenderers[i].endColor = Color.red;
+                break;
             }
         }
     }
@@ -277,7 +271,6 @@ public class PlayerMovement : MonoBehaviour
         wallJumping = true;
         float wallJumpDirection = facingRight ? -1 : 1;
         rb.linearVelocity = new Vector2(wallJumpDirection * speed * 1.2f, jumpForce);
-
         anim.SetTrigger("WallJump");
         canWallJump = false;
 
@@ -307,25 +300,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // -----------------------------------------------------------
-    // SPEED BOOST COROUTINE
-    // Called by SpeedBoostPickup.cs
+    // SPEED BOOST COROUTINE (called e.g. from SpeedBoostPickup.cs)
     // -----------------------------------------------------------
     public IEnumerator ApplySpeedBoost(float multiplier, float boostDuration)
     {
         float originalSpeed = speed;
-        speed *= multiplier; // Increase speed
+        speed *= multiplier;
         yield return new WaitForSeconds(boostDuration);
-        speed = originalSpeed; // Revert to normal speed
+        speed = originalSpeed;
     }
 
     // -----------------------------------------------------------
-    // DOUBLE JUMP ACTIVATION
-    // Called by DoubleJumpPickup.cs
+    // DOUBLE JUMP ACTIVATION (called e.g. from DoubleJumpPickup.cs)
     // -----------------------------------------------------------
     public void ActivateDoubleJump(float duration)
     {
         doubleJumpActive = true;
         doubleJumpTimer = duration;
-        usedDoubleJump = false; // Reset so the player can use the extra jump
+        usedDoubleJump = false;
     }
 }
