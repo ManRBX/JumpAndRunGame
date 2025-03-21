@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f318fe19dddc294fb3a4cba58c93cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 2
   speed: 2
   leftDistance: 5
   rightDistance: 5
@@ -248,9 +248,8 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   attackCooldown: 1
   damageStunTime: 0.5
-  isFalling: 0
-  pointsOnDeath: 55
-  respawnTime: 10
+  pointsOnDeath: 77
+  respawnTime: 120
   deathAnimationDuration: 0.5
   deathEffect: {fileID: 0}
 --- !u!114 &2448342485157141640

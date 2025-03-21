@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Newtonsoft.Json.Converters;
 
 public class Enemy : MonoBehaviour
 {
@@ -224,6 +225,8 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
+        GetComponent<EnemyShooting>().enabled = false; // Disable
+
         StartCoroutine(HandleDeathAnimation());
     }
 
@@ -259,6 +262,8 @@ public class Enemy : MonoBehaviour
 
         transform.position = spawnPosition;
         movingRight = true; // Reset movement direction
+
+        GetComponent<EnemyShooting>().enabled = true; // Activate
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }

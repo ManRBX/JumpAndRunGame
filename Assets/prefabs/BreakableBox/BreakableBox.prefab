@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1323114743, guid: fac67baf6bfe7ba4ebc31b21eba0fd6c, type: 3}
+  m_Sprite: {fileID: -36696514, guid: b70da6ec3a5f4bb4a919311d3574b18e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   explosionForce: 300
   explosionRadius: 5
   destructionEffectPrefab: {fileID: 5536416601973027563, guid: ed59b8ef8c882a6469a3a293c2aa1a1e, type: 3}
-  brokenSprite: {fileID: -1208778187, guid: fac67baf6bfe7ba4ebc31b21eba0fd6c, type: 3}
+  brokenSprite: {fileID: -2134006826, guid: b70da6ec3a5f4bb4a919311d3574b18e, type: 3}
   destroyOnBreak: 0
   awardedPoints: 100
   randomSettings: {fileID: 11400000, guid: 2d217281c05c2654ca0d360dd21a568f, type: 2}
