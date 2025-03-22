@@ -15,6 +15,7 @@ TagManager:
   - Spike
   - BreakableBox
   - Enemy_Projectil
+  - Coin
   layers:
   - Default
   - TransparentFX
