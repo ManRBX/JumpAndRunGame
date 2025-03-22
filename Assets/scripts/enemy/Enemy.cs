@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Newtonsoft.Json.Converters;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Health Settings")]
-    public int health = 3;  // Set this value in the Inspector
-    private int maxHealth;  // Stores the original health value
+    public int health = 3;
+    private int maxHealth;
 
     [Header("Movement Settings")]
     public float speed = 3f;
@@ -31,17 +32,17 @@ public class Enemy : MonoBehaviour
 
     [Header("Jump & Fall Animation Settings")]
     private bool isJumping = false;
-    [SerializeField] private bool isFalling = false;
+    private bool isFalling = false;
 
     [Header("Point Settings")]
-    public int pointsOnDeath = 50; // Points awarded when the enemy dies
+    public int pointsOnDeath = 50;
 
     [Header("Respawn Settings")]
-    public float respawnTime = 300f; // Respawn time in seconds
-    public float deathAnimationDuration = 6f; // Duration of the death animation
+    public float respawnTime = 5f;
+    public float deathAnimationDuration = 1.5f;
 
     [Header("Death Effect Settings")]
-    public ParticleSystem deathEffect; // Particle system for the death effect (e.g., smoke)
+    public ParticleSystem deathEffect;
 
     private Vector2 leftLimit;
     private Vector2 rightLimit;
@@ -50,23 +51,25 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D enemyCollider;
 
     private Vector3 spawnPosition;
 
     void Start()
     {
-        // Store the original health value from the Inspector
         maxHealth = health;
+        spawnPosition = transform.position;
 
-        Vector2 startPosition = transform.position;
-        leftLimit = new Vector2(startPosition.x - leftDistance, startPosition.y);
-        rightLimit = new Vector2(startPosition.x + rightDistance, startPosition.y);
+        leftLimit = new Vector2(transform.position.x - leftDistance, transform.position.y);
+        rightLimit = new Vector2(transform.position.x + rightDistance, transform.position.y);
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyCollider = GetComponent<Collider2D>();
 
         movingRight = true;
-        spawnPosition = transform.position;  // Save the respawn point
     }
 
     void Update()
@@ -92,6 +95,8 @@ public class Enemy : MonoBehaviour
 
     void Patrol()
     {
+        if (isDead) return;
+
         float moveSpeed = movingRight ? speed : -speed;
         rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
 
@@ -175,14 +180,13 @@ public class Enemy : MonoBehaviour
     {
         if (isDead || isTakingDamage) return;
 
-        int newHealth = health - damage;
-        if (newHealth <= 0)
+        health -= damage;
+        if (health <= 0)
         {
             Die();
         }
         else
         {
-            health = newHealth;
             Debug.Log("Enemy hit! Current HP: " + health);
             StartCoroutine(DamageReaction());
         }
@@ -195,11 +199,6 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(damageStunTime);
-
-        while (animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
-        {
-            yield return null;
-        }
 
         animator.SetBool("Hit", false);
         isTakingDamage = false;
@@ -214,28 +213,28 @@ public class Enemy : MonoBehaviour
 
         AddPointsOnDeath();
 
+        animator.ResetTrigger("Attack");
         animator.SetTrigger("Die");
+
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<EnemyShooting>().enabled = false; // Disable shooting script
+        enemyCollider.enabled = false;
 
         if (deathEffect != null)
         {
             deathEffect.Play();
         }
 
+        GetComponent<EnemyShooting>().enabled = false; // Disable
+
         StartCoroutine(HandleDeathAnimation());
     }
 
     IEnumerator HandleDeathAnimation()
     {
-        // Wait until the death animation is finished
         yield return new WaitForSeconds(deathAnimationDuration);
 
-        // Disable the SpriteRenderer and Collider, then wait for respawn
-        GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+        spriteRenderer.enabled = false;
         yield return new WaitForSeconds(respawnTime);
 
         Respawn();
@@ -243,21 +242,28 @@ public class Enemy : MonoBehaviour
 
     void Respawn()
     {
-        // Reset the animator and immediately start the Walk animation
+        Debug.Log("Enemy respawning...");
+
+        // Reset all animations properly
         animator.ResetTrigger("Die");
-        animator.SetBool("IsWalking", true);
-        animator.Play("Walk");
+        animator.Play("Idle"); // Ensure it starts in a neutral animation
+        animator.SetBool("Jump", false);
+        animator.SetBool("Fall", false);
+        animator.SetFloat("Speed", 0);
 
-        // Reset health to the original Inspector value
+        // Restore enemy settings
         health = maxHealth;
-
         isDead = false;
-        GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<Collider2D>().enabled = true;
-        GetComponent<EnemyShooting>().enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;  // Re-enable normal physics
+
+        spriteRenderer.enabled = true;
+        enemyCollider.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = Vector2.zero;
+
         transform.position = spawnPosition;
+        movingRight = true; // Reset movement direction
+
+        GetComponent<EnemyShooting>().enabled = true; // Activate
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }
