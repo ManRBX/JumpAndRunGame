@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Newtonsoft.Json.Converters;
 
 public class Enemy : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float damageStunTime = 0.5f;
     private bool isTakingDamage = false;
     private bool isDead = false;
+    private bool isInvulnerable = false;
 
     [Header("Jump & Fall Animation Settings")]
     private bool isJumping = false;
@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
+    private bool initialDirectionRight;
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -70,6 +71,7 @@ public class Enemy : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
 
         movingRight = true;
+        initialDirectionRight = movingRight;
     }
 
     void Update()
@@ -178,7 +180,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead || isTakingDamage) return;
+        if (isDead || isTakingDamage || isInvulnerable) return;
 
         health -= damage;
         if (health <= 0)
@@ -225,7 +227,8 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
-        GetComponent<EnemyShooting>().enabled = false; // Disable
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = false;
 
         StartCoroutine(HandleDeathAnimation());
     }
@@ -244,28 +247,38 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy respawning...");
 
-        // Reset all animations properly
+        // Reset animation states
         animator.ResetTrigger("Die");
-        animator.Play("Idle"); // Ensure it starts in a neutral animation
+        animator.Play("Idle");
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
 
-        // Restore enemy settings
+        // Reset values
         health = maxHealth;
         isDead = false;
-
         spriteRenderer.enabled = true;
         enemyCollider.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = Vector2.zero;
-
         transform.position = spawnPosition;
-        movingRight = true; // Reset movement direction
+        movingRight = initialDirectionRight;
 
-        GetComponent<EnemyShooting>().enabled = true; // Activate
+        // Reactivate logic
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = true;
+
+        // Invulnerability for short time
+        isInvulnerable = true;
+        StartCoroutine(RemoveInvulnerability());
 
         Debug.Log("Enemy respawned with " + health + " HP!");
+    }
+
+    IEnumerator RemoveInvulnerability()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isInvulnerable = false;
     }
 
     void AddPointsOnDeath()
