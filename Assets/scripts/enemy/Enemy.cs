@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
     private Vector2 rightLimit;
     private bool movingRight;
     private bool initialDirectionRight;
+    private bool lastDirectionRight;
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -230,6 +231,8 @@ public class Enemy : MonoBehaviour
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = false;
 
+        lastDirectionRight = movingRight;
+
         StartCoroutine(HandleDeathAnimation());
     }
 
@@ -247,28 +250,31 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy respawning...");
 
-        // Reset animation states
         animator.ResetTrigger("Die");
         animator.Play("Idle");
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
 
-        // Reset values
         health = maxHealth;
         isDead = false;
+
         spriteRenderer.enabled = true;
         enemyCollider.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = Vector2.zero;
-        transform.position = spawnPosition;
-        movingRight = initialDirectionRight;
 
-        // Reactivate logic
+        transform.position = spawnPosition;
+
+        movingRight = lastDirectionRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x = movingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = true;
 
-        // Invulnerability for short time
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
 
