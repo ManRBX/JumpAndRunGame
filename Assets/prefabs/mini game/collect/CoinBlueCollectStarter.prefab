@@ -173,12 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfCollectibles: 3
   miniGameDuration: 10
-  collectibleItems:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  collectibleItems: []
   coinPrefab: {fileID: 0}
 --- !u!114 &-2240906304438721769
 MonoBehaviour:
