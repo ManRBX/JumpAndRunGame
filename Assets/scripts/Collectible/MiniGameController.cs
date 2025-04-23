@@ -8,26 +8,18 @@ public class MiniGameController : MonoBehaviour
     public static MiniGameController Instance;
 
     [Header("Global MiniGame Settings")]
-    [Tooltip("Duration of the mini-game in seconds.")]
     public float gameDuration = 10f;
-
-    [Tooltip("TMP Text field for displaying the timer.")]
     public TMP_Text timerText;
-
-    [Tooltip("TMP Text field for displaying the collectible counter (in red).")]
     public TMP_Text collectibleCountText;
 
     [Header("Current MiniGame Status")]
     public bool miniGameActive = false;
-
-    [Tooltip("Number of collectible items that need to be collected.")]
     public int requiredCollectibles = 0;
 
     private int collectedCount = 0;
     private Coroutine timerCoroutine;
-
-    private const string LivesKey = "GlobalLives"; // Same key as in PlayerHealth
-    private bool rewardGiven = false; // Prevents giving rewards multiple times
+    private const string LivesKey = "GlobalLives";
+    private bool rewardGiven = false;
 
     public event Action<bool> OnMiniGameEnded;
 
@@ -45,25 +37,17 @@ public class MiniGameController : MonoBehaviour
 
     private void Start()
     {
-        if (timerText != null)
-        {
-            timerText.gameObject.SetActive(false);
-        }
-        if (collectibleCountText != null)
-        {
-            collectibleCountText.gameObject.SetActive(false);
-        }
+        if (timerText != null) timerText.gameObject.SetActive(false);
+        if (collectibleCountText != null) collectibleCountText.gameObject.SetActive(false);
 
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, 3);
+            PlayerPrefsKeyTracker.TrackKey(LivesKey); // Track default value
             PlayerPrefs.Save();
         }
     }
 
-    /// <summary>
-    /// Starts the mini-game with success and failure callbacks.
-    /// </summary>
     public void StartMiniGame(int requiredCollectibles, float duration, Action onComplete, Action onFailed)
     {
         if (miniGameActive)
@@ -76,7 +60,7 @@ public class MiniGameController : MonoBehaviour
         collectedCount = 0;
         gameDuration = duration;
         miniGameActive = true;
-        rewardGiven = false; // Reset reward flag
+        rewardGiven = false;
 
         if (timerText != null)
         {
@@ -92,9 +76,6 @@ public class MiniGameController : MonoBehaviour
         Debug.Log($"MiniGame started! Collect {requiredCollectibles} items in {duration} seconds.");
     }
 
-    /// <summary>
-    /// Called by a CollectibleItem when it is picked up.
-    /// </summary>
     public void CollectiblePicked()
     {
         if (!miniGameActive) return;
@@ -141,36 +122,30 @@ public class MiniGameController : MonoBehaviour
 
     public void EndMiniGame(bool success)
     {
-        if (!miniGameActive || rewardGiven) return; // Prevent double call!
+        if (!miniGameActive || rewardGiven) return;
 
         miniGameActive = false;
-        rewardGiven = true; // Ensure reward is given only once
+        rewardGiven = true;
 
         if (timerCoroutine != null)
         {
             StopCoroutine(timerCoroutine);
         }
 
-        if (timerText != null)
-        {
-            timerText.gameObject.SetActive(false);
-        }
-        if (collectibleCountText != null)
-        {
-            collectibleCountText.gameObject.SetActive(false);
-        }
+        if (timerText != null) timerText.gameObject.SetActive(false);
+        if (collectibleCountText != null) collectibleCountText.gameObject.SetActive(false);
 
         if (success)
         {
             Debug.Log("🎉 Congratulations! You collected all items!");
 
-            // Increase life **only once**
             int currentLives = PlayerPrefs.GetInt(LivesKey, 3) + 1;
             PlayerPrefs.SetInt(LivesKey, currentLives);
+            PlayerPrefsKeyTracker.TrackKey(LivesKey); // ✅ Track geänderte Leben
             PlayerPrefs.Save();
+
             Debug.Log($"✅ New life added! Total lives: {currentLives}");
 
-            // Update UI if available.
             PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
             if (healthUI != null)
             {
@@ -184,7 +159,6 @@ public class MiniGameController : MonoBehaviour
 
         OnMiniGameEnded?.Invoke(success);
 
-        // Disable all remaining collectibles.
         var remainingItems = GameObject.FindGameObjectsWithTag("Collectible");
         foreach (GameObject item in remainingItems)
         {

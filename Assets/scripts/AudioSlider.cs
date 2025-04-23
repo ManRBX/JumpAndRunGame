@@ -5,32 +5,32 @@ using TMPro;
 public class AudioSlider : MonoBehaviour
 {
     public Slider volumeSlider;
-    public TMP_Text volumeText;  // Only the percentage display
+    public TMP_Text volumeText;
+
+    private const string VolumeKey = "Volume";
 
     void Start()
     {
-        // Initialize the slider with the saved volume (default: 50%)
         if (volumeSlider != null)
         {
-            volumeSlider.value = PlayerPrefs.GetFloat("Volume", 0.5f);
-            UpdateVolumeText(volumeSlider.value);
+            float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
+            volumeSlider.value = savedVolume;
+            PlayerPrefsKeyTracker.TrackKey(VolumeKey);
+            UpdateVolumeText(savedVolume);
 
-            volumeSlider.onValueChanged.AddListener(delegate { OnVolumeChange(); });
+            volumeSlider.onValueChanged.AddListener(OnVolumeChange);
         }
     }
 
-    public void OnVolumeChange()
+    public void OnVolumeChange(float newVolume)
     {
-        float newVolume = volumeSlider.value;
-
-        // If an AudioManager exists, update the volume
         if (AudioManager.instance != null)
         {
             AudioManager.instance.SetVolume(newVolume);
         }
 
-        // Save the volume setting
-        PlayerPrefs.SetFloat("Volume", newVolume);
+        PlayerPrefs.SetFloat(VolumeKey, newVolume);
+        PlayerPrefsKeyTracker.TrackKey(VolumeKey);
         PlayerPrefs.Save();
 
         UpdateVolumeText(newVolume);
@@ -38,6 +38,8 @@ public class AudioSlider : MonoBehaviour
 
     void UpdateVolumeText(float volume)
     {
+        if (volumeText == null) return;
+
         int volumePercent = Mathf.RoundToInt(volume * 100);
         volumeText.text = volumePercent + "%";
     }

@@ -3,19 +3,30 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;  // Main pause menu panel
-    public GameObject optionsPanel;  // Options panel
-    public PlayerShooting playerShooting;  // Reference to PlayerShooting script
+    public GameObject pausePanel;
+    public GameObject optionsPanel;
+    public PlayerShooting playerShooting;
 
     private bool isPaused = false;
+    private float inputCooldown = 0.2f; // Schutz gegen Spam
+    private float lastInputTime;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Time.unscaledTime - lastInputTime >= inputCooldown && Input.GetKeyDown(KeyCode.Escape))
         {
+            lastInputTime = Time.unscaledTime;
+
             if (isPaused)
             {
-                ResumeGame();
+                if (optionsPanel.activeSelf)
+                {
+                    CloseOptions();
+                }
+                else
+                {
+                    ResumeGame();
+                }
             }
             else
             {
@@ -26,54 +37,53 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        SetPauseState(true);
         pausePanel.SetActive(true);
-        Time.timeScale = 0f;  // Pause the game
-        isPaused = true;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
-        if (playerShooting != null)
-        {
-            playerShooting.enabled = false;  // Disable shooting while paused
-        }
+        optionsPanel.SetActive(false);
     }
 
     public void ResumeGame()
     {
+        SetPauseState(false);
         pausePanel.SetActive(false);
         optionsPanel.SetActive(false);
-        Time.timeScale = 1f;  // Resume the game
-        isPaused = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (playerShooting != null)
-        {
-            playerShooting.enabled = true;  // Re-enable shooting
-        }
     }
 
     public void RestartLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Reload the current level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");  // Load the main menu scene
+        SceneManager.LoadScene("Menu");
     }
 
     public void OpenOptions()
     {
         pausePanel.SetActive(false);
-        optionsPanel.SetActive(true);  // Open the options menu
+        optionsPanel.SetActive(true);
     }
 
     public void CloseOptions()
     {
         optionsPanel.SetActive(false);
-        pausePanel.SetActive(true);  // Close options and return to pause menu
+        pausePanel.SetActive(true);
+    }
+
+    private void SetPauseState(bool pause)
+    {
+        isPaused = pause;
+        Time.timeScale = pause ? 0f : 1f;
+
+        Cursor.visible = pause;
+        Cursor.lockState = pause ? CursorLockMode.None : CursorLockMode.Locked;
+
+        if (playerShooting != null)
+        {
+            playerShooting.enabled = !pause;
+        }
     }
 }

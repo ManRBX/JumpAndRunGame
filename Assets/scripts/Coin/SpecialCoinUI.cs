@@ -23,6 +23,7 @@ public class SpecialCoinUI : MonoBehaviour
         // Save the collected coin
         string coinKey = $"{levelName}.Coin{coinIndex}";
         PlayerPrefs.SetInt(coinKey, 1);
+        PlayerPrefsKeyTracker.TrackKey(coinKey); // <- neu hinzugefügt
         PlayerPrefs.Save();
     }
 
@@ -32,14 +33,14 @@ public class SpecialCoinUI : MonoBehaviour
         for (int i = 0; i < coinImages.Length; i++)
         {
             string coinKey = $"{levelName}.Coin{i}";
+
             if (PlayerPrefs.HasKey(coinKey))
             {
-                // Full visibility if collected
+                PlayerPrefsKeyTracker.TrackKey(coinKey); // <- auch beim Laden tracken
                 coinImages[i].color = new Color(1, 1, 1, 1);
             }
             else
             {
-                // Semi-transparent (alpha = 0) if not collected
                 coinImages[i].color = new Color(1, 1, 1, 0f);
             }
         }

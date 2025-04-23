@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private const string LivesKey = "GlobalLives"; // Key for PlayerPrefs
 
     [Header("Lives Settings")]
-    public int defaultLives = 3; // Default number of lives
+    public int defaultLives = 5; // Default number of lives
 
     private bool isInvincible = false;
 
@@ -41,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
+            PlayerPrefsKeyTracker.TrackKey(LivesKey);
             PlayerPrefs.Save();
         }
 
@@ -111,6 +112,7 @@ public class PlayerHealth : MonoBehaviour
         // Leben aus PlayerPrefs holen und um 1 verringern
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
         PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Sicherstellen, dass die Leben nicht negativ werden
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save(); // Speichern der neuen Leben
 
         Debug.Log($"Spieler gestorben. Verbleibende Leben: {lives}");
@@ -155,6 +157,7 @@ public class PlayerHealth : MonoBehaviour
     void RestartGame()
     {
         PlayerPrefs.SetInt(LivesKey, defaultLives); // Leben zur�cksetzen
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -183,6 +186,7 @@ public class PlayerHealth : MonoBehaviour
     {
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) + amount;
         PlayerPrefs.SetInt(LivesKey, lives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save();
         Debug.Log($"Lives added: {lives}");
         UpdateUI();

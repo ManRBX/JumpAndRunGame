@@ -103,6 +103,42 @@ MonoBehaviour:
     m_Key: Level01/Canvas/CoinText
     m_Metadata:
       m_Items: []
+  - m_Id: 26801149599277056
+    m_Key: Button bindings/Canvas/Pop up/ja/JA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26801200417464320
+    m_Key: Button bindings/Canvas/Pop up/nein/NEIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26801502596096000
+    m_Key: RebindPrompt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803179520778240
+    m_Key: DuplicateWarningText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803729247232000
+    m_Key: Button bindings/Canvas/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803780388380672
+    m_Key: "Button bindings/Canvas/Zur\xFCcksetzen button/Zur\xFCcksetzen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830201936666624
+    m_Key: Menu/Canvas/Button panel resetalldata/ResetAllData/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830321000374272
+    m_Key: Menu/Canvas/reset all data pop up/Yes/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830353401372672
+    m_Key: Menu/Canvas/reset all data pop up/NO/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

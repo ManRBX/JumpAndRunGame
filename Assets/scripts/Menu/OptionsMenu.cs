@@ -13,8 +13,8 @@ public class OptionsMenu : MonoBehaviour
     [Header("Text References")]
     public TMP_Text fullscreenText;
 
-    private const string LanguageKey = "SelectedLanguage"; // Key for saved language
-    private bool isSwitching = false; // Prevents multiple switching
+    private const string LanguageKey = "SelectedLanguage";
+    private bool isSwitching = false;
 
     void Start()
     {
@@ -25,11 +25,16 @@ public class OptionsMenu : MonoBehaviour
         LocalizationSettings.SelectedLocaleChanged += OnLanguageChanged;
     }
 
+    private void OnDestroy()
+    {
+        // Clean up event
+        LocalizationSettings.SelectedLocaleChanged -= OnLanguageChanged;
+    }
+
     private IEnumerator InitializeLocalization()
     {
         yield return LocalizationSettings.InitializationOperation;
 
-        // Set saved language from PlayerPrefs (default: English)
         int savedLocaleID = PlayerPrefs.GetInt(LanguageKey, 0);
         SetLanguage(savedLocaleID);
     }
@@ -38,6 +43,7 @@ public class OptionsMenu : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
         PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefsKeyTracker.TrackKey("Fullscreen");
         PlayerPrefs.Save();
         UpdateFullscreenText(isFullscreen);
     }
@@ -61,19 +67,18 @@ public class OptionsMenu : MonoBehaviour
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
         PlayerPrefs.SetInt(LanguageKey, localeID);
+        PlayerPrefsKeyTracker.TrackKey(LanguageKey);
         PlayerPrefs.Save();
 
         Debug.Log($"🌍 Language changed to: {LocalizationSettings.SelectedLocale.LocaleName}");
-
-        // Update UI after language change
         UpdateFullscreenText(fullscreenToggle.isOn);
-
         isSwitching = false;
     }
 
     void LoadSettings()
     {
         bool savedFullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        PlayerPrefsKeyTracker.TrackKey("Fullscreen"); // 🔁 Key tracken
         fullscreenToggle.isOn = savedFullscreen;
         Screen.fullScreen = savedFullscreen;
         UpdateFullscreenText(savedFullscreen);
@@ -93,13 +98,12 @@ public class OptionsMenu : MonoBehaviour
 
     string GetLocalizedOnOff(bool isOn, string languageCode)
     {
-        if (languageCode == "de")
+        switch (languageCode)
         {
-            return isOn ? "On" : "Off";
-        }
-        else
-        {
-            return isOn ? "On" : "Off";
+            case "de": return isOn ? "An" : "Aus";
+            case "fr": return isOn ? "Activé" : "Désactivé";
+            case "es": return isOn ? "Activado" : "Desactivado";
+            default: return isOn ? "On" : "Off";
         }
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -7,28 +7,27 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton: Only one instance per scene
         if (instance == null)
         {
             instance = this;
         }
         else if (instance != this)
         {
-            Destroy(gameObject);  // Remove duplicate instances
+            Destroy(gameObject);
         }
 
-        // Set a default position for the checkpoint
-        checkpointPosition = transform.position;
+        checkpointPosition = transform.position; // Default-Startpunkt
     }
 
-    // Sets the checkpoint to a new position
+    /// <summary>
+    /// Speichert den Checkpoint nur im RAM – NICHT persistent!
+    /// </summary>
     public void SetCheckpoint(Vector3 newPosition)
     {
         checkpointPosition = newPosition;
-        Debug.Log("Checkpoint set: " + checkpointPosition);
+        Debug.Log("Checkpoint gesetzt (nicht gespeichert): " + checkpointPosition);
     }
 
-    // Returns the current checkpoint position
     public Vector3 GetCheckpointPosition()
     {
         return checkpointPosition;
