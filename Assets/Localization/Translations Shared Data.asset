@@ -139,6 +139,194 @@ MonoBehaviour:
     m_Key: Menu/Canvas/reset all data pop up/NO/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 27574744709586944
+    m_Key: Level01/Canvas/Pause Panel/back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574854159949824
+    m_Key: Level01/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574890570702848
+    m_Key: Level01/Canvas/Pause Panel/Options/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574932010426368
+    m_Key: Level01/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574980358168576
+    m_Key: "Level01/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27575832447803392
+    m_Key: Level01/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576077797810176
+    m_Key: Level02/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576231984619520
+    m_Key: Level02/Canvas/Options Panel/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576260010958848
+    m_Key: Level02/Canvas/Pause Panel/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576336569589760
+    m_Key: Level02/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576378692984832
+    m_Key: Level02/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576394677477376
+    m_Key: Level02/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576665872785408
+    m_Key: Level03/Canvas/Pause Panel/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576696512176128
+    m_Key: Level03/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576718259642368
+    m_Key: Level03/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576741840019456
+    m_Key: Level03/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576796097536000
+    m_Key: Level03/Canvas/Options Panel/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576931258982400
+    m_Key: Level03/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577047176962048
+    m_Key: "Level04/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577075266215936
+    m_Key: Level04/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577147206918144
+    m_Key: Level04/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577182992719872
+    m_Key: Level04/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577199568609280
+    m_Key: "Level04/Canvas/Pause Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577433002598400
+    m_Key: Level05/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577485292986368
+    m_Key: "Level05/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577528607563776
+    m_Key: "Level05/Canvas/Pause Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577555358834688
+    m_Key: Level05/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577571968278528
+    m_Key: Level05/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577597490618368
+    m_Key: Level05/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577723558813696
+    m_Key: "Level06/Canvas/Pause Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577742663868416
+    m_Key: Level06/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577773936599040
+    m_Key: Level06/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577802663387136
+    m_Key: Level06/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577839397101568
+    m_Key: "Level06/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577876042735616
+    m_Key: Level06/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578007160872960
+    m_Key: Level07/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578035183017984
+    m_Key: "Level07/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578057513492480
+    m_Key: Level07/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578072847867904
+    m_Key: Level07/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578098953216000
+    m_Key: Level07/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578112949608448
+    m_Key: "Level07/Canvas/Pause Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578557122207744
+    m_Key: "Level08/Canvas/Pause Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578575652642816
+    m_Key: Level08/Canvas/Pause Panel/Menu/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578594145329152
+    m_Key: Level08/Canvas/Pause Panel/Optionen /Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578631797596160
+    m_Key: Level08/Canvas/Pause Panel/Restart/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578655377973248
+    m_Key: "Level08/Canvas/Options Panel/Zur\xFCck/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578685979615232
+    m_Key: Level08/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

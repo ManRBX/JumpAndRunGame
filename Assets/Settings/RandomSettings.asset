@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bcb958149fb024195b6854d6daa3e9, type: 3}
   m_Name: RandomSettings
   m_EditorClassIdentifier: 
-  coinAwardChance: 0.6
-  awardedCoins: 1
+  coinAwardChance: 0.8
+  awardedCoins: 5
   fragmentSpawnChance: 0.5
   fragmentCooldown: 60
   randomizeFragmentRotation: 1

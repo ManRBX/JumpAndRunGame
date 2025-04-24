@@ -2265,6 +2265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e869f2c440e6ef74a96738ff7466729a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoSaveIntervalMinutes: 2
+  autoSaveUI: {fileID: 0}
+  autoSaveText: {fileID: 0}
+  autoSaveSpinner: {fileID: 0}
 --- !u!114 &1189556527
 MonoBehaviour:
   m_ObjectHideFlags: 0

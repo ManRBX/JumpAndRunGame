@@ -114,7 +114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1401897488, guid: 8b1483df02833894c94035e719f75176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 2
-  leftDistance: 16
-  rightDistance: 16
+  leftDistance: 5
+  rightDistance: 5
   jumpForce: 5
   groundCheck: {fileID: 721285669645072550}
   groundLayer:
@@ -267,10 +267,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6685202491553775738, guid: 357fbaf0d75f0a745bce60b89980f722, type: 3}
   firePoint: {fileID: 6099216197494363906}
-  bulletForce: 5
+  bulletForce: 2
   fireRate: 1
   shootRange: 10
-  player: {fileID: 0}
+  player: {fileID: 3394760578918175963, guid: 9e2093fe2894b544eb67b6352ba3e098, type: 3}
 --- !u!1 &4850043380442554230
 GameObject:
   m_ObjectHideFlags: 0

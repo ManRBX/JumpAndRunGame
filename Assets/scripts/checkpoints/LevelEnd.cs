@@ -63,6 +63,15 @@ public class LevelEnd : MonoBehaviour
                 }
 
                 PlayerPrefs.Save();
+
+                // 💾 JSON speichern (automatisch beim Level-Ende)
+                PlayerPrefsSaver saver = FindObjectOfType<PlayerPrefsSaver>();
+                if (saver != null)
+                {
+                    saver.SavePrefsToJson();
+                    Debug.Log("📂 PlayerPrefs wurden zusätzlich im JSON gespeichert.");
+                }
+
                 SceneManager.LoadScene(returnScene);
             }
             else
