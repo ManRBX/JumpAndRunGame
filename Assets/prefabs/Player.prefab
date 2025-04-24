@@ -362,7 +362,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4861833167383457531, guid: 646b4592764a70c498ed74e90ad29e42, type: 3}
   firePoint: {fileID: 840923052948383345}
   bulletForce: 20
-  maxAmmo: 60
+  maxAmmo: 999
   fireRate: 0.5
   ammoText: {fileID: 0}
   shotText: {fileID: 0}
