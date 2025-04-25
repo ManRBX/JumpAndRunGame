@@ -8,14 +8,22 @@ public class PlayerHealthUI : MonoBehaviour
 
     void Start()
     {
-        // Setze die Start-Leben auf 5, falls sie noch nicht gesetzt wurden
         if (!PlayerPrefs.HasKey(LivesKey))
         {
-            PlayerPrefs.SetInt(LivesKey, 5); // Setze den Anfangswert der Leben auf 5
-            PlayerPrefs.Save();  // Speichern der Änderung
+            PlayerPrefs.SetInt(LivesKey, 5);
+            PlayerPrefs.Save();
         }
 
-        UpdateLivesUI(); // UI beim Start aktualisieren
+        PlayerPrefsKeyTracker.TrackKey(LivesKey); // 👈 immer tracken, auch wenn er schon da ist
+        UpdateLivesUI();
+    }
+
+    public void ChangeLives(int newLives)
+    {
+        PlayerPrefs.SetInt(LivesKey, newLives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
+        PlayerPrefs.Save();
+        UpdateLivesUI();
     }
 
     public void UpdateLivesUI()

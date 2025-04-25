@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletForce = 20f;
-    public int maxAmmo = 30; // Global maximum ammo
+    public int maxAmmo = 60; // Global maximum ammo
     private int currentAmmo;
 
     [Header("Cooldown Settings")]
@@ -18,13 +18,13 @@ public class PlayerShooting : MonoBehaviour
     public TMP_Text ammoText;  // UI for ammo count
     public TMP_Text shotText;  // UI for total shots fired
 
-    private void Start()
+    void Start()
     {
-        // Load global ammo from PlayerPrefs or set default value
         currentAmmo = PlayerPrefs.GetInt("GlobalAmmo", maxAmmo);
+        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
 
-        // Load total shots fired from PlayerPrefs
         int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0);
+        PlayerPrefsKeyTracker.TrackKey("ShotsFired");
 
         UpdateAmmoUI();
         UpdateShotsUI(shotsFired);
@@ -62,10 +62,12 @@ public class PlayerShooting : MonoBehaviour
         // Reduce ammo and save to PlayerPrefs
         currentAmmo--;
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
+        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
 
         // Increase shots fired count and save to PlayerPrefs
         int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0) + 1;
         PlayerPrefs.SetInt("ShotsFired", shotsFired);
+        PlayerPrefsKeyTracker.TrackKey("ShotsFired");
 
         PlayerPrefs.Save();
 
@@ -104,6 +106,7 @@ public class PlayerShooting : MonoBehaviour
 
         // Save new ammo count
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
+        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
         PlayerPrefs.Save();
 
         UpdateAmmoUI();

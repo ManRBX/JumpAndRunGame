@@ -16,11 +16,10 @@ public class Starter : MonoBehaviour
     public GameObject coinPrefab;
 
     private bool isActivated = false;
-    private bool rewardGiven = false; // Prevents multiple rewards
+    private bool rewardGiven = false;
 
     private void Start()
     {
-        // Ensure that collectible items are initially disabled
         foreach (var item in collectibleItems)
         {
             if (item != null)
@@ -30,8 +29,7 @@ public class Starter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isActivated)
-            return;
+        if (isActivated) return;
 
         if (other.CompareTag("Player"))
         {
@@ -46,24 +44,22 @@ public class Starter : MonoBehaviour
 
         if (MiniGameController.Instance != null)
         {
-            // Start the MiniGame and set success & failure callbacks
-            MiniGameController.Instance.StartMiniGame(numberOfCollectibles, miniGameDuration, OnMiniGameComplete, OnMiniGameFailed);
+            MiniGameController.Instance.StartMiniGame(
+                numberOfCollectibles,
+                miniGameDuration,
+                OnMiniGameComplete,
+                OnMiniGameFailed);
         }
 
-        // Make all collectible items visible
         foreach (var item in collectibleItems)
         {
             if (item != null)
                 item.SetActive(true);
         }
 
-        // Disable the starter itself
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Called when the player successfully collects all collectibles within the time limit.
-    /// </summary>
     private void OnMiniGameComplete()
     {
         if (rewardGiven) return;
@@ -71,13 +67,12 @@ public class Starter : MonoBehaviour
 
         Debug.Log("✅ MiniGame successfully completed! +1 Life awarded!");
 
-        // Increase player lives by 1
         int currentLives = PlayerPrefs.GetInt("GlobalLives", 3);
         currentLives++;
         PlayerPrefs.SetInt("GlobalLives", currentLives);
+        PlayerPrefsKeyTracker.TrackKey("GlobalLives"); // ✅ Track für JSON
         PlayerPrefs.Save();
 
-        // Update UI if available
         PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
         if (healthUI != null)
         {
@@ -85,21 +80,17 @@ public class Starter : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when the MiniGame fails (time runs out).
-    /// </summary>
     private void OnMiniGameFailed()
     {
         Debug.Log("❌ MiniGame failed – Collectibles are being converted into coins!");
 
-        // Convert all remaining collectible items into coins
         foreach (var item in collectibleItems)
         {
-            if (item != null && item.activeSelf) // Convert only active items
+            if (item != null && item.activeSelf)
             {
                 Vector3 spawnPosition = item.transform.position;
-                Destroy(item); // Remove the collectible item
-                Instantiate(coinPrefab, spawnPosition, Quaternion.identity); // Replace it with a coin
+                Destroy(item);
+                Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
             }
         }
     }

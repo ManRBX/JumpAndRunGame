@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Localization.Components;
 
-/// <summary>
-/// A UI script that contains buttons and labels for all actions (Jump, MoveLeft, MoveRight, etc.).
-/// This allows you to rebind keys by waiting for the next key press when you click the button.
-/// </summary>
 public class KeyBindUI : MonoBehaviour
 {
     [Header("UI Labels for Actions")]
-
     public TMP_Text jumpKeyLabel;
     public TMP_Text leftKeyLabel;
     public TMP_Text rightKeyLabel;
@@ -18,166 +14,199 @@ public class KeyBindUI : MonoBehaviour
     public TMP_Text dropPlatformKeyLabel;
     public TMP_Text shootKeyLabel;
 
+    [Header("Reset Confirmation UI")]
+    public GameObject resetConfirmationPanel;
+
+    [Header("Popup für Rebinding")]
+    public GameObject rebindPopupPanel;
+    public LocalizeStringEvent rebindPopupLocalizedText;
+
+    [Header("Blocker für alle anderen UI-Elemente")]
+    public GameObject inputBlocker;
+
+    [Header("Doppelbelegung-Warnung")]
+    public GameObject duplicateWarningPanel;
+    public LocalizeStringEvent duplicateWarningLocalizedText;
+
     private bool waitingForKey = false;
     private string currentAction = "";
+    private int skipInputFrame = -1;
 
     private void Start()
     {
-        // Update the labels at the start so the player can see the current key bindings
         UpdateKeyLabels();
+
+        if (resetConfirmationPanel != null)
+            resetConfirmationPanel.SetActive(false);
+
+        if (rebindPopupPanel != null)
+            rebindPopupPanel.SetActive(false);
+
+        if (inputBlocker != null)
+            inputBlocker.SetActive(false);
+
+        if (duplicateWarningPanel != null)
+            duplicateWarningPanel.SetActive(false);
     }
 
-    // -------------------------------------------------------------------
-    // These button methods are called via the OnClick in the Inspector:
-    //   "Rebind Jump"          -> OnClick_RebindJump()
-    //   "Rebind Left"          -> OnClick_RebindLeft()
-    //   "Rebind Right"         -> OnClick_RebindRight()
-    //   "Rebind ClimbUp"       -> OnClick_RebindClimbUp()
-    //   "Rebind ClimbDown"     -> OnClick_RebindClimbDown()
-    //   "Rebind DropPlatform"  -> OnClick_RebindDropPlatform()
-    //   "Rebind Shoot"         -> OnClick_RebindShoot()
-    // -------------------------------------------------------------------
+    // --- Rebind Buttons ---
+    public void OnClick_RebindJump() => StartRebind("Jump");
+    public void OnClick_RebindLeft() => StartRebind("MoveLeft");
+    public void OnClick_RebindRight() => StartRebind("MoveRight");
+    public void OnClick_RebindClimbUp() => StartRebind("ClimbUp");
+    public void OnClick_RebindClimbDown() => StartRebind("ClimbDown");
+    public void OnClick_RebindDropPlatform() => StartRebind("DropPlatform");
+    public void OnClick_RebindShoot() => StartRebind("Shoot");
 
-    public void OnClick_RebindJump()
+    private void StartRebind(string actionName)
     {
-        StartRebind("Jump", jumpKeyLabel);
-    }
+        if (waitingForKey) return;
 
-    public void OnClick_RebindLeft()
-    {
-        StartRebind("MoveLeft", leftKeyLabel);
-    }
-
-    public void OnClick_RebindRight()
-    {
-        StartRebind("MoveRight", rightKeyLabel);
-    }
-
-    public void OnClick_RebindClimbUp()
-    {
-        StartRebind("ClimbUp", climbUpKeyLabel);
-    }
-
-    public void OnClick_RebindClimbDown()
-    {
-        StartRebind("ClimbDown", climbDownKeyLabel);
-    }
-
-    public void OnClick_RebindDropPlatform()
-    {
-        StartRebind("DropPlatform", dropPlatformKeyLabel);
-    }
-
-    public void OnClick_RebindShoot()
-    {
-        StartRebind("Shoot", shootKeyLabel);
-    }
-
-    /// <summary>
-    /// Central entry point for rebinding an action.
-    /// Specifies which action will be changed and which label will display "Press a key now...".
-    /// </summary>
-    private void StartRebind(string actionName, TMP_Text labelToChange)
-    {
-        if (waitingForKey)
-        {
-            Debug.Log("Already waiting for a key press – please press a key first!");
-            return;
-        }
-
-        currentAction = actionName;
         waitingForKey = true;
+        skipInputFrame = Time.frameCount;
+        currentAction = actionName;
 
-        if (labelToChange != null)
+        if (inputBlocker != null)
+            inputBlocker.SetActive(true);
+
+        if (rebindPopupPanel != null)
         {
-            labelToChange.text = "Press a key now...";
+            rebindPopupPanel.SetActive(true);
+            if (rebindPopupLocalizedText != null)
+                rebindPopupLocalizedText.RefreshString();
         }
 
-        Debug.Log($"Rebind '{actionName}': Please press a key...");
+        Debug.Log($"🎮 Rebinding '{actionName}' – warte auf Tastendruck...");
     }
 
     private void Update()
     {
         if (!waitingForKey) return;
+        if (Time.frameCount == skipInputFrame) return;
 
-        // Loop through all KeyCodes and check if one was pressed
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CancelRebind();
+            return;
+        }
+
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
             if (Input.GetKeyDown(key))
             {
-                Debug.Log($"New key for {currentAction}: {key}");
-
-                // Pass to the KeyBindManager if available
-                if (KeyBindManager.Instance != null)
+                if (IsKeyAlreadyBound(key))
                 {
-                    KeyBindManager.Instance.SetKey(currentAction, key);
+                    Debug.LogWarning($"⚠️ Hinweis: Taste '{key}' ist bereits belegt.");
+
+                    if (duplicateWarningPanel != null)
+                        duplicateWarningPanel.SetActive(true);
+
+                    if (duplicateWarningLocalizedText != null)
+                        duplicateWarningLocalizedText.RefreshString();
                 }
 
-                // Update the labels
-                UpdateKeyLabels();
+                Debug.Log($"✅ Neue Taste für {currentAction}: {key}");
 
-                // Stop waiting for key press
+                if (KeyBindManager.Instance != null)
+                    KeyBindManager.Instance.SetKey(currentAction, key);
+
                 waitingForKey = false;
                 currentAction = "";
+                skipInputFrame = -1;
+
+                if (rebindPopupPanel != null)
+                    rebindPopupPanel.SetActive(false);
+
+                if (inputBlocker != null)
+                    inputBlocker.SetActive(false);
+
+                UpdateKeyLabels();
                 break;
             }
         }
     }
 
-    /// <summary>
-    /// Updates the UI labels to show the currently bound keys.
-    /// </summary>
+    private bool IsKeyAlreadyBound(KeyCode key)
+    {
+        if (KeyBindManager.Instance == null) return false;
+
+        foreach (var binding in KeyBindManager.Instance.GetAllBindings())
+        {
+            if (binding.Value == key)
+                return true;
+        }
+        return false;
+    }
+
+    public void CloseDuplicateWarning()
+    {
+        if (duplicateWarningPanel != null)
+            duplicateWarningPanel.SetActive(false);
+
+        if (inputBlocker != null && waitingForKey)
+            inputBlocker.SetActive(true);
+    }
+
+    private void CancelRebind()
+    {
+        Debug.Log("⛔️ Rebinding abgebrochen.");
+        waitingForKey = false;
+        currentAction = "";
+        skipInputFrame = -1;
+
+        if (rebindPopupPanel != null)
+            rebindPopupPanel.SetActive(false);
+
+        if (inputBlocker != null)
+            inputBlocker.SetActive(false);
+
+        UpdateKeyLabels();
+    }
+
     private void UpdateKeyLabels()
     {
         if (KeyBindManager.Instance == null) return;
 
-        // Jump
-        if (jumpKeyLabel != null)
+        jumpKeyLabel.text = "Jump: " + KeyBindManager.Instance.GetKeyCodeForAction("Jump");
+        leftKeyLabel.text = "Move Left: " + KeyBindManager.Instance.GetKeyCodeForAction("MoveLeft");
+        rightKeyLabel.text = "Move Right: " + KeyBindManager.Instance.GetKeyCodeForAction("MoveRight");
+        climbUpKeyLabel.text = "Climb Up: " + KeyBindManager.Instance.GetKeyCodeForAction("ClimbUp");
+        climbDownKeyLabel.text = "Climb Down: " + KeyBindManager.Instance.GetKeyCodeForAction("ClimbDown");
+        dropPlatformKeyLabel.text = "Drop Platform: " + KeyBindManager.Instance.GetKeyCodeForAction("DropPlatform");
+        shootKeyLabel.text = "Shoot: " + KeyBindManager.Instance.GetKeyCodeForAction("Shoot");
+    }
+
+    // --- Reset-Menü ---
+    public void OnClick_ResetToDefaults()
+    {
+        if (inputBlocker != null)
+            inputBlocker.SetActive(true);
+
+        if (resetConfirmationPanel != null)
+            resetConfirmationPanel.SetActive(true);
+    }
+
+    public void ConfirmReset()
+    {
+        if (KeyBindManager.Instance != null)
         {
-            jumpKeyLabel.text = "Jump: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("Jump");
+            KeyBindManager.Instance.ResetToDefaults();
+            UpdateKeyLabels();
         }
 
-        // Left
-        if (leftKeyLabel != null)
-        {
-            leftKeyLabel.text = "Move Left: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("MoveLeft");
-        }
+        if (resetConfirmationPanel != null)
+            resetConfirmationPanel.SetActive(false);
 
-        // Right
-        if (rightKeyLabel != null)
-        {
-            rightKeyLabel.text = "Move Right: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("MoveRight");
-        }
+        if (inputBlocker != null)
+            inputBlocker.SetActive(false);
+    }
 
-        // ClimbUp
-        if (climbUpKeyLabel != null)
-        {
-            climbUpKeyLabel.text = "Climb Up: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("ClimbUp");
-        }
+    public void CancelReset()
+    {
+        if (resetConfirmationPanel != null)
+            resetConfirmationPanel.SetActive(false);
 
-        // ClimbDown
-        if (climbDownKeyLabel != null)
-        {
-            climbDownKeyLabel.text = "Climb Down: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("ClimbDown");
-        }
-
-        // DropPlatform
-        if (dropPlatformKeyLabel != null)
-        {
-            dropPlatformKeyLabel.text = "Drop Platform: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("DropPlatform");
-        }
-
-        // Shoot
-        if (shootKeyLabel != null)
-        {
-            shootKeyLabel.text = "Shoot: " +
-                KeyBindManager.Instance.GetKeyCodeForAction("Shoot");
-        }
+        if (inputBlocker != null)
+            inputBlocker.SetActive(false);
     }
 }

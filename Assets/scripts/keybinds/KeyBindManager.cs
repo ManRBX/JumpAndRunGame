@@ -1,24 +1,25 @@
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class KeyBindManager : MonoBehaviour
 {
     public static KeyBindManager Instance;
 
-    // I store the KeyCode for each action (e.g., "Jump" -> KeyCode.Space) in this dictionary.
-    private Dictionary<string, KeyCode> keys = new Dictionary<string, KeyCode>();
+    private const string PlayerPrefPrefix = "Key_";
 
-    // List of all actions I want to remap.
-    private string[] allActions = new string[]
+    // Alle Aktionen & die zugehörigen KeyCodes
+    private Dictionary<string, KeyCode> keyBindings = new Dictionary<string, KeyCode>();
+
+    // Standardbelegungen – hier kannst du jederzeit neue Aktionen hinzufügen
+    private readonly Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>()
     {
-        "Jump",
-        "MoveLeft",
-        "MoveRight",
-        "ClimbUp",
-        "ClimbDown",
-        "DropPlatform",
-        "Shoot"
+        { "Jump", KeyCode.Space },
+        { "MoveLeft", KeyCode.A },
+        { "MoveRight", KeyCode.D },
+        { "ClimbUp", KeyCode.W },
+        { "ClimbDown", KeyCode.S },
+        { "DropPlatform", KeyCode.S },   // Optional gleiche Taste wie ClimbDown
+        { "Shoot", KeyCode.Mouse0 }
     };
 
     private void Awake()
@@ -26,85 +27,97 @@ public class KeyBindManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Survives scene transitions
+            DontDestroyOnLoad(gameObject);
+            LoadBindings();
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
-
-        // Set default values for each action
-        keys["Jump"] = KeyCode.Space;
-        keys["MoveLeft"] = KeyCode.A;
-        keys["MoveRight"] = KeyCode.D;
-        keys["ClimbUp"] = KeyCode.W;
-        keys["ClimbDown"] = KeyCode.S;
-        keys["DropPlatform"] = KeyCode.S;      // To fall through one-way platforms
-        keys["Shoot"] = KeyCode.Mouse0; // Left mouse button
-
-        LoadKeysFromPrefs();
     }
 
     /// <summary>
-    /// Returns the KeyCode set for the specified action.
-    /// Example: GetKeyCodeForAction("Jump") -> KeyCode.Space
+    /// Gibt den aktuell zugewiesenen KeyCode für eine Aktion zurück.
     /// </summary>
-    public KeyCode GetKeyCodeForAction(string actionName)
+    public KeyCode GetKeyCodeForAction(string action)
     {
-        if (keys.ContainsKey(actionName))
-            return keys[actionName];
-        return KeyCode.None; // If the action doesn't exist
+        if (keyBindings.ContainsKey(action))
+            return keyBindings[action];
+
+        Debug.LogWarning($"❓ Action '{action}' nicht gefunden. Gib einen gültigen Namen an.");
+        return KeyCode.None;
     }
 
     /// <summary>
-    /// Sets a new key for the specified action and saves it in PlayerPrefs.
-    /// Example: SetKey("DropPlatform", KeyCode.DownArrow)
+    /// Setzt eine neue Taste für eine Aktion und speichert sie.
     /// </summary>
-    public void SetKey(string actionName, KeyCode newKey)
+    public void SetKey(string action, KeyCode key)
     {
-        if (keys.ContainsKey(actionName))
+        if (keyBindings.ContainsKey(action))
         {
-            keys[actionName] = newKey;
-            Debug.Log($"Action '{actionName}' is now set to '{newKey}'.");
+            keyBindings[action] = key;
+            PlayerPrefs.SetString(PlayerPrefPrefix + action, key.ToString());
+            PlayerPrefsKeyTracker.TrackKey(PlayerPrefPrefix + action);
+            PlayerPrefs.Save();
         }
         else
         {
-            keys.Add(actionName, newKey);
-            Debug.Log($"New action '{actionName}' created and set to '{newKey}'.");
+            Debug.LogWarning($"❓ Aktion '{action}' ist nicht registriert.");
         }
-
-        SaveKeysToPrefs();
     }
 
     /// <summary>
-    /// Loads all keybinds from PlayerPrefs if already saved.
+    /// Lädt alle gespeicherten Bindings oder setzt sie auf Standard.
     /// </summary>
-    private void LoadKeysFromPrefs()
+    private void LoadBindings()
     {
-        foreach (string actionName in allActions)
+        foreach (var entry in defaultBindings)
         {
-            string storedKeyString = PlayerPrefs.GetString(actionName, "");
-            if (!string.IsNullOrEmpty(storedKeyString))
+            string keyName = PlayerPrefPrefix + entry.Key;
+
+            if (PlayerPrefs.HasKey(keyName))
             {
-                // Convert the string to a KeyCode
-                if (Enum.TryParse(storedKeyString, out KeyCode parsedKey))
+                string savedKey = PlayerPrefs.GetString(keyName);
+                if (System.Enum.TryParse(savedKey, out KeyCode parsedKey))
                 {
-                    keys[actionName] = parsedKey;
+                    keyBindings[entry.Key] = parsedKey;
+                }
+                else
+                {
+                    Debug.LogWarning($"⚠️ Ungültiger gespeicherter Key für {entry.Key}: {savedKey}. Setze Standard.");
+                    keyBindings[entry.Key] = entry.Value;
                 }
             }
+            else
+            {
+                keyBindings[entry.Key] = entry.Value;
+            }
+
+            PlayerPrefsKeyTracker.TrackKey(keyName);
         }
     }
 
     /// <summary>
-    /// Saves all keybinds in PlayerPrefs (e.g., "Jump" -> "Space").
+    /// Setzt alle Tastenzuweisungen auf ihre Standardwerte zurück.
     /// </summary>
-    private void SaveKeysToPrefs()
+    public void ResetToDefaults()
     {
-        foreach (var kvp in keys)
+        foreach (var entry in defaultBindings)
         {
-            PlayerPrefs.SetString(kvp.Key, kvp.Value.ToString());
+            keyBindings[entry.Key] = entry.Value;
+            PlayerPrefs.SetString(PlayerPrefPrefix + entry.Key, entry.Value.ToString());
+            PlayerPrefsKeyTracker.TrackKey(PlayerPrefPrefix + entry.Key);
         }
+
         PlayerPrefs.Save();
+        Debug.Log("🔄 Alle Tasten wurden auf Standard zurückgesetzt.");
+    }
+
+    /// <summary>
+    /// Gibt alle aktuellen Bindings zurück (z. B. für Debug oder Export).
+    /// </summary>
+    public Dictionary<string, KeyCode> GetAllBindings()
+    {
+        return new Dictionary<string, KeyCode>(keyBindings);
     }
 }
