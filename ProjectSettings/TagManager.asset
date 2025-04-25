@@ -16,6 +16,7 @@ TagManager:
   - BreakableBox
   - Enemy_Projectil
   - Coin
+  - SecretWall
   layers:
   - Default
   - TransparentFX
