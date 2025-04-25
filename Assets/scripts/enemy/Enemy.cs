@@ -102,11 +102,11 @@ public class Enemy : MonoBehaviour
 
         if (movingRight && transform.position.x >= rightLimit.x)
         {
-            Flip();
+            Flip(false);
         }
         else if (!movingRight && transform.position.x <= leftLimit.x)
         {
-            Flip();
+            Flip(true);
         }
     }
 
@@ -143,11 +143,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Flip()
+    void Flip(bool toRight)
     {
-        movingRight = !movingRight;
+        movingRight = toRight;
         Vector3 scale = transform.localScale;
-        scale.x *= -1;
+        scale.x = Mathf.Abs(scale.x) * (movingRight ? 1 : -1);
         transform.localScale = scale;
     }
 
@@ -225,7 +225,7 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
-        GetComponent<EnemyShooting>().enabled = false; // Disable
+        GetComponent<EnemyShooting>().enabled = false;
 
         StartCoroutine(HandleDeathAnimation());
     }
@@ -244,14 +244,12 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy respawning...");
 
-        // Reset all animations properly
         animator.ResetTrigger("Die");
-        animator.Play("Idle"); // Ensure it starts in a neutral animation
+        animator.Play("Idle");
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
 
-        // Restore enemy settings
         health = maxHealth;
         isDead = false;
 
@@ -261,9 +259,10 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         transform.position = spawnPosition;
-        movingRight = true; // Reset movement direction
+        movingRight = true; // Reset to default
+        Flip(true); // Ensure facing right
 
-        GetComponent<EnemyShooting>().enabled = true; // Activate
+        GetComponent<EnemyShooting>().enabled = true;
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }

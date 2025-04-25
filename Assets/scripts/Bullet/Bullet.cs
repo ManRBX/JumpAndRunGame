@@ -30,6 +30,7 @@ public class Bullet : MonoBehaviour
                 {
                     int kills = PlayerPrefs.GetInt("EnemyKills", 0) + 1;
                     PlayerPrefs.SetInt("EnemyKills", kills);
+                    PlayerPrefsKeyTracker.TrackKey("EnemyKills");
                     PlayerPrefs.Save();
 
                     Debug.Log($"Enemy killed! Total count: {kills}");

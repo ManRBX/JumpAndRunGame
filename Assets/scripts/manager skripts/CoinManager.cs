@@ -10,13 +10,13 @@ public class CoinManager : MonoBehaviour
     public TMP_Text levelPointsText;   // Displays level-specific points (10 digits)
     public TMP_Text globalCoinsText;   // Displays global coins (normal number)
 
-    private int totalGlobalPoints;  // Total points across all levels
-    private int levelPoints;        // Points for the current level
-    private int globalCoins;        // Total number of collected coins
-    private string currentLevel;    // Current level name
+    private int totalGlobalPoints;
+    private int levelPoints;
+    private int globalCoins;
+    private string currentLevel;
 
-    private float updateInterval = 1f; // Interval for refreshing data (seconds)
-    private float nextUpdateTime = 0f; // Time for the next update
+    private float updateInterval = 1f;
+    private float nextUpdateTime = 0f;
 
     private void Awake()
     {
@@ -52,9 +52,12 @@ public class CoinManager : MonoBehaviour
     {
         totalGlobalPoints += points;
         PlayerPrefs.SetInt("GlobalPoints", totalGlobalPoints);
+        PlayerPrefsKeyTracker.TrackKey("GlobalPoints");
 
         levelPoints += points;
-        PlayerPrefs.SetInt($"{currentLevel}_Points", levelPoints);
+        string levelKey = $"{currentLevel}_Points";
+        PlayerPrefs.SetInt(levelKey, levelPoints);
+        PlayerPrefsKeyTracker.TrackKey(levelKey);
 
         PlayerPrefs.Save();
         UpdatePointsUI();
@@ -69,12 +72,13 @@ public class CoinManager : MonoBehaviour
     {
         globalCoins += coins;
         PlayerPrefs.SetInt("GlobalCoins", globalCoins);
-        PlayerPrefs.Save();
+        PlayerPrefsKeyTracker.TrackKey("GlobalCoins");
 
         int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0) + coins;
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
-        PlayerPrefs.Save();
+        PlayerPrefsKeyTracker.TrackKey("TotalCoins");
 
+        PlayerPrefs.Save();
         UpdatePointsUI();
 
         Debug.Log($"💰 Coin collected! Total coins: {globalCoins}");
@@ -86,8 +90,14 @@ public class CoinManager : MonoBehaviour
     private void LoadData()
     {
         totalGlobalPoints = PlayerPrefs.GetInt("GlobalPoints", 0);
-        levelPoints = PlayerPrefs.GetInt($"{currentLevel}_Points", 0);
+        PlayerPrefsKeyTracker.TrackKey("GlobalPoints");
+
+        string levelKey = $"{currentLevel}_Points";
+        levelPoints = PlayerPrefs.GetInt(levelKey, 0);
+        PlayerPrefsKeyTracker.TrackKey(levelKey);
+
         globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0);
+        PlayerPrefsKeyTracker.TrackKey("GlobalCoins");
     }
 
     /// <summary>
@@ -115,18 +125,12 @@ public class CoinManager : MonoBehaviour
     public void UpdatePointsUI()
     {
         if (globalPointsText != null)
-        {
-            globalPointsText.text = totalGlobalPoints.ToString("D10"); // 10-digit format with leading zeros
-        }
+            globalPointsText.text = totalGlobalPoints.ToString("D10");
 
         if (levelPointsText != null)
-        {
-            levelPointsText.text = levelPoints.ToString("D10"); // 10-digit format with leading zeros
-        }
+            levelPointsText.text = levelPoints.ToString("D10");
 
         if (globalCoinsText != null)
-        {
-            globalCoinsText.text = globalCoins.ToString(); // Normal number without leading zeros
-        }
+            globalCoinsText.text = globalCoins.ToString();
     }
 }
