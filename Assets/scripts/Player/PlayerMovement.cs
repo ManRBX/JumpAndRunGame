@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     // Double Jump
     private bool doubleJumpActive;
     private bool usedDoubleJump;
+    private float doubleJumpDuration;
 
     // Movement
     private float currentSpeed = 0f;
@@ -229,9 +230,23 @@ public class PlayerMovement : MonoBehaviour
         speed = originalSpeed;
     }
 
+    // --------------------------------
+    // Double Jump Activation
+    // --------------------------------
+
     public void ActivateDoubleJump(float duration)
     {
         doubleJumpActive = true;
         usedDoubleJump = false;
+        doubleJumpDuration = duration;
+
+        // Start a coroutine to deactivate double jump after the duration
+        StartCoroutine(DoubleJumpTimer());
+    }
+
+    private IEnumerator DoubleJumpTimer()
+    {
+        yield return new WaitForSeconds(doubleJumpDuration);
+        doubleJumpActive = false;
     }
 }
