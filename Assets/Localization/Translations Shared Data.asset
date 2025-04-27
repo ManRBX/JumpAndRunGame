@@ -327,6 +327,10 @@ MonoBehaviour:
     m_Key: Level08/Canvas/Auto Save/auto save text
     m_Metadata:
       m_Items: []
+  - m_Id: 28526982462431232
+    m_Key: Menu/Canvas/optionen Panel/Language/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
