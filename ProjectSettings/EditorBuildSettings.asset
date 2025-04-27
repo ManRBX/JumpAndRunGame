@@ -6,29 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 7abb8b850fbbc4641aef1a052df554a2
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 2bdea2bc0703cbe46bf1c74d2f44e856
-  - enabled: 1
-    path: Assets/Scenes/Level selection.unity
+  - enabled: 0
+    path: Assets/Scenes/old scenes/Level selection.unity
     guid: e1ce2bec22b0eed40b5830db9c384bfa
-  - enabled: 1
-    path: Assets/Scenes/Static.unity
+  - enabled: 0
+    path: Assets/Scenes/old scenes/Static.unity
     guid: 4df2809a32005c84ea3a4492ec43032c
-  - enabled: 1
-    path: Assets/Scenes/Options.unity
+  - enabled: 0
+    path: Assets/Scenes/old scenes/Options.unity
     guid: a06c39a78423c5a42946363993a2d687
-  - enabled: 1
-    path: Assets/Scenes/Button bindings.unity
+  - enabled: 0
+    path: Assets/Scenes/old scenes/Button bindings.unity
     guid: 95e6fb2cfcf56ca4db3b311ab00bf9be
-  - enabled: 1
-    path: Assets/Scenes/Store.unity
+  - enabled: 0
+    path: Assets/Scenes/old scenes/Store.unity
     guid: 36af7ae049cab92498428dda907abb84
-  - enabled: 1
-    path: Assets/Scenes/Branch levels.unity
-    guid: 6eb18b2ec55d4184eb2d7a6a4aa1c905
-  - enabled: 1
-    path: Assets/Scenes/Branch levels testing/hidden rooms behind pass throunght.unity
-    guid: fb6a5056b045bc34bb583198a6abf6fa
   - enabled: 1
     path: Assets/Scenes/Levels/Level01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
