@@ -15,12 +15,6 @@ MonoBehaviour:
   m_GroupName: Localization-Locales
   m_GUID: efd9a730f43215240a449fbd41181782
   m_SerializeEntries:
-  - m_GUID: 56b4a5c9a27713d42b3d37a292bff10a
-    m_Address: German (Austria) (de-AT)
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 606aa47385ba02e46b415072bffa4fcf
     m_Address: English (en)
     m_ReadOnly: 1
