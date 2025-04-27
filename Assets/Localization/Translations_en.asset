@@ -107,11 +107,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26801149599277056
-    m_Localized: Yes
+    m_Localized: YES
     m_Metadata:
       m_Items: []
   - m_Id: 26801200417464320
-    m_Localized: No
+    m_Localized: NO
     m_Metadata:
       m_Items: []
   - m_Id: 26801502596096000
@@ -135,11 +135,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
-    m_Localized: Yes
+    m_Localized: 'YES '
     m_Metadata:
       m_Items: []
   - m_Id: 26830353401372672
-    m_Localized: No
+    m_Localized: "NO \n"
     m_Metadata:
       m_Items: []
   - m_Id: 27574744709586944

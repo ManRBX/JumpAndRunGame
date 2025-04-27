@@ -47,7 +47,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27977285885952
-    m_Localized: Start
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 28340927848448
@@ -55,7 +55,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28457986678784
-    m_Localized: Beenden
+    m_Localized: Ausfahrt
     m_Metadata:
       m_Items: []
   - m_Id: 28643895009280
@@ -107,11 +107,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26801149599277056
-    m_Localized: Ja
+    m_Localized: JA
     m_Metadata:
       m_Items: []
   - m_Id: 26801200417464320
-    m_Localized: Nein
+    m_Localized: NEIN
     m_Metadata:
       m_Items: []
   - m_Id: 26801502596096000
@@ -135,11 +135,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
-    m_Localized: Ja
+    m_Localized: JA
     m_Metadata:
       m_Items: []
   - m_Id: 26830353401372672
-    m_Localized: Nein
+    m_Localized: NEIN
     m_Metadata:
       m_Items: []
   - m_Id: 27574744709586944
@@ -155,7 +155,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27574932010426368
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27574980358168576
@@ -183,7 +183,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576378692984832
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27576394677477376
@@ -203,7 +203,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576741840019456
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27576796097536000
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577075266215936
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27577147206918144
@@ -255,7 +255,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577597490618368
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27577723558813696
@@ -271,7 +271,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577802663387136
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27577839397101568
@@ -291,7 +291,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578057513492480
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27578072847867904
@@ -319,7 +319,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578631797596160
-    m_Localized: Neustart
+    m_Localized: Restart
     m_Metadata:
       m_Items: []
   - m_Id: 27578655377973248
