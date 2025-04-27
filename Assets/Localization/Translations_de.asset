@@ -330,6 +330,10 @@ MonoBehaviour:
     m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
+  - m_Id: 28526982462431232
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

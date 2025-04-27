@@ -129,12 +129,12 @@ TextureImporter:
       name: jumpverse logo game_0
       rect:
         serializedVersion: 2
-        x: 149
-        y: 36
-        width: 1646
-        height: 1003
+        x: 151
+        y: 38
+        width: 1642
+        height: 916
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f7f9f2241c56f864daea6f550c256c37
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jumpverse logo game_0: -6651737516501374141
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

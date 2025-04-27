@@ -16,6 +16,7 @@ public class DoubleJumpPickup : MonoBehaviour
                 playerMovement.ActivateDoubleJump(duration);
             }
 
+            // Destroy the pickup object after collision
             Destroy(gameObject);
         }
     }

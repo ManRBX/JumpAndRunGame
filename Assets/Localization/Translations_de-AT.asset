@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 3536866762752
-    m_Localized: "Kn\xF6pfe"
+    m_Localized: Tasten
     m_Metadata:
       m_Items: []
   - m_Id: 8591573508096
@@ -328,6 +328,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 26830201936666624
     m_Localized: "Alles zur\xFCcksetzen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28526982462431232
+    m_Localized: Sproch
     m_Metadata:
       m_Items: []
   references:

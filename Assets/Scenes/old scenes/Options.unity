@@ -2527,7 +2527,7 @@ GameObject:
   - component: {fileID: 1195626952}
   - component: {fileID: 1195626953}
   m_Layer: 0
-  m_Name: gamemanager
+  m_Name: options manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2911,7 +2911,7 @@ GameObject:
   - component: {fileID: 1875274604}
   - component: {fileID: 1875274603}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: optionen Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
