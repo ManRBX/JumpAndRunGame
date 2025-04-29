@@ -2759,7 +2759,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217594959}
   m_CullTransparentMesh: 1
---- !u!1 &231779232
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8638,6 +8637,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1005323900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> main
 --- !u!1 &881663400
 GameObject:
   m_ObjectHideFlags: 0
@@ -15012,7 +15013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 10.453003, y: 9.4245}
+  m_AnchoredPosition: {x: 10.453125, y: 9.4245}
   m_SizeDelta: {x: 20.9219, y: 18.849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1670807051
@@ -15155,6 +15156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1556834842}
   volumeText: {fileID: 1028629118}
+  musicSource: {fileID: 245196711}
 --- !u!114 &1677516861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16576,7 +16578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -295.34998, y: -53.09845}
+  m_AnchoredPosition: {x: -295.34998, y: -53.09839}
   m_SizeDelta: {x: 590.69995, y: 106.1969}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1833794578
