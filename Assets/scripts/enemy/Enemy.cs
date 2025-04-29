@@ -228,14 +228,11 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
-<<<<<<< HEAD
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = false;
 
         lastDirectionRight = movingRight;
-=======
         GetComponent<EnemyShooting>().enabled = false;
->>>>>>> 3a5fce4b0878d0ebe367bd6dcf91b846e5b2b465
 
         StartCoroutine(HandleDeathAnimation());
     }
@@ -269,7 +266,6 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         transform.position = spawnPosition;
-<<<<<<< HEAD
 
         movingRight = lastDirectionRight;
 
@@ -282,12 +278,11 @@ public class Enemy : MonoBehaviour
 
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
-=======
+
         movingRight = true; // Reset to default
         Flip(true); // Ensure facing right
 
         GetComponent<EnemyShooting>().enabled = true;
->>>>>>> 3a5fce4b0878d0ebe367bd6dcf91b846e5b2b465
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }
