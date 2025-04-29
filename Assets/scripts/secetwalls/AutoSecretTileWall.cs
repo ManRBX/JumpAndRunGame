@@ -13,10 +13,17 @@ public class AutoSecretTileWall : MonoBehaviour
     public float fadeDuration = 0.5f;
 
     [Header("Geheimer Raum Licht")]
-    public Light2D secretRoomLight; // optional – falls du ein statisches Licht im Raum willst
+    public Light2D secretRoomLight;
 
     [Header("Taschenlampe des Spielers")]
-    public Light2D playerFlashlight; // Spot Light 2D am Spieler
+    public Light2D playerFlashlight;
+
+    [Header("Globales Licht Settings")]
+    public bool changeGlobalLight = false;
+    public Light2D globalLight; // dein Global Light 2D
+    public float globalLightIntensityInside = 0.5f; // Wie hell es im Secret Room sein soll
+    public float globalLightIntensityOutside = 1f;  // Normale Helligkeit draußen
+    public float globalLightFadeDuration = 0.5f;    // Dauer fürs sanfte Umstellen
 
     private List<Vector3Int> secretTilePositions = new List<Vector3Int>();
     private Dictionary<Vector3Int, TileBase> originalTiles = new Dictionary<Vector3Int, TileBase>();
@@ -57,7 +64,6 @@ public class AutoSecretTileWall : MonoBehaviour
 
         Debug.Log("Gefundene geheime Wände: " + secretTilePositions.Count);
 
-        // Alles initial deaktivieren
         if (secretRoomLight != null)
             secretRoomLight.enabled = false;
 
@@ -77,6 +83,9 @@ public class AutoSecretTileWall : MonoBehaviour
             if (playerFlashlight != null)
                 playerFlashlight.enabled = true;
 
+            if (changeGlobalLight && globalLight != null)
+                StartCoroutine(FadeGlobalLight(globalLight.intensity, globalLightIntensityInside, globalLightFadeDuration));
+
             StartCoroutine(FadeAndDisableTiles());
         }
     }
@@ -92,6 +101,9 @@ public class AutoSecretTileWall : MonoBehaviour
 
             if (playerFlashlight != null)
                 playerFlashlight.enabled = false;
+
+            if (changeGlobalLight && globalLight != null)
+                StartCoroutine(FadeGlobalLight(globalLight.intensity, globalLightIntensityOutside, globalLightFadeDuration));
 
             StartCoroutine(FadeAndRestoreTiles());
         }
@@ -147,6 +159,25 @@ public class AutoSecretTileWall : MonoBehaviour
         foreach (var pos in secretTilePositions)
         {
             tilemap.SetColor(pos, originalColors[pos]);
+        }
+    }
+
+    private IEnumerator FadeGlobalLight(float startIntensity, float targetIntensity, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            if (globalLight != null)
+            {
+                globalLight.intensity = Mathf.Lerp(startIntensity, targetIntensity, elapsed / duration);
+            }
+            yield return null;
+        }
+
+        if (globalLight != null)
+        {
+            globalLight.intensity = targetIntensity;
         }
     }
 }
