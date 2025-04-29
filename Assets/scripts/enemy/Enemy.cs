@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Newtonsoft.Json.Converters;
 
 public class Enemy : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float damageStunTime = 0.5f;
     private bool isTakingDamage = false;
     private bool isDead = false;
+    private bool isInvulnerable = false;
 
     [Header("Jump & Fall Animation Settings")]
     private bool isJumping = false;
@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
+    private bool initialDirectionRight;
+    private bool lastDirectionRight;
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -70,6 +72,7 @@ public class Enemy : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
 
         movingRight = true;
+        initialDirectionRight = movingRight;
     }
 
     void Update()
@@ -178,7 +181,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead || isTakingDamage) return;
+        if (isDead || isTakingDamage || isInvulnerable) return;
 
         health -= damage;
         if (health <= 0)
@@ -225,6 +228,10 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = false;
+
+        lastDirectionRight = movingRight;
         GetComponent<EnemyShooting>().enabled = false;
 
         StartCoroutine(HandleDeathAnimation());
@@ -259,12 +266,31 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         transform.position = spawnPosition;
+
+        movingRight = lastDirectionRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x = movingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = true;
+
+        isInvulnerable = true;
+        StartCoroutine(RemoveInvulnerability());
+
         movingRight = true; // Reset to default
         Flip(true); // Ensure facing right
 
         GetComponent<EnemyShooting>().enabled = true;
 
         Debug.Log("Enemy respawned with " + health + " HP!");
+    }
+
+    IEnumerator RemoveInvulnerability()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isInvulnerable = false;
     }
 
     void AddPointsOnDeath()
