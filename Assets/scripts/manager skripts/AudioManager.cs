@@ -16,11 +16,11 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // FIX: Remove any UI blocking
+            // FIX: Remove any UI blocking (falls AudioManager fälschlich mit UI spawnt)
             Canvas canvas = GetComponentInChildren<Canvas>();
             if (canvas != null)
             {
-                Destroy(canvas.gameObject);  // Deletes any Canvas under AudioManager
+                Destroy(canvas.gameObject);
             }
         }
         else
@@ -32,13 +32,15 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         volume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
+        PlayerPrefsKeyTracker.TrackKey(VolumeKey); // 🧠 Track den Key auch beim Laden
         ApplyVolume();
     }
 
     public void SetVolume(float newVolume)
     {
-        volume = newVolume;
+        volume = Mathf.Clamp01(newVolume); // Sicherheits-Check
         PlayerPrefs.SetFloat(VolumeKey, volume);
+        PlayerPrefsKeyTracker.TrackKey(VolumeKey);
         PlayerPrefs.Save();
         ApplyVolume();
     }
@@ -46,6 +48,6 @@ public class AudioManager : MonoBehaviour
     void ApplyVolume()
     {
         AudioListener.volume = volume;
-        Debug.Log("Volume set to: " + Mathf.RoundToInt(volume * 100) + "%");
+        Debug.Log("🔊 Volume set to: " + Mathf.RoundToInt(volume * 100) + "%");
     }
 }

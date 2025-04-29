@@ -106,6 +106,234 @@ MonoBehaviour:
     m_Localized: 'Coins:'
     m_Metadata:
       m_Items: []
+  - m_Id: 26801149599277056
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26801200417464320
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26801502596096000
+    m_Localized: "Press a button\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803179520778240
+    m_Localized: Button already assigned!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803729247232000
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26803780388380672
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830201936666624
+    m_Localized: Reset All Data
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830321000374272
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26830353401372672
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574744709586944
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574854159949824
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574890570702848
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574932010426368
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27574980358168576
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27575832447803392
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576077797810176
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576231984619520
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576260010958848
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576336569589760
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576378692984832
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576394677477376
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576665872785408
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576696512176128
+    m_Localized: 'Menu '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576718259642368
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576741840019456
+    m_Localized: 'Restart '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576796097536000
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27576931258982400
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577047176962048
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577075266215936
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577147206918144
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577182992719872
+    m_Localized: 'Menu '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577199568609280
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577433002598400
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577485292986368
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577528607563776
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577555358834688
+    m_Localized: 'Menu '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577571968278528
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577597490618368
+    m_Localized: 'Restart '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577723558813696
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577742663868416
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577773936599040
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577802663387136
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577839397101568
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27577876042735616
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578007160872960
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578035183017984
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578057513492480
+    m_Localized: 'Restart '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578072847867904
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578098953216000
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578112949608448
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578557122207744
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578575652642816
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578594145329152
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578631797596160
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578655377973248
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27578685979615232
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28526982462431232
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

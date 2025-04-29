@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class MainMenuCoinUI : MonoBehaviour
 {
-    public Image[] coinImages;  // Images for the collected coins
-    public TMP_Text totalCoinText;  // Displays the total number of collected special coins
+    public Image[] coinImages;         // Images for the collected coins
+    public TMP_Text totalCoinText;     // Displays the total number of collected special coins
 
     void Start()
     {
@@ -14,22 +14,26 @@ public class MainMenuCoinUI : MonoBehaviour
 
     void UpdateMainMenuUI()
     {
-        // Load the total number of global special coins
+        // 🔢 Global coin counter
         int globalCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
+        PlayerPrefsKeyTracker.TrackKey("GlobalSpecialCoins"); // 👈 Damit der Key ins JSON wandert
+
         if (totalCoinText != null)
         {
-            totalCoinText.text = globalCoins.ToString();  // Displays only the number, without additional text
+            totalCoinText.text = globalCoins.ToString();
         }
 
-        // Show images for special coins based on progress
+        // 🔍 Coin images aktivieren basierend auf PlayerPrefs
         for (int i = 0; i < coinImages.Length; i++)
         {
-            string coinKey = $"Level0{i + 1}.Coin{i + 1}";
+            // 💡 Beispiel: Level1.Coin1, Level2.Coin2, etc.
+            string coinKey = $"Level{i + 1}.Coin{i + 1}";
             bool coinCollected = PlayerPrefs.HasKey(coinKey);
+            PlayerPrefsKeyTracker.TrackKey(coinKey); // 👈 Auch diesen Key tracken
 
             if (coinImages[i] != null)
             {
-                coinImages[i].gameObject.SetActive(coinCollected); // Only shows the image if the coin is collected
+                coinImages[i].gameObject.SetActive(coinCollected);
             }
         }
     }

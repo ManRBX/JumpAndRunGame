@@ -10,13 +10,12 @@ public class PlayerHealth : MonoBehaviour
     private const string LivesKey = "GlobalLives"; // Key for PlayerPrefs
 
     [Header("Lives Settings")]
-    public int defaultLives = 3; // Default number of lives
+    public int defaultLives = 5; // Default number of lives
 
     private bool isInvincible = false;
 
     [Header("Invincibility Settings")]
     public float invincibilityDuration = 1f;  // For damage invincibility
-    // Tags, bei denen w�hrend der Invincibility kein Schaden ausgel�st werden soll.
     public string[] invincibleSafeTags = new string[] { "Enemy", "Spike", "Enemy_Projectil" };
 
     [Header("Damage Feedback")]
@@ -32,42 +31,44 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        startPosition = transform.position;  // Speichere die Startposition
+        startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerHealthUI = FindFirstObjectByType<PlayerHealthUI>();
 
-        // Globales Leben laden oder den Standardwert setzen
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
+            PlayerPrefsKeyTracker.TrackKey(LivesKey);
             PlayerPrefs.Save();
+        }
+
+        // Überprüfe Reset-Flag, um Leben zurückzusetzen
+        if (ResetSession.wasReset)
+        {
+            PlayerPrefs.SetInt(LivesKey, defaultLives);
+            PlayerPrefsKeyTracker.TrackKey(LivesKey);
+            PlayerPrefs.Save();
+            ResetSession.wasReset = false;
+            Debug.Log("🚀 Initiale Leben nach Reset gesetzt: " + defaultLives);
         }
 
         UpdateUI();
     }
 
-    // �berladung f�r R�ckw�rtskompatibilit�t: Wird aufgerufen, wenn kein Tag �bergeben wird.
     public void TakeDamage(int damage)
     {
         TakeDamage(damage, "");
     }
 
-    /// <summary>
-    /// Wendet Schaden am Spieler an.
-    /// Wenn der Schaden von der "KillZone" kommt, stirbt der Spieler unabh�ngig von der Invincibility.
-    /// Ist der Spieler invincible und stammt der Schaden von einem sicheren Tag (Enemy, Spike, Enemy_Projectil), wird er ignoriert.
-    /// </summary>
     public void TakeDamage(int damage, string sourceTag)
     {
-        // Bei KillZone immer sterben, egal ob invincible oder nicht.
         if (sourceTag == "KillZone")
         {
             Die();
             return;
         }
 
-        // Wenn der Spieler invincible ist und der Schaden von einem sicheren Tag kommt, ignoriere den Schaden.
         if (isInvincible)
         {
             if (!string.IsNullOrEmpty(sourceTag) && invincibleSafeTags != null && System.Array.IndexOf(invincibleSafeTags, sourceTag) != -1)
@@ -90,7 +91,6 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            // Kurze Invincibility nach Schaden, au�er bei KillZone-Schaden.
             StartCoroutine(Invincibility());
         }
         UpdateUI();
@@ -108,10 +108,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        // Leben aus PlayerPrefs holen und um 1 verringern
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
-        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives)); // Sicherstellen, dass die Leben nicht negativ werden
-        PlayerPrefs.Save(); // Speichern der neuen Leben
+        PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives));
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
+        PlayerPrefs.Save();
 
         Debug.Log($"Spieler gestorben. Verbleibende Leben: {lives}");
 
@@ -124,7 +124,6 @@ public class PlayerHealth : MonoBehaviour
             RestartGame();
         }
 
-        // UI aktualisieren
         if (playerHealthUI != null)
         {
             playerHealthUI.UpdateLivesUI();
@@ -154,14 +153,14 @@ public class PlayerHealth : MonoBehaviour
 
     void RestartGame()
     {
-        PlayerPrefs.SetInt(LivesKey, defaultLives); // Leben zur�cksetzen
+        PlayerPrefs.SetInt(LivesKey, defaultLives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save();
+
+        ResetSession.wasReset = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    /// <summary>
-    /// Kurze Invincibility, die nach erlittenem Schaden angewendet wird.
-    /// </summary>
     private IEnumerator Invincibility()
     {
         isInvincible = true;
@@ -169,9 +168,6 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
     }
 
-    /// <summary>
-    /// Wendet eine l�ngere Invincibility an (z. B. durch einen Power-Up).
-    /// </summary>
     public IEnumerator ApplyInvincibility(float powerUpDuration)
     {
         isInvincible = true;
@@ -183,6 +179,7 @@ public class PlayerHealth : MonoBehaviour
     {
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) + amount;
         PlayerPrefs.SetInt(LivesKey, lives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save();
         Debug.Log($"Lives added: {lives}");
         UpdateUI();

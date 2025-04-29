@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_Sprite: {fileID: -36696514, guid: b70da6ec3a5f4bb4a919311d3574b18e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,12 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 3
-  fragmentsPrefabs:
-  - {fileID: 5297575253198917907, guid: 31fc916fd43a0b441b6af8b6db7064a6, type: 3}
-  - {fileID: 6915942937389115347, guid: 45a0047001f784943ad8c1392e22ba77, type: 3}
-  - {fileID: 4295464146758783622, guid: 8de8e7d115dcf754783d30cda238c666, type: 3}
-  - {fileID: 4861833167383457531, guid: aa3d22132c3d2ed478997ab5dae0bd46, type: 3}
-  - {fileID: 2885079797762528368, guid: 9ddf80061086edc44a3c2d49e36b2a0c, type: 3}
+  fragmentsPrefabs: []
   explosionForce: 300
   explosionRadius: 5
   destructionEffectPrefab: {fileID: 5536416601973027563, guid: ed59b8ef8c882a6469a3a293c2aa1a1e, type: 3}
