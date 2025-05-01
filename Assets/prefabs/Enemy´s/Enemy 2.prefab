@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletForce: 20
+  bulletForce: 6
   fireRate: 1
   shootRange: 15
   player: {fileID: 0}
