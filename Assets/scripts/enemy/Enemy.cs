@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour
     [Header("Death Effect Settings")]
     public ParticleSystem deathEffect;
 
+    [Header("Respawn Proximity Check")]
+    public float playerRespawnCheckRadius = 3f;
+    public LayerMask playerLayer;
+
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
@@ -232,7 +236,6 @@ public class Enemy : MonoBehaviour
             shooting.enabled = false;
 
         lastDirectionRight = movingRight;
-        GetComponent<EnemyShooting>().enabled = false;
 
         StartCoroutine(HandleDeathAnimation());
     }
@@ -249,6 +252,17 @@ public class Enemy : MonoBehaviour
 
     void Respawn()
     {
+        Debug.Log("⏳ Warte auf Respawn...");
+        StartCoroutine(WaitUntilPlayerIsGone());
+    }
+
+    IEnumerator WaitUntilPlayerIsGone()
+    {
+        while (PlayerNearby())
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+
         Debug.Log("Enemy respawning...");
 
         animator.ResetTrigger("Die");
@@ -279,10 +293,8 @@ public class Enemy : MonoBehaviour
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
 
-        movingRight = true; // Reset to default
-        Flip(true); // Ensure facing right
-
-        GetComponent<EnemyShooting>().enabled = true;
+        movingRight = true;
+        Flip(true);
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }
@@ -293,6 +305,11 @@ public class Enemy : MonoBehaviour
         isInvulnerable = false;
     }
 
+    bool PlayerNearby()
+    {
+        return Physics2D.OverlapCircle(spawnPosition, playerRespawnCheckRadius, playerLayer) != null;
+    }
+
     void AddPointsOnDeath()
     {
         if (CoinManager.Instance != null)
@@ -300,5 +317,11 @@ public class Enemy : MonoBehaviour
             CoinManager.Instance.AddPoints(pointsOnDeath);
             Debug.Log($"+{pointsOnDeath} points received!");
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spawnPosition == Vector3.zero ? transform.position : spawnPosition, playerRespawnCheckRadius);
     }
 }

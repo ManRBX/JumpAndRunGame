@@ -1,37 +1,53 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class LoadingScene : MonoBehaviour
 {
+    [Header("UI References")]
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
     public Image Spinner;
     public TMP_Text LoadingText;
     public TMP_Text TipText;
 
-    public float loadingDuration = 3f;          // Dauer des Fake-Loadings in Sekunden
-    public string[] randomLoadingTexts;         // Deine Lade-Texte
-    public string[] randomTips;                 // Deine Tipps
+    [Header("Settings")]
+    public float loadingDuration = 3f;
+    public string[] randomLoadingTexts;
+    public string[] randomTips;
     public bool disableLoadingScreenAfterLoad = true;
 
     private float loadingTimer = 0f;
     private string selectedLoadingText = "";
 
+    private MonoBehaviour[] scriptsToPause;
+
     void Start()
     {
         SelectRandomLoadingText();
         ShowRandomTip();
+
+        // Sammle alle Scripts, die deaktiviert werden sollen (z. B. PlayerController, EnemyAI, etc.)
+        scriptsToPause = FindObjectsOfType<MonoBehaviour>()
+            .Where(s => s != this && s.enabled && !(s is Rigidbody2D)).ToArray();
+
+        // Deaktiviere alle relevanten Skripte
+        foreach (var script in scriptsToPause)
+        {
+            script.enabled = false;
+        }
+
         StartCoroutine(FakeLoading());
     }
 
     void Update()
     {
-        // Spinner rotiert immer wenn LoadingScreen aktiv ist
         if (Spinner != null && LoadingScreen.activeSelf)
         {
-            Spinner.transform.Rotate(Vector3.forward * -180f * Time.deltaTime);
+            Spinner.transform.Rotate(Vector3.forward * -180f * Time.unscaledDeltaTime);
         }
     }
 
@@ -43,7 +59,7 @@ public class LoadingScene : MonoBehaviour
             selectedLoadingText = randomLoadingTexts[randomIndex];
 
             if (LoadingText != null)
-                LoadingText.text = selectedLoadingText; // <-- Text wird EINMAL gesetzt, keine Punkte, nix
+                LoadingText.text = selectedLoadingText;
         }
     }
 
@@ -63,7 +79,7 @@ public class LoadingScene : MonoBehaviour
 
         while (loadingTimer < loadingDuration)
         {
-            loadingTimer += Time.deltaTime;
+            loadingTimer += Time.unscaledDeltaTime;
             float progress = Mathf.Clamp01(loadingTimer / loadingDuration);
 
             if (LoadingBarFill != null)
@@ -72,9 +88,19 @@ public class LoadingScene : MonoBehaviour
             yield return null;
         }
 
+        // Ladebildschirm ausblenden
         if (disableLoadingScreenAfterLoad && LoadingScreen != null)
         {
             LoadingScreen.SetActive(false);
         }
+
+        // Skripte wieder aktivieren
+        foreach (var script in scriptsToPause)
+        {
+            if (script != null)
+                script.enabled = true;
+        }
+
+        Debug.Log("✅ Loading abgeschlossen. Spiel läuft weiter.");
     }
 }

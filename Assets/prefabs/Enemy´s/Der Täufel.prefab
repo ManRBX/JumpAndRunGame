@@ -283,6 +283,10 @@ MonoBehaviour:
   respawnTime: 5
   deathAnimationDuration: 0.5
   deathEffect: {fileID: 0}
+  playerRespawnCheckRadius: 30
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &498677034118196199
 MonoBehaviour:
   m_ObjectHideFlags: 0
