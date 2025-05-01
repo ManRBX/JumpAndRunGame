@@ -19,16 +19,15 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("ground"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Wall") || collision.CompareTag("Obstacle"))
         {
-            Debug.Log("Enemy bullet hit the ground.");
+            Debug.Log("Enemy bullet hit an obstacle.");
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Player"))
         {
             Debug.Log("Enemy bullet hit the player!");
 
-            // Assuming your player has a PlayerHealth script
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
@@ -38,4 +37,5 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
