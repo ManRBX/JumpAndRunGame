@@ -27,14 +27,18 @@ public class LoadingScene : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = true; // Mauszeiger immer sichtbar machen
+        Cursor.lockState = CursorLockMode.None;
+
         SelectRandomLoadingText();
         ShowRandomTip();
 
-        // Sammle alle Scripts, die deaktiviert werden sollen (z. B. PlayerController, EnemyAI, etc.)
+        // Nur bestimmte Skripte deaktivieren: PlayerMovement und PlayerShooting
         scriptsToPause = FindObjectsOfType<MonoBehaviour>()
-            .Where(s => s != this && s.enabled && !(s is Rigidbody2D)).ToArray();
+            .Where(s => s != this && s.enabled &&
+                        (s.GetType().Name == "PlayerMovement" || s.GetType().Name == "PlayerShooting"))
+            .ToArray();
 
-        // Deaktiviere alle relevanten Skripte
         foreach (var script in scriptsToPause)
         {
             script.enabled = false;
@@ -88,13 +92,11 @@ public class LoadingScene : MonoBehaviour
             yield return null;
         }
 
-        // Ladebildschirm ausblenden
         if (disableLoadingScreenAfterLoad && LoadingScreen != null)
         {
             LoadingScreen.SetActive(false);
         }
 
-        // Skripte wieder aktivieren
         foreach (var script in scriptsToPause)
         {
             if (script != null)
