@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      spikes shooting enemy_0: 5768944952748169411
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
