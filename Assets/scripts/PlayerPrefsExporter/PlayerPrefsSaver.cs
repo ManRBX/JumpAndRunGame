@@ -27,7 +27,7 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     [Header("UI für AutoSave")]
     public GameObject autoSaveUI;          // Parent-Objekt mit Text + Icon
-    public TMP_Text autoSaveText;          // Z.B. "Spielstand wird gespeichert..."
+    public TMP_Text autoSaveText;          // Text wird aus der UI übernommen
     public Image autoSaveSpinner;          // Drehendes Icon
 
     private Coroutine uiRoutine;
@@ -60,7 +60,7 @@ public class PlayerPrefsSaver : MonoBehaviour
         var keys = PlayerPrefsKeyTracker.GetAllTrackedKeys();
         var data = new PlayerPrefsData();
 
-        Debug.Log("📦 Getrackte Keys: " + keys.Count);
+        Debug.Log("\uD83D\uDCE6 Getrackte Keys: " + keys.Count);
         foreach (string key in keys)
         {
             if (!PlayerPrefs.HasKey(key)) continue;
@@ -93,11 +93,6 @@ public class PlayerPrefsSaver : MonoBehaviour
         if (autoSaveUI != null)
         {
             autoSaveUI.SetActive(true);
-        }
-
-        if (autoSaveText != null)
-        {
-            autoSaveText.text = "💾 Spielstand wird gespeichert...";
         }
 
         yield return new WaitForSeconds(2.5f);
