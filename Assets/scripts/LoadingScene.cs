@@ -30,6 +30,18 @@ public class LoadingScene : MonoBehaviour
         Cursor.visible = true; // Mauszeiger immer sichtbar machen
         Cursor.lockState = CursorLockMode.None;
 
+        // Musikstatus respektieren
+        GameObject musicObj = GameObject.Find("AudioManager"); // ggf. Name anpassen
+        if (musicObj != null)
+        {
+            AudioSource music = musicObj.GetComponent<AudioSource>();
+            if (music != null)
+            {
+                bool musicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+                music.mute = !musicOn;
+            }
+        }
+
         SelectRandomLoadingText();
         ShowRandomTip();
 
