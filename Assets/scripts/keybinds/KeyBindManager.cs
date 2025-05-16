@@ -7,10 +7,8 @@ public class KeyBindManager : MonoBehaviour
 
     private const string PlayerPrefPrefix = "Key_";
 
-    // Alle Aktionen & die zugehörigen KeyCodes
     private Dictionary<string, KeyCode> keyBindings = new Dictionary<string, KeyCode>();
 
-    // Standardbelegungen – hier kannst du jederzeit neue Aktionen hinzufügen
     private readonly Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>()
     {
         { "Jump", KeyCode.Space },
@@ -18,9 +16,20 @@ public class KeyBindManager : MonoBehaviour
         { "MoveRight", KeyCode.D },
         { "ClimbUp", KeyCode.W },
         { "ClimbDown", KeyCode.S },
-        { "DropPlatform", KeyCode.S },   // Optional gleiche Taste wie ClimbDown
+        { "DropPlatform", KeyCode.S },
         { "Shoot", KeyCode.Mouse0 }
     };
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void InitOnLoad()
+    {
+        if (Instance == null)
+        {
+            GameObject managerObject = new GameObject("KeyBindManager");
+            Instance = managerObject.AddComponent<KeyBindManager>();
+            DontDestroyOnLoad(managerObject);
+        }
+    }
 
     private void Awake()
     {
@@ -30,15 +39,12 @@ public class KeyBindManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             LoadBindings();
         }
-        else
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
 
-    /// <summary>
-    /// Gibt den aktuell zugewiesenen KeyCode für eine Aktion zurück.
-    /// </summary>
     public KeyCode GetKeyCodeForAction(string action)
     {
         if (keyBindings.ContainsKey(action))
@@ -48,9 +54,6 @@ public class KeyBindManager : MonoBehaviour
         return KeyCode.None;
     }
 
-    /// <summary>
-    /// Setzt eine neue Taste für eine Aktion und speichert sie.
-    /// </summary>
     public void SetKey(string action, KeyCode key)
     {
         if (keyBindings.ContainsKey(action))
@@ -66,9 +69,6 @@ public class KeyBindManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Lädt alle gespeicherten Bindings oder setzt sie auf Standard.
-    /// </summary>
     private void LoadBindings()
     {
         foreach (var entry in defaultBindings)
@@ -97,9 +97,6 @@ public class KeyBindManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Setzt alle Tastenzuweisungen auf ihre Standardwerte zurück.
-    /// </summary>
     public void ResetToDefaults()
     {
         foreach (var entry in defaultBindings)
@@ -113,9 +110,6 @@ public class KeyBindManager : MonoBehaviour
         Debug.Log("🔄 Alle Tasten wurden auf Standard zurückgesetzt.");
     }
 
-    /// <summary>
-    /// Gibt alle aktuellen Bindings zurück (z. B. für Debug oder Export).
-    /// </summary>
     public Dictionary<string, KeyCode> GetAllBindings()
     {
         return new Dictionary<string, KeyCode>(keyBindings);

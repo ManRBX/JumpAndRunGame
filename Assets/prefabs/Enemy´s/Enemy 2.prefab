@@ -157,7 +157,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9c6c8408bbda56444a24f80abfe801b6, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -209,7 +209,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c6c8408bbda56444a24f80abfe801b6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -252,6 +252,10 @@ MonoBehaviour:
   respawnTime: 120
   deathAnimationDuration: 0.5
   deathEffect: {fileID: 0}
+  playerRespawnCheckRadius: 30
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2448342485157141640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletForce: 20
+  bulletForce: 6
   fireRate: 1
   shootRange: 15
   player: {fileID: 0}

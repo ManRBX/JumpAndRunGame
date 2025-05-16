@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Newtonsoft.Json.Converters;
 
 public class Enemy : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class Enemy : MonoBehaviour
     public float damageStunTime = 0.5f;
     private bool isTakingDamage = false;
     private bool isDead = false;
+    private bool isInvulnerable = false;
 
     [Header("Jump & Fall Animation Settings")]
     private bool isJumping = false;
@@ -44,9 +44,15 @@ public class Enemy : MonoBehaviour
     [Header("Death Effect Settings")]
     public ParticleSystem deathEffect;
 
+    [Header("Respawn Proximity Check")]
+    public float playerRespawnCheckRadius = 3f;
+    public LayerMask playerLayer;
+
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
+    private bool initialDirectionRight;
+    private bool lastDirectionRight;
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -70,6 +76,7 @@ public class Enemy : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
 
         movingRight = true;
+        initialDirectionRight = movingRight;
     }
 
     void Update()
@@ -178,7 +185,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead || isTakingDamage) return;
+        if (isDead || isTakingDamage || isInvulnerable) return;
 
         health -= damage;
         if (health <= 0)
@@ -225,7 +232,10 @@ public class Enemy : MonoBehaviour
             deathEffect.Play();
         }
 
-        GetComponent<EnemyShooting>().enabled = false;
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = false;
+
+        lastDirectionRight = movingRight;
 
         StartCoroutine(HandleDeathAnimation());
     }
@@ -242,6 +252,17 @@ public class Enemy : MonoBehaviour
 
     void Respawn()
     {
+        Debug.Log("⏳ Warte auf Respawn...");
+        StartCoroutine(WaitUntilPlayerIsGone());
+    }
+
+    IEnumerator WaitUntilPlayerIsGone()
+    {
+        while (PlayerNearby())
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+
         Debug.Log("Enemy respawning...");
 
         animator.ResetTrigger("Die");
@@ -259,12 +280,34 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         transform.position = spawnPosition;
-        movingRight = true; // Reset to default
-        Flip(true); // Ensure facing right
 
-        GetComponent<EnemyShooting>().enabled = true;
+        movingRight = lastDirectionRight;
+
+        Vector3 scale = transform.localScale;
+        scale.x = movingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+
+        if (TryGetComponent<EnemyShooting>(out var shooting))
+            shooting.enabled = true;
+
+        isInvulnerable = true;
+        StartCoroutine(RemoveInvulnerability());
+
+        movingRight = true;
+        Flip(true);
 
         Debug.Log("Enemy respawned with " + health + " HP!");
+    }
+
+    IEnumerator RemoveInvulnerability()
+    {
+        yield return new WaitForSeconds(0.3f);
+        isInvulnerable = false;
+    }
+
+    bool PlayerNearby()
+    {
+        return Physics2D.OverlapCircle(spawnPosition, playerRespawnCheckRadius, playerLayer) != null;
     }
 
     void AddPointsOnDeath()
@@ -274,5 +317,11 @@ public class Enemy : MonoBehaviour
             CoinManager.Instance.AddPoints(pointsOnDeath);
             Debug.Log($"+{pointsOnDeath} points received!");
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spawnPosition == Vector3.zero ? transform.position : spawnPosition, playerRespawnCheckRadius);
     }
 }

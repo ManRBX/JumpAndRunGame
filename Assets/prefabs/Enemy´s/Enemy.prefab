@@ -166,7 +166,7 @@ Animator:
   m_GameObject: {fileID: 3534144463567304933}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3cee79659a9128a47a508291ac1164eb, type: 2}
+  m_Controller: {fileID: 22100000, guid: 42c1a8a8fa5407f4980000cd724a1089, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9c6c8408bbda56444a24f80abfe801b6, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -240,7 +240,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9c6c8408bbda56444a24f80abfe801b6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -283,6 +283,10 @@ MonoBehaviour:
   respawnTime: 120
   deathAnimationDuration: 1
   deathEffect: {fileID: 0}
+  playerRespawnCheckRadius: 30
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &3079355632990167078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletForce: 20
+  bulletForce: 6
   fireRate: 1
   shootRange: 15
   player: {fileID: 0}
