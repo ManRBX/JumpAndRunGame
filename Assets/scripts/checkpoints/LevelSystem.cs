@@ -1,26 +1,32 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSystem : MonoBehaviour
 {
-    public Button[] levelButtons;  // Array for level buttons in the menu
+    [Header("Normale Level")]
+    public Button[] levelButtons;
+    public string[] levelNames;
+
+    [Header("Bonus-Level")]
+    public Button[] bonusButtons;
+    public string[] bonusLevelNames;
 
     void Start()
     {
         UpdateLevelButtons();
+        UpdateBonusLevelButtons();
     }
 
     void UpdateLevelButtons()
     {
-        for (int i = 0; i < levelButtons.Length; i++)
+        for (int i = 0; i < levelButtons.Length && i < levelNames.Length; i++)
         {
-            string levelKey = "Level" + (i + 1).ToString("00") + "_Unlocked";
+            string levelKey = levelNames[i] + "_Unlocked";
 
-            // Level01 is always unlocked
             if (i == 0)
             {
-                levelButtons[i].interactable = true;
+                levelButtons[i].interactable = true; // erstes Level ist immer frei
             }
             else
             {
@@ -29,15 +35,34 @@ public class LevelSystem : MonoBehaviour
         }
     }
 
+    void UpdateBonusLevelButtons()
+    {
+        for (int i = 0; i < bonusButtons.Length && i < bonusLevelNames.Length; i++)
+        {
+            string bonusKey = bonusLevelNames[i] + "_Unlocked";
+            bonusButtons[i].interactable = PlayerPrefs.GetInt(bonusKey, 0) == 1;
+        }
+    }
+
     public void LoadLevelByName(string levelName)
     {
+        string unlockKey = levelName + "_Unlocked";
+        bool isUnlocked = PlayerPrefs.GetInt(unlockKey, 0) == 1;
+
+        if (!isUnlocked)
+        {
+            Debug.LogWarning("❌ Zugriff auf '" + levelName + "' verweigert – nicht freigeschaltet! (Key: " + unlockKey + ")");
+            return;
+        }
+
         if (Application.CanStreamedLevelBeLoaded(levelName))
         {
+            Debug.Log("✅ Lade Level: " + levelName);
             SceneManager.LoadScene(levelName);
         }
         else
         {
-            Debug.LogError("Scene '" + levelName + "' does not exist or is not in the build!");
+            Debug.LogError("❌ Szene '" + levelName + "' ist nicht im Build enthalten!");
         }
     }
 }
