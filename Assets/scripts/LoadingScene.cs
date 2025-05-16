@@ -27,30 +27,14 @@ public class LoadingScene : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = true; // Mauszeiger immer sichtbar machen
-        Cursor.lockState = CursorLockMode.None;
-
-        // Musikstatus respektieren
-        GameObject musicObj = GameObject.Find("AudioManager"); // ggf. Name anpassen
-        if (musicObj != null)
-        {
-            AudioSource music = musicObj.GetComponent<AudioSource>();
-            if (music != null)
-            {
-                bool musicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
-                music.mute = !musicOn;
-            }
-        }
-
         SelectRandomLoadingText();
         ShowRandomTip();
 
-        // Nur bestimmte Skripte deaktivieren: PlayerMovement und PlayerShooting
+        // Sammle alle Scripts, die deaktiviert werden sollen (z. B. PlayerController, EnemyAI, etc.)
         scriptsToPause = FindObjectsOfType<MonoBehaviour>()
-            .Where(s => s != this && s.enabled &&
-                        (s.GetType().Name == "PlayerMovement" || s.GetType().Name == "PlayerShooting"))
-            .ToArray();
+            .Where(s => s != this && s.enabled && !(s is Rigidbody2D)).ToArray();
 
+        // Deaktiviere alle relevanten Skripte
         foreach (var script in scriptsToPause)
         {
             script.enabled = false;
@@ -104,11 +88,13 @@ public class LoadingScene : MonoBehaviour
             yield return null;
         }
 
+        // Ladebildschirm ausblenden
         if (disableLoadingScreenAfterLoad && LoadingScreen != null)
         {
             LoadingScreen.SetActive(false);
         }
 
+        // Skripte wieder aktivieren
         foreach (var script in scriptsToPause)
         {
             if (script != null)
