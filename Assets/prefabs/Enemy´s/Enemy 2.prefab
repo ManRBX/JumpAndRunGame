@@ -250,7 +250,7 @@ MonoBehaviour:
   damageStunTime: 0.5
   pointsOnDeath: 77
   respawnTime: 120
-  deathAnimationDuration: 1
+  deathAnimationDuration: 0.5
   deathEffect: {fileID: 0}
   playerRespawnCheckRadius: 30
   playerLayer:

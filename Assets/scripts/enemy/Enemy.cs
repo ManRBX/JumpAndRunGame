@@ -217,6 +217,7 @@ public class Enemy : MonoBehaviour
         isDead = true;
 
         Debug.Log("Enemy killed!");
+
         AddPointsOnDeath();
 
         animator.ResetTrigger("Attack");
@@ -242,14 +243,16 @@ public class Enemy : MonoBehaviour
     IEnumerator HandleDeathAnimation()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
+
         spriteRenderer.enabled = false;
         yield return new WaitForSeconds(respawnTime);
+
         Respawn();
     }
 
     void Respawn()
     {
-        Debug.Log("\u23F3 Warte auf Respawn...");
+        Debug.Log("⏳ Warte auf Respawn...");
         StartCoroutine(WaitUntilPlayerIsGone());
     }
 
@@ -262,32 +265,36 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Enemy respawning...");
 
-        animator.ResetTrigger("Attack");
         animator.ResetTrigger("Die");
-        animator.SetBool("Hit", false);
+        animator.Play("Idle");
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
-        animator.Play("Idle", 0, 0f);
 
         health = maxHealth;
         isDead = false;
-        isInvulnerable = true;
-
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.linearVelocity = Vector2.zero;
-        transform.position = spawnPosition;
 
         spriteRenderer.enabled = true;
         enemyCollider.enabled = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.linearVelocity = Vector2.zero;
+
+        transform.position = spawnPosition;
 
         movingRight = lastDirectionRight;
-        Flip(movingRight);
+
+        Vector3 scale = transform.localScale;
+        scale.x = movingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
 
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = true;
 
+        isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
+
+        movingRight = true;
+        Flip(true);
 
         Debug.Log("Enemy respawned with " + health + " HP!");
     }

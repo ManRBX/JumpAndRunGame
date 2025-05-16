@@ -31,37 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1333751005820852041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3774567752237284298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5457566718199763723}
-  m_Layer: 0
-  m_Name: fire point
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5457566718199763723
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3774567752237284298}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.256, y: -0.171, z: 0}
-  m_LocalScale: {x: 2.2256, y: 2.2256, z: 2.2256}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1333751005820852041}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3933914681721782268
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +67,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4866419842154927240}
-  - {fileID: 5457566718199763723}
   - {fileID: 864978141179607765}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -281,13 +249,9 @@ MonoBehaviour:
   attackCooldown: 1.5
   damageStunTime: 0.5
   pointsOnDeath: 50
-  respawnTime: 120
-  deathAnimationDuration: 1
+  respawnTime: 5
+  deathAnimationDuration: 1.5
   deathEffect: {fileID: 0}
-  playerRespawnCheckRadius: 30
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &4105626280728032636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,12 +264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c118c84fcb8f14591d0a3e72d37c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2442850769652336318, guid: 498572334c220a74683860dc1e5e6671, type: 3}
+  bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletForce: 6
+  bulletForce: 20
   fireRate: 1
-  shootRange: 10
-  player: {fileID: 3394760578918175963, guid: 9e2093fe2894b544eb67b6352ba3e098, type: 3}
+  shootRange: 15
+  player: {fileID: 0}
 --- !u!1 &7159668383891341298
 GameObject:
   m_ObjectHideFlags: 0
