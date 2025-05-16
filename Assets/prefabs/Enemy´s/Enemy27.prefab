@@ -280,9 +280,13 @@ MonoBehaviour:
   attackCooldown: 1.5
   damageStunTime: 0.5
   pointsOnDeath: 50
-  respawnTime: 5
-  deathAnimationDuration: 1.5
+  respawnTime: 120
+  deathAnimationDuration: 1
   deathEffect: {fileID: 0}
+  playerRespawnCheckRadius: 30
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5621657944655335509
 MonoBehaviour:
   m_ObjectHideFlags: 0
