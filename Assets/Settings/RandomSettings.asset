@@ -15,7 +15,7 @@ MonoBehaviour:
   coinAwardChance: 0.5
   awardedCoins: 5
   fragmentSpawnChance: 0.6
-  fragmentCooldown: 80
+  fragmentCooldown: 120
   randomizeFragmentRotation: 1
   minFragmentRotation: -15
   maxFragmentRotation: 15
