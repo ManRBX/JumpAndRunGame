@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1547041418, guid: 80277f54972b3e2439a2c2217130b405, type: 3}
+    - target: {fileID: 4695898172443983301, guid: 16ba4c6361712e245818822f3a7b816d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6835675610045186363, guid: 16ba4c6361712e245818822f3a7b816d, type: 3}
       propertyPath: m_Name
       value: Moving Platforms2
