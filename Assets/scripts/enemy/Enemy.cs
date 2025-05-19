@@ -216,6 +216,8 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        FindObjectOfType<AchievementProgressTracker>()?.AddKill();
+
         Debug.Log("Enemy killed!");
 
         AddPointsOnDeath();
