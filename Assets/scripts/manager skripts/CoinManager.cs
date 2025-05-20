@@ -80,6 +80,7 @@ public class CoinManager : MonoBehaviour
 
         PlayerPrefs.Save();
         UpdatePointsUI();
+        FindAnyObjectByType<AchievementProgressTracker>()?.AddCoin();
 
         Debug.Log($"💰 Coin collected! Total coins: {globalCoins}");
     }
@@ -132,5 +133,20 @@ public class CoinManager : MonoBehaviour
 
         if (globalCoinsText != null)
             globalCoinsText.text = globalCoins.ToString();
+    }
+
+    /// <summary>
+    /// Adds coins for achievements (separate from spendable global coins).
+    /// </summary>
+    public void AddAchievementCoin(int coins = 1)
+    {
+        int achievementCoins = PlayerPrefs.GetInt("AchievementCoins", 0);
+        achievementCoins += coins;
+        PlayerPrefs.SetInt("AchievementCoins", achievementCoins);
+        PlayerPrefsKeyTracker.TrackKey("AchievementCoins");
+        PlayerPrefs.Save();
+
+        AchievementProgressTracker.Instance?.AddCoin(); // Optional: nur wenn du willst, dass dieser Zähler verwendet wird
+        Debug.Log($"🏅 Achievement Coin collected! Total: {achievementCoins}");
     }
 }

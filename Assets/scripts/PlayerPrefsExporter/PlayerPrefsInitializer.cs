@@ -35,6 +35,12 @@ public class PlayerPrefsInitializer : MonoBehaviour
             PlayerPrefs.SetInt("GlobalAmmo", 60);
             PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
 
+            PlayerPrefs.SetInt("Level01_Unlocked", 1);
+            PlayerPrefsKeyTracker.TrackKey("Level01_Unlocked");
+
+            PlayerPrefs.SetInt("Level01_Visited", 1);
+            PlayerPrefsKeyTracker.TrackKey("Level01_Visited");
+
             PlayerPrefs.Save();
 
             Debug.Log("✅ Initialwerte gesetzt.");
