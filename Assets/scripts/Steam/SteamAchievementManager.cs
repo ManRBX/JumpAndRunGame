@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Steamworks;
+using System;
 
 public class SteamAchievementManager : MonoBehaviour
 {
@@ -24,5 +25,10 @@ public class SteamAchievementManager : MonoBehaviour
         {
             Debug.Log($"ℹ️ Achievement '{achievementID}' war schon freigeschaltet.");
         }
+    }
+
+    internal static void Unlock(object levelID)
+    {
+        throw new NotImplementedException();
     }
 }

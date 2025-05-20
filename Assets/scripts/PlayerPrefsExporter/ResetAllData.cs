@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using Steamworks;
@@ -27,6 +26,7 @@ public class ResetAllData : MonoBehaviour
     public void ConfirmReset()
     {
         DoFullReset();
+
         if (confirmationPopup != null)
             confirmationPopup.SetActive(false);
     }
@@ -39,10 +39,10 @@ public class ResetAllData : MonoBehaviour
 
     private void DoFullReset()
     {
-        // 🎮 Steam Achievements zurücksetzen
+        // 🎮 Steam Achievements und Stats zurücksetzen
         if (SteamManager.Initialized)
         {
-            SteamUserStats.ResetAllStats(true); // true = Stats + Achievements
+            SteamUserStats.ResetAllStats(true); // true = auch Achievements
             SteamUserStats.StoreStats();
             Debug.Log("🔥 Steam-Achievements und Stats wurden zurückgesetzt.");
         }
@@ -51,12 +51,12 @@ public class ResetAllData : MonoBehaviour
             Debug.LogWarning("⚠️ Steam nicht initialisiert – Achievements nicht zurückgesetzt.");
         }
 
-        // 🧹 PlayerPrefs löschen
+        // 🧹 Alle PlayerPrefs löschen
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         Debug.Log("🧹 Alle PlayerPrefs wurden gelöscht.");
 
-        // 🗑️ JSON löschen
+        // 🗑️ JSON-Datei löschen
         string jsonPath = Path.Combine(Application.persistentDataPath, jsonFileName);
         if (File.Exists(jsonPath))
         {
@@ -68,13 +68,8 @@ public class ResetAllData : MonoBehaviour
             Debug.Log("ℹ️ Keine JSON-Datei gefunden unter: " + jsonPath);
         }
 
-        // 🔄 Szene neu laden
+        // 🔁 Szene neu laden
         ResetSession.wasReset = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void ResetAchievementCoins()
-    {
-        PlayerPrefs.DeleteKey("AchievementCoins");
     }
 }

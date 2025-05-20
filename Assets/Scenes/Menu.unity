@@ -4500,54 +4500,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1005323900}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &395327156
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395327157}
-  - component: {fileID: 395327158}
-  m_Layer: 0
-  m_Name: achivement tracker manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &395327157
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395327156}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1045.0656, y: 520.80707, z: -4.008063}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &395327158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395327156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684f5fbf44603c241a1aa1254aa7a82e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinsCollected: 0
-  enemiesKilled: 0
-  coinGoal: 5
-  killGoal: 10
 --- !u!1 &397297077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6623,6 +6575,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674320966}
   m_CullTransparentMesh: 1
+--- !u!1 &691077071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691077073}
+  - component: {fileID: 691077072}
+  m_Layer: 0
+  m_Name: Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &691077072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691077071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c922559e91dce764a834ea875813e29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackerPrefab: {fileID: 5097557037589641031, guid: 9b520ffdd133abe4293b565deb1c07b0, type: 3}
+--- !u!4 &691077073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691077071}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 728.5476, y: 505.10983, z: -2.3651538}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1005323900}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &700756306
 GameObject:
   m_ObjectHideFlags: 0
@@ -9660,6 +9657,18 @@ MonoBehaviour:
           m_StringArgument: Level02
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8189753511639326865, guid: 9b520ffdd133abe4293b565deb1c07b0, type: 3}
+        m_TargetAssemblyTypeName: AchievementProgressTracker, Assembly-CSharp
+        m_MethodName: OnLevelUnlocked
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: level02_visited
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &995012918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9773,6 +9782,7 @@ Transform:
   - {fileID: 55208562}
   - {fileID: 144065900}
   - {fileID: 3296999}
+  - {fileID: 691077073}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1005323901
@@ -12700,7 +12710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 120, y: -100}
+  m_AnchoredPosition: {x: 350, y: -200}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344458083
@@ -19896,7 +19906,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1670807054}
   - {fileID: 797407451}
-  - {fileID: 395327157}
   - {fileID: 1622430609}
   - {fileID: 1005323900}
   - {fileID: 397297081}
