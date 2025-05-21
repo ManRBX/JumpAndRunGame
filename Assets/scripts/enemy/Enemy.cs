@@ -216,6 +216,11 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        // Disable any active movement/states
+        animator.SetBool("Jump", false);
+        animator.SetBool("Fall", false);
+        animator.SetFloat("Speed", 0);
+
         FindObjectOfType<AchievementProgressTracker>()?.AddKill();
 
         Debug.Log("Enemy killed!");
@@ -268,7 +273,6 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy respawning...");
 
         animator.ResetTrigger("Die");
-        animator.Play("Idle");
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
@@ -282,7 +286,6 @@ public class Enemy : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
 
         transform.position = spawnPosition;
-
         movingRight = lastDirectionRight;
 
         Vector3 scale = transform.localScale;
@@ -292,10 +295,12 @@ public class Enemy : MonoBehaviour
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = true;
 
+        // Optional Respawn animation:
+        // animator.Play("Respawn");
+
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
 
-        movingRight = true;
         Flip(true);
 
         Debug.Log("Enemy respawned with " + health + " HP!");

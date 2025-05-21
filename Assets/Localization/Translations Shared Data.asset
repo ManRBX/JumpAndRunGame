@@ -331,6 +331,26 @@ MonoBehaviour:
     m_Key: Menu/Canvas/optionen Panel/Language/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 37284524776742912
+    m_Key: Level01/Managers/Loading manager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284664514174976
+    m_Key: Level01/Managers/Loading manager 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285329831452672
+    m_Key: Level01/Managers/Loading manager 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285420474556416
+    m_Key: Level01/Managers/Loading manager 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285601576214528
+    m_Key: Level01/Managers/Loading manager 4
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

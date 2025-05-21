@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830201936666624
-    m_Localized: "Alle Daten zur\xFCcksetzen"
+    m_Localized: "Zur\xFCcksetzen"
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
@@ -332,6 +332,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 28526982462431232
     m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284524776742912
+    m_Localized: Spiel wird vorbereitet...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284664514174976
+    m_Localized: Assets werden geladen...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285329831452672
+    m_Localized: "Danke f\xFCr deine Geduld."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285420474556416
+    m_Localized: Fast fertig...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285601576214528
+    m_Localized: Level wird geladen...
     m_Metadata:
       m_Items: []
   references:

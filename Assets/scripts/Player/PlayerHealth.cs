@@ -7,15 +7,16 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Settings")]
     public int maxHealth = 100;
     public int currentHealth;
-    private const string LivesKey = "GlobalLives"; // Key for PlayerPrefs
+    private const string LivesKey = "GlobalLives";
+    private const string DeathKey = "DeathCount";
 
     [Header("Lives Settings")]
-    public int defaultLives = 5; // Default number of lives
+    public int defaultLives = 5;
 
     private bool isInvincible = false;
 
     [Header("Invincibility Settings")]
-    public float invincibilityDuration = 1f;  // For damage invincibility
+    public float invincibilityDuration = 1f;
     public string[] invincibleSafeTags = new string[] { "Enemy", "Spike", "Enemy_Projectil" };
 
     [Header("Damage Feedback")]
@@ -24,8 +25,6 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private PlayerHealthUI playerHealthUI;
-
-    // Respawn position (updated by checkpoints)
     private Vector3 startPosition;
 
     void Start()
@@ -40,19 +39,25 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
             PlayerPrefsKeyTracker.TrackKey(LivesKey);
-            PlayerPrefs.Save();
         }
 
-        // Überprüfe Reset-Flag, um Leben zurückzusetzen
+        if (!PlayerPrefs.HasKey(DeathKey))
+        {
+            PlayerPrefs.SetInt(DeathKey, 0);
+            PlayerPrefsKeyTracker.TrackKey(DeathKey);
+        }
+
         if (ResetSession.wasReset)
         {
             PlayerPrefs.SetInt(LivesKey, defaultLives);
+            PlayerPrefs.SetInt(DeathKey, 0);
             PlayerPrefsKeyTracker.TrackKey(LivesKey);
-            PlayerPrefs.Save();
+            PlayerPrefsKeyTracker.TrackKey(DeathKey);
             ResetSession.wasReset = false;
-            Debug.Log("🚀 Initiale Leben nach Reset gesetzt: " + defaultLives);
+            Debug.Log("🚀 Leben & Tode nach Reset gesetzt");
         }
 
+        PlayerPrefs.Save();
         UpdateUI();
     }
 
@@ -72,13 +77,9 @@ public class PlayerHealth : MonoBehaviour
         if (isInvincible)
         {
             if (!string.IsNullOrEmpty(sourceTag) && invincibleSafeTags != null && System.Array.IndexOf(invincibleSafeTags, sourceTag) != -1)
-            {
                 return;
-            }
             else if (string.IsNullOrEmpty(sourceTag))
-            {
                 return;
-            }
         }
 
         currentHealth -= damage;
@@ -93,6 +94,7 @@ public class PlayerHealth : MonoBehaviour
         {
             StartCoroutine(Invincibility());
         }
+
         UpdateUI();
     }
 
@@ -111,9 +113,15 @@ public class PlayerHealth : MonoBehaviour
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
         PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives));
         PlayerPrefsKeyTracker.TrackKey(LivesKey);
+
+        // 🪦 DeathCount erhöhen
+        int deathCount = PlayerPrefs.GetInt(DeathKey, 0) + 1;
+        PlayerPrefs.SetInt(DeathKey, deathCount);
+        PlayerPrefsKeyTracker.TrackKey(DeathKey);
+
         PlayerPrefs.Save();
 
-        Debug.Log($"Spieler gestorben. Verbleibende Leben: {lives}");
+        Debug.Log($"☠️ Spieler gestorben. Verbleibende Leben: {lives} | Gesamt Tode: {deathCount}");
 
         if (lives > 0)
         {
@@ -127,6 +135,14 @@ public class PlayerHealth : MonoBehaviour
         if (playerHealthUI != null)
         {
             playerHealthUI.UpdateLivesUI();
+        }
+
+        // 💾 JSON speichern (wenn vorhanden)
+        PlayerPrefsSaver saver = FindFirstObjectByType<PlayerPrefsSaver>();
+        if (saver != null)
+        {
+            saver.SavePrefsToJson();
+            Debug.Log("📂 PlayerPrefs wurden auch als JSON gespeichert.");
         }
     }
 
@@ -148,7 +164,7 @@ public class PlayerHealth : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         }
 
-        Debug.Log("Respawned at: " + checkpointPosition);
+        Debug.Log("🔄 Respawned at: " + checkpointPosition);
     }
 
     void RestartGame()
@@ -181,14 +197,14 @@ public class PlayerHealth : MonoBehaviour
         PlayerPrefs.SetInt(LivesKey, lives);
         PlayerPrefsKeyTracker.TrackKey(LivesKey);
         PlayerPrefs.Save();
-        Debug.Log($"Lives added: {lives}");
+        Debug.Log($"❤️ Lives added: {lives}");
         UpdateUI();
     }
 
     public void AddHealth(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log($"Healing: {currentHealth}");
+        Debug.Log($"💊 Healing: {currentHealth}");
         UpdateUI();
     }
 
@@ -203,7 +219,7 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        Debug.Log("Player healed! Current health: " + currentHealth);
+        Debug.Log("🩹 Player healed! Current health: " + currentHealth);
         UpdateUI();
     }
 }

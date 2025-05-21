@@ -26,9 +26,9 @@ public class PlayerPrefsSaver : MonoBehaviour
     private float nextAutoSaveTime;
 
     [Header("UI für AutoSave")]
-    public GameObject autoSaveUI;          // Parent-Objekt mit Text + Icon
-    public TMP_Text autoSaveText;          // Text wird aus der UI übernommen
-    public Image autoSaveSpinner;          // Drehendes Icon
+    public GameObject autoSaveUI;         // Parent-Objekt mit Text + Icon
+    public TMP_Text autoSaveText;         // Optionaler Text
+    public Image autoSaveSpinner;         // Drehendes Icon
 
     private Coroutine uiRoutine;
 
@@ -44,23 +44,41 @@ public class PlayerPrefsSaver : MonoBehaviour
     {
         if (Time.time >= nextAutoSaveTime)
         {
-            SavePrefsToJson();
+            SavePrefsToJsonWithUI(); // AutoSave mit Anzeige
             nextAutoSaveTime = Time.time + autoSaveIntervalMinutes * 60f;
         }
 
-        // Rotation vom Spinner
         if (autoSaveSpinner != null && autoSaveSpinner.gameObject.activeSelf)
         {
-            autoSaveSpinner.transform.Rotate(Vector3.forward * -180 * Time.deltaTime);
+            autoSaveSpinner.transform.Rotate(Vector3.forward * -180f * Time.deltaTime);
         }
     }
 
+    /// <summary>
+    /// Wird manuell aufgerufen (z. B. bei Spieler-Tod, Reset, Button) – OHNE UI.
+    /// </summary>
     public void SavePrefsToJson()
+    {
+        SavePrefsToJsonInternal(showUI: false);
+    }
+
+    /// <summary>
+    /// Nur von Update() intern genutzt – MIT UI.
+    /// </summary>
+    private void SavePrefsToJsonWithUI()
+    {
+        SavePrefsToJsonInternal(showUI: true);
+    }
+
+    /// <summary>
+    /// Gemeinsame Logik fürs Speichern.
+    /// </summary>
+    private void SavePrefsToJsonInternal(bool showUI)
     {
         var keys = PlayerPrefsKeyTracker.GetAllTrackedKeys();
         var data = new PlayerPrefsData();
 
-        Debug.Log("\uD83D\uDCE6 Getrackte Keys: " + keys.Count);
+        Debug.Log("💾 Getrackte Keys: " + keys.Count);
         foreach (string key in keys)
         {
             if (!PlayerPrefs.HasKey(key)) continue;
@@ -79,13 +97,16 @@ public class PlayerPrefsSaver : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(data, true);
-        string path = Application.persistentDataPath + "/playerprefs.json";
+        string path = Path.Combine(Application.persistentDataPath, "playerprefs.json");
         File.WriteAllText(path, json);
 
         Debug.Log("✅ PlayerPrefs gespeichert unter:\n" + path);
 
-        if (uiRoutine != null) StopCoroutine(uiRoutine);
-        uiRoutine = StartCoroutine(ShowSaveUI());
+        if (showUI)
+        {
+            if (uiRoutine != null) StopCoroutine(uiRoutine);
+            uiRoutine = StartCoroutine(ShowSaveUI());
+        }
     }
 
     private IEnumerator ShowSaveUI()
@@ -105,6 +126,6 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SavePrefsToJson();
+        SavePrefsToJson(); // Sauber speichern beim Beenden – ohne UI
     }
 }

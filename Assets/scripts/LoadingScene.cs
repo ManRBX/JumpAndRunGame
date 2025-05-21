@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 using System.Linq;
 
 public class LoadingScene : MonoBehaviour
@@ -16,13 +17,22 @@ public class LoadingScene : MonoBehaviour
 
     [Header("Settings")]
     public float loadingDuration = 3f;
-    public string[] randomLoadingTexts;
-    public string[] randomTips;
     public bool disableLoadingScreenAfterLoad = true;
 
-    private float loadingTimer = 0f;
-    private string selectedLoadingText = "";
+    [Header("Localized Content")]
+    [Tooltip("Füge hier Einträge hinzu und klicke dann auf das + Symbol in jedem Eintrag, um Sprachvarianten hinzuzufügen.")]
+    public List<LocalizedString> localizedLoadingTexts = new List<LocalizedString>();
 
+    [Tooltip("Füge hier Tipps hinzu und klicke pro Eintrag auf das +, um z. B. Englisch, Deutsch, Österreichisch etc. zu definieren.")]
+    public List<LocalizedString> localizedTips = new List<LocalizedString>();
+
+    public enum LoadingTextMode { Sequential, Random }
+
+    [Header("Text Rotation")]
+    public LoadingTextMode loadingTextMode = LoadingTextMode.Sequential;
+
+    private float loadingTimer = 0f;
+    private int lastTextIndex = -1;
     private MonoBehaviour[] scriptsToPause;
 
     void Start()
@@ -30,9 +40,9 @@ public class LoadingScene : MonoBehaviour
         SelectRandomLoadingText();
         ShowRandomTip();
 
-        // Nur PlayerMovement und PlayerShooting deaktivieren (nicht alles!)
         scriptsToPause = FindObjectsOfType<MonoBehaviour>()
-            .Where(s => s != this && s.enabled && (s.GetType().Name == "PlayerMovement" || s.GetType().Name == "PlayerShooting"))
+            .Where(s => s != this && s.enabled &&
+                (s.GetType().Name == "PlayerMovement" || s.GetType().Name == "PlayerShooting"))
             .ToArray();
 
         foreach (var script in scriptsToPause)
@@ -54,22 +64,48 @@ public class LoadingScene : MonoBehaviour
 
     void SelectRandomLoadingText()
     {
-        if (randomLoadingTexts != null && randomLoadingTexts.Length > 0)
-        {
-            int randomIndex = Random.Range(0, randomLoadingTexts.Length);
-            selectedLoadingText = randomLoadingTexts[randomIndex];
+        if (localizedLoadingTexts == null || localizedLoadingTexts.Count == 0 || LoadingText == null)
+            return;
 
-            if (LoadingText != null)
-                LoadingText.text = selectedLoadingText;
+        int index = 0;
+
+        if (loadingTextMode == LoadingTextMode.Sequential)
+        {
+            index = (lastTextIndex + 1) % localizedLoadingTexts.Count;
         }
+        else if (loadingTextMode == LoadingTextMode.Random)
+        {
+            do
+            {
+                index = Random.Range(0, localizedLoadingTexts.Count);
+            } while (index == lastTextIndex && localizedLoadingTexts.Count > 1);
+        }
+
+        lastTextIndex = index;
+
+        LocalizedString entry = localizedLoadingTexts[index];
+
+        entry.StringChanged += (value) =>
+        {
+            LoadingText.text = value;
+        };
+
+        entry.RefreshString();
     }
 
     void ShowRandomTip()
     {
-        if (randomTips != null && randomTips.Length > 0 && TipText != null)
+        if (localizedTips != null && localizedTips.Count > 0 && TipText != null)
         {
-            int randomIndex = Random.Range(0, randomTips.Length);
-            TipText.text = randomTips[randomIndex];
+            int randomIndex = Random.Range(0, localizedTips.Count);
+            LocalizedString tip = localizedTips[randomIndex];
+
+            tip.StringChanged += (value) =>
+            {
+                TipText.text = value;
+            };
+
+            tip.RefreshString();
         }
     }
 

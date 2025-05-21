@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830201936666624
-    m_Localized: Reset All Data
+    m_Localized: Reset
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
@@ -332,6 +332,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 28526982462431232
     m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284524776742912
+    m_Localized: Preparing the game...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284664514174976
+    m_Localized: Loading assets...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285329831452672
+    m_Localized: Thanks for your patience.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285420474556416
+    m_Localized: Almost done...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285601576214528
+    m_Localized: Loading level...
     m_Metadata:
       m_Items: []
   references:

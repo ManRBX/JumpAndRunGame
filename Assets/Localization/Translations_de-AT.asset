@@ -327,11 +327,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830201936666624
-    m_Localized: "Alles zur\xFCcksetzen"
+    m_Localized: "Zur\xFCcksetzen"
     m_Metadata:
       m_Items: []
   - m_Id: 28526982462431232
     m_Localized: Sproch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284524776742912
+    m_Localized: "Oida, des Spiel wird grad startklar g\u2019macht..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37284664514174976
+    m_Localized: "I lad grad den ganzen Scha\xDF rein..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285329831452672
+    m_Localized: "Jo chill, oida \u2013 dauert net mehr lang."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285420474556416
+    m_Localized: "Jo glei is\u2019 soweit...\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37285601576214528
+    m_Localized: "Oida, wart a bissl \u2013 Level kommt scho!"
     m_Metadata:
       m_Items: []
   references:
