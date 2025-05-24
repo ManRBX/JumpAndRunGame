@@ -1,5 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class FallBrakeLine
+{
+    public Transform lineTransform;
+    [HideInInspector] public bool brakeActive = true;
+    [HideInInspector] public bool wasAboveLastFrame = true;
+}
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform[] groundCheckPoints;
     public Transform[] wallCheckPoints;
 
+    [Header("Fall-Linien Bremse")]
+    public List<FallBrakeLine> fallBrakeLines = new List<FallBrakeLine>();
+    public float zoneMaxFallSpeed = -10f;
+    public float zoneAirDrag = 3f;
+
     private Rigidbody2D rb;
     private Animator anim;
     private bool isGrounded;
@@ -31,16 +45,14 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private bool canWallJump = true;
 
-    // Double Jump
     private bool doubleJumpActive;
     private bool usedDoubleJump;
     private float doubleJumpDuration;
 
-    // Movement
     private float currentSpeed = 0f;
     private KeyBindManager keyBindManager;
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -48,27 +60,31 @@ public class PlayerMovement : MonoBehaviour
         keyBindManager = KeyBindManager.Instance;
     }
 
-    void Update()
+    private void Update()
     {
         HandleJumpInput();
         UpdateAnimationStates();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         HandleMovement();
         CheckGround();
         CheckWall();
-    }
 
-    // --------------------------------
-    // Movement & Controls
-    // --------------------------------
+        bool activeBrake = ShouldApplyBrake();
+
+        if (activeBrake && rb.linearVelocity.y < zoneMaxFallSpeed)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, zoneMaxFallSpeed);
+        }
+
+        rb.linearDamping = (isGrounded || !activeBrake) ? 0f : zoneAirDrag;
+    }
 
     void HandleMovement()
     {
         float move = GetInputMovement();
-
         anim.SetBool("IsRunning", move != 0);
 
         float targetSpeed = move * speed;
@@ -135,14 +151,12 @@ public class PlayerMovement : MonoBehaviour
     void WallJump()
     {
         wallJumping = true;
-        float wallJumpDirection = facingRight ? -1 : 1;
+        float wallJumpDir = facingRight ? -1 : 1;
 
-        // Flip the character automatically to face the other wall
         facingRight = !facingRight;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-        // Apply wall jump velocity
-        rb.linearVelocity = new Vector2(wallJumpDirection * speed * 1.5f, jumpForce);
+        rb.linearVelocity = new Vector2(wallJumpDir * speed * 1.5f, jumpForce);
         anim.SetTrigger("WallJump");
 
         canWallJump = false;
@@ -155,12 +169,8 @@ public class PlayerMovement : MonoBehaviour
     void StopWallJump()
     {
         wallJumping = false;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y); // Prevents abrupt stopping
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y);
     }
-
-    // --------------------------------
-    // Collision Detection
-    // --------------------------------
 
     void CheckGround()
     {
@@ -194,10 +204,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // --------------------------------
-    // Animations
-    // --------------------------------
-
     void UpdateAnimationStates()
     {
         if (isGrounded)
@@ -218,10 +224,6 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
-    // --------------------------------
-    // Boosts & Power-ups
-    // --------------------------------
-
     public IEnumerator ApplySpeedBoost(float multiplier, float boostDuration)
     {
         float originalSpeed = speed;
@@ -230,17 +232,11 @@ public class PlayerMovement : MonoBehaviour
         speed = originalSpeed;
     }
 
-    // --------------------------------
-    // Double Jump Activation
-    // --------------------------------
-
     public void ActivateDoubleJump(float duration)
     {
         doubleJumpActive = true;
         usedDoubleJump = false;
         doubleJumpDuration = duration;
-
-        // Start a coroutine to deactivate double jump after the duration
         StartCoroutine(DoubleJumpTimer());
     }
 
@@ -249,4 +245,54 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(doubleJumpDuration);
         doubleJumpActive = false;
     }
+
+    bool ShouldApplyBrake()
+    {
+        float currentY = transform.position.y;
+        bool applyBrake = false;
+
+        foreach (var line in fallBrakeLines)
+        {
+            if (line.lineTransform == null) continue;
+
+            float lineY = line.lineTransform.position.y;
+            bool nowBelow = currentY <= lineY;
+            bool justCrossedFromAbove = line.wasAboveLastFrame && nowBelow;
+
+            if (justCrossedFromAbove)
+            {
+                line.brakeActive = !line.brakeActive;
+                Debug.Log($"🌀 Linie getriggert: {line.lineTransform.name} → Brake {(line.brakeActive ? "AN" : "AUS")}");
+
+                if (line.brakeActive)
+                {
+                    applyBrake = true; // Bremse nur bei Aktivieren
+                }
+            }
+
+            line.wasAboveLastFrame = currentY > lineY;
+        }
+
+        return applyBrake;
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+
+        if (fallBrakeLines != null)
+        {
+            foreach (var line in fallBrakeLines)
+            {
+                if (line.lineTransform != null)
+                {
+                    Vector3 left = line.lineTransform.position + Vector3.left * 10f;
+                    Vector3 right = line.lineTransform.position + Vector3.right * 10f;
+                    Gizmos.DrawLine(left, right);
+                }
+            }
+        }
+    }
+#endif
 }

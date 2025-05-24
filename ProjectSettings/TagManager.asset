@@ -18,6 +18,7 @@ TagManager:
   - Coin
   - SecretWall
   - Wall
+  - FallBrake
   layers:
   - Default
   - TransparentFX
