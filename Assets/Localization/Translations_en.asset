@@ -378,6 +378,30 @@ MonoBehaviour:
     m_Localized: The game is being saved!
     m_Metadata:
       m_Items: []
+  - m_Id: 40550497990467584
+    m_Localized: Bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40550874773184512
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40552065741611008
+    m_Localized: Bonus Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40552143487229952
+    m_Localized: 'Lives:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40552816752713728
+    m_Localized: Level selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40553196010070016
+    m_Localized: Bonus Level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
