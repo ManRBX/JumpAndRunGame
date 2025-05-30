@@ -5748,51 +5748,6 @@ RectTransform:
   m_AnchoredPosition: {x: 580, y: -100}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &565628850
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 565628851}
-  - component: {fileID: 565628852}
-  m_Layer: 0
-  m_Name: CursorManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &565628851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565628850}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1005323900}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &565628852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565628850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd7f1cf51181f4c43ba64cdf518faf22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceCursorVisible: 1
 --- !u!1 &568366233
 GameObject:
   m_ObjectHideFlags: 0
@@ -8172,8 +8127,8 @@ Transform:
   m_GameObject: {fileID: 797407449}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.55, y: 0.02, z: 0}
-  m_LocalScale: {x: 4.1582994, y: 4.8716307, z: 1.1822814}
+  m_LocalPosition: {x: -0.0029, y: -0.0513, z: 0}
+  m_LocalScale: {x: 3.9492455, y: 4.79409, z: 1.1822814}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9945,7 +9900,6 @@ Transform:
   - {fileID: 3296999}
   - {fileID: 691077073}
   - {fileID: 314072434}
-  - {fileID: 565628851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1005323901
@@ -11640,7 +11594,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoSaveIntervalMinutes: 2
-  saveIntervalSeconds: 1
   autoSaveUI: {fileID: 0}
   autoSaveText: {fileID: 0}
   autoSaveSpinner: {fileID: 0}
@@ -11881,55 +11834,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.065215, y: -0.00085545}
   m_SizeDelta: {x: 1919.9, y: 1079.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1224617900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1224617902}
-  - component: {fileID: 1224617901}
-  m_Layer: 0
-  m_Name: cheatmanager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1224617901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224617900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523097af7207ed84eae95f2e7492e3e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleInvincibilityKey: 105
-  addLivesKey: 108
-  nextLevelKey: 110
-  unlockAllAchievementsKey: 117
-  speedBoostKey: 98
---- !u!4 &1224617902
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224617900}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 889.6589, y: 362.6115, z: -9.144161}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225608886
 GameObject:
   m_ObjectHideFlags: 0
@@ -19781,4 +19685,3 @@ SceneRoots:
   - {fileID: 397297081}
   - {fileID: 1865646158}
   - {fileID: 245196712}
-  - {fileID: 1224617902}
