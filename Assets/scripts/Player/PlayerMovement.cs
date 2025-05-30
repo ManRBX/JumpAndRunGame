@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed = 0f;
     private KeyBindManager keyBindManager;
 
+    private MovingPlatform currentPlatform;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -71,6 +73,11 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         CheckGround();
         CheckWall();
+
+        if (currentPlatform != null)
+        {
+            rb.position += new Vector2(currentPlatform.platformVelocity.x, 0f) * Time.fixedDeltaTime;
+        }
 
         bool activeBrake = ShouldApplyBrake();
 
@@ -266,7 +273,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (line.brakeActive)
                 {
-                    applyBrake = true; // Bremse nur bei Aktivieren
+                    applyBrake = true;
                 }
             }
 
@@ -295,4 +302,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 #endif
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = collision.collider.GetComponent<MovingPlatform>();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = null;
+        }
+    }
 }

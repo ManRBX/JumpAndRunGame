@@ -23,18 +23,22 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     [Header("Auto-Save Einstellungen")]
     public float autoSaveIntervalMinutes = 2f;
+    public float saveIntervalSeconds = 1f; // NEU: Wie oft gespeichert wird (standard 1 Sekunde)
+
     private float nextAutoSaveTime;
+    private float nextSilentSaveTime;
 
     [Header("UI für AutoSave")]
-    public GameObject autoSaveUI;         // Parent-Objekt mit Text + Icon
-    public TMP_Text autoSaveText;         // Optionaler Text
-    public Image autoSaveSpinner;         // Drehendes Icon
+    public GameObject autoSaveUI;
+    public TMP_Text autoSaveText;
+    public Image autoSaveSpinner;
 
     private Coroutine uiRoutine;
 
     private void Start()
     {
         nextAutoSaveTime = Time.time + autoSaveIntervalMinutes * 60f;
+        nextSilentSaveTime = Time.time + saveIntervalSeconds;
 
         if (autoSaveUI != null)
             autoSaveUI.SetActive(false);
@@ -42,9 +46,17 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void Update()
     {
+        // Speicher alle x Sekunden (ohne UI)
+        if (Time.time >= nextSilentSaveTime)
+        {
+            SavePrefsToJson();
+            nextSilentSaveTime = Time.time + saveIntervalSeconds;
+        }
+
+        // Zeige UI nur alle x Minuten
         if (Time.time >= nextAutoSaveTime)
         {
-            SavePrefsToJsonWithUI(); // AutoSave mit Anzeige
+            SavePrefsToJsonWithUI();
             nextAutoSaveTime = Time.time + autoSaveIntervalMinutes * 60f;
         }
 
@@ -54,31 +66,21 @@ public class PlayerPrefsSaver : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Wird manuell aufgerufen (z. B. bei Spieler-Tod, Reset, Button) – OHNE UI.
-    /// </summary>
     public void SavePrefsToJson()
     {
         SavePrefsToJsonInternal(showUI: false);
     }
 
-    /// <summary>
-    /// Nur von Update() intern genutzt – MIT UI.
-    /// </summary>
     private void SavePrefsToJsonWithUI()
     {
         SavePrefsToJsonInternal(showUI: true);
     }
 
-    /// <summary>
-    /// Gemeinsame Logik fürs Speichern.
-    /// </summary>
     private void SavePrefsToJsonInternal(bool showUI)
     {
         var keys = PlayerPrefsKeyTracker.GetAllTrackedKeys();
         var data = new PlayerPrefsData();
 
-        Debug.Log("💾 Getrackte Keys: " + keys.Count);
         foreach (string key in keys)
         {
             if (!PlayerPrefs.HasKey(key)) continue;
@@ -99,8 +101,6 @@ public class PlayerPrefsSaver : MonoBehaviour
         string json = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "playerprefs.json");
         File.WriteAllText(path, json);
-
-        Debug.Log("✅ PlayerPrefs gespeichert unter:\n" + path);
 
         if (showUI)
         {
@@ -126,6 +126,6 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SavePrefsToJson(); // Sauber speichern beim Beenden – ohne UI
+        SavePrefsToJson();
     }
 }

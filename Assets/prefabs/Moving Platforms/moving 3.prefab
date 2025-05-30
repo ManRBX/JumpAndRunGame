@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 6921849301326503061}
   - {fileID: 7896888799951811861}
   moveSpeed: 3
-  isActivated: 0
+  platformVelocity: {x: 0, y: 0, z: 0}
 --- !u!61 &4829455633987958924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 6249667391244751922}
   m_Layer: 3
   m_Name: moving 3
-  m_TagString: Ground
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

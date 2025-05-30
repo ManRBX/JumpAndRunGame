@@ -80,7 +80,10 @@ public class LevelEnd : MonoBehaviour
         }
         else
         {
+            // ❌ Nicht genug Coins: GameObject nicht entfernen
             Debug.Log($"❌ Nicht genug Spezial-Coins! Benötigt: {requiredSpecialCoins}, Aktuell: {collectedGlobalSpecialCoins}");
+
+            // Du kannst das GameObject hier aktiv lassen oder andere Logik einfügen
         }
 
         // 🔔 Coin-Anzeige zeigen

@@ -30,7 +30,5 @@ public class AchievementTrigger : MonoBehaviour
                 AchievementProgressTracker.Instance?.OnSecretFound(targetID);
                 break;
         }
-
-        Destroy(gameObject); // optional: nur einmal triggern
     }
 }

@@ -351,6 +351,30 @@ MonoBehaviour:
     m_Key: Level01/Managers/Loading manager 4
     m_Metadata:
       m_Items: []
+  - m_Id: 39075306571554816
+    m_Key: Level05/Canvas/Auto Save/auto save text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076168983371776
+    m_Key: Level04/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076295517134848
+    m_Key: Level06/Canvas/Auto Save/auto save text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076363796209664
+    m_Key: Level07/Canvas/Auto Save/auto save text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076408515878912
+    m_Key: Level08/Canvas/Auto Save/auto save text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076458608451584
+    m_Key: Level09/Canvas/Auto Save/auto save text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

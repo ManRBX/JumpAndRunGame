@@ -1,6 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using Steamworks;
+using System.Linq; // Wichtig für .Contains
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,11 +15,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Lives Settings")]
     public int defaultLives = 5;
 
+    public bool IsInvincible => isInvincible;
+    public string[] invincibleSafeTags = new string[] { "Enemy", "Spike", "Enemy_Projectil" };
+
     private bool isInvincible = false;
 
     [Header("Invincibility Settings")]
     public float invincibilityDuration = 1f;
-    public string[] invincibleSafeTags = new string[] { "Enemy", "Spike", "Enemy_Projectil" };
 
     [Header("Damage Feedback")]
     public Color damageColor = Color.red;
@@ -32,7 +36,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         startPosition = transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         playerHealthUI = FindFirstObjectByType<PlayerHealthUI>();
 
         if (!PlayerPrefs.HasKey(LivesKey))
@@ -59,6 +62,22 @@ public class PlayerHealth : MonoBehaviour
 
         PlayerPrefs.Save();
         UpdateUI();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("KillZone"))
+        {
+            TakeDamage(currentHealth, "KillZone");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") && IsInvincibleTo("Enemy"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), true);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -114,13 +133,11 @@ public class PlayerHealth : MonoBehaviour
         PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives));
         PlayerPrefsKeyTracker.TrackKey(LivesKey);
 
-        // 🪦 DeathCount erhöhen
         int deathCount = PlayerPrefs.GetInt(DeathKey, 0) + 1;
         PlayerPrefs.SetInt(DeathKey, deathCount);
         PlayerPrefsKeyTracker.TrackKey(DeathKey);
 
         PlayerPrefs.Save();
-
         Debug.Log($"☠️ Spieler gestorben. Verbleibende Leben: {lives} | Gesamt Tode: {deathCount}");
 
         if (lives > 0)
@@ -137,8 +154,7 @@ public class PlayerHealth : MonoBehaviour
             playerHealthUI.UpdateLivesUI();
         }
 
-        // 💾 JSON speichern (wenn vorhanden)
-        PlayerPrefsSaver saver = FindFirstObjectByType<PlayerPrefsSaver>();
+        var saver = FindFirstObjectByType<PlayerPrefsSaver>();
         if (saver != null)
         {
             saver.SavePrefsToJson();
@@ -221,5 +237,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
         Debug.Log("🩹 Player healed! Current health: " + currentHealth);
         UpdateUI();
+    }
+
+    public bool IsInvincibleTo(string sourceTag)
+    {
+        return isInvincible && invincibleSafeTags.Contains(sourceTag);
     }
 }
