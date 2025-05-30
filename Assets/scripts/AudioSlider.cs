@@ -32,17 +32,21 @@ public class AudioSlider : MonoBehaviour
         // Nur beim ersten Laden die Lautstärke aus PlayerPrefs holen
         if (!volumeLoaded)
         {
+            // Wenn keine Lautstärke gespeichert ist, wird der Standardwert 0.5f verwendet
             currentVolume = PlayerPrefs.GetFloat(VolumeKey, 0.5f);
             volumeLoaded = true;
         }
 
+        // Lautstärke anwenden
         ApplyVolume(currentVolume);
 
+        // Den Slider auf den gespeicherten Wert setzen
         if (volumeSlider != null)
         {
             volumeSlider.value = currentVolume;
         }
 
+        // Den Text der Lautstärke anzeigen
         UpdateVolumeText(currentVolume);
 
         // Optional: Tracke den Key (wenn du PlayerPrefsKeyTracker nutzt)
@@ -53,12 +57,17 @@ public class AudioSlider : MonoBehaviour
     {
         currentVolume = newVolume;
 
+        // Lautstärke anwenden
         ApplyVolume(currentVolume);
 
+        // Lautstärke in PlayerPrefs speichern
         PlayerPrefs.SetFloat(VolumeKey, currentVolume);
         PlayerPrefs.Save();
 
+        // Tracke den Lautstärke-Key
         PlayerPrefsKeyTracker.TrackKey(VolumeKey);
+
+        // Den Text aktualisieren
         UpdateVolumeText(currentVolume);
     }
 

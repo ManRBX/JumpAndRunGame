@@ -410,6 +410,9 @@ MonoBehaviour:
   - {fileID: 4224612096175355333}
   - {fileID: 3408500493989515922}
   - {fileID: 3308969247291617106}
+  fallBrakeLines: []
+  zoneMaxFallSpeed: -10
+  zoneAirDrag: 3
 --- !u!114 &1232777033841536234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3d8e41c90b07c4096dc0c914ac5dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   currentHealth: 0
   defaultLives: 5
   invincibilityDuration: 1

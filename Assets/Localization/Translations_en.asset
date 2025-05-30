@@ -354,6 +354,30 @@ MonoBehaviour:
     m_Localized: Loading level...
     m_Metadata:
       m_Items: []
+  - m_Id: 39075306571554816
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076168983371776
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076295517134848
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076363796209664
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076408515878912
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39076458608451584
+    m_Localized: The game is being saved!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

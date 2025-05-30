@@ -162,19 +162,18 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && canAttack)
         {
-            Attack(collision.gameObject);
-        }
-    }
-
-    private void Attack(GameObject playerObj)
-    {
-        PlayerHealth playerHealth = playerObj.GetComponent<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            animator.SetTrigger("Attack");
-            playerHealth.Die();
-            canAttack = false;
-            Invoke(nameof(ResetAttack), attackCooldown);
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                // Check if cheat is active
+                if (!playerHealth.IsInvincibleTo("Enemy"))
+                {
+                    animator.SetTrigger("Attack");
+                    playerHealth.Die();
+                    canAttack = false;
+                    Invoke(nameof(ResetAttack), attackCooldown);
+                }
+            }
         }
     }
 
@@ -216,7 +215,6 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // Disable any active movement/states
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
@@ -294,9 +292,6 @@ public class Enemy : MonoBehaviour
 
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = true;
-
-        // Optional Respawn animation:
-        // animator.Play("Respawn");
 
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());

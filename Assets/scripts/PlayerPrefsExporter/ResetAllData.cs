@@ -68,6 +68,18 @@ public class ResetAllData : MonoBehaviour
             Debug.Log("ℹ️ Keine JSON-Datei gefunden unter: " + jsonPath);
         }
 
+        // 📦 Direkt danach neu speichern (leerer Stand)
+        var saver = FindObjectOfType<PlayerPrefsSaver>();
+        if (saver != null)
+        {
+            saver.SavePrefsToJson();
+            Debug.Log("💾 Nach Reset neu gespeichert.");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Kein PlayerPrefsSaver gefunden – konnte nicht speichern.");
+        }
+
         // 🔁 Szene neu laden
         ResetSession.wasReset = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
