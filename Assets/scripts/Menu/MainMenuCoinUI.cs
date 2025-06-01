@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MainMenuCoinUI : MonoBehaviour
 {
-    public Image[] coinImages;         // Images for the collected coins
-    public TMP_Text totalCoinText;     // Displays the total number of collected special coins
+    [Header("💰 Coin-Anzeige für jedes Level")]
+    public List<Image> coinImages;         // Eine Image pro Coin, frei erweiterbar im Inspector
+
+    [Header("🔢 Gesamtanzahl der Coins")]
+    public List<TMP_Text> totalCoinTexts;  // Beliebig viele Textfelder, die den Gesamtstand anzeigen
 
     void Start()
     {
@@ -14,27 +18,26 @@ public class MainMenuCoinUI : MonoBehaviour
 
     void UpdateMainMenuUI()
     {
-        // 🔢 Global coin counter
+        // 🔢 Global coin counter laden + tracken
         int globalCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
-        PlayerPrefsKeyTracker.TrackKey("GlobalSpecialCoins"); // 👈 Damit der Key ins JSON wandert
+        PlayerPrefsKeyTracker.TrackKey("GlobalSpecialCoins");
 
-        if (totalCoinText != null)
+        // Alle Texte aktualisieren
+        foreach (TMP_Text txt in totalCoinTexts)
         {
-            totalCoinText.text = globalCoins.ToString();
+            if (txt != null)
+                txt.text = globalCoins.ToString();
         }
 
-        // 🔍 Coin images aktivieren basierend auf PlayerPrefs
-        for (int i = 0; i < coinImages.Length; i++)
+        // 🔍 Einzelne Coins anzeigen, je nachdem ob sie gesammelt wurden
+        for (int i = 0; i < coinImages.Count; i++)
         {
-            // 💡 Beispiel: Level1.Coin1, Level2.Coin2, etc.
             string coinKey = $"Level{i + 1}.Coin{i + 1}";
             bool coinCollected = PlayerPrefs.HasKey(coinKey);
-            PlayerPrefsKeyTracker.TrackKey(coinKey); // 👈 Auch diesen Key tracken
+            PlayerPrefsKeyTracker.TrackKey(coinKey);
 
             if (coinImages[i] != null)
-            {
                 coinImages[i].gameObject.SetActive(coinCollected);
-            }
         }
     }
 }

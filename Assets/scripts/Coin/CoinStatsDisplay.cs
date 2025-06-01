@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class CoinStatsDisplay : MonoBehaviour
 {
-    [Header("UI Elements")]
-    public TMP_Text globalPointsText;
-    public TMP_Text levelPointsText;
-    public TMP_Text globalCoinsText;
-    public TMP_Text levelCoinsText;
+    [Header("🔢 UI Elements (Mehrere erlaubt)")]
+    public List<TMP_Text> globalPointsTexts;
+    public List<TMP_Text> levelPointsTexts;
+    public List<TMP_Text> globalCoinsTexts;
+    public List<TMP_Text> levelCoinsTexts;
 
     void Start()
     {
@@ -34,16 +35,16 @@ public class CoinStatsDisplay : MonoBehaviour
         PlayerPrefsKeyTracker.TrackKey($"{currentLevel}_Coins");
 
         // UI aktualisieren
-        if (globalPointsText != null)
-            globalPointsText.text = globalPoints.ToString();
+        foreach (var txt in globalPointsTexts)
+            if (txt != null) txt.text = globalPoints.ToString();
 
-        if (levelPointsText != null)
-            levelPointsText.text = levelPoints.ToString();
+        foreach (var txt in levelPointsTexts)
+            if (txt != null) txt.text = levelPoints.ToString();
 
-        if (globalCoinsText != null)
-            globalCoinsText.text = globalCoins.ToString();
+        foreach (var txt in globalCoinsTexts)
+            if (txt != null) txt.text = globalCoins.ToString();
 
-        if (levelCoinsText != null)
-            levelCoinsText.text = levelCoins.ToString();
+        foreach (var txt in levelCoinsTexts)
+            if (txt != null) txt.text = levelCoins.ToString();
     }
 }

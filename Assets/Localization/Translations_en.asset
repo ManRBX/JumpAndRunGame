@@ -402,6 +402,10 @@ MonoBehaviour:
     m_Localized: Bonus Level
     m_Metadata:
       m_Items: []
+  - m_Id: 40836463774916608
+    m_Localized: ammunition
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -399,6 +399,10 @@ MonoBehaviour:
     m_Key: Menu/Canvas/Bonus Level Selection panel/Bonus selection
     m_Metadata:
       m_Items: []
+  - m_Id: 40836463774916608
+    m_Key: Menu/Canvas/Store panel/Munition/munition text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

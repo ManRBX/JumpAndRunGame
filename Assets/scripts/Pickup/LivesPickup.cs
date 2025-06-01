@@ -14,7 +14,7 @@ public class LivesPickup : MonoBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.AddLives(livesToAdd);  // Add lives
+                playerHealth.AddLife(livesToAdd);  // Add lives
 
                 // Play sound effect (optional)
                 if (pickupSound != null)
