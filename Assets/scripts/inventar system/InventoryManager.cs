@@ -4,7 +4,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-
     public GameObject inventoryUI;
     private bool isOpen = false;
 
@@ -23,12 +22,12 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        KeyCode openKey = KeyBindManager.Instance?.GetKeyCodeForAction("OpenInventory") ?? KeyCode.C;
+
+        if (Input.GetKeyDown(openKey))
         {
             isOpen = !isOpen;
             inventoryUI.SetActive(isOpen);
-
-            // Spiel pausieren oder fortsetzen
             GameStateManager.IsGamePaused = isOpen;
 
             if (isOpen)
@@ -44,8 +43,6 @@ public class InventoryManager : MonoBehaviour
             itemStacks[newItem] = 1;
 
         SaveItemToPrefs(newItem, itemStacks[newItem]);
-
-        Debug.Log($"📦 {newItem.itemName} hinzugefügt. Jetzt x{itemStacks[newItem]}");
         InventoryUI.Instance.RefreshUI();
     }
 
@@ -60,7 +57,6 @@ public class InventoryManager : MonoBehaviour
             itemStacks.Remove(item);
 
         SaveItemToPrefs(item, itemStacks.ContainsKey(item) ? itemStacks[item] : 0);
-
         InventoryUI.Instance.RefreshUI();
     }
 
@@ -86,11 +82,8 @@ public class InventoryManager : MonoBehaviour
         {
             string key = $"Inventory_{slot.item.itemName}";
             int amount = PlayerPrefs.GetInt(key, 0);
-
             if (amount > 0)
-            {
                 itemStacks[slot.item] = amount;
-            }
         }
 
         InventoryUI.Instance.RefreshUI();

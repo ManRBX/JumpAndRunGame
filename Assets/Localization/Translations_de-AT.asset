@@ -402,8 +402,24 @@ MonoBehaviour:
     m_Localized: Bonus Level
     m_Metadata:
       m_Items: []
-  - m_Id: 40836463774916608
+  - m_Id: 41237160492261376
     m_Localized: Munition
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237179601510400
+    m_Localized: Geschwindigkeit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237210198958080
+    m_Localized: Leben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237244734857216
+    m_Localized: Doppelsprung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237280411607040
+    m_Localized: Magnet
     m_Metadata:
       m_Items: []
   references:

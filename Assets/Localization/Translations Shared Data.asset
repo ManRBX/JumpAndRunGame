@@ -399,8 +399,24 @@ MonoBehaviour:
     m_Key: Menu/Canvas/Bonus Level Selection panel/Bonus selection
     m_Metadata:
       m_Items: []
-  - m_Id: 40836463774916608
+  - m_Id: 41237160492261376
     m_Key: Menu/Canvas/Store panel/Munition/munition text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237179601510400
+    m_Key: Menu/Canvas/Store panel/speed/speed text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237210198958080
+    m_Key: Menu/Canvas/Store panel/Health/Health text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237244734857216
+    m_Key: Menu/Canvas/Store panel/DoubleJump/DoupleJump text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41237280411607040
+    m_Key: Menu/Canvas/Store panel/Magnet/Magnet text
     m_Metadata:
       m_Items: []
   m_Metadata:
