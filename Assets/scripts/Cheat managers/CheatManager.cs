@@ -36,7 +36,7 @@ public class CheatManager : MonoBehaviour
         {
             if (playerHealth != null)
             {
-                playerHealth.AddLives(1);
+                playerHealth.AddLife(1);
                 Debug.Log("❤️ Leben +1");
             }
         }

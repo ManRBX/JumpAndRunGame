@@ -207,14 +207,13 @@ public class PlayerHealth : MonoBehaviour
         isInvincible = false;
     }
 
-    public void AddLives(int amount)
+    public void AddLife(int amount)
     {
-        int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) + amount;
-        PlayerPrefs.SetInt(LivesKey, lives);
-        PlayerPrefsKeyTracker.TrackKey(LivesKey);
-        PlayerPrefs.Save();
-        Debug.Log($"❤️ Lives added: {lives}");
-        UpdateUI();
+        int currentLives = PlayerPrefs.GetInt("GlobalLives", 3);
+        currentLives += amount;
+        PlayerPrefs.SetInt("GlobalLives", currentLives);
+        PlayerPrefsKeyTracker.TrackKey("GlobalLives");
+        Debug.Log($"❤️ Leben: {currentLives}");
     }
 
     public void AddHealth(int amount)

@@ -23,7 +23,7 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     [Header("Auto-Save Einstellungen")]
     public float autoSaveIntervalMinutes = 2f;
-    public float saveIntervalSeconds = 1f; // NEU: Wie oft gespeichert wird (standard 1 Sekunde)
+    public float saveIntervalSeconds = 1f;
 
     private float nextAutoSaveTime;
     private float nextSilentSaveTime;
@@ -46,14 +46,12 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void Update()
     {
-        // Speicher alle x Sekunden (ohne UI)
         if (Time.time >= nextSilentSaveTime)
         {
             SavePrefsToJson();
             nextSilentSaveTime = Time.time + saveIntervalSeconds;
         }
 
-        // Zeige UI nur alle x Minuten
         if (Time.time >= nextAutoSaveTime)
         {
             SavePrefsToJsonWithUI();
@@ -85,14 +83,38 @@ public class PlayerPrefsSaver : MonoBehaviour
         {
             if (!PlayerPrefs.HasKey(key)) continue;
 
-            string value;
-            string type;
+            string value = "";
+            string type = "";
 
-            try { value = PlayerPrefs.GetInt(key).ToString(); type = "int"; }
-            catch
+            // Sonderfall: Volume immer als float behandeln
+            if (key == "Volume")
             {
-                try { value = PlayerPrefs.GetFloat(key).ToString(); type = "float"; }
-                catch { value = PlayerPrefs.GetString(key); type = "string"; }
+                value = PlayerPrefs.GetFloat(key).ToString();
+                type = "float";
+            }
+            else
+            {
+                // Fallback auf Float, Int, String
+                float floatTest = PlayerPrefs.GetFloat(key, float.NaN);
+                if (!float.IsNaN(floatTest) && floatTest != 0f)
+                {
+                    value = floatTest.ToString();
+                    type = "float";
+                }
+                else
+                {
+                    int intTest = PlayerPrefs.GetInt(key, int.MinValue);
+                    if (intTest != int.MinValue)
+                    {
+                        value = intTest.ToString();
+                        type = "int";
+                    }
+                    else
+                    {
+                        value = PlayerPrefs.GetString(key, "");
+                        type = "string";
+                    }
+                }
             }
 
             data.entries.Add(new PlayerPrefEntry { key = key, type = type, value = value });
@@ -112,16 +134,12 @@ public class PlayerPrefsSaver : MonoBehaviour
     private IEnumerator ShowSaveUI()
     {
         if (autoSaveUI != null)
-        {
             autoSaveUI.SetActive(true);
-        }
 
         yield return new WaitForSeconds(2.5f);
 
         if (autoSaveUI != null)
-        {
             autoSaveUI.SetActive(false);
-        }
     }
 
     private void OnApplicationQuit()

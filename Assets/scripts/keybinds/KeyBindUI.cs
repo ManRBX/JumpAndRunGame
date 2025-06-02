@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
 using System;
 using UnityEngine.Localization.Components;
+using UnityEngine;
 
 public class KeyBindUI : MonoBehaviour
 {

@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;  // For TextMeshPro (shot count in UI)
+using TMPro;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float bulletForce = 20f;
-    public int maxAmmo = 60; // Global maximum ammo
+    public int maxAmmo = 60;
     private int currentAmmo;
 
     [Header("Cooldown Settings")]
@@ -15,8 +15,8 @@ public class PlayerShooting : MonoBehaviour
     private float nextFireTime = 0f;
 
     [Header("UI Settings")]
-    public TMP_Text ammoText;  // UI for ammo count
-    public TMP_Text shotText;  // UI for total shots fired
+    public TMP_Text ammoText;
+    public TMP_Text shotText;
 
     void Start()
     {
@@ -32,7 +32,9 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Check if the player can shoot (KeyBindManager or default key)
+        if (GameStateManager.IsGamePaused)
+            return;
+
         KeyCode shootKey = KeyBindManager.Instance?.GetKeyCodeForAction("Shoot") ?? KeyCode.Mouse0;
 
         if (Input.GetKeyDown(shootKey) && Time.time >= nextFireTime && currentAmmo > 0)
@@ -44,7 +46,6 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        // Shooting logic
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
@@ -59,12 +60,10 @@ public class PlayerShooting : MonoBehaviour
             rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
         }
 
-        // Reduce ammo and save to PlayerPrefs
         currentAmmo--;
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
         PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
 
-        // Increase shots fired count and save to PlayerPrefs
         int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0) + 1;
         PlayerPrefs.SetInt("ShotsFired", shotsFired);
         PlayerPrefsKeyTracker.TrackKey("ShotsFired");
@@ -74,28 +73,25 @@ public class PlayerShooting : MonoBehaviour
         UpdateAmmoUI();
         UpdateShotsUI(shotsFired);
 
-        Debug.Log("Shot fired! Total: " + shotsFired + " | Remaining ammo: " + currentAmmo);
+        Debug.Log($"Shot fired! Total: {shotsFired} | Remaining ammo: {currentAmmo}");
     }
 
-    // Updates the UI for ammo count
     void UpdateAmmoUI()
     {
         if (ammoText != null)
         {
-            ammoText.text = currentAmmo.ToString(); // Display only the number
+            ammoText.text = currentAmmo.ToString();
         }
     }
 
-    // Updates the UI for total shots fired
     void UpdateShotsUI(int shots)
     {
         if (shotText != null)
         {
-            shotText.text = shots.ToString(); // Display only the number
+            shotText.text = shots.ToString();
         }
     }
 
-    // Reloads ammo (e.g., from pickups)
     public void AddAmmo(int amount)
     {
         currentAmmo += amount;
@@ -104,12 +100,16 @@ public class PlayerShooting : MonoBehaviour
             currentAmmo = maxAmmo;
         }
 
-        // Save new ammo count
         PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
         PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
         PlayerPrefs.Save();
 
         UpdateAmmoUI();
-        Debug.Log("Ammo reloaded! Current: " + currentAmmo);
+        Debug.Log($"Ammo reloaded! Current: {currentAmmo}");
+    }
+
+    public int GetCurrentAmmo()
+    {
+        return currentAmmo;
     }
 }
