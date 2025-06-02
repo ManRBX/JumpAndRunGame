@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1dd8d7e0b3116cd44874264a97ebd478
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/ZombieWarrior/DeathZombieWarrior.anim
+  uploadId: 600989

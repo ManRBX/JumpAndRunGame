@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d055c12a24479534b9d2e53c184a85ab
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Bat/JumpBat.anim
+  uploadId: 600989

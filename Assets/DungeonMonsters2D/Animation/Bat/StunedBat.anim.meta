@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a1c8caf24d592bb4db0e29846c504fa5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Bat/StunedBat.anim
+  uploadId: 600989

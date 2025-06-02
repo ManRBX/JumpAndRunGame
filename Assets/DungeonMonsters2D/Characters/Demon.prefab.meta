@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0b5757230de2ac846926c905719e30e3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/Demon.prefab
+  uploadId: 600989

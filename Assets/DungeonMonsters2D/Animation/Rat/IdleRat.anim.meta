@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1b260c7e139e2414380b2ef80765f837
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Rat/IdleRat.anim
+  uploadId: 600989

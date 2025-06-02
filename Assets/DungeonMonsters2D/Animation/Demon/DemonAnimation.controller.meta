@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 653cf8bf39e7e4e4280612423831774b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Demon/DemonAnimation.controller
+  uploadId: 600989

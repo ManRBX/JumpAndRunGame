@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 839ada7aadda38e45873f53e2a8565ca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Butcher/TalkButcher.anim
+  uploadId: 600989

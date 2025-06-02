@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc4eb993c6c2e434f88d7a71922b2879
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/Vampire.prefab
+  uploadId: 600989

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5a54c116ba2e8834ba85e27607c46173
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/GhostKnight/IdleGhostKnight.anim
+  uploadId: 600989

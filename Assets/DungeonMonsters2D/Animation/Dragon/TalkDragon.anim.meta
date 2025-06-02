@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: be3b7cfe9b94a2245b65173df04b809e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Dragon/TalkDragon.anim
+  uploadId: 600989

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 409dd68ef7c7a8745926f35c6b044280
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Zombie/IdleZombie.anim
+  uploadId: 600989

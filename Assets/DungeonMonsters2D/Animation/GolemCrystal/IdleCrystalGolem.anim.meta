@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba13f183a3a2b204dab8e6511c4a1927
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/GolemCrystal/IdleCrystalGolem.anim
+  uploadId: 600989

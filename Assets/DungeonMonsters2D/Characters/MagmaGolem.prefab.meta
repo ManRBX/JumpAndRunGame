@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0c7fdddfb0724a241be092dac8fdf9dc
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/MagmaGolem.prefab
+  uploadId: 600989

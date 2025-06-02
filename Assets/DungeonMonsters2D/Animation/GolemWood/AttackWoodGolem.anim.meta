@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3baec47ab2e3de643b439f13022748f3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/GolemWood/AttackWoodGolem.anim
+  uploadId: 600989

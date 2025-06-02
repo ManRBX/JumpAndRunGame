@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 22bcd2f750c1734448230da5690ab4cd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Demon/ClimbDemon.anim
+  uploadId: 600989

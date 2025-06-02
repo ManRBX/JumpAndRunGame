@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e3f10a49adf9da94196f359c3bc3cece
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/SkeletonArcher.prefab
+  uploadId: 600989

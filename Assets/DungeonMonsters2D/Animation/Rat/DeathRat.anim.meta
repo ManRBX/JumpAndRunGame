@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 34f1db0d59fc53742a2b06372464c0fb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Rat/DeathRat.anim
+  uploadId: 600989

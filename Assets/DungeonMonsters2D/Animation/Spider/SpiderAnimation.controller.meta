@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad9c89b7358863f448bb5ad68fa2a164
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Spider/SpiderAnimation.controller
+  uploadId: 600989

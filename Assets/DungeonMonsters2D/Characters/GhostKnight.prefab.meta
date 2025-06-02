@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c73248559e291b94ba9724f9314df423
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/GhostKnight.prefab
+  uploadId: 600989

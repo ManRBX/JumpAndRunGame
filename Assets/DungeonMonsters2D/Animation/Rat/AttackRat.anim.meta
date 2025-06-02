@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ed0ad108ede289e49a063a0addb52131
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Rat/AttackRat.anim
+  uploadId: 600989

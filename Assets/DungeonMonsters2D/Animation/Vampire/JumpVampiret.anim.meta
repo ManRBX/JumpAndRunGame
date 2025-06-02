@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bc24fd4358d18364c9951ea3e02c5e70
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Vampire/JumpVampiret.anim
+  uploadId: 600989

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f79a27ab6f86a034ebf201649c2e25a5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Imp/TalkImp.anim
+  uploadId: 600989

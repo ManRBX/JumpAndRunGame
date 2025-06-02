@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 32b08f481b18b854696111981981354f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Bat/IdleBat.anim
+  uploadId: 600989

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d7db4cbe82dc72f4bbb00f8c0983a465
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Vampire/IdleVampire.anim
+  uploadId: 600989

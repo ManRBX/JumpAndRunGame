@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f4602107911282542bfd45e2bf6bb648
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/Bat.prefab
+  uploadId: 600989

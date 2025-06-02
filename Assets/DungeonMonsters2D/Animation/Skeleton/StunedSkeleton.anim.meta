@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8b9c059b720a24d47b170a33e3498401
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Skeleton/StunedSkeleton.anim
+  uploadId: 600989

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 027b1c9cd4f5b4344995f03cc92fd18e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/Zombie.prefab
+  uploadId: 600989

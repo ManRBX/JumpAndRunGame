@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abba23201910cfe458565d53f1579b57
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/SkeletonArcher/JumpSkeletonArcher.anim
+  uploadId: 600989

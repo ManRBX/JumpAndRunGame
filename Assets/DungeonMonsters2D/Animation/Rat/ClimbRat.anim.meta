@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3fd8f158a9fe100429ef7a861ce056fa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Rat/ClimbRat.anim
+  uploadId: 600989

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5adf00be4d34fca4d8ae5ee97423b497
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/Zombie/ZombieAnimation.controller
+  uploadId: 600989

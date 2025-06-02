@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ac2e89a79ad8b7741b4a030e101a66dc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Animation/GolemStone/AttackGolem.anim
+  uploadId: 600989

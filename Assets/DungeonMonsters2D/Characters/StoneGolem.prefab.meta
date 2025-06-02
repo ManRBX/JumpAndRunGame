@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 42e8d62848b3a7c4c93521c2a038e3da
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/StoneGolem.prefab
+  uploadId: 600989

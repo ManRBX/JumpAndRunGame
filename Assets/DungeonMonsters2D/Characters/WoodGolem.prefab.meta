@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 99384e50b27970c409ae8b0a9ec1d0f0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260797
+  packageName: Animated Dungeon Characters 2D
+  packageVersion: 1.0
+  assetPath: Assets/DungeonMonsters2D/Characters/WoodGolem.prefab
+  uploadId: 600989
