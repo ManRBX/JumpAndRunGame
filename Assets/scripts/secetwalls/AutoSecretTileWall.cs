@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering.Universal;
+using TMPro;
 
 public class AutoSecretTileWall : MonoBehaviour
 {
     [Header("Tilemap-Einstellungen")]
     public Tilemap tilemap;
-    [Tooltip("Diese Tiles gelten als geheime Wände")]
     public List<TileBase> secretTiles;
     public float fadeDuration = 0.5f;
 
@@ -20,10 +20,15 @@ public class AutoSecretTileWall : MonoBehaviour
 
     [Header("Globales Licht Settings")]
     public bool changeGlobalLight = false;
-    public Light2D globalLight; // dein Global Light 2D
-    public float globalLightIntensityInside = 0.5f; // Wie hell es im Secret Room sein soll
-    public float globalLightIntensityOutside = 1f;  // Normale Helligkeit draußen
-    public float globalLightFadeDuration = 0.5f;    // Dauer fürs sanfte Umstellen
+    public Light2D globalLight;
+    public float globalLightIntensityInside = 0.5f;
+    public float globalLightIntensityOutside = 1f;
+    public float globalLightFadeDuration = 0.5f;
+
+    [Header("Secret Name Anzeige")]
+    public string secretName = "Geheimer Raum";
+    public TMP_Text secretNameText;
+    public float secretNameDisplayDuration = 5f;
 
     private List<Vector3Int> secretTilePositions = new List<Vector3Int>();
     private Dictionary<Vector3Int, TileBase> originalTiles = new Dictionary<Vector3Int, TileBase>();
@@ -37,11 +42,6 @@ public class AutoSecretTileWall : MonoBehaviour
         {
             Debug.LogError("Tilemap nicht zugewiesen!");
             return;
-        }
-
-        if (secretTiles == null || secretTiles.Count == 0)
-        {
-            Debug.LogWarning("Keine Secret Tiles angegeben!");
         }
 
         BoundsInt bounds = tilemap.cellBounds;
@@ -62,13 +62,14 @@ public class AutoSecretTileWall : MonoBehaviour
             }
         }
 
-        Debug.Log("Gefundene geheime Wände: " + secretTilePositions.Count);
-
         if (secretRoomLight != null)
             secretRoomLight.enabled = false;
 
         if (playerFlashlight != null)
             playerFlashlight.enabled = false;
+
+        if (secretNameText != null)
+            secretNameText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -85,6 +86,9 @@ public class AutoSecretTileWall : MonoBehaviour
 
             if (changeGlobalLight && globalLight != null)
                 StartCoroutine(FadeGlobalLight(globalLight.intensity, globalLightIntensityInside, globalLightFadeDuration));
+
+            if (secretNameText != null)
+                StartCoroutine(DisplaySecretName());
 
             StartCoroutine(FadeAndDisableTiles());
         }
@@ -107,6 +111,14 @@ public class AutoSecretTileWall : MonoBehaviour
 
             StartCoroutine(FadeAndRestoreTiles());
         }
+    }
+
+    private IEnumerator DisplaySecretName()
+    {
+        secretNameText.text = secretName;
+        secretNameText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(secretNameDisplayDuration);
+        secretNameText.gameObject.SetActive(false);
     }
 
     private IEnumerator FadeAndDisableTiles()
@@ -168,16 +180,10 @@ public class AutoSecretTileWall : MonoBehaviour
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            if (globalLight != null)
-            {
-                globalLight.intensity = Mathf.Lerp(startIntensity, targetIntensity, elapsed / duration);
-            }
+            globalLight.intensity = Mathf.Lerp(startIntensity, targetIntensity, elapsed / duration);
             yield return null;
         }
 
-        if (globalLight != null)
-        {
-            globalLight.intensity = targetIntensity;
-        }
+        globalLight.intensity = targetIntensity;
     }
 }
