@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class PlayerOneWayPlatform : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D playerCollider;
+    [SerializeField] private CapsuleCollider2D playerCollider;
 
     private GameObject currentOneWayPlatform;
 
     void Update()
     {
-        // Instead of checking (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)), 
-        // now you only check ONE action: "DropPlatform".
-        // Default is S or DownArrow (as set in the key bindings).
         if (KeyBindManager.Instance != null &&
             Input.GetKeyDown(KeyBindManager.Instance.GetKeyCodeForAction("DropPlatform")))
         {
@@ -38,16 +35,16 @@ public class PlayerOneWayPlatform : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Temporarily disables collision with the one-way platform, 
-    /// allowing the player to drop through it.
-    /// </summary>
     private IEnumerator DisableCollision()
     {
-        BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
+        // WICHTIG: Richtigen Collider-Typ holen
+        Collider2D platformCollider = currentOneWayPlatform.GetComponent<Collider2D>();
 
-        Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+        if (platformCollider != null)
+        {
+            Physics2D.IgnoreCollision(playerCollider, platformCollider);
+            yield return new WaitForSeconds(0.5f);
+            Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
+        }
     }
 }
