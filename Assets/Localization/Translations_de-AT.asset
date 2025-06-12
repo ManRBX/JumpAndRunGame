@@ -422,6 +422,26 @@ MonoBehaviour:
     m_Localized: Magnet
     m_Metadata:
       m_Items: []
+  - m_Id: 44550880664477696
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44552385626890240
+    m_Localized: Basst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44579508806737920
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44579478079266816
+    m_Localized: Sproch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44579489101897728
+    m_Localized: Germany
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
