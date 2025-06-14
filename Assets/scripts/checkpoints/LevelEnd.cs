@@ -5,114 +5,58 @@ using System.Collections;
 
 public class LevelEnd : MonoBehaviour
 {
-    [Header("🔗 Level Infos")]
-    public string nextLevelName;        // z. B. "Level02"
-    public string currentLevelName;     // z. B. "Level01"
-    public string returnScene = "Menu"; // z. B. "MainMenu"
-
-    [Header("💰 Anforderungen")]
-    public int requiredSpecialCoins = 5;
-
-    [Header("📊 UI")]
-    public TMP_Text coinProgressText;
-
-    private void Start()
+    public enum TriggerType
     {
-        // Beim Start markieren: besucht + freigeschaltet
-        if (currentLevelName == "Level01")
-        {
-            PlayerPrefs.SetInt(currentLevelName + "_Unlocked", 1);
-            PlayerPrefsKeyTracker.TrackKey(currentLevelName + "_Unlocked");
-        }
-
-        PlayerPrefs.SetInt(currentLevelName + "_Visited", 1);
-        PlayerPrefsKeyTracker.TrackKey(currentLevelName + "_Visited");
-
-        PlayerPrefs.SetInt(currentLevelName + "_Completed", 1);
-        PlayerPrefsKeyTracker.TrackKey(currentLevelName + "_Completed");
-
-        PlayerPrefs.Save();
-
-        if (coinProgressText != null)
-            coinProgressText.gameObject.SetActive(false);
+        LevelComplete,
+        LevelUnlock,
+        SecretFound
     }
+
+    [Header("🔗 Level Infos")]
+    public string nextLevelName;
+    public string currentLevelName;
+    public string returnScene = "Menu";
+
+    [Header("🏆 Achievement Settings")]
+    public TriggerType triggerType;
+    [Tooltip("z. B. Level01 und 'Level01-special-coins'")]
+    public string targetID;
+    [Tooltip("Minimale Special Coins, um durchzukommen und Achievement auszulösen.")]
+    public int achievementCoinsRequired = 3;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player")) return;
+        if (!collision.CompareTag("Player"))
+            return;
 
-        int collectedGlobalSpecialCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
-        PlayerPrefsKeyTracker.TrackKey("GlobalSpecialCoins");
+        // Prüfen, ob genug Special Coins vorhanden sind
+        string coinKey = currentLevelName + "-special-coins"; // entspricht "Level01-special-coins" im PlayerPrefs
+        int levelCoins = PlayerPrefs.GetInt(coinKey, 0);
+        Debug.Log($"Special Coins für {targetID}: {levelCoins}/{achievementCoinsRequired}");
 
-        if (collectedGlobalSpecialCoins >= requiredSpecialCoins)
+        if (levelCoins < achievementCoinsRequired)
         {
-            // 🎯 Level abgeschlossen
-            PlayerPrefs.SetInt(currentLevelName + "_Completed", 1);
-            PlayerPrefsKeyTracker.TrackKey(currentLevelName + "_Completed");
-            Debug.Log(currentLevelName + " completed!");
-
-            // 🚀 Steam-Achievement: Level abgeschlossen
-            AchievementProgressTracker.Instance?.OnLevelCompleted(currentLevelName);
-
-            if (!string.IsNullOrEmpty(nextLevelName))
-            {
-                // 🔓 Nächstes Level freischalten
-                PlayerPrefs.SetInt(nextLevelName + "_Unlocked", 1);
-                PlayerPrefsKeyTracker.TrackKey(nextLevelName + "_Unlocked");
-                Debug.Log(nextLevelName + " unlocked!");
-
-                // 🚀 Steam-Achievement: Nächstes Level freigeschaltet
-                AchievementProgressTracker.Instance?.OnLevelUnlocked(nextLevelName);
-            }
-
-            PlayerPrefs.Save();
-
-            // 💾 JSON speichern
-            PlayerPrefsSaver saver = FindObjectOfType<PlayerPrefsSaver>();
-            if (saver != null)
-            {
-                saver.SavePrefsToJson();
-                Debug.Log("📂 PlayerPrefs wurden zusätzlich im JSON gespeichert.");
-            }
-
-            // 🔁 Zurück ins Menü oder nächste Szene
-            SceneManager.LoadScene(returnScene);
-        }
-        else
-        {
-            // ❌ Nicht genug Coins: GameObject nicht entfernen
-            Debug.Log($"❌ Nicht genug Spezial-Coins! Benötigt: {requiredSpecialCoins}, Aktuell: {collectedGlobalSpecialCoins}");
-
-            // Du kannst das GameObject hier aktiv lassen oder andere Logik einfügen
+            Debug.Log($"❌ Du brauchst mindestens {achievementCoinsRequired} Special Coins, um hier weiterzukommen.");
+            return;
         }
 
-        // 🔔 Coin-Anzeige zeigen
-        ShowCoinProgress();
-    }
+        // Ab hier reicht die Anzahl, Achievement auslösen und Szene wechseln
+        switch (triggerType)
+        {
+            case TriggerType.LevelComplete:
+                AchievementProgressTracker.Instance?.OnLevelCompleted(targetID);
+                Debug.Log($"✅ Achievement ausgelöst für {targetID}.");
+                break;
+            case TriggerType.LevelUnlock:
+                AchievementProgressTracker.Instance?.OnLevelUnlocked(targetID);
+                Debug.Log($"✅ LevelUnlock Achievement ausgelöst für {targetID}.");
+                break;
+            case TriggerType.SecretFound:
+                AchievementProgressTracker.Instance?.OnSecretFound(targetID);
+                Debug.Log($"✅ SecretFound Achievement ausgelöst für {targetID}.");
+                break;
+        }
 
-    void UpdateCoinProgressUI()
-    {
-        int collectedGlobalSpecialCoins = PlayerPrefs.GetInt("GlobalSpecialCoins", 0);
-
-        if (coinProgressText != null)
-            coinProgressText.text = $"{collectedGlobalSpecialCoins}/{requiredSpecialCoins}";
-    }
-
-    void ShowCoinProgress()
-    {
-        UpdateCoinProgressUI();
-
-        if (coinProgressText != null)
-            coinProgressText.gameObject.SetActive(true);
-
-        StartCoroutine(HideCoinProgress());
-    }
-
-    IEnumerator HideCoinProgress()
-    {
-        yield return new WaitForSeconds(5f);
-
-        if (coinProgressText != null)
-            coinProgressText.gameObject.SetActive(false);
+        SceneManager.LoadScene(returnScene);
     }
 }

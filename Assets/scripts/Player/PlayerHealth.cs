@@ -214,6 +214,8 @@ public class PlayerHealth : MonoBehaviour
         PlayerPrefs.SetInt("GlobalLives", currentLives);
         PlayerPrefsKeyTracker.TrackKey("GlobalLives");
         Debug.Log($"❤️ Leben: {currentLives}");
+
+        UpdateUI(); // ✅ UI updaten, damit PlayerHealthUI reagiert
     }
 
     public void AddHealth(int amount)

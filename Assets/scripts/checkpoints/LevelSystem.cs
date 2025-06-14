@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ public class LevelSystem : MonoBehaviour
     {
         UpdateLevelButtons();
         UpdateBonusLevelButtons();
+
+        Debug.Log("Prefs vor Update: " +
+    string.Join(", ", levelNames.Select(n => n + ":" + PlayerPrefs.GetInt(n + "_Unlocked", 0))));
     }
 
     void UpdateLevelButtons()
