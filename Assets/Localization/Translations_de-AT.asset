@@ -442,6 +442,46 @@ MonoBehaviour:
     m_Localized: Germany
     m_Metadata:
       m_Items: []
+  - m_Id: 44896329514606592
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45219927378878464
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45281374867808256
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45281562202202112
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45281680020201472
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45282920397529088
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45283260224233472
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45283402193035264
+    m_Localized: Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45282174125989888
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44896583265804288
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

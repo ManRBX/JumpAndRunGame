@@ -283,25 +283,52 @@ public class PlayerMovement : MonoBehaviour
         return applyBrake;
     }
 
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
-
+        // 🟢 FallBrakeLines
         if (fallBrakeLines != null)
         {
             foreach (var line in fallBrakeLines)
             {
                 if (line.lineTransform != null)
                 {
+                    Gizmos.color = line.brakeActive ? Color.green : Color.red;
                     Vector3 left = line.lineTransform.position + Vector3.left * 10f;
                     Vector3 right = line.lineTransform.position + Vector3.right * 10f;
                     Gizmos.DrawLine(left, right);
                 }
             }
         }
+
+        // 🔵 GroundCheckPoints
+        if (groundCheckPoints != null)
+        {
+            Gizmos.color = Color.cyan;
+            foreach (var point in groundCheckPoints)
+            {
+                if (point != null)
+                {
+                    Gizmos.DrawWireSphere(point.position, 0.1f);
+                    Gizmos.DrawLine(point.position, point.position + Vector3.down * groundCheckDistance);
+                }
+            }
+        }
+
+        // 🔴 WallCheckPoints
+        if (wallCheckPoints != null)
+        {
+            Gizmos.color = Color.magenta;
+            foreach (var point in wallCheckPoints)
+            {
+                if (point != null)
+                {
+                    Vector3 direction = transform.localScale.x > 0 ? Vector3.right : Vector3.left;
+                    Gizmos.DrawWireSphere(point.position, 0.1f);
+                    Gizmos.DrawLine(point.position, point.position + direction * wallCheckDistance);
+                }
+            }
+        }
     }
-#endif
 
     void OnCollisionEnter2D(Collision2D collision)
     {

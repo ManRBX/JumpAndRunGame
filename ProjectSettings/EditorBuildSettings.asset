@@ -27,8 +27,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 2bdea2bc0703cbe46bf1c74d2f44e856
   - enabled: 1
-    path: Assets/Scenes/Bonus levels/No Save Zone.unity
-    guid: 937eb4b16d6d6ec408f129972150d686
+    path: Assets/Scenes/Bonus levels/No-save-zone.unity
+    guid: 87e507b22027ef54e8d38eaf3c6044eb
+  - enabled: 1
+    path: "Assets/Scenes/Bonus levels/H\xF6hle.unity"
+    guid: d0e00dccdd44b8b46b447f0b872b3c5a
   - enabled: 1
     path: Assets/Scenes/Levels/Level01.unity
     guid: 2cda990e2423bbf4892e6590ba056729
