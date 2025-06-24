@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &340066558745468348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6284119201918653206}
+  m_Layer: 0
+  m_Name: projektil point
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6284119201918653206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340066558745468348}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.176, y: -0.287, z: 0.013419585}
+  m_LocalScale: {x: 0.3333467, y: 0.3333467, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8791679459371207401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2294520371183298983
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 2294520371183298983}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.237, y: -0.241, z: 0}
+  m_LocalPosition: {x: 0.16, y: -0.346, z: 0}
   m_LocalScale: {x: 2.2256, y: 2.2256, z: 2.2256}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 4283318886822290774}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.026, y: -0.408, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.487, z: 0}
   m_LocalScale: {x: 2.2256, y: 2.2256, z: 2.2256}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +109,7 @@ GameObject:
   - component: {fileID: 8868872225381580875}
   - component: {fileID: 5621657944655335509}
   m_Layer: 0
-  m_Name: Enemy28
+  m_Name: Green Spiker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,12 +124,13 @@ Transform:
   m_GameObject: {fileID: 8106543731608374714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.345451, y: -11.706767, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 21.651, y: -11.85, z: 0}
+  m_LocalScale: {x: 2.9998798, y: 2.9998798, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3404260728946316273}
   - {fileID: 4308958488418485689}
+  - {fileID: 6284119201918653206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2544180348202546498
@@ -124,7 +156,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f124b2bdcad5cc542ac07a1ab4a87699, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
   m_SortingOrder: 10
-  m_Sprite: {fileID: -270009234, guid: 090db90e54c1bdc45be984e75794fd26, type: 3}
+  m_Sprite: {fileID: 1014786190, guid: 80774c1c15bfc154caaae3d057a9810a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -190,17 +222,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.038970172, y: -0.15250087}
+  m_Offset: {x: 0.031575397, y: -0.251015}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6041667, y: 0.8541667}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.45817882, y: 0.5609528}
+  m_Size: {x: 0.31341997, y: 0.4980836}
   m_EdgeRadius: 0
 --- !u!50 &4438696706174846903
 Rigidbody2D:
@@ -239,7 +271,7 @@ Animator:
   m_GameObject: {fileID: 8106543731608374714}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: b2f31915ccbc3e34f95355a245362d83, type: 2}
+  m_Controller: {fileID: 22100000, guid: 2877b297ea1eea442b19f7dc6fc38a65, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -299,9 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c118c84fcb8f14591d0a3e72d37c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletForce: 20
-  fireRate: 1
-  shootRange: 15
+  bulletPrefab: {fileID: 5374076995871560630, guid: 720318f0f472a3447adc6ac83b1dceec, type: 3}
+  firePoint: {fileID: 6284119201918653206}
+  bulletForce: 5
+  fireRate: 3
+  shootRange: 10
   player: {fileID: 0}

@@ -22,6 +22,7 @@ public class PlayerPrefsSaver : MonoBehaviour
     }
 
     [Header("Auto-Save Einstellungen")]
+    public bool enableAutoSave = true;
     public float autoSaveIntervalMinutes = 2f;
     public float saveIntervalSeconds = 1f;
 
@@ -37,8 +38,7 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void Start()
     {
-        nextAutoSaveTime = Time.time + autoSaveIntervalMinutes * 60f;
-        nextSilentSaveTime = Time.time + saveIntervalSeconds;
+        ResetTimers();
 
         if (autoSaveUI != null)
             autoSaveUI.SetActive(false);
@@ -46,6 +46,9 @@ public class PlayerPrefsSaver : MonoBehaviour
 
     private void Update()
     {
+        if (!enableAutoSave)
+            return;
+
         if (Time.time >= nextSilentSaveTime)
         {
             SavePrefsToJson();
@@ -145,5 +148,17 @@ public class PlayerPrefsSaver : MonoBehaviour
     private void OnApplicationQuit()
     {
         SavePrefsToJson();
+    }
+
+    public void ToggleAutoSave(bool isEnabled)
+    {
+        enableAutoSave = isEnabled;
+        ResetTimers();
+    }
+
+    private void ResetTimers()
+    {
+        nextAutoSaveTime = Time.time + autoSaveIntervalMinutes * 60f;
+        nextSilentSaveTime = Time.time + saveIntervalSeconds;
     }
 }

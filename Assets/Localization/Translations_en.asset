@@ -482,6 +482,14 @@ MonoBehaviour:
     m_Localized: Options
     m_Metadata:
       m_Items: []
+  - m_Id: 47874482017132544
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48840663721041920
+    m_Localized: "[C] \u2013 Open Inventory"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -38,4 +38,13 @@ public class EnemyShooting : MonoBehaviour
 
         Debug.Log("Enemy fired a shot in direction: " + direction);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (firePoint == null)
+            return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(firePoint.position, shootRange);
+    }
 }

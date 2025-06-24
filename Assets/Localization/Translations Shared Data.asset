@@ -447,6 +447,14 @@ MonoBehaviour:
     m_Key: Level01/Canvas/Pause Panel/Pause
     m_Metadata:
       m_Items: []
+  - m_Id: 47874482017132544
+    m_Key: Level01/Canvas/GameOver Panel/GameOver text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48840663721041920
+    m_Key: Level01/Canvas/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
