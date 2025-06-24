@@ -156,7 +156,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f124b2bdcad5cc542ac07a1ab4a87699, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5374076995871560630, guid: 720318f0f472a3447adc6ac83b1dceec, type: 3}
   firePoint: {fileID: 8342869676779285152}
-  bulletForce: 6
-  fireRate: 1
-  shootRange: 15
+  bulletForce: 5
+  fireRate: 3
+  shootRange: 10
   player: {fileID: 0}

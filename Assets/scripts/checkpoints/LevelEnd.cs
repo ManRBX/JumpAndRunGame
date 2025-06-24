@@ -29,8 +29,7 @@ public class LevelEnd : MonoBehaviour
         if (!collision.CompareTag("Player"))
             return;
 
-        // Prüfen, ob genug Special Coins vorhanden sind
-        string coinKey = currentLevelName + "-special-coins"; // entspricht "Level01-special-coins" im PlayerPrefs
+        string coinKey = currentLevelName + "-special-coins";
         int levelCoins = PlayerPrefs.GetInt(coinKey, 0);
         Debug.Log($"Special Coins für {targetID}: {levelCoins}/{achievementCoinsRequired}");
 
@@ -40,23 +39,35 @@ public class LevelEnd : MonoBehaviour
             return;
         }
 
-        // Ab hier reicht die Anzahl, Achievement auslösen und Szene wechseln
+        // ✅ Erfolgreich – Achievement + Freischalten
         switch (triggerType)
         {
             case TriggerType.LevelComplete:
                 AchievementProgressTracker.Instance?.OnLevelCompleted(targetID);
                 Debug.Log($"✅ Achievement ausgelöst für {targetID}.");
+
+                // 👉 Level freischalten
+                if (!string.IsNullOrEmpty(nextLevelName))
+                {
+                    string unlockKey = nextLevelName + "_Unlocked";
+                    PlayerPrefs.SetInt(unlockKey, 1);
+                    PlayerPrefs.Save();
+                    Debug.Log($"🔓 Freigeschaltet: {nextLevelName} ({unlockKey})");
+                }
                 break;
+
             case TriggerType.LevelUnlock:
                 AchievementProgressTracker.Instance?.OnLevelUnlocked(targetID);
                 Debug.Log($"✅ LevelUnlock Achievement ausgelöst für {targetID}.");
                 break;
+
             case TriggerType.SecretFound:
                 AchievementProgressTracker.Instance?.OnSecretFound(targetID);
                 Debug.Log($"✅ SecretFound Achievement ausgelöst für {targetID}.");
                 break;
         }
 
+        // Zurück ins Menü oder nächste Szene
         SceneManager.LoadScene(returnScene);
     }
 }

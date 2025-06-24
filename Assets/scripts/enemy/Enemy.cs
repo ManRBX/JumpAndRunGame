@@ -165,7 +165,6 @@ public class Enemy : MonoBehaviour
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                // Check if cheat is active
                 if (!playerHealth.IsInvincibleTo("Enemy"))
                 {
                     animator.SetTrigger("Attack");
@@ -222,7 +221,6 @@ public class Enemy : MonoBehaviour
         FindObjectOfType<AchievementProgressTracker>()?.AddKill();
 
         Debug.Log("Enemy killed!");
-
         AddPointsOnDeath();
 
         animator.ResetTrigger("Attack");
@@ -232,10 +230,7 @@ public class Enemy : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Kinematic;
         enemyCollider.enabled = false;
 
-        if (deathEffect != null)
-        {
-            deathEffect.Play();
-        }
+        if (deathEffect != null) deathEffect.Play();
 
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = false;
@@ -248,10 +243,8 @@ public class Enemy : MonoBehaviour
     IEnumerator HandleDeathAnimation()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
-
         spriteRenderer.enabled = false;
         yield return new WaitForSeconds(respawnTime);
-
         Respawn();
     }
 
@@ -325,5 +318,34 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(spawnPosition == Vector3.zero ? transform.position : spawnPosition, playerRespawnCheckRadius);
+    }
+
+    void OnDrawGizmos()
+    {
+        Vector3 basePosition = Application.isPlaying ? spawnPosition : transform.position;
+
+        // 🟡 Patrouillenbereich
+        Gizmos.color = Color.yellow;
+        Vector3 leftPos = new Vector3(basePosition.x - leftDistance, basePosition.y, basePosition.z);
+        Vector3 rightPos = new Vector3(basePosition.x + rightDistance, basePosition.y, basePosition.z);
+        Gizmos.DrawLine(leftPos, rightPos);
+        Gizmos.DrawSphere(leftPos, 0.1f);
+        Gizmos.DrawSphere(rightPos, 0.1f);
+
+        // 🔴 Ground Check
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
+        }
+
+        // 🔵 Wall Check
+        if (wallCheck != null)
+        {
+            Gizmos.color = Color.cyan;
+            Vector3 dir = Application.isPlaying ? (movingRight ? Vector3.right : Vector3.left) : Vector3.right;
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + dir * wallCheckDistance);
+            Gizmos.DrawSphere(wallCheck.position, 0.05f);
+        }
     }
 }

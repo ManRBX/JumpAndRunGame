@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-German (Austria) (de-AT)
   m_GUID: d0b4224a8d902e746a2ab07ef1b67c9e
-  m_SerializeEntries:
-  - m_GUID: 722fb4b9512e44944b98a875a5badb0c
-    m_Address: Translations_de-AT
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-de-AT
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 886db76365734f74c8e81f0e2829c484, type: 2}
   m_SchemaSet:

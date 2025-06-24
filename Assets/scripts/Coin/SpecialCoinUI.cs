@@ -41,7 +41,7 @@ public class SpecialCoinUI : MonoBehaviour
             }
             else
             {
-                coinImages[i].color = new Color(1, 1, 1, 0f);
+                coinImages[i].color = new Color(1, 1, 1, 0.14f);
             }
         }
     }

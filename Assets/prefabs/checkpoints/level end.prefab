@@ -169,7 +169,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f124b2bdcad5cc542ac07a1ab4a87699, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,8 +216,9 @@ MonoBehaviour:
   nextLevelName: Level02
   currentLevelName: Level01
   returnScene: Menu
-  requiredSpecialCoins: 5
-  coinProgressText: {fileID: 0}
+  triggerType: 0
+  targetID: 
+  achievementCoinsRequired: 3
 --- !u!61 &3956489478129303200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -278,3 +279,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerType: 0
   targetID: Level01_Completed
+  requiredSpecialCoins: 3

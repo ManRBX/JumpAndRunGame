@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Steamworks;
-using System.Linq; // Wichtig für .Contains
+using System.Linq;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -26,6 +26,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Damage Feedback")]
     public Color damageColor = Color.red;
     public float damageFlashDuration = 0.1f;
+
+    [Header("Game Over UI")]
+    public GameObject gameOverPanel;
 
     private SpriteRenderer spriteRenderer;
     private PlayerHealthUI playerHealthUI;
@@ -146,7 +149,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            RestartGame();
+            ShowGameOver();
         }
 
         if (playerHealthUI != null)
@@ -160,6 +163,19 @@ public class PlayerHealth : MonoBehaviour
             saver.SavePrefsToJson();
             Debug.Log("📂 PlayerPrefs wurden auch als JSON gespeichert.");
         }
+    }
+
+    void ShowGameOver()
+    {
+        Debug.Log("💀 Game Over!");
+
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+            AddLife(5); // UI aktualisieren, auch wenn keine Leben mehr übrig sind
+        }
+
+        Time.timeScale = 0f;
     }
 
     void Respawn()
@@ -209,13 +225,17 @@ public class PlayerHealth : MonoBehaviour
 
     public void AddLife(int amount)
     {
-        int currentLives = PlayerPrefs.GetInt("GlobalLives", 3);
+        int currentLives = PlayerPrefs.GetInt(LivesKey, 3);
         currentLives += amount;
-        PlayerPrefs.SetInt("GlobalLives", currentLives);
-        PlayerPrefsKeyTracker.TrackKey("GlobalLives");
+        PlayerPrefs.SetInt(LivesKey, currentLives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
         Debug.Log($"❤️ Leben: {currentLives}");
+        UpdateUI();
+    }
 
-        UpdateUI(); // ✅ UI updaten, damit PlayerHealthUI reagiert
+    public void RespawnExtern()
+    {
+        Respawn();
     }
 
     public void AddHealth(int amount)
@@ -243,5 +263,25 @@ public class PlayerHealth : MonoBehaviour
     public bool IsInvincibleTo(string sourceTag)
     {
         return isInvincible && invincibleSafeTags.Contains(sourceTag);
+    }
+
+    // 👇 Wird vom "Play"-Button im Game Over Panel aufgerufen
+    public void ContinueAfterGameOver()
+    {
+        PlayerPrefs.SetInt(LivesKey, defaultLives);
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
+        PlayerPrefs.Save();
+
+        Time.timeScale = 1f; // Spiel wieder starten
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("🔁 Neustart nach Game Over mit 5 Leben.");
+    }
+
+    // 👇 Wird vom "Main Menu"-Button im Game Over Panel aufgerufen
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
+        Debug.Log("🏠 Zurück ins Hauptmenü.");
     }
 }

@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 3180780301597286893}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.008, y: 0.041, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Intensity: 10
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000790ff027e32a4aa5
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 4
+  m_PointLightOuterRadius: 2.5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -389,6 +389,7 @@ MonoBehaviour:
   invincibilityDuration: 1
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   damageFlashDuration: 0.1
+  gameOverPanel: {fileID: 0}
 --- !u!114 &6369268848354313587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +409,8 @@ MonoBehaviour:
   fireRate: 0.5
   ammoText: {fileID: 0}
   shotText: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  defaultAmmo: 30
 --- !u!114 &6730816259622673345
 MonoBehaviour:
   m_ObjectHideFlags: 0

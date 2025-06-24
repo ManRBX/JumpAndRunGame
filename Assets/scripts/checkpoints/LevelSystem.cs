@@ -1,72 +1,84 @@
-﻿using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelSystem : MonoBehaviour
 {
-    [Header("Normale Level")]
-    public Button[] levelButtons;
-    public string[] levelNames;
-
-    [Header("Bonus-Level")]
-    public Button[] bonusButtons;
-    public string[] bonusLevelNames;
-
-    void Start()
+    [System.Serializable]
+    public class LevelButtonEntry
     {
-        UpdateLevelButtons();
-        UpdateBonusLevelButtons();
-
-        Debug.Log("Prefs vor Update: " +
-    string.Join(", ", levelNames.Select(n => n + ":" + PlayerPrefs.GetInt(n + "_Unlocked", 0))));
+        public string levelName;
+        public Button button;
     }
 
-    void UpdateLevelButtons()
-    {
-        for (int i = 0; i < levelButtons.Length && i < levelNames.Length; i++)
-        {
-            string levelKey = levelNames[i] + "_Unlocked";
+    [Header("Normale Level")]
+    public LevelButtonEntry[] levelEntries;
 
-            if (i == 0)
+    [Header("Bonus-Level")]
+    public LevelButtonEntry[] bonusEntries;
+
+    private void Start()
+    {
+        UpdateLevelButtons(levelEntries);
+        UpdateLevelButtons(bonusEntries);
+    }
+
+    private void UpdateLevelButtons(LevelButtonEntry[] entries)
+    {
+        for (int i = 0; i < entries.Length; i++)
+        {
+            string key = entries[i].levelName + "_Unlocked";
+            bool keyExists = PlayerPrefs.HasKey(key);
+            bool isUnlocked = keyExists && PlayerPrefs.GetInt(key) == 1;
+
+            // Nur das erste Level ist immer freigeschaltet
+            if (i == 0) isUnlocked = true;
+
+            entries[i].button.interactable = true; // Immer interaktiv, Farbe regelt Anzeige
+
+            // 🎨 Button-Hintergrundfarbe setzen
+            ColorBlock colors = entries[i].button.colors;
+            if (isUnlocked)
             {
-                levelButtons[i].interactable = true; // erstes Level ist immer frei
+                colors.normalColor = Color.white;
+                colors.highlightedColor = Color.white;
+                colors.pressedColor = new Color(0.8f, 0.8f, 0.8f);
+                colors.disabledColor = Color.gray;
             }
             else
             {
-                levelButtons[i].interactable = PlayerPrefs.GetInt(levelKey, 0) == 1;
+                colors.normalColor = Color.black;
+                colors.highlightedColor = Color.black;
+                colors.pressedColor = Color.black;
+                colors.disabledColor = Color.black;
             }
+            entries[i].button.colors = colors;
+
+            // 📝 Text-Farbe setzen (Text Legacy)
+            Text buttonText = entries[i].button.GetComponentInChildren<Text>();
+            if (buttonText != null)
+            {
+                buttonText.color = isUnlocked ? Color.white : Color.black;
+            }
+
+            // Events nicht automatisch setzen – du nutzt TryLoadScene im OnClick!
         }
     }
 
-    void UpdateBonusLevelButtons()
+    // 👉 Diese Methode kannst du im Button-OnClick eintragen!
+    public void TryLoadScene(string levelName)
     {
-        for (int i = 0; i < bonusButtons.Length && i < bonusLevelNames.Length; i++)
-        {
-            string bonusKey = bonusLevelNames[i] + "_Unlocked";
-            bonusButtons[i].interactable = PlayerPrefs.GetInt(bonusKey, 0) == 1;
-        }
-    }
+        string key = levelName + "_Unlocked";
+        bool isUnlocked = PlayerPrefs.HasKey(key) && PlayerPrefs.GetInt(key) == 1;
 
-    public void LoadLevelByName(string levelName)
-    {
-        string unlockKey = levelName + "_Unlocked";
-        bool isUnlocked = PlayerPrefs.GetInt(unlockKey, 0) == 1;
-
-        if (!isUnlocked)
-        {
-            Debug.LogWarning("❌ Zugriff auf '" + levelName + "' verweigert – nicht freigeschaltet! (Key: " + unlockKey + ")");
-            return;
-        }
-
-        if (Application.CanStreamedLevelBeLoaded(levelName))
+        if (isUnlocked || levelName == "Level01") // Level01 immer erlaubt
         {
             Debug.Log("✅ Lade Level: " + levelName);
             SceneManager.LoadScene(levelName);
         }
         else
         {
-            Debug.LogError("❌ Szene '" + levelName + "' ist nicht im Build enthalten!");
+            Debug.LogWarning("❌ Zugriff verweigert: " + levelName + " ist gesperrt.");
         }
     }
 }

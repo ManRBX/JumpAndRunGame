@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
-using TMPro;  // TMP import
+using TMPro;  // Für den TextMeshPro Text
 
 public class PlayerHealthUI : MonoBehaviour
 {
-    private const string LivesKey = "GlobalLives"; // Key for stored lives
-    public TMP_Text livesText;  // TMP_Text for the lives display
+    private const string LivesKey = "GlobalLives"; // PlayerPrefs-Key für die Leben
+    public TMP_Text livesText;  // Textfeld im UI, das die Leben anzeigt
 
     void Start()
     {
+        // Falls noch keine Leben gespeichert wurden, setze sie auf 5
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, 5);
             PlayerPrefs.Save();
         }
 
-        PlayerPrefsKeyTracker.TrackKey(LivesKey); // 👈 immer tracken, auch wenn er schon da ist
+        // Key registrieren für spätere JSON-Exports o. Ä.
+        PlayerPrefsKeyTracker.TrackKey(LivesKey);
+
+        // UI sofort aktualisieren
         UpdateLivesUI();
     }
 
+    // Diese Methode kann man manuell aufrufen, um Leben zu ändern und das UI zu aktualisieren
     public void ChangeLives(int newLives)
     {
         PlayerPrefs.SetInt(LivesKey, newLives);
@@ -26,16 +31,17 @@ public class PlayerHealthUI : MonoBehaviour
         UpdateLivesUI();
     }
 
+    // Diese Methode aktualisiert den Text im UI
     public void UpdateLivesUI()
     {
         if (livesText != null)
         {
-            int currentLives = PlayerPrefs.GetInt(LivesKey, 5); // Hole die Leben aus den PlayerPrefs (Standardwert: 5)
-            livesText.text = currentLives.ToString(); // Setze die Textanzeige auf die aktuelle Anzahl der Leben
+            int currentLives = PlayerPrefs.GetInt(LivesKey, 5); // Hole aktuelle Leben
+            livesText.text = currentLives.ToString(); // Zeige sie im Textfeld an
         }
         else
         {
-            Debug.LogWarning("livesText ist nicht zugewiesen!");
+            Debug.LogWarning("⚠️ livesText ist im Inspector nicht zugewiesen!");
         }
     }
 }

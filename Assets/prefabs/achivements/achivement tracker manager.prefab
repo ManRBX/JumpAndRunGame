@@ -48,9 +48,15 @@ MonoBehaviour:
   - achievementID: Coin_10
     requiredAmount: 10
     unlocked: 0
+  - achievementID: Coin_50
+    requiredAmount: 50
+    unlocked: 0
   killAchievements:
   - achievementID: Kill_10
     requiredAmount: 10
+    unlocked: 0
+  - achievementID: Kill_50
+    requiredAmount: 50
     unlocked: 0
   completedLevels:
   - ID: Level01_Completed
@@ -59,5 +65,7 @@ MonoBehaviour:
   - ID: level02_visited
     unlocked: 0
   secretRooms:
-  - ID: Secret_gefunden1
+  - ID: "T\xFCren ohne Schl\xFCssel"
+    unlocked: 0
+  - ID: "Echoh\xF6hle"
     unlocked: 0

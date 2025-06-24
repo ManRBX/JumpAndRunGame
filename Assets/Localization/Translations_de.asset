@@ -482,6 +482,14 @@ MonoBehaviour:
     m_Localized: Optionen
     m_Metadata:
       m_Items: []
+  - m_Id: 47874482017132544
+    m_Localized: SPIEL VORBEI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48840663721041920
+    m_Localized: "[C] \u2013 Inventar \xF6ffnen"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

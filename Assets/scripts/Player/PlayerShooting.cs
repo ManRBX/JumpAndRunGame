@@ -1,5 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class PlayerShooting : MonoBehaviour
     public float bulletForce = 20f;
     public int maxAmmo = 60;
     private int currentAmmo;
+    private const string AmmoKey = "GlobalAmmo";
+    private const string ShotsFiredKey = "ShotsFired";
 
     [Header("Cooldown Settings")]
     public float fireRate = 0.5f;
@@ -17,20 +21,32 @@ public class PlayerShooting : MonoBehaviour
     [Header("UI Settings")]
     public TMP_Text ammoText;
     public TMP_Text shotText;
+    public GameObject gameOverPanel;
 
-    void Start()
+    [Header("Default Settings")]
+    public int defaultAmmo = 30;
+
+    private void Start()
     {
-        currentAmmo = PlayerPrefs.GetInt("GlobalAmmo", maxAmmo);
-        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
+        if (!PlayerPrefs.HasKey(AmmoKey))
+        {
+            PlayerPrefs.SetInt(AmmoKey, defaultAmmo);
+            PlayerPrefsKeyTracker.TrackKey(AmmoKey);
+        }
 
-        int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0);
-        PlayerPrefsKeyTracker.TrackKey("ShotsFired");
+        if (!PlayerPrefs.HasKey(ShotsFiredKey))
+        {
+            PlayerPrefs.SetInt(ShotsFiredKey, 0);
+            PlayerPrefsKeyTracker.TrackKey(ShotsFiredKey);
+        }
 
-        UpdateAmmoUI();
-        UpdateShotsUI(shotsFired);
+        PlayerPrefs.Save();
+
+        SetAmmoFromPrefs();
+        UpdateShotsUI(PlayerPrefs.GetInt(ShotsFiredKey, 0));
     }
 
-    void Update()
+    private void Update()
     {
         if (GameStateManager.IsGamePaused)
             return;
@@ -44,7 +60,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    void Shoot()
+    private void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
@@ -61,51 +77,81 @@ public class PlayerShooting : MonoBehaviour
         }
 
         currentAmmo--;
-        PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
-        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
+        PlayerPrefs.SetInt(AmmoKey, currentAmmo);
+        PlayerPrefsKeyTracker.TrackKey(AmmoKey);
 
-        int shotsFired = PlayerPrefs.GetInt("ShotsFired", 0) + 1;
-        PlayerPrefs.SetInt("ShotsFired", shotsFired);
-        PlayerPrefsKeyTracker.TrackKey("ShotsFired");
+        int shotsFired = PlayerPrefs.GetInt(ShotsFiredKey, 0) + 1;
+        PlayerPrefs.SetInt(ShotsFiredKey, shotsFired);
+        PlayerPrefsKeyTracker.TrackKey(ShotsFiredKey);
 
         PlayerPrefs.Save();
 
         UpdateAmmoUI();
         UpdateShotsUI(shotsFired);
 
-        Debug.Log($"Shot fired! Total: {shotsFired} | Remaining ammo: {currentAmmo}");
-    }
-
-    void UpdateAmmoUI()
-    {
-        if (ammoText != null)
-        {
-            ammoText.text = currentAmmo.ToString();
-        }
-    }
-
-    void UpdateShotsUI(int shots)
-    {
-        if (shotText != null)
-        {
-            shotText.text = shots.ToString();
-        }
+        Debug.Log($"🔫 Shot fired! Total shots: {shotsFired}, Ammo left: {currentAmmo}");
     }
 
     public void AddAmmo(int amount)
     {
         currentAmmo += amount;
         if (currentAmmo > maxAmmo)
-        {
             currentAmmo = maxAmmo;
-        }
 
-        PlayerPrefs.SetInt("GlobalAmmo", currentAmmo);
-        PlayerPrefsKeyTracker.TrackKey("GlobalAmmo");
+        PlayerPrefs.SetInt(AmmoKey, currentAmmo);
+        PlayerPrefsKeyTracker.TrackKey(AmmoKey);
         PlayerPrefs.Save();
 
         UpdateAmmoUI();
-        Debug.Log($"Ammo reloaded! Current: {currentAmmo}");
+        Debug.Log($"🧨 Munition aufgeladen: {currentAmmo}");
+    }
+
+    public void SetAmmoFromPrefs()
+    {
+        currentAmmo = PlayerPrefs.GetInt(AmmoKey, defaultAmmo);
+        UpdateAmmoUI();
+        Debug.Log($"🔁 Munition gesetzt aus PlayerPrefs: {currentAmmo}");
+    }
+
+    public void ShowGameOver()
+    {
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+            Debug.Log("💀 Kein Schuss mehr! Game Over Panel geöffnet.");
+        }
+
+        Time.timeScale = 0f;
+    }
+
+    public void ContinueAfterGameOver()
+    {
+        PlayerPrefs.SetInt(AmmoKey, defaultAmmo);
+        PlayerPrefsKeyTracker.TrackKey(AmmoKey);
+        PlayerPrefs.Save();
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("🔁 Neustart nach Game Over mit voller Munition.");
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
+        Debug.Log("🏠 Zurück ins Hauptmenü.");
+    }
+
+    private void UpdateAmmoUI()
+    {
+        if (ammoText != null)
+            ammoText.text = currentAmmo.ToString();
+    }
+
+    private void UpdateShotsUI(int shots)
+    {
+        if (shotText != null)
+            shotText.text = shots.ToString();
     }
 
     public int GetCurrentAmmo()

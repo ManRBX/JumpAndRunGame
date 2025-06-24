@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 927854485504
-    m_Localized: "D\xFCtsch"
+    m_Localized: Deutsch
     m_Metadata:
       m_Items: []
   - m_Id: 2825701548032
@@ -35,23 +35,23 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8591573508096
-    m_Localized: 'Musik '
+    m_Localized: "Lautst\xE4rke:"
     m_Metadata:
       m_Items: []
   - m_Id: 7315393601536
-    m_Localized: "Voib\xFCd:"
+    m_Localized: 'Vollbild:'
     m_Metadata:
       m_Items: []
   - m_Id: 27977285885952
-    m_Localized: "Sp\xFC Startn"
+    m_Localized: Start
     m_Metadata:
       m_Items: []
   - m_Id: 28129958551552
-    m_Localized: Statistikn
+    m_Localized: Statistiken
     m_Metadata:
       m_Items: []
   - m_Id: 28457986678784
-    m_Localized: "Sp\xFC beendn"
+    m_Localized: Beenden
     m_Metadata:
       m_Items: []
   - m_Id: 28340927848448
@@ -63,11 +63,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26801200417464320
-    m_Localized: Na
+    m_Localized: Nein
     m_Metadata:
       m_Items: []
   - m_Id: 26801149599277056
-    m_Localized: Joa
+    m_Localized: Ja
     m_Metadata:
       m_Items: []
   - m_Id: 26803729247232000
@@ -75,11 +75,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
-    m_Localized: Joa
+    m_Localized: Ja
     m_Metadata:
       m_Items: []
   - m_Id: 26830353401372672
-    m_Localized: Na
+    m_Localized: Nein
     m_Metadata:
       m_Items: []
   - m_Id: 27574744709586944
@@ -87,7 +87,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27574854159949824
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27574890570702848
@@ -123,7 +123,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576336569589760
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27576378692984832
@@ -131,7 +131,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576696512176128
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27576741840019456
@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578575652642816
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27578557122207744
@@ -171,7 +171,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578098953216000
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27578072847867904
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577742663868416
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27577723558813696
@@ -203,7 +203,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577555358834688
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27577528607563776
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577182992719872
-    m_Localized: "Speichan und zrugg zum Hauptmen\xFC"
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 27577147206918144
@@ -243,35 +243,35 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26803780388380672
-    m_Localized: Neustart
+    m_Localized: "Zur\xFCcksetzen"
     m_Metadata:
       m_Items: []
   - m_Id: 27575832447803392
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: 'Das spiel wird gespeichert! '
     m_Metadata:
       m_Items: []
   - m_Id: 27576077797810176
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 27576931258982400
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 27578685979615232
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 27578007160872960
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 27577876042735616
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 27577433002598400
-    m_Localized: "Des Sp\xFC wird gspeichert, oida!"
+    m_Localized: Das spiel wird gespeichert!
     m_Metadata:
       m_Items: []
   - m_Id: 28643895009280
@@ -295,7 +295,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 282066724839424
-    m_Localized: Bonus Level
+    m_Localized: 'LEVEL AUSWAHL:'
     m_Metadata:
       m_Items: []
   - m_Id: 428740310982656
@@ -319,11 +319,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26801502596096000
-    m_Localized: Druck a Knopf...
+    m_Localized: Drucke eine Taste...
     m_Metadata:
       m_Items: []
   - m_Id: 26803179520778240
-    m_Localized: Knopf is scho belegt
+    m_Localized: Taste bereits belegt!
     m_Metadata:
       m_Items: []
   - m_Id: 26830201936666624
@@ -331,7 +331,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 28526982462431232
-    m_Localized: Sproch
+    m_Localized: Sprache
     m_Metadata:
       m_Items: []
   - m_Id: 37284524776742912
@@ -480,6 +480,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 44896583265804288
     m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48840663721041920
+    m_Localized: "[C] \u2013 Inventar \xF6ffnen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47874482017132544
+    m_Localized: SPIEL VORBEI
     m_Metadata:
       m_Items: []
   references:
