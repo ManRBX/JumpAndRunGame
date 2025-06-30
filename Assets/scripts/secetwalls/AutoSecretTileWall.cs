@@ -26,6 +26,7 @@ public class AutoSecretTileWall : MonoBehaviour
     public float globalLightFadeDuration = 0.5f;
 
     [Header("Secret Name Anzeige")]
+    public bool displaySecretName = true;
     public string secretName = "Geheimer Raum";
     public TMP_Text secretNameText;
     public float secretNameDisplayDuration = 5f;
@@ -87,7 +88,7 @@ public class AutoSecretTileWall : MonoBehaviour
             if (changeGlobalLight && globalLight != null)
                 StartCoroutine(FadeGlobalLight(globalLight.intensity, globalLightIntensityInside, globalLightFadeDuration));
 
-            if (secretNameText != null)
+            if (displaySecretName && secretNameText != null)
                 StartCoroutine(DisplaySecretName());
 
             StartCoroutine(FadeAndDisableTiles());

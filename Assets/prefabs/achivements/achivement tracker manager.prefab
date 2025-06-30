@@ -69,3 +69,13 @@ MonoBehaviour:
     unlocked: 0
   - ID: "Echoh\xF6hle"
     unlocked: 0
+  objectFound:
+  - ID: "BonusM\xFCnzeGefundenImErstenBonuslevel_M\xFCnze_001"
+    unlocked: 0
+  - ID: "BonusM\xFCnzeGefundenImErstenBonuslevel_M\xFCnze_002"
+    unlocked: 0
+  - ID: "BonusM\xFCnzeGefundenImErstenBonuslevel_M\xFCnze_003"
+    unlocked: 0
+  bonusLevels:
+  - ID: "T\xFCren ohne Schl\xFCssel BonusLevel"
+    unlocked: 0

@@ -21,6 +21,12 @@ public class AchievementProgressTracker : MonoBehaviour
     [Header("🕵️ Geheimräume entdeckt")]
     public List<AchievementFlag> secretRooms;
 
+    [Header("🔍 Objekte gefunden")]
+    public List<AchievementFlag> objectFound;
+
+    [Header("🎮 Bonus-Level gefunden")]
+    public List<AchievementFlag> bonusLevels;
+
     private int coinsCollected;
     private int enemiesKilled;
 
@@ -45,6 +51,8 @@ public class AchievementProgressTracker : MonoBehaviour
         CheckFlags(completedLevels, "_Completed");
         CheckFlags(unlockedLevels, "_Unlocked");
         CheckFlags(secretRooms, "SecretFound_");
+        CheckFlags(objectFound, "ObjectFound_");
+        CheckFlags(bonusLevels, "BonusLevelFound_");
     }
 
     public void AddCoin()
@@ -84,17 +92,27 @@ public class AchievementProgressTracker : MonoBehaviour
 
     public void OnLevelCompleted(string levelID)
     {
-        SteamAchievementManager.Unlock(levelID);
+        UnlockFlag(levelID, completedLevels, "_Completed", levelID);
     }
 
     public void OnLevelUnlocked(string levelID)
     {
-        SteamAchievementManager.Unlock(levelID);
+        UnlockFlag(levelID, unlockedLevels, "_Unlocked", levelID);
     }
 
     public void OnSecretFound(string secretID)
     {
-        SteamAchievementManager.Unlock(secretID);
+        UnlockFlag(secretID, secretRooms, "SecretFound_", secretID);
+    }
+
+    public void OnObjectFound(string objectID)
+    {
+        UnlockFlag(objectID, objectFound, "ObjectFound_", objectID);
+    }
+
+    public void OnBonusLevelFound(string bonusLevelID)
+    {
+        UnlockFlag(bonusLevelID, bonusLevels, "BonusLevelFound_", bonusLevelID);
     }
 
     private void UnlockFlag(string id, List<AchievementFlag> list, string keyPrefix, string achievementID)
@@ -102,10 +120,11 @@ public class AchievementProgressTracker : MonoBehaviour
         string key = keyPrefix + id;
         foreach (var entry in list)
         {
-            if (entry.ID.ToUpper() == id.ToUpper() && !PlayerPrefs.HasKey(key))
+            if (entry.ID.Equals(id, System.StringComparison.OrdinalIgnoreCase) && !PlayerPrefs.HasKey(key))
             {
                 PlayerPrefs.SetInt(key, 1);
                 SteamAchievementManager.Unlock(achievementID);
+                entry.unlocked = true;
                 Debug.Log($"✅ Achievement freigeschaltet: {achievementID}");
                 break;
             }
