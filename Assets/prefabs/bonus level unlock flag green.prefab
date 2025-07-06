@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2962854483573645673}
   - component: {fileID: 7907790760357245807}
   - component: {fileID: 7481040024282761303}
+  - component: {fileID: 8856903867331635489}
   m_Layer: 0
   m_Name: bonus level unlock flag green
   m_TagString: Untagged
@@ -153,6 +154,21 @@ MonoBehaviour:
   unlockMessageText: {fileID: 0}
   messageDuration: 3
   onlyOnce: 1
+--- !u!114 &8856903867331635489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493200954601438294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255ef69e2f5b9214f90190285cf46f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerType: 0
+  targetID: 
+  requiredSpecialCoins: 3
 --- !u!1 &1907691442044913295
 GameObject:
   m_ObjectHideFlags: 0

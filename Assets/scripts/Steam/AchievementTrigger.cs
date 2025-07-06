@@ -6,7 +6,9 @@ public class AchievementTrigger : MonoBehaviour
     {
         LevelComplete,
         LevelUnlock,
-        SecretFound
+        SecretFound,
+        ObjectFound,
+        BonusLevelFound,
     }
 
     public TriggerType triggerType;
@@ -44,10 +46,22 @@ public class AchievementTrigger : MonoBehaviour
 
             case TriggerType.LevelUnlock:
                 AchievementProgressTracker.Instance?.OnLevelUnlocked(targetID);
+                Debug.Log($"✅ LevelUnlock Achievement ausgelöst für {targetID}.");
                 break;
 
             case TriggerType.SecretFound:
                 AchievementProgressTracker.Instance?.OnSecretFound(targetID);
+                Debug.Log($"✅ Secret Found Achievement ausgelöst für {targetID}.");
+                break;
+
+            case TriggerType.ObjectFound:
+                AchievementProgressTracker.Instance?.OnObjectFound(targetID);
+                Debug.Log($"✅ Object Found Achievement ausgelöst für {targetID}.");
+                break;
+
+            case TriggerType.BonusLevelFound:
+                AchievementProgressTracker.Instance?.OnBonusLevelFound(targetID);
+                Debug.Log($"✅ Bonus Level Achievement ausgelöst für {targetID}.");
                 break;
         }
     }
