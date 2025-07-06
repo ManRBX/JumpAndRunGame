@@ -455,6 +455,10 @@ MonoBehaviour:
     m_Key: Level01/Canvas/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 52458677645336576
+    m_Key: Menu/Canvas/optionen Panel/SFX Volume
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

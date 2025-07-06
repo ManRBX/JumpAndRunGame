@@ -63,7 +63,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level10.unity
     guid: 59d171d170d334643892450a05baec2c
   - enabled: 1
-    path: "Assets/Scenes/Bonus levels/T\xFCren ohne Schl\xFCssel.unity"
+    path: "Assets/Scenes/Bonus levels/T\xFCren-ohne-Schl\xFCssel.unity"
     guid: eff4b11f2854e7e4d91063d277f24bd2
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 051b127d157c7be4fb09229b026f5865, type: 2}

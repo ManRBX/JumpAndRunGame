@@ -490,6 +490,10 @@ MonoBehaviour:
     m_Localized: "[C] \u2013 Inventar \xF6ffnen"
     m_Metadata:
       m_Items: []
+  - m_Id: 52458677645336576
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

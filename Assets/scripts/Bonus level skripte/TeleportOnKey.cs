@@ -1,15 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TeleportOnKey : MonoBehaviour
 {
-    [Header("Teleport-Ziel")]
+    [Header("🔄 Teleport-Ziel")]
     public Transform teleportDestination;
 
-    [Header("Taste f�r Teleport")]
+    [Header("🕹️ Taste für Teleport")]
     public KeyCode teleportKey = KeyCode.E;
 
-    [Header("Nur Spieler darf teleportieren")]
+    [Header("🚪 Nur Spieler darf teleportieren")]
     public string playerTag = "Player";
+
+    [Header("🔊 Teleport-Sound")]
+    public AudioSource teleportSound;
+
+    [Header("⏱️ Cooldown")]
+    public float teleportCooldown = 5f; // Sekunden
+    private float lastTeleportTime = -Mathf.Infinity;
 
     private bool isPlayerInZone = false;
     private GameObject player;
@@ -36,7 +43,20 @@ public class TeleportOnKey : MonoBehaviour
     {
         if (isPlayerInZone && Input.GetKeyDown(teleportKey) && teleportDestination != null && player != null)
         {
-            player.transform.position = teleportDestination.position;
+            // Nur wenn der Cooldown abgelaufen ist
+            if (Time.time >= lastTeleportTime + teleportCooldown)
+            {
+                player.transform.position = teleportDestination.position;
+
+                if (teleportSound != null)
+                    teleportSound.Play();
+
+                lastTeleportTime = Time.time;
+            }
+            else
+            {
+                Debug.Log("⏳ Teleport noch im Cooldown!");
+            }
         }
     }
 }

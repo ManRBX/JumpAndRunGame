@@ -61,6 +61,8 @@ MonoBehaviour:
   completedLevels:
   - ID: Level01_Completed
     unlocked: 0
+  - ID: "T\xFCren_ohne_Schl\xFCssel_Abgeschlossen_BonusLevel"
+    unlocked: 0
   unlockedLevels:
   - ID: level02_visited
     unlocked: 0
@@ -77,5 +79,5 @@ MonoBehaviour:
   - ID: "BonusM\xFCnzeGefundenImErstenBonuslevel_M\xFCnze_003"
     unlocked: 0
   bonusLevels:
-  - ID: "T\xFCren ohne Schl\xFCssel BonusLevel"
+  - ID: "T\xFCren-ohne-Schl\xFCssel-Level"
     unlocked: 0
