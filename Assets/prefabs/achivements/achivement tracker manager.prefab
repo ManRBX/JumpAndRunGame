@@ -63,6 +63,8 @@ MonoBehaviour:
     unlocked: 0
   - ID: "T\xFCren_ohne_Schl\xFCssel_Abgeschlossen_BonusLevel"
     unlocked: 0
+  - ID: Level11_Completed
+    unlocked: 0
   unlockedLevels:
   - ID: level02_visited
     unlocked: 0

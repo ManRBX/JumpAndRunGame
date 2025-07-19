@@ -1,26 +1,48 @@
-// ForceCursorVisible.cs
-using UnityEngine;
-/// <summary>
-/// Macht den Mauszeiger jederzeit sichtbar und entsperrt ihn.
-/// </summary>
+﻿using UnityEngine;
+using System.Collections.Generic;
+
 public class ForceCursorVisible : MonoBehaviour
 {
-    [Header("Immer sichtbar und nicht gelockt")]
+    [Header("🔘 Maus immer sichtbar?")]
     public bool forceCursorVisible = true;
+
+    [Header("🎛 Sichtbar bei diesen aktiven Panels")]
+    public List<GameObject> visibleWhenThesePanelsAreActive;
 
     void Start()
     {
         ApplyCursorSettings();
-        DontDestroyOnLoad(gameObject); // Ensure this object persists across scene loads
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (forceCursorVisible && (Cursor.lockState != CursorLockMode.None || !Cursor.visible))
-            ApplyCursorSettings();
+        if (ShouldCursorBeVisible())
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
-    void ApplyCursorSettings()
+    private bool ShouldCursorBeVisible()
+    {
+        if (forceCursorVisible)
+            return true;
+
+        foreach (var panel in visibleWhenThesePanelsAreActive)
+        {
+            if (panel != null && panel.activeInHierarchy)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void ApplyCursorSettings()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

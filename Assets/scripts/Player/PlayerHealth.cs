@@ -67,13 +67,13 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("KillZone"))
         {
             TakeDamage(currentHealth, "KillZone");
         }
-    }
+    }*/
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

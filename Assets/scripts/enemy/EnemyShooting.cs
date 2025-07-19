@@ -41,10 +41,32 @@ public class EnemyShooting : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        if (firePoint == null)
-            return;
+        if (firePoint == null) return;
 
+        // 1. Sichtbarer Schussbereich (shootRange)
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(firePoint.position, shootRange);
+        Gizmos.DrawWireSphere(transform.position, shootRange);
+
+        // 2. Geschätzte Flugdistanz anhand der bulletForce
+        Gizmos.color = Color.yellow;
+        Vector2 direction = Vector2.right; // Default-Richtung im Editor
+#if UNITY_EDITOR
+        if (!Application.isPlaying && player != null)
+        {
+            direction = (player.position - firePoint.position).normalized;
+        }
+        else if (Application.isPlaying && player != null)
+        {
+            direction = (player.position - firePoint.position).normalized;
+        }
+#endif
+        float estimatedFlightTime = 1.0f; // Sekunden geschätzt, kann angepasst werden
+        float estimatedDistance = bulletForce * estimatedFlightTime;
+        Gizmos.DrawLine(firePoint.position, firePoint.position + (Vector3)(direction * estimatedDistance));
+
+        // Optional: Info-Label anzeigen (Editor only)
+#if UNITY_EDITOR
+        UnityEditor.Handles.Label(firePoint.position + (Vector3)(direction * estimatedDistance * 0.5f), $"~{estimatedDistance:F1} Units");
+#endif
     }
 }
