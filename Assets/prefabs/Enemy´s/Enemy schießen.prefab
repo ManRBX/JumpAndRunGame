@@ -273,7 +273,7 @@ MonoBehaviour:
   firePoint: {fileID: 6099216197494363906}
   bulletForce: 5
   fireRate: 3
-  shootRange: 10
+  shootRange: 8
   player: {fileID: 3394760578918175963, guid: 9e2093fe2894b544eb67b6352ba3e098, type: 3}
 --- !u!1 &4850043380442554230
 GameObject:
