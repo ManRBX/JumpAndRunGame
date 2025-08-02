@@ -4,10 +4,10 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public GameObject inventoryUI;
-    private bool isOpen = false;
 
     public Dictionary<InventoryItem, int> itemStacks = new Dictionary<InventoryItem, int>();
+
+    private KeyBindManager keyBindManager;
 
     private void Awake()
     {
@@ -17,22 +17,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        keyBindManager = KeyBindManager.Instance;
         LoadInventoryFromPrefs();
-    }
-
-    private void Update()
-    {
-        KeyCode openKey = KeyBindManager.Instance?.GetKeyCodeForAction("OpenInventory") ?? KeyCode.C;
-
-        if (Input.GetKeyDown(openKey))
-        {
-            isOpen = !isOpen;
-            inventoryUI.SetActive(isOpen);
-            GameStateManager.IsGamePaused = isOpen;
-
-            if (isOpen)
-                InventoryUI.Instance.RefreshUI();
-        }
     }
 
     public void AddItem(InventoryItem newItem)
@@ -43,7 +29,7 @@ public class InventoryManager : MonoBehaviour
             itemStacks[newItem] = 1;
 
         SaveItemToPrefs(newItem, itemStacks[newItem]);
-        InventoryUI.Instance.RefreshUI();
+        InventoryUI.Instance?.RefreshUI();
     }
 
     public void UseItem(InventoryItem item)
@@ -57,7 +43,7 @@ public class InventoryManager : MonoBehaviour
             itemStacks.Remove(item);
 
         SaveItemToPrefs(item, itemStacks.ContainsKey(item) ? itemStacks[item] : 0);
-        InventoryUI.Instance.RefreshUI();
+        InventoryUI.Instance?.RefreshUI();
     }
 
     private void SaveItemToPrefs(InventoryItem item, int amount)
@@ -80,6 +66,8 @@ public class InventoryManager : MonoBehaviour
 
         foreach (InventorySlot slot in InventoryUI.Instance.slots)
         {
+            if (slot.item == null) continue;
+
             string key = $"Inventory_{slot.item.itemName}";
             int amount = PlayerPrefs.GetInt(key, 0);
             if (amount > 0)

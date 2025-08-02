@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class KeyBindManager : MonoBehaviour
 {
@@ -7,8 +7,10 @@ public class KeyBindManager : MonoBehaviour
 
     private const string PlayerPrefPrefix = "Key_";
 
+    // Speichert aktuelle Bindings
     private Dictionary<string, KeyCode> keyBindings = new Dictionary<string, KeyCode>();
 
+    // Standardbelegung
     private readonly Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>()
     {
         { "Jump", KeyCode.Space },
@@ -17,7 +19,12 @@ public class KeyBindManager : MonoBehaviour
         { "ClimbUp", KeyCode.W },
         { "ClimbDown", KeyCode.S },
         { "DropPlatform", KeyCode.S },
-        { "Shoot", KeyCode.Mouse0 }
+        { "Shoot", KeyCode.Mouse0 },
+        { "OpenInventory", KeyCode.C },
+        { "OpenDoor", KeyCode.E },
+        { "UseSlot2", KeyCode.Alpha2 },
+        { "UseSlot3", KeyCode.Alpha3 },
+        { "UseSlot4", KeyCode.Alpha4 }
     };
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -25,9 +32,9 @@ public class KeyBindManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            GameObject managerObject = new GameObject("KeyBindManager");
-            Instance = managerObject.AddComponent<KeyBindManager>();
-            DontDestroyOnLoad(managerObject);
+            GameObject obj = new GameObject("KeyBindManager");
+            Instance = obj.AddComponent<KeyBindManager>();
+            DontDestroyOnLoad(obj);
         }
     }
 
@@ -39,52 +46,56 @@ public class KeyBindManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             LoadBindings();
         }
-        else if (Instance != this)
+        else
         {
             Destroy(gameObject);
         }
     }
 
+    // Gibt den Key für eine Action zurück
     public KeyCode GetKeyCodeForAction(string action)
     {
-        if (keyBindings.ContainsKey(action))
-            return keyBindings[action];
+        if (keyBindings.TryGetValue(action, out KeyCode key))
+            return key;
 
-        Debug.LogWarning($"❓ Action '{action}' nicht gefunden. Gib einen gültigen Namen an.");
+        Debug.LogWarning($"❓ Aktion '{action}' nicht gefunden.");
         return KeyCode.None;
     }
 
+    // Setzt eine neue Taste für eine Aktion
     public void SetKey(string action, KeyCode key)
     {
-        if (keyBindings.ContainsKey(action))
+        if (!keyBindings.ContainsKey(action))
         {
-            keyBindings[action] = key;
-            PlayerPrefs.SetString(PlayerPrefPrefix + action, key.ToString());
-            PlayerPrefsKeyTracker.TrackKey(PlayerPrefPrefix + action);
-            PlayerPrefs.Save();
+            Debug.LogWarning($"⚠️ Aktion '{action}' ist nicht registriert.");
+            return;
         }
-        else
-        {
-            Debug.LogWarning($"❓ Aktion '{action}' ist nicht registriert.");
-        }
+
+        keyBindings[action] = key;
+        PlayerPrefs.SetString(PlayerPrefPrefix + action, key.ToString());
+        PlayerPrefsKeyTracker.TrackKey(PlayerPrefPrefix + action);
+        PlayerPrefs.Save();
     }
 
+    // Lädt Tasten aus PlayerPrefs oder setzt Standard
     private void LoadBindings()
     {
+        keyBindings.Clear();
+
         foreach (var entry in defaultBindings)
         {
-            string keyName = PlayerPrefPrefix + entry.Key;
+            string keyPref = PlayerPrefPrefix + entry.Key;
 
-            if (PlayerPrefs.HasKey(keyName))
+            if (PlayerPrefs.HasKey(keyPref))
             {
-                string savedKey = PlayerPrefs.GetString(keyName);
-                if (System.Enum.TryParse(savedKey, out KeyCode parsedKey))
+                string saved = PlayerPrefs.GetString(keyPref);
+                if (System.Enum.TryParse(saved, out KeyCode parsedKey))
                 {
                     keyBindings[entry.Key] = parsedKey;
                 }
                 else
                 {
-                    Debug.LogWarning($"⚠️ Ungültiger gespeicherter Key für {entry.Key}: {savedKey}. Setze Standard.");
+                    Debug.LogWarning($"❌ Ungültige Taste für {entry.Key}: {saved} → nutze Standard");
                     keyBindings[entry.Key] = entry.Value;
                 }
             }
@@ -93,10 +104,11 @@ public class KeyBindManager : MonoBehaviour
                 keyBindings[entry.Key] = entry.Value;
             }
 
-            PlayerPrefsKeyTracker.TrackKey(keyName);
+            PlayerPrefsKeyTracker.TrackKey(keyPref);
         }
     }
 
+    // Setzt alle auf Standard zurück
     public void ResetToDefaults()
     {
         foreach (var entry in defaultBindings)
@@ -107,9 +119,10 @@ public class KeyBindManager : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-        Debug.Log("🔄 Alle Tasten wurden auf Standard zurückgesetzt.");
+        Debug.Log("🔁 Alle Tastenzuweisungen wurden zurückgesetzt.");
     }
 
+    // Gibt alle Bindings zurück (z. B. fürs UI)
     public Dictionary<string, KeyCode> GetAllBindings()
     {
         return new Dictionary<string, KeyCode>(keyBindings);

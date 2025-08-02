@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportDestination: {fileID: 0}
-  teleportKey: 101
+  actionName: OpenDoor
   playerTag: Player
   teleportSound: {fileID: 2863573979270078206, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
   teleportCooldown: 5
