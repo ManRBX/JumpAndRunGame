@@ -459,6 +459,14 @@ MonoBehaviour:
     m_Key: Menu/Canvas/optionen Panel/SFX Volume
     m_Metadata:
       m_Items: []
+  - m_Id: 62913938365341696
+    m_Key: Menu/Canvas/Main menu panel/Keys/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63647738074488832
+    m_Key: Menu/gamemanager/keybindui manager
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

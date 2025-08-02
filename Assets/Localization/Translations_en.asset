@@ -494,6 +494,14 @@ MonoBehaviour:
     m_Localized: 'SFX Volume:'
     m_Metadata:
       m_Items: []
+  - m_Id: 62913938365341696
+    m_Localized: Keys
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63647738074488832
+    m_Localized: Please press a button...
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

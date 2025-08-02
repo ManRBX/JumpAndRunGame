@@ -494,6 +494,14 @@ MonoBehaviour:
     m_Localized: "SFX Lautst\xE4rke:"
     m_Metadata:
       m_Items: []
+  - m_Id: 62913938365341696
+    m_Localized: Steuerung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 63647738074488832
+    m_Localized: "Bitte dr\xFCcken Sie eine Taste..."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

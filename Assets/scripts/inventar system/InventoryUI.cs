@@ -7,24 +7,30 @@ using System.Collections.Generic;
 [System.Serializable]
 public class InventorySlot
 {
-    public InventoryItem item;           // z. B. SpeedBoost
-    public Button button;                // Button im UI
-    public TMP_Text text;                // Text „SpeedBoost x5“
-    public Image icon;                   // Icon
+    public InventoryItem item;
+    public Button button;
+    public TMP_Text text;
+    public Image icon;
 }
 
 public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI Instance;
 
-    [Header("Slots manuell zuweisbar")]
+    [Header("📦 Inventar Slots")]
     public List<InventorySlot> slots = new List<InventorySlot>();
 
+    [Header("🧾 Inventar Panel")]
+    [SerializeField] private GameObject inventoryUI;
+
+    [Header("🎮 Tastenzuweisung")]
+    public TMP_Text inventoryKeyLabel;
+
+    private bool isOpen = false;
     private bool canUsePowerUp = true;
     private InventoryItem activePowerUpItem;
 
-    private bool isOpen = false;
-    [SerializeField] private GameObject inventoryUI;
+    private KeyBindManager keyBindManager;
 
     private void Awake()
     {
@@ -34,12 +40,35 @@ public class InventoryUI : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        keyBindManager = KeyBindManager.Instance;
+
+        if (inventoryUI != null)
+            inventoryUI.SetActive(false);
+
+        UpdateInventoryKeyLabel();
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (keyBindManager == null) return;
+
+        HandleInventoryToggle();
+        UpdateInventoryKeyLabel();
+    }
+
+    private void HandleInventoryToggle()
+    {
+        KeyCode inventoryKey = keyBindManager.GetKeyCodeForAction("OpenInventory");
+
+        if (inventoryKey != KeyCode.None && Input.GetKeyDown(inventoryKey))
         {
             isOpen = !isOpen;
-            inventoryUI.SetActive(isOpen);
+
+            if (inventoryUI != null)
+                inventoryUI.SetActive(isOpen);
+
             GameStateManager.IsGamePaused = isOpen;
 
             if (isOpen)
@@ -47,21 +76,29 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    private void UpdateInventoryKeyLabel()
+    {
+        if (inventoryKeyLabel != null)
+        {
+            KeyCode key = keyBindManager.GetKeyCodeForAction("OpenInventory");
+            inventoryKeyLabel.text = "Inventar: " + key;
+        }
+    }
+
     public void RefreshUI()
     {
         foreach (var slot in slots)
         {
+            if (slot.item == null) continue;
+
             InventoryManager.Instance.itemStacks.TryGetValue(slot.item, out int amount);
 
-            // Text aktualisieren
             if (slot.text != null)
                 slot.text.text = $"{slot.item.itemName} x{amount}";
 
-            // Icon aktualisieren
             if (slot.icon != null && slot.item.icon != null)
                 slot.icon.sprite = slot.item.icon;
 
-            // Button-Interaktion
             if (slot.button != null)
             {
                 bool canUse = amount > 0 && CanUseThisItem(slot.item);
@@ -85,16 +122,19 @@ public class InventoryUI : MonoBehaviour
 
     private bool CanUseThisItem(InventoryItem item)
     {
+        if (item == null) return false;
+
         string name = item.itemName.ToLower();
 
         if (name.Contains("ammo"))
         {
-            PlayerShooting shooter = GameObject.FindObjectOfType<PlayerShooting>();
+            var shooter = FindObjectOfType<PlayerShooting>();
             if (shooter != null)
             {
                 int currentAmmo = PlayerPrefs.GetInt("GlobalAmmo", 0);
                 return currentAmmo < shooter.maxAmmo;
             }
+
             return false;
         }
 
@@ -106,15 +146,14 @@ public class InventoryUI : MonoBehaviour
 
     private void UseItemWithRules(InventoryItem item, Button buttonToDisable)
     {
+        if (item == null) return;
+
         string name = item.itemName.ToLower();
         bool isHealthOrAmmo = name.Contains("health") || name.Contains("ammo");
 
         if (!isHealthOrAmmo)
         {
             if (!canUsePowerUp && item != activePowerUpItem)
-                return;
-
-            if (!canUsePowerUp && item == activePowerUpItem)
                 return;
 
             canUsePowerUp = false;
@@ -136,5 +175,16 @@ public class InventoryUI : MonoBehaviour
         canUsePowerUp = true;
         activePowerUpItem = null;
         RefreshUI();
+    }
+
+    public void TryUseSlot(int index)
+    {
+        if (index < 0 || index >= slots.Count) return;
+
+        var slot = slots[index];
+        if (slot != null && CanUseThisItem(slot.item))
+        {
+            UseItemWithRules(slot.item, slot.button);
+        }
     }
 }
