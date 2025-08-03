@@ -1,42 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class Coin : MonoBehaviour
 {
     [Header("Settings")]
-    public int pointValue = 100;  // Point value of the coin
-    public int coinValue = 1;     // Number of coins the player receives
-    public AudioClip collectSound;
-
-    private AudioSource audioSource;
-
-    private void Start()
-    {
-        // Initialize audio component
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.playOnAwake = false;
-        audioSource.clip = collectSound;
-    }
+    public int pointValue = 100;  // Punktwert der Münze
+    public int coinValue = 1;     // Anzahl der Münzen, die der Spieler erhält
+    public AudioSource collectSound;  // AudioSource für den Sound, wenn die Münze eingesammelt wird
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // Award points and coins
+            // Punkte und Münzen dem Spieler hinzufügen
             AddPointsAndCoinsToPlayer();
 
-            Debug.Log($"Coin collected. Points: {pointValue}, Coins: {coinValue}");
+            Debug.Log($"Münze eingesammelt. Punkte: {pointValue}, Münzen: {coinValue}");
 
-            // Play sound effect
+            // Soundeffekt abspielen
             PlayCollectSound();
 
-            // Destroy the coin
+            // Zerstöre die Münze nach kurzer Zeit
             Destroy(gameObject, 0.1f);
         }
     }
 
     private void AddPointsAndCoinsToPlayer()
     {
-        // Increase points
+        // Punkte und Münzen erhöhen
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.AddPoints(pointValue);
@@ -46,9 +37,10 @@ public class Coin : MonoBehaviour
 
     private void PlayCollectSound()
     {
-        if (audioSource != null && collectSound != null)
+        // Stelle sicher, dass der collectSound vorhanden ist, bevor er abgespielt wird
+        if (collectSound != null)
         {
-            audioSource.Play();
+            collectSound.Play();
         }
     }
 }

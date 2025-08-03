@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class AudioSlider : MonoBehaviour
 {
@@ -9,27 +9,27 @@ public class AudioSlider : MonoBehaviour
     public Slider volumeSlider;
     public TMP_Text volumeText;
 
-    [Header("🎵 AudioQuellen (beliebig viele)")]
-    public List<AudioSource> audioSources = new List<AudioSource>();
+    [Header("🎚️ AudioMixer")]
+    public AudioMixer audioMixer; // Im Inspector setzen
+    public string exposedParameter = "MusicVolume"; // z. B. MusicVolume, SFXVolume
 
     [Header("🧠 Speicher-Key")]
-    public string volumeKey = "Volume"; // Jeder Regler kann eigenen Key haben
+    public string volumeKey = "Volume_Music"; // Jeder Regler hat eigenen Key
 
-    private float currentVolume = 0.5f; // Standardwert (50 %)
+    private float currentVolume = 0.5f; // 0.5 = 50%
     private const float MIN_NON_ZERO = 0.0000001f;
 
     private void Awake()
     {
         PlayerPrefsKeyTracker.TrackKey(volumeKey);
 
-        // Falls fälschlich als String gespeichert – löschen
+        // Load gespeicherte Lautstärke
         if (PlayerPrefs.HasKey(volumeKey))
         {
             try
             {
                 currentVolume = PlayerPrefs.GetFloat(volumeKey);
 
-                // Falls zuvor als Miniwert gespeichert: für Player wie 0 behandeln
                 if (Mathf.Approximately(currentVolume, MIN_NON_ZERO))
                     currentVolume = 0f;
             }
@@ -40,13 +40,11 @@ public class AudioSlider : MonoBehaviour
                 currentVolume = 0.5f;
             }
         }
-        else
-        {
-            currentVolume = 0.5f;
-        }
 
-        ApplyVolume(currentVolume);
+        // Mixer-Wert setzen
+        SetMixerVolume(currentVolume);
 
+        // Slider initialisieren
         if (volumeSlider != null)
         {
             volumeSlider.onValueChanged.RemoveAllListeners();
@@ -57,22 +55,11 @@ public class AudioSlider : MonoBehaviour
         UpdateVolumeText(currentVolume);
     }
 
-    private void Start()
-    {
-        foreach (var source in audioSources)
-        {
-            if (source != null && !source.isPlaying)
-            {
-                source.Play();
-            }
-        }
-    }
-
     private void OnVolumeChange(float newVolume)
     {
         currentVolume = newVolume;
 
-        ApplyVolume(currentVolume);
+        SetMixerVolume(currentVolume);
 
         float savedVolume = Mathf.Approximately(currentVolume, 0f) ? MIN_NON_ZERO : currentVolume;
 
@@ -83,13 +70,16 @@ public class AudioSlider : MonoBehaviour
         UpdateVolumeText(currentVolume);
     }
 
-    private void ApplyVolume(float volume)
+    private void SetMixerVolume(float volume)
     {
-        foreach (var source in audioSources)
-        {
-            if (source != null)
-                source.volume = volume;
-        }
+        if (audioMixer == null || string.IsNullOrEmpty(exposedParameter))
+            return;
+
+        float dB = (volume <= 0.0001f) ? -80f : Mathf.Log10(volume) * 20f;
+
+        bool result = audioMixer.SetFloat(exposedParameter, dB);
+
+        Debug.Log($"🔊 Set Mixer '{exposedParameter}' auf {dB} dB | Erfolg: {result}");
     }
 
     private void UpdateVolumeText(float volume)
