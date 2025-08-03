@@ -3413,6 +3413,7 @@ MonoBehaviour:
     m_LocalVariables: []
   localizedTips: []
   loadingTextMode: 1
+  mixer: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -3517,8 +3518,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7236886910825943990, guid: 42ef1e389c78dcd4bbd820eb52302a99, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7236886910825943990, guid: 42ef1e389c78dcd4bbd820eb52302a99, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5196862683002800553, guid: 9c93392f2bb64de43969dfd482058777, type: 2}
     - target: {fileID: 8418726273390167997, guid: 42ef1e389c78dcd4bbd820eb52302a99, type: 3}
       propertyPath: m_LocalPosition.x
       value: 592.1963
@@ -3567,11 +3572,6 @@ PrefabInstance:
 --- !u!4 &346950951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8418726273390167997, guid: 42ef1e389c78dcd4bbd820eb52302a99, type: 3}
-  m_PrefabInstance: {fileID: 346950950}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &346950952 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7236886910825943990, guid: 42ef1e389c78dcd4bbd820eb52302a99, type: 3}
   m_PrefabInstance: {fileID: 346950950}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &365579280
@@ -5904,6 +5904,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2863573979270078206, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2428059322351850470, guid: 9c93392f2bb64de43969dfd482058777, type: 2}
     - target: {fileID: 5900035184614474415, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
       propertyPath: m_Name
       value: door music
@@ -5920,11 +5924,6 @@ PrefabInstance:
 --- !u!4 &602544399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 897387224118678745, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
-  m_PrefabInstance: {fileID: 602544398}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &602544400 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2863573979270078206, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
   m_PrefabInstance: {fileID: 602544398}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &603484382
@@ -6463,8 +6462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1119931096}
   volumeText: {fileID: 1894161199}
-  audioSources:
-  - {fileID: 602544400}
+  audioMixer: {fileID: 24100000, guid: 9c93392f2bb64de43969dfd482058777, type: 2}
+  exposedParameter: SFX
   volumeKey: Volume_SFX
 --- !u!1 &700756306
 GameObject:
@@ -8732,8 +8731,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 1556834842}
   volumeText: {fileID: 1028629118}
-  audioSources:
-  - {fileID: 346950952}
+  audioMixer: {fileID: 24100000, guid: 9c93392f2bb64de43969dfd482058777, type: 2}
+  exposedParameter: Musik
   volumeKey: Volume_Game_Musik
 --- !u!1 &881663400
 GameObject:
