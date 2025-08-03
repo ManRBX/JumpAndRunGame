@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointValue: 11
   coinValue: 1
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: 3acc1bb15c7a97145952df7de1ab4f62, type: 3}
 --- !u!61 &532534166150610921
 BoxCollider2D:
   m_ObjectHideFlags: 0

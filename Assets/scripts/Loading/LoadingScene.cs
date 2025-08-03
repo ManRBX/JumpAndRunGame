@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Localization;
 using System.Linq;
-using UnityEngine.Audio;
 
 public class LoadingScene : MonoBehaviour
 {
@@ -32,19 +31,12 @@ public class LoadingScene : MonoBehaviour
     [Header("Text Rotation")]
     public LoadingTextMode loadingTextMode = LoadingTextMode.Sequential;
 
-    [Header("🔊 Audio Mixer")]
-    public AudioMixer mixer; // Setze im Inspector (z. B. MasterMixer)
-
     private float loadingTimer = 0f;
     private int lastTextIndex = -1;
     private MonoBehaviour[] scriptsToPause;
 
     void Start()
     {
-        // 🔇 SFX muten (z. B. Coin, UI-Click etc.)
-        if (mixer != null)
-            mixer.SetFloat("SFXVolume", -80f); // -80 dB = effektiv stumm
-
         SelectRandomLoadingText();
         ShowRandomTip();
 
@@ -137,10 +129,6 @@ public class LoadingScene : MonoBehaviour
         {
             LoadingScreen.SetActive(false);
         }
-
-        // 🎧 SFX wieder normal
-        if (mixer != null)
-            mixer.SetFloat("SFXVolume", 0f); // 0 dB = normale Lautstärke
 
         foreach (var script in scriptsToPause)
         {

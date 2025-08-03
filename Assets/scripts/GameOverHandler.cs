@@ -34,9 +34,6 @@ public class GameOverHandler : MonoBehaviour
 
     public void ContinueWithFiveLives()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
         // Leben zurücksetzen
         PlayerPrefs.SetInt("GlobalLives", restartLives);
         PlayerPrefsKeyTracker.TrackKey("GlobalLives");
