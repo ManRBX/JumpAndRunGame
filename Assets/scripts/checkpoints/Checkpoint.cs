@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Checkpoint : MonoBehaviour
 {
+    [Header("🔖 Checkpoint Nachricht")]
+    public string checkpointMessage = "Du hast einen Checkpoint erreicht!";
+    public TMP_Text checkpointMessageText;
+    public float messageDuration = 3f;
+
     private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-        // Get the reference to the SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
-            Debug.LogError("SpriteRenderer is missing from the checkpoint object!");
+            Debug.LogError("SpriteRenderer fehlt am Checkpoint-Objekt!");
         }
+
+        if (checkpointMessageText != null)
+            checkpointMessageText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,20 +28,26 @@ public class Checkpoint : MonoBehaviour
         {
             if (CheckpointManager.instance != null)
             {
-                // Set the current position as the new checkpoint
                 CheckpointManager.instance.SetCheckpoint(transform.position);
-                Debug.Log("Checkpoint reached!");
+                Debug.Log("Checkpoint erreicht!");
 
-                // Change the color to Blue
-                if (spriteRenderer != null)
-                {
-                    spriteRenderer.color = Color.red;
-                }
+                if (checkpointMessageText != null)
+                    StartCoroutine(DisplayCheckpointMessage());
             }
             else
             {
-                Debug.LogError("CheckpointManager is missing!");
+                Debug.LogError("CheckpointManager fehlt!");
             }
         }
+    }
+
+    private System.Collections.IEnumerator DisplayCheckpointMessage()
+    {
+        checkpointMessageText.text = checkpointMessage;
+        checkpointMessageText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(messageDuration);
+
+        checkpointMessageText.gameObject.SetActive(false);
     }
 }
