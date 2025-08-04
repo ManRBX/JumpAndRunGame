@@ -51,12 +51,48 @@ MonoBehaviour:
   - achievementID: Coin_50
     requiredAmount: 50
     unlocked: 0
+  - achievementID: Coin_100
+    requiredAmount: 100
+    unlocked: 0
+  - achievementID: Coin_200
+    requiredAmount: 200
+    unlocked: 0
+  - achievementID: Coin_250
+    requiredAmount: 250
+    unlocked: 0
+  - achievementID: Coin_300
+    requiredAmount: 300
+    unlocked: 0
+  - achievementID: Coin_400
+    requiredAmount: 400
+    unlocked: 0
+  - achievementID: Coin_500
+    requiredAmount: 500
+    unlocked: 0
   killAchievements:
   - achievementID: Kill_10
     requiredAmount: 10
     unlocked: 0
   - achievementID: Kill_50
     requiredAmount: 50
+    unlocked: 0
+  - achievementID: Kill_100
+    requiredAmount: 100
+    unlocked: 0
+  - achievementID: Kill_200
+    requiredAmount: 200
+    unlocked: 0
+  - achievementID: Kill_250
+    requiredAmount: 250
+    unlocked: 0
+  - achievementID: Kill_300
+    requiredAmount: 300
+    unlocked: 0
+  - achievementID: Kill_400
+    requiredAmount: 400
+    unlocked: 0
+  - achievementID: Kill_500
+    requiredAmount: 500
     unlocked: 0
   completedLevels:
   - ID: Level01_Completed
@@ -82,4 +118,6 @@ MonoBehaviour:
     unlocked: 0
   bonusLevels:
   - ID: "T\xFCren-ohne-Schl\xFCssel-Level"
+    unlocked: 0
+  - ID: Darkness_BonusLevel
     unlocked: 0

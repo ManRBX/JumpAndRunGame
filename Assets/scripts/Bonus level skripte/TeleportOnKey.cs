@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class TeleportOnKey : MonoBehaviour
 {
@@ -16,8 +17,15 @@ public class TeleportOnKey : MonoBehaviour
 
     [Header("⏱️ Cooldown")]
     public float teleportCooldown = 5f;
-    private float lastTeleportTime = -Mathf.Infinity;
 
+    [Header("🔑 Schlüssel Einstellungen")]
+    public bool requiresKey = false;
+    public string requiredKeyName;
+    public TMP_Text noKeyMessageText;
+    public string noKeyMessage = "Du benötigst einen Schlüssel!";
+    public float messageDisplayDuration = 3f;
+
+    private float lastTeleportTime = -Mathf.Infinity;
     private bool isPlayerInZone = false;
     private GameObject player;
 
@@ -47,19 +55,37 @@ public class TeleportOnKey : MonoBehaviour
 
         if (key != KeyCode.None && Input.GetKeyDown(key))
         {
-            if (Time.time >= lastTeleportTime + teleportCooldown)
-            {
-                player.transform.position = teleportDestination.position;
-
-                if (teleportSound != null)
-                    teleportSound.Play();
-
-                lastTeleportTime = Time.time;
-            }
-            else
+            if (Time.time < lastTeleportTime + teleportCooldown)
             {
                 Debug.Log("⏳ Teleport noch im Cooldown!");
+                return;
             }
+
+            if (requiresKey && PlayerPrefs.GetInt(requiredKeyName, 0) == 0)
+            {
+                if (noKeyMessageText != null)
+                    StartCoroutine(ShowNoKeyMessage());
+
+                Debug.Log(noKeyMessage);
+                return;
+            }
+
+            player.transform.position = teleportDestination.position;
+
+            if (teleportSound != null)
+                teleportSound.Play();
+
+            lastTeleportTime = Time.time;
         }
+    }
+
+    private System.Collections.IEnumerator ShowNoKeyMessage()
+    {
+        noKeyMessageText.text = noKeyMessage;
+        noKeyMessageText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(messageDisplayDuration);
+
+        noKeyMessageText.gameObject.SetActive(false);
     }
 }
