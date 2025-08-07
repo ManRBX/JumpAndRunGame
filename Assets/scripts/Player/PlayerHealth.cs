@@ -30,6 +30,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Game Over UI")]
     public GameObject gameOverPanel;
 
+    [Header("🔊 Death Sound")]
+    public AudioSource deathSound;
+
     private SpriteRenderer spriteRenderer;
     private PlayerHealthUI playerHealthUI;
     private Vector3 startPosition;
@@ -66,14 +69,6 @@ public class PlayerHealth : MonoBehaviour
         PlayerPrefs.Save();
         UpdateUI();
     }
-
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("KillZone"))
-        {
-            TakeDamage(currentHealth, "KillZone");
-        }
-    }*/
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -132,6 +127,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        // 🔊 Death Sound abspielen
+        if (deathSound != null)
+            deathSound.Play();
+
         int lives = PlayerPrefs.GetInt(LivesKey, defaultLives) - 1;
         PlayerPrefs.SetInt(LivesKey, Mathf.Max(0, lives));
         PlayerPrefsKeyTracker.TrackKey(LivesKey);

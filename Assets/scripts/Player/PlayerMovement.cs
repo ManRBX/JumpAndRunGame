@@ -36,8 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public float zoneMaxFallSpeed = -10f;
     public float zoneAirDrag = 3f;
 
-    [Header("🔊 Schrittgeräusch")]
+    [Header("🔊 Sounds")]
     public AudioSource walkingSound;
+    public AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -170,6 +171,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         anim.SetTrigger("JumpTrigger");
+
+        if (jumpSound != null)
+            jumpSound.Play();
     }
 
     void WallJump()
@@ -182,6 +186,9 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(wallJumpDir * speed * 1.5f, jumpForce);
         anim.SetTrigger("WallJump");
+
+        if (jumpSound != null)
+            jumpSound.Play();
 
         canWallJump = false;
         Invoke(nameof(EnableWallJump), 0.2f);

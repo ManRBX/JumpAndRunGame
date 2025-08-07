@@ -4,17 +4,23 @@ public class Bullet : MonoBehaviour
 {
     public float lifeTime = 2f;
 
+    [Header("🔊 Schuss-Sound")]
+    public AudioSource shootSound;
+
     void Start()
     {
-        GetComponent<Rigidbody2D>().gravityScale = 0;  // No gravity
-        Destroy(gameObject, lifeTime);  // Bullet destroys itself after a set time
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        Destroy(gameObject, lifeTime);
+
+        if (shootSound != null)
+            shootSound.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("ground"))
+        if (collision.CompareTag("ground") || collision.CompareTag("Wall") || collision.CompareTag("Obstacle") || collision.CompareTag("Ground"))
         {
-            Debug.Log("Bullet hit the ground.");
+            Debug.Log("Bullet hit an obstacle.");
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Enemy"))
@@ -24,7 +30,7 @@ public class Bullet : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1);  // Enemy takes 1 damage
+                enemy.TakeDamage(1);
 
                 if (enemy.health <= 0)
                 {
