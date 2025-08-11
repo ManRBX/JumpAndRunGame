@@ -262,7 +262,7 @@ MonoBehaviour:
   jumpSound: {fileID: 2616830480887659761}
   deathSound: {fileID: 0}
   audioPlayDistance: 10
-  customFieldSize: {x: 10, y: 5}
+  customFieldSize: {x: 20, y: 10}
   customFieldOffset: {x: 0, y: 0}
 --- !u!114 &4105626280728032636
 MonoBehaviour:

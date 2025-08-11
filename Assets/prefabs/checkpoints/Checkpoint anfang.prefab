@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
   m_SortingOrder: 9
-  m_Sprite: {fileID: 1851190337, guid: 7b8864994fc00ce4a8dc635e94029c24, type: 3}
+  m_Sprite: {fileID: -119428722, guid: 98f08a847235b6343bbf3be866a2068f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,6 +101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e013eb4817fe8e545af86127955a1249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkpointMessage: Du hast einen Checkpoint erreicht!
+  checkpointMessageText: {fileID: 0}
+  messageDuration: 3
+  checkpointSound: {fileID: 0}
 --- !u!61 &9196288077867333515
 BoxCollider2D:
   m_ObjectHideFlags: 0

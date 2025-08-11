@@ -69,6 +69,18 @@ MonoBehaviour:
   - achievementID: Coin_500
     requiredAmount: 500
     unlocked: 0
+  - achievementID: Coin_800
+    requiredAmount: 800
+    unlocked: 0
+  - achievementID: Coin_1000
+    requiredAmount: 1000
+    unlocked: 0
+  - achievementID: Coin_1200
+    requiredAmount: 1200
+    unlocked: 0
+  - achievementID: Coin_1500
+    requiredAmount: 1500
+    unlocked: 0
   killAchievements:
   - achievementID: Kill_10
     requiredAmount: 10
@@ -94,15 +106,67 @@ MonoBehaviour:
   - achievementID: Kill_500
     requiredAmount: 500
     unlocked: 0
+  - achievementID: Kill_800
+    requiredAmount: 800
+    unlocked: 0
+  - achievementID: Kill_1000
+    requiredAmount: 1000
+    unlocked: 0
+  - achievementID: Kill_1200
+    requiredAmount: 1200
+    unlocked: 0
+  - achievementID: Kill_1500
+    requiredAmount: 1500
+    unlocked: 0
   completedLevels:
-  - ID: Level01_Completed
+  - ID: Level01Complete
+    unlocked: 0
+  - ID: Level02Complete
+    unlocked: 0
+  - ID: Level03Complete
+    unlocked: 0
+  - ID: Level04Complete
+    unlocked: 0
+  - ID: Level05Complete
+    unlocked: 0
+  - ID: Level06Complete
+    unlocked: 0
+  - ID: Level07Complete
+    unlocked: 0
+  - ID: Level08Complete
+    unlocked: 0
+  - ID: Level09Complete
+    unlocked: 0
+  - ID: Level10Complete
+    unlocked: 0
+  - ID: Level11Complete
+    unlocked: 0
+  - ID: Level12Complete
     unlocked: 0
   - ID: "T\xFCren_ohne_Schl\xFCssel_Abgeschlossen_BonusLevel"
     unlocked: 0
-  - ID: Level11_Completed
-    unlocked: 0
   unlockedLevels:
-  - ID: level02_visited
+  - ID: Level02Unlock
+    unlocked: 0
+  - ID: Level03Unlock
+    unlocked: 0
+  - ID: Level04Unlock
+    unlocked: 0
+  - ID: Level05Unlock
+    unlocked: 0
+  - ID: Level06Unlock
+    unlocked: 0
+  - ID: Level07Unlock
+    unlocked: 0
+  - ID: Level08Unlock
+    unlocked: 0
+  - ID: Level09Unlock
+    unlocked: 0
+  - ID: Level10Unlock
+    unlocked: 0
+  - ID: Level11Unlock
+    unlocked: 0
+  - ID: Level12Unlock
     unlocked: 0
   secretRooms:
   - ID: "T\xFCren ohne Schl\xFCssel"

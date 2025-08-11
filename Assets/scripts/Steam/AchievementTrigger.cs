@@ -16,63 +16,61 @@ public class AchievementTrigger : MonoBehaviour
     [Tooltip("z. B. Level01")]
     public string targetID;
 
-#if UNITY_EDITOR
-    [SerializeField, Tooltip("Nur bei LevelComplete: Wieviele Special Coins benötigt werden.")]
-    private int requiredSpecialCoins = 3;
-#else
+    [Tooltip("Nur bei LevelComplete: benötigte Special Coins")]
     public int requiredSpecialCoins = 3;
-#endif
+
+    [Tooltip("Nur einmal auslösen?")]
+    public bool triggerOnce = true;
+
+    private bool fired;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+        if (triggerOnce && fired) return;
 
         switch (triggerType)
         {
             case TriggerType.LevelComplete:
-                string coinKey = targetID + "-special-coins";
-                int collectedCoins = PlayerPrefs.GetInt(coinKey, 0);
-
-                if (collectedCoins >= requiredSpecialCoins)
                 {
-                    Debug.Log($"✅ LevelComplete Achievement ausgelöst für {targetID} mit {collectedCoins} Special Coins.");
-                    AchievementProgressTracker.Instance?.OnLevelCompleted(targetID);
-                }
-                else
-                {
-                    Debug.Log($"❌ Nicht genug Special Coins ({collectedCoins}/{requiredSpecialCoins}) für {targetID}, kein Achievement.");
+                    string coinKey = targetID + "-special-coins";
+                    int collectedCoins = PlayerPrefs.GetInt(coinKey, 0);
+                    if (collectedCoins >= requiredSpecialCoins)
+                    {
+                        Debug.Log($"✅ LevelComplete für {targetID} mit {collectedCoins}/{requiredSpecialCoins} Coins.");
+                        AchievementProgressTracker.Instance?.OnLevelCompleted(targetID);
+                        fired = true;
+                    }
+                    else
+                    {
+                        Debug.Log($"❌ Nicht genug Special Coins ({collectedCoins}/{requiredSpecialCoins}) für {targetID}.");
+                    }
                 }
                 break;
 
             case TriggerType.LevelUnlock:
                 AchievementProgressTracker.Instance?.OnLevelUnlocked(targetID);
-                Debug.Log($"✅ LevelUnlock Achievement ausgelöst für {targetID}.");
+                Debug.Log($"✅ LevelUnlock für {targetID}.");
+                fired = true;
                 break;
 
             case TriggerType.SecretFound:
                 AchievementProgressTracker.Instance?.OnSecretFound(targetID);
-                Debug.Log($"✅ Secret Found Achievement ausgelöst für {targetID}.");
+                Debug.Log($"✅ Secret Found für {targetID}.");
+                fired = true;
                 break;
 
             case TriggerType.ObjectFound:
                 AchievementProgressTracker.Instance?.OnObjectFound(targetID);
-                Debug.Log($"✅ Object Found Achievement ausgelöst für {targetID}.");
+                Debug.Log($"✅ Object Found für {targetID}.");
+                fired = true;
                 break;
 
             case TriggerType.BonusLevelFound:
                 AchievementProgressTracker.Instance?.OnBonusLevelFound(targetID);
-                Debug.Log($"✅ Bonus Level Achievement ausgelöst für {targetID}.");
+                Debug.Log($"✅ Bonus Level Found für {targetID}.");
+                fired = true;
                 break;
         }
     }
-
-#if UNITY_EDITOR
-    void OnValidate()
-    {
-        // Nur bei LevelComplete soll requiredSpecialCoins sichtbar sein
-        UnityEditor.SerializedObject so = new UnityEditor.SerializedObject(this);
-        var prop = so.FindProperty("requiredSpecialCoins");
-        prop.isExpanded = triggerType == TriggerType.LevelComplete;
-    }
-#endif
 }

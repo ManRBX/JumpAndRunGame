@@ -366,8 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 2
-  leftDistance: 5
-  rightDistance: 5
+  leftDistance: 7
+  rightDistance: 7
   jumpForce: 5
   groundCheck: {fileID: 721285669645072550}
   groundLayer:
@@ -392,7 +392,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8310597468310113973}
   deathSound: {fileID: 0}
   audioPlayDistance: 10
-  customFieldSize: {x: 10, y: 5}
+  customFieldSize: {x: 20, y: 10}
   customFieldOffset: {x: 0, y: 0}
 --- !u!114 &3487940699439239192
 MonoBehaviour:
