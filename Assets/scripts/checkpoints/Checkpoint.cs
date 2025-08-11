@@ -10,6 +10,9 @@ public class Checkpoint : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [Header("🔊 Checkpoint-Sound")]
+    public AudioSource checkpointSound;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +41,16 @@ public class Checkpoint : MonoBehaviour
             {
                 Debug.LogError("CheckpointManager fehlt!");
             }
+        }
+
+        // 🔊 checkpoint Sound abspielen
+        if (checkpointSound != null)
+        {
+            checkpointSound.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Checkpoint-Sound fehlt!");
         }
     }
 

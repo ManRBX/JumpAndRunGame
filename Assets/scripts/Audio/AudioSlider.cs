@@ -19,11 +19,10 @@ public class AudioSlider : MonoBehaviour
     private float currentVolume = 0.5f; // 0.5 = 50%
     private const float MIN_NON_ZERO = 0.0000001f;
 
-    private void Awake()
+    private void Start()
     {
         PlayerPrefsKeyTracker.TrackKey(volumeKey);
 
-        // Load gespeicherte Lautstärke
         if (PlayerPrefs.HasKey(volumeKey))
         {
             try
@@ -41,10 +40,8 @@ public class AudioSlider : MonoBehaviour
             }
         }
 
-        // Mixer-Wert setzen
         SetMixerVolume(currentVolume);
 
-        // Slider initialisieren
         if (volumeSlider != null)
         {
             volumeSlider.onValueChanged.RemoveAllListeners();

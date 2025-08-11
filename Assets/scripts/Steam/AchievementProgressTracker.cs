@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Reflection;
 using Steamworks;
 
 public class AchievementProgressTracker : MonoBehaviour
@@ -59,6 +60,8 @@ public class AchievementProgressTracker : MonoBehaviour
     {
         coinsCollected++;
         PlayerPrefs.SetInt("CoinsCollected", coinsCollected);
+        TryTrackKey("CoinsCollected");
+        PlayerPrefs.Save();
         CheckProgressAchievements();
     }
 
@@ -66,6 +69,8 @@ public class AchievementProgressTracker : MonoBehaviour
     {
         enemiesKilled++;
         PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+        TryTrackKey("EnemiesKilled");
+        PlayerPrefs.Save();
         CheckProgressAchievements();
     }
 
@@ -75,8 +80,7 @@ public class AchievementProgressTracker : MonoBehaviour
         {
             if (!coinAch.unlocked && coinsCollected >= coinAch.requiredAmount)
             {
-                SteamAchievementManager.Unlock(coinAch.achievementID);
-                coinAch.unlocked = true;
+                UnlockProgressAch(coinAch, "achv_coin_");
             }
         }
 
@@ -84,10 +88,19 @@ public class AchievementProgressTracker : MonoBehaviour
         {
             if (!killAch.unlocked && enemiesKilled >= killAch.requiredAmount)
             {
-                SteamAchievementManager.Unlock(killAch.achievementID);
-                killAch.unlocked = true;
+                UnlockProgressAch(killAch, "achv_kill_");
             }
         }
+    }
+
+    private void UnlockProgressAch(ProgressAchievement ach, string prefix)
+    {
+        SteamAchievementManager.Unlock(ach.achievementID);
+        ach.unlocked = true;
+        PlayerPrefs.SetInt(prefix + ach.achievementID, 1);
+        TryTrackKey(prefix + ach.achievementID);
+        PlayerPrefs.Save();
+        Debug.Log($"✅ Progress-Achievement freigeschaltet: {ach.achievementID}");
     }
 
     public void OnLevelCompleted(string levelID)
@@ -115,19 +128,35 @@ public class AchievementProgressTracker : MonoBehaviour
         UnlockFlag(bonusLevelID, bonusLevels, "BonusLevelFound_", bonusLevelID);
     }
 
+    /// <summary>
+    /// Baut den PlayerPrefs-Key sauber als id + keyPrefix und schickt achievementID an Steam.
+    /// </summary>
     private void UnlockFlag(string id, List<AchievementFlag> list, string keyPrefix, string achievementID)
     {
-        string key = keyPrefix + id;
+        string key = id + keyPrefix; // ✅ FIX: Suffix hinten anhängen
+
         foreach (var entry in list)
         {
             if (entry.ID.Equals(id, System.StringComparison.OrdinalIgnoreCase) && !PlayerPrefs.HasKey(key))
             {
                 PlayerPrefs.SetInt(key, 1);
+                TryTrackKey(key);
+                PlayerPrefs.Save();
                 SteamAchievementManager.Unlock(achievementID);
                 entry.unlocked = true;
                 Debug.Log($"✅ Achievement freigeschaltet: {achievementID}");
-                break;
+                return;
             }
+        }
+
+        // Falls ID nicht in Liste, trotzdem setzen
+        if (!PlayerPrefs.HasKey(key))
+        {
+            PlayerPrefs.SetInt(key, 1);
+            TryTrackKey(key);
+            PlayerPrefs.Save();
+            SteamAchievementManager.Unlock(achievementID);
+            Debug.LogWarning($"⚠️ ID '{id}' nicht in Liste, Achievement trotzdem freigeschaltet: {achievementID}");
         }
     }
 
@@ -135,12 +164,25 @@ public class AchievementProgressTracker : MonoBehaviour
     {
         foreach (var entry in list)
         {
-            string key = keyPrefix + entry.ID;
+            string key = entry.ID + keyPrefix; // ✅ auch hier Suffix hinten
             if (PlayerPrefs.HasKey(key))
             {
                 entry.unlocked = true;
             }
         }
+    }
+
+    private void TryTrackKey(string key)
+    {
+        try
+        {
+            var t = System.Type.GetType("PlayerPrefsKeyTracker");
+            if (t == null) return;
+            var m = t.GetMethod("TrackKey", BindingFlags.Public | BindingFlags.Static);
+            if (m == null) return;
+            m.Invoke(null, new object[] { key });
+        }
+        catch { /* still safe */ }
     }
 }
 

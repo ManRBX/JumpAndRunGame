@@ -48,6 +48,19 @@ public class Enemy : MonoBehaviour
     public float playerRespawnCheckRadius = 3f;
     public LayerMask playerLayer;
 
+    [Header("🔊 Sounds")]
+    public AudioSource stepSound;
+    public AudioSource jumpSound;
+    public AudioSource deathSound;
+
+    [Header("🎯 Audio Aktivierungsdistanz")]
+    public float audioPlayDistance = 10f;
+
+    [Header("🟩 Custom Aktivierungsfeld")]
+    public Vector2 customFieldSize = new Vector2(10f, 5f);
+    public Vector2 customFieldOffset = Vector2.zero;
+
+    private Transform playerTransform;
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
@@ -59,7 +72,6 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Collider2D enemyCollider;
-
     private Vector3 spawnPosition;
 
     void Start()
@@ -77,6 +89,11 @@ public class Enemy : MonoBehaviour
 
         movingRight = true;
         initialDirectionRight = movingRight;
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        if (deathSound != null) deathSound.loop = false;
+        if (stepSound != null) stepSound.loop = true;
     }
 
     void Update()
@@ -88,6 +105,7 @@ public class Enemy : MonoBehaviour
 
         HandleJumpAndFallAnimation();
         Patrol();
+        HandleStepSound();
 
         if (isGrounded && isNearWall)
         {
@@ -125,6 +143,10 @@ public class Enemy : MonoBehaviour
             animator.SetBool("Jump", true);
             animator.SetBool("Fall", false);
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            if (jumpSound != null && IsPlayerInCustomField())
+                jumpSound.Play();
+
             StartCoroutine(ResetJumpAnimation());
         }
     }
@@ -163,15 +185,12 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && canAttack)
         {
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            if (playerHealth != null && !playerHealth.IsInvincibleTo("Enemy"))
             {
-                if (!playerHealth.IsInvincibleTo("Enemy"))
-                {
-                    animator.SetTrigger("Attack");
-                    playerHealth.Die();
-                    canAttack = false;
-                    Invoke(nameof(ResetAttack), attackCooldown);
-                }
+                animator.SetTrigger("Attack");
+                playerHealth.Die();
+                canAttack = false;
+                Invoke(nameof(ResetAttack), attackCooldown);
             }
         }
     }
@@ -217,20 +236,29 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Jump", false);
         animator.SetBool("Fall", false);
         animator.SetFloat("Speed", 0);
-
-        FindObjectOfType<AchievementProgressTracker>()?.AddKill();
-
-        Debug.Log("Enemy killed!");
-        AddPointsOnDeath();
-
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Die");
+
+        // Sounds stoppen
+        if (stepSound != null && stepSound.isPlaying)
+            stepSound.Stop();
+
+        if (jumpSound != null && jumpSound.isPlaying)
+            jumpSound.Stop();
+
+        if (deathSound != null && IsPlayerInCustomField())
+            deathSound.Play();
+
+        FindObjectOfType<AchievementProgressTracker>()?.AddKill();
+        AddPointsOnDeath();
+        Debug.Log("Enemy killed!");
 
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
         enemyCollider.enabled = false;
 
-        if (deathEffect != null) deathEffect.Play();
+        if (deathEffect != null)
+            deathEffect.Play();
 
         if (TryGetComponent<EnemyShooting>(out var shooting))
             shooting.enabled = false;
@@ -305,6 +333,35 @@ public class Enemy : MonoBehaviour
         return Physics2D.OverlapCircle(spawnPosition, playerRespawnCheckRadius, playerLayer) != null;
     }
 
+    bool IsPlayerInCustomField()
+    {
+        if (playerTransform == null) return false;
+        Vector2 fieldCenter = (Vector2)transform.position + customFieldOffset;
+        Bounds bounds = new Bounds(fieldCenter, customFieldSize);
+        return bounds.Contains(playerTransform.position);
+    }
+
+    void HandleStepSound()
+    {
+        if (stepSound == null || !IsPlayerInCustomField())
+        {
+            if (stepSound != null && stepSound.isPlaying)
+                stepSound.Stop();
+            return;
+        }
+
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        {
+            if (!stepSound.isPlaying)
+                stepSound.Play();
+        }
+        else
+        {
+            if (stepSound.isPlaying)
+                stepSound.Stop();
+        }
+    }
+
     void AddPointsOnDeath()
     {
         if (CoinManager.Instance != null)
@@ -318,13 +375,21 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(spawnPosition == Vector3.zero ? transform.position : spawnPosition, playerRespawnCheckRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, audioPlayDistance);
+
+        Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+        Vector3 fieldCenter = transform.position + (Vector3)customFieldOffset;
+        Gizmos.DrawCube(fieldCenter, new Vector3(customFieldSize.x, customFieldSize.y, 0.1f));
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(fieldCenter, new Vector3(customFieldSize.x, customFieldSize.y, 0.1f));
     }
 
     void OnDrawGizmos()
     {
         Vector3 basePosition = Application.isPlaying ? spawnPosition : transform.position;
 
-        // 🟡 Patrouillenbereich
         Gizmos.color = Color.yellow;
         Vector3 leftPos = new Vector3(basePosition.x - leftDistance, basePosition.y, basePosition.z);
         Vector3 rightPos = new Vector3(basePosition.x + rightDistance, basePosition.y, basePosition.z);
@@ -332,14 +397,12 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawSphere(leftPos, 0.1f);
         Gizmos.DrawSphere(rightPos, 0.1f);
 
-        // 🔴 Ground Check
         if (groundCheck != null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
         }
 
-        // 🔵 Wall Check
         if (wallCheck != null)
         {
             Gizmos.color = Color.cyan;

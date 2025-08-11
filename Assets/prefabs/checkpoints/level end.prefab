@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2818720580485134056}
   - component: {fileID: 3956489478129303200}
   - component: {fileID: -338396424225236264}
+  - component: {fileID: 6468532661844332494}
   m_Layer: 0
   m_Name: level end
   m_TagString: Untagged
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -1521866013
   m_SortingLayer: 2
   m_SortingOrder: 9
-  m_Sprite: {fileID: 1851190337, guid: 7b8864994fc00ce4a8dc635e94029c24, type: 3}
+  m_Sprite: {fileID: 278070548, guid: 618a68a5b1d31d645885ed49df5e2313, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,9 +106,19 @@ MonoBehaviour:
   nextLevelName: 
   currentLevelName: "T\xFCren ohne Schl\xFCssel"
   returnScene: Menu
+  loadNextLevelOnComplete: 1
   triggerType: 0
   targetID: Level01_Completed
   achievementCoinsRequired: 3
+  coinKeyOverride: 
+  loadDelay: 0.35
+  successSfx: {fileID: 0}
+  successFx: {fileID: 0}
+  feedbackText: {fileID: 0}
+  triggerOnce: 1
+  reArmOnExit: 0
+  retriggerCooldown: 0
+  inputBlocker: {fileID: 0}
 --- !u!61 &3956489478129303200
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,3 +180,22 @@ MonoBehaviour:
   triggerType: 0
   targetID: 
   requiredSpecialCoins: 3
+  triggerOnce: 1
+--- !u!114 &6468532661844332494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6859734780346403116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e869f2c440e6ef74a96738ff7466729a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableAutoSave: 1
+  autoSaveIntervalMinutes: 0
+  saveIntervalSeconds: 1
+  autoSaveUI: {fileID: 0}
+  autoSaveText: {fileID: 0}
+  autoSaveSpinner: {fileID: 0}

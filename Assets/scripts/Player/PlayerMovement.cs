@@ -36,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
     public float zoneMaxFallSpeed = -10f;
     public float zoneAirDrag = 3f;
 
+    [Header("🔊 Sounds")]
+    public AudioSource walkingSound;
+    public AudioSource jumpSound;
+
     private Rigidbody2D rb;
     private Animator anim;
     private bool isGrounded;
@@ -51,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentSpeed = 0f;
     private KeyBindManager keyBindManager;
-
     private MovingPlatform currentPlatform;
 
     private void Start()
@@ -116,6 +119,21 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         else if (move < 0 && facingRight)
             Flip();
+
+        // 🔊 Schrittgeräusch abspielen wenn Boden + Bewegung
+        bool isWalking = Mathf.Abs(move) > 0f && isGrounded;
+
+        if (walkingSound != null)
+        {
+            if (isWalking && !walkingSound.isPlaying)
+            {
+                walkingSound.Play();
+            }
+            else if (!isWalking && walkingSound.isPlaying)
+            {
+                walkingSound.Stop();
+            }
+        }
     }
 
     float GetInputMovement()
@@ -153,6 +171,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         anim.SetTrigger("JumpTrigger");
+
+        if (jumpSound != null)
+            jumpSound.Play();
     }
 
     void WallJump()
@@ -165,6 +186,9 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = new Vector2(wallJumpDir * speed * 1.5f, jumpForce);
         anim.SetTrigger("WallJump");
+
+        if (jumpSound != null)
+            jumpSound.Play();
 
         canWallJump = false;
         Invoke(nameof(EnableWallJump), 0.2f);
@@ -285,7 +309,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // 🟢 FallBrakeLines
         if (fallBrakeLines != null)
         {
             foreach (var line in fallBrakeLines)
@@ -300,7 +323,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // 🔵 GroundCheckPoints
         if (groundCheckPoints != null)
         {
             Gizmos.color = Color.cyan;
@@ -314,7 +336,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // 🔴 WallCheckPoints
         if (wallCheckPoints != null)
         {
             Gizmos.color = Color.magenta;

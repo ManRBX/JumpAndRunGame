@@ -36,6 +36,12 @@ public class BreakableBox2D : MonoBehaviour
     private static bool isQuitting = false;
     private bool isBroken = false;
 
+    [Header("🔊 destruction-sound")]
+    public AudioSource destructionSound;
+
+    [Header("🔊 hit-sound")]
+    public AudioSource hitSound;
+
     void Start()
     {
         currentHitPoints = hitPoints;
@@ -75,6 +81,9 @@ public class BreakableBox2D : MonoBehaviour
     {
         if (isBroken) return;
 
+        if (hitSound != null && !hitSound.isPlaying)
+            hitSound.Play();
+
         currentHitPoints--;
 
         if (currentHitPoints <= 0)
@@ -105,12 +114,14 @@ public class BreakableBox2D : MonoBehaviour
         PlayerPrefsKeyTracker.TrackKey($"{currentLevel}_Points");
 
         TryDropReward();
-
         PlayerPrefs.Save();
 
         CoinStatsDisplay statsDisplay = FindFirstObjectByType<CoinStatsDisplay>();
         if (statsDisplay != null)
             statsDisplay.UpdatePointStats();
+
+        if (destructionSound != null && !destructionSound.isPlaying)
+            destructionSound.Play();
 
         if (Random.value <= behaviorChances.shouldBreakChance)
         {
@@ -121,6 +132,7 @@ public class BreakableBox2D : MonoBehaviour
                 Destroy(gameObject);
         }
     }
+
 
     void TrySpawnFragments()
     {
