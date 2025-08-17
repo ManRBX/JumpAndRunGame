@@ -502,6 +502,238 @@ MonoBehaviour:
     m_Localized: "Bitte dr\xFCcken Sie eine Taste..."
     m_Metadata:
       m_Items: []
+  - m_Id: 67463828714020864
+    m_Localized: "Du ben\xF6tigst einen Schl\xFCssel!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67463849710706688
+    m_Localized: "Du hast einen Schl\xFCssel! Dr\xFCcke E um hindurch zu gehen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67464313932079104
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67464528357482496
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67464601845882880
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67464805286404096
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67465115937529856
+    m_Localized: "Du ben\xF6tigst einen Schl\xFCssel!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67465122266734592
+    m_Localized: "Du hast einen Schl\xFCssel! Dr\xFCcke E um hindurch zu gehen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67465665043226624
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466124264988672
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466175494217728
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466357006917632
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466627409502208
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466643565961216
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466695680188416
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466848088612864
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67466884600029184
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67467276515794944
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67467454043906048
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67467471676760064
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67467520636870656
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468174470144000
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468219969953792
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468248143093760
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468626096021504
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468679804084224
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468831021326336
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468888818835456
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67468909979099136
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388171803516928
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388304121225216
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388345388982272
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388447771942912
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388574372814848
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388591112282112
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388607696560128
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388666475536384
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388735891267584
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388769835769856
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388834956533760
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388912941228032
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388974278729728
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68388989797654528
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68389103924666368
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68389137109999616
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68389152402432000
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391121129037824
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391135792324608
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391208802574336
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391240171773952
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391253107007488
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68391987118596096
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392010719944704
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392072053252096
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392084187373568
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392205411147776
+    m_Localized: Hey warte mal ich bereite alles vor!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392336667697152
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68392352685744128
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

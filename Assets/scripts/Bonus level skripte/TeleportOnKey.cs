@@ -21,8 +21,11 @@ public class TeleportOnKey : MonoBehaviour
     [Header("🔑 Schlüssel Einstellungen")]
     public bool requiresKey = false;
     public string requiredKeyName;
-    public TMP_Text noKeyMessageText;
+
+    [Header("📜 Nachrichten")]
+    public TMP_Text messageText;
     public string noKeyMessage = "Du benötigst einen Schlüssel!";
+    public string hasKeyMessage = "Du hast einen Schlüssel! Drücke E um hindurch zu gehen.";
     public float messageDisplayDuration = 3f;
 
     private float lastTeleportTime = -Mathf.Infinity;
@@ -35,6 +38,12 @@ public class TeleportOnKey : MonoBehaviour
         {
             isPlayerInZone = true;
             player = other.gameObject;
+
+            // Wenn Key vorhanden und Nachricht eingestellt → Sofort anzeigen
+            if (requiresKey && PlayerPrefs.GetInt(requiredKeyName, 0) == 1)
+            {
+                ShowMessage(hasKeyMessage, true); // true = dauerhaft anzeigen, solange in Zone
+            }
         }
     }
 
@@ -44,6 +53,10 @@ public class TeleportOnKey : MonoBehaviour
         {
             isPlayerInZone = false;
             player = null;
+
+            // Nachricht ausblenden
+            if (messageText != null)
+                messageText.gameObject.SetActive(false);
         }
     }
 
@@ -63,8 +76,8 @@ public class TeleportOnKey : MonoBehaviour
 
             if (requiresKey && PlayerPrefs.GetInt(requiredKeyName, 0) == 0)
             {
-                if (noKeyMessageText != null)
-                    StartCoroutine(ShowNoKeyMessage());
+                if (messageText != null)
+                    StartCoroutine(ShowTemporaryMessage(noKeyMessage));
 
                 Debug.Log(noKeyMessage);
                 return;
@@ -79,13 +92,30 @@ public class TeleportOnKey : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator ShowNoKeyMessage()
+    private System.Collections.IEnumerator ShowTemporaryMessage(string text)
     {
-        noKeyMessageText.text = noKeyMessage;
-        noKeyMessageText.gameObject.SetActive(true);
-
+        ShowMessage(text, false);
         yield return new WaitForSeconds(messageDisplayDuration);
+        if (messageText != null)
+            messageText.gameObject.SetActive(false);
+    }
 
-        noKeyMessageText.gameObject.SetActive(false);
+    private void ShowMessage(string text, bool keepVisible)
+    {
+        if (messageText != null)
+        {
+            messageText.text = text;
+            messageText.gameObject.SetActive(true);
+
+            if (!keepVisible)
+                StartCoroutine(HideAfterDelay());
+        }
+    }
+
+    private System.Collections.IEnumerator HideAfterDelay()
+    {
+        yield return new WaitForSeconds(messageDisplayDuration);
+        if (messageText != null && isPlayerInZone == false)
+            messageText.gameObject.SetActive(false);
     }
 }
