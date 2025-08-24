@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
     public AudioSource deathSound;
 
     [Header("🎯 Audio Aktivierungsdistanz")]
-    public float audioPlayDistance = 10f;
+    public float audioPlayDistance = 10f; // optional, aktuell nicht verwendet
 
     [Header("🟩 Custom Aktivierungsfeld")]
     public Vector2 customFieldSize = new Vector2(10f, 5f);
@@ -64,7 +64,6 @@ public class Enemy : MonoBehaviour
     private Vector2 leftLimit;
     private Vector2 rightLimit;
     private bool movingRight;
-    private bool initialDirectionRight;
     private bool lastDirectionRight;
     private bool isGrounded;
 
@@ -88,9 +87,9 @@ public class Enemy : MonoBehaviour
         enemyCollider = GetComponent<Collider2D>();
 
         movingRight = true;
-        initialDirectionRight = movingRight;
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        var player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = player ? player.transform : null;
 
         if (deathSound != null) deathSound.loop = false;
         if (stepSound != null) stepSound.loop = true;
@@ -99,28 +98,29 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (isDead || isTakingDamage) return;
+        if (rb == null) return;
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-        bool isNearWall = Physics2D.Raycast(wallCheck.position, movingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
+        if (groundCheck != null)
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+
+        bool isNearWall = false;
+        if (wallCheck != null)
+            isNearWall = Physics2D.Raycast(wallCheck.position, movingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer);
 
         HandleJumpAndFallAnimation();
         Patrol();
         HandleStepSound();
 
         if (isGrounded && isNearWall)
-        {
             JumpOverObstacle();
-        }
 
         if (animator != null)
-        {
             animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
-        }
     }
 
     void Patrol()
     {
-        if (isDead) return;
+        if (isDead || rb == null) return;
 
         float moveSpeed = movingRight ? speed : -speed;
         rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
@@ -137,11 +137,16 @@ public class Enemy : MonoBehaviour
 
     void JumpOverObstacle()
     {
+        if (rb == null) return;
+
         if (!isJumping && isGrounded)
         {
             isJumping = true;
-            animator.SetBool("Jump", true);
-            animator.SetBool("Fall", false);
+            if (animator != null)
+            {
+                animator.SetBool("Jump", true);
+                animator.SetBool("Fall", false);
+            }
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             if (jumpSound != null && IsPlayerInCustomField())
@@ -153,13 +158,16 @@ public class Enemy : MonoBehaviour
 
     IEnumerator ResetJumpAnimation()
     {
+        if (rb == null) yield break;
         yield return new WaitUntil(() => rb.linearVelocity.y <= 0);
         isJumping = false;
-        animator.SetBool("Jump", false);
+        if (animator != null) animator.SetBool("Jump", false);
     }
 
     void HandleJumpAndFallAnimation()
     {
+        if (rb == null || animator == null) return;
+
         if (!isGrounded && rb.linearVelocity.y < -0.1f)
         {
             isFalling = true;
@@ -182,23 +190,37 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead) return;
+
         if (collision.gameObject.CompareTag("Player") && canAttack)
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null && !playerHealth.IsInvincibleTo("Enemy"))
+            var playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            bool canHit = true;
+
+            // optionaler Invincibility-Check, falls vorhanden
+            if (playerHealth != null)
             {
-                animator.SetTrigger("Attack");
-                playerHealth.Die();
+                var m = playerHealth.GetType().GetMethod("IsInvincibleTo", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                if (m != null)
+                {
+                    object res = m.Invoke(playerHealth, new object[] { "Enemy" });
+                    if (res is bool b) canHit = !b;
+                }
+            }
+
+            if (playerHealth != null && canHit)
+            {
+                if (animator != null) animator.SetTrigger("Attack");
+                var die = playerHealth.GetType().GetMethod("Die", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                if (die != null) die.Invoke(playerHealth, null);
+
                 canAttack = false;
                 Invoke(nameof(ResetAttack), attackCooldown);
             }
         }
     }
 
-    private void ResetAttack()
-    {
-        canAttack = true;
-    }
+    private void ResetAttack() => canAttack = true;
 
     public void TakeDamage(int damage)
     {
@@ -211,7 +233,6 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Debug.Log("Enemy hit! Current HP: " + health);
             StartCoroutine(DamageReaction());
         }
     }
@@ -219,12 +240,12 @@ public class Enemy : MonoBehaviour
     private IEnumerator DamageReaction()
     {
         isTakingDamage = true;
-        animator.SetBool("Hit", true);
-        rb.linearVelocity = Vector2.zero;
+        if (animator != null) animator.SetBool("Hit", true);
+        if (rb != null) rb.linearVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(damageStunTime);
 
-        animator.SetBool("Hit", false);
+        if (animator != null) animator.SetBool("Hit", false);
         isTakingDamage = false;
     }
 
@@ -233,35 +254,31 @@ public class Enemy : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        animator.SetBool("Jump", false);
-        animator.SetBool("Fall", false);
-        animator.SetFloat("Speed", 0);
-        animator.ResetTrigger("Attack");
-        animator.SetTrigger("Die");
+        if (animator != null)
+        {
+            animator.SetBool("Jump", false);
+            animator.SetBool("Fall", false);
+            animator.SetFloat("Speed", 0);
+            animator.ResetTrigger("Attack");
+            animator.SetTrigger("Die");
+        }
 
-        // Sounds stoppen
-        if (stepSound != null && stepSound.isPlaying)
-            stepSound.Stop();
+        if (stepSound != null && stepSound.isPlaying) stepSound.Stop();
+        if (jumpSound != null && jumpSound.isPlaying) jumpSound.Stop();
+        if (deathSound != null && IsPlayerInCustomField()) deathSound.Play();
 
-        if (jumpSound != null && jumpSound.isPlaying)
-            jumpSound.Stop();
-
-        if (deathSound != null && IsPlayerInCustomField())
-            deathSound.Play();
-
-        FindObjectOfType<AchievementProgressTracker>()?.AddKill();
         AddPointsOnDeath();
-        Debug.Log("Enemy killed!");
 
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        enemyCollider.enabled = false;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        if (enemyCollider != null) enemyCollider.enabled = false;
 
-        if (deathEffect != null)
-            deathEffect.Play();
+        if (deathEffect != null) deathEffect.Play();
 
-        if (TryGetComponent<EnemyShooting>(out var shooting))
-            shooting.enabled = false;
+        if (TryGetComponent<EnemyShooting>(out var shooting)) shooting.enabled = false;
 
         lastDirectionRight = movingRight;
 
@@ -271,38 +288,39 @@ public class Enemy : MonoBehaviour
     IEnumerator HandleDeathAnimation()
     {
         yield return new WaitForSeconds(deathAnimationDuration);
-        spriteRenderer.enabled = false;
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
         yield return new WaitForSeconds(respawnTime);
         Respawn();
     }
 
     void Respawn()
     {
-        Debug.Log("⏳ Warte auf Respawn...");
         StartCoroutine(WaitUntilPlayerIsGone());
     }
 
     IEnumerator WaitUntilPlayerIsGone()
     {
         while (PlayerNearby())
-        {
             yield return new WaitForSeconds(0.2f);
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("Die");
+            animator.SetBool("Jump", false);
+            animator.SetBool("Fall", false);
+            animator.SetFloat("Speed", 0);
         }
-
-        Debug.Log("Enemy respawning...");
-
-        animator.ResetTrigger("Die");
-        animator.SetBool("Jump", false);
-        animator.SetBool("Fall", false);
-        animator.SetFloat("Speed", 0);
 
         health = maxHealth;
         isDead = false;
 
-        spriteRenderer.enabled = true;
-        enemyCollider.enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.linearVelocity = Vector2.zero;
+        if (spriteRenderer != null) spriteRenderer.enabled = true;
+        if (enemyCollider != null) enemyCollider.enabled = true;
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.linearVelocity = Vector2.zero;
+        }
 
         transform.position = spawnPosition;
         movingRight = lastDirectionRight;
@@ -311,15 +329,13 @@ public class Enemy : MonoBehaviour
         scale.x = movingRight ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
         transform.localScale = scale;
 
-        if (TryGetComponent<EnemyShooting>(out var shooting))
-            shooting.enabled = true;
+        if (TryGetComponent<EnemyShooting>(out var shooting)) shooting.enabled = true;
 
         isInvulnerable = true;
         StartCoroutine(RemoveInvulnerability());
 
-        Flip(true);
-
-        Debug.Log("Enemy respawned with " + health + " HP!");
+        // Wenn du beim Respawn immer nach rechts schauen willst:
+        // Flip(true);
     }
 
     IEnumerator RemoveInvulnerability()
@@ -336,8 +352,9 @@ public class Enemy : MonoBehaviour
     bool IsPlayerInCustomField()
     {
         if (playerTransform == null) return false;
-        Vector2 fieldCenter = (Vector2)transform.position + customFieldOffset;
-        Bounds bounds = new Bounds(fieldCenter, customFieldSize);
+        Vector3 fieldCenter = (Vector2)transform.position + customFieldOffset;
+        Vector3 size3 = new Vector3(customFieldSize.x, customFieldSize.y, 0.1f);
+        Bounds bounds = new Bounds(fieldCenter, size3);
         return bounds.Contains(playerTransform.position);
     }
 
@@ -345,20 +362,17 @@ public class Enemy : MonoBehaviour
     {
         if (stepSound == null || !IsPlayerInCustomField())
         {
-            if (stepSound != null && stepSound.isPlaying)
-                stepSound.Stop();
+            if (stepSound != null && stepSound.isPlaying) stepSound.Stop();
             return;
         }
 
-        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        if (isGrounded && rb != null && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
         {
-            if (!stepSound.isPlaying)
-                stepSound.Play();
+            if (!stepSound.isPlaying) stepSound.Play();
         }
         else
         {
-            if (stepSound.isPlaying)
-                stepSound.Stop();
+            if (stepSound.isPlaying) stepSound.Stop();
         }
     }
 
@@ -367,28 +381,30 @@ public class Enemy : MonoBehaviour
         if (CoinManager.Instance != null)
         {
             CoinManager.Instance.AddPoints(pointsOnDeath);
-            Debug.Log($"+{pointsOnDeath} points received!");
+            // Debug.Log($"+{pointsOnDeath} points received!");
         }
     }
 
     void OnDrawGizmosSelected()
     {
+        Vector3 basePos = (Application.isPlaying && spawnPosition != Vector3.zero) ? spawnPosition : transform.position;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(spawnPosition == Vector3.zero ? transform.position : spawnPosition, playerRespawnCheckRadius);
+        Gizmos.DrawWireSphere(basePos, playerRespawnCheckRadius);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, audioPlayDistance);
 
         Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
         Vector3 fieldCenter = transform.position + (Vector3)customFieldOffset;
-        Gizmos.DrawCube(fieldCenter, new Vector3(customFieldSize.x, customFieldSize.y, 0.1f));
+        Vector3 size3 = new Vector3(customFieldSize.x, customFieldSize.y, 0.1f);
+        Gizmos.DrawCube(fieldCenter, size3);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(fieldCenter, new Vector3(customFieldSize.x, customFieldSize.y, 0.1f));
+        Gizmos.DrawWireCube(fieldCenter, size3);
     }
 
     void OnDrawGizmos()
     {
-        Vector3 basePosition = Application.isPlaying ? spawnPosition : transform.position;
+        Vector3 basePosition = Application.isPlaying && spawnPosition != Vector3.zero ? spawnPosition : transform.position;
 
         Gizmos.color = Color.yellow;
         Vector3 leftPos = new Vector3(basePosition.x - leftDistance, basePosition.y, basePosition.z);
