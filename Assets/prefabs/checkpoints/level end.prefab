@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6682305567705406160}
   - component: {fileID: 2818720580485134056}
   - component: {fileID: 3956489478129303200}
-  - component: {fileID: -338396424225236264}
   - component: {fileID: 6468532661844332494}
   m_Layer: 0
   m_Name: level end
@@ -165,22 +164,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.5828247, y: 2.593408}
   m_EdgeRadius: 0
---- !u!114 &-338396424225236264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6859734780346403116}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255ef69e2f5b9214f90190285cf46f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerType: 0
-  targetID: 
-  requiredSpecialCoins: 3
-  triggerOnce: 1
 --- !u!114 &6468532661844332494
 MonoBehaviour:
   m_ObjectHideFlags: 0
