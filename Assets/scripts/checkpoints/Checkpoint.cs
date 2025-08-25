@@ -41,16 +41,16 @@ public class Checkpoint : MonoBehaviour
             {
                 Debug.LogError("CheckpointManager fehlt!");
             }
-        }
 
-        // 🔊 checkpoint Sound abspielen
-        if (checkpointSound != null)
-        {
-            checkpointSound.Play();
-        }
-        else
-        {
-            Debug.LogWarning("Checkpoint-Sound fehlt!");
+            // 🔊 Sound nur beim Spieler abspielen
+            if (checkpointSound != null)
+            {
+                checkpointSound.Play();
+            }
+            else
+            {
+                Debug.LogWarning("Checkpoint-Sound fehlt!");
+            }
         }
     }
 
