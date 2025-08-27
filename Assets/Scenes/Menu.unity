@@ -6457,7 +6457,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c922559e91dce764a834ea875813e29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackerPrefab: {fileID: 5097557037589641031, guid: 9b520ffdd133abe4293b565deb1c07b0, type: 3}
 --- !u!4 &691077073
 Transform:
   m_ObjectHideFlags: 0
@@ -12507,7 +12506,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206094
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -12518,7 +12517,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206095
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -12529,7 +12528,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1150
     - rid: 8496045790192206096
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -12540,7 +12539,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: -200
 --- !u!1 &1057634660
 GameObject:
   m_ObjectHideFlags: 0
@@ -13707,7 +13706,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1184747376}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3297001}
+        m_TargetAssemblyTypeName: LevelSystem, Assembly-CSharp
+        m_MethodName: TryLoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level05
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1184747376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14613,7 +14624,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1329221374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3297001}
+        m_TargetAssemblyTypeName: LevelSystem, Assembly-CSharp
+        m_MethodName: TryLoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level06
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1329221374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16017,7 +16040,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206089
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -16028,7 +16051,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206090
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -16039,7 +16062,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 350
     - rid: 8496045790192206091
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -16050,7 +16073,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: -200
 --- !u!1 &1498029162
 GameObject:
   m_ObjectHideFlags: 0
@@ -20587,7 +20610,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206082
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20598,7 +20621,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 1
     - rid: 8496045790192206083
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20609,7 +20632,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 350
     - rid: 8496045790192206084
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20620,7 +20643,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: -200
     - rid: 8496045790192206085
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20631,7 +20654,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 160
     - rid: 8496045790192206086
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -20642,7 +20665,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 160
 --- !u!114 &1839727051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21058,7 +21081,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: 8319276
     - rid: 8496045790192206104
       type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
@@ -21069,7 +21092,7 @@ MonoBehaviour:
           value: 0
         - localeIdentifier:
             m_Code: de-AT
-          value: 0
+          value: -64004516
 --- !u!1 &1855274191
 GameObject:
   m_ObjectHideFlags: 0
