@@ -687,16 +687,16 @@ MonoBehaviour:
     m_Key: Level12/Canvas/Options Panel/Normal Volum Text
     m_Metadata:
       m_Items: []
-  - m_Id: 68392205411147776
-    m_Key: Level12/Canvas/Loading Screen panel/Loading text
-    m_Metadata:
-      m_Items: []
   - m_Id: 68392336667697152
     m_Key: Level12/checkpoints/Checkpoint
     m_Metadata:
       m_Items: []
   - m_Id: 68392352685744128
     m_Key: Level12/checkpoints/Checkpoint (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73182199086571520
+    m_Key: Level05/checkpoints/Checkpoint (1)
     m_Metadata:
       m_Items: []
   m_Metadata:

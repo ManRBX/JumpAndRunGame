@@ -631,7 +631,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68388447771942912
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68388574372814848
@@ -647,7 +647,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68388666475536384
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68388735891267584
@@ -663,7 +663,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68388912941228032
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68388974278729728
@@ -675,7 +675,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68389103924666368
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68389137109999616
@@ -695,7 +695,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68391208802574336
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68391240171773952
@@ -707,7 +707,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68391987118596096
-    m_Localized: Play
+    m_Localized: Spielen
     m_Metadata:
       m_Items: []
   - m_Id: 68392010719944704
@@ -722,15 +722,15 @@ MonoBehaviour:
     m_Localized: "Lautst\xE4rke:"
     m_Metadata:
       m_Items: []
-  - m_Id: 68392205411147776
-    m_Localized: Hey warte mal ich bereite alles vor!!!
-    m_Metadata:
-      m_Items: []
   - m_Id: 68392336667697152
     m_Localized: Du hast einen Checkpoint erreicht!
     m_Metadata:
       m_Items: []
   - m_Id: 68392352685744128
+    m_Localized: Du hast einen Checkpoint erreicht!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73182199086571520
     m_Localized: Du hast einen Checkpoint erreicht!
     m_Metadata:
       m_Items: []

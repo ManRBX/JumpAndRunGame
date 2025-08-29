@@ -623,15 +623,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68388171803516928
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68388304121225216
-    m_Localized: "Lautst\xE4rke:"
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68388345388982272
-    m_Localized: "SFX Lautst\xE4rke:"
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68388447771942912
@@ -639,103 +639,103 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 68388574372814848
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68388591112282112
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68388607696560128
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68388666475536384
-    m_Localized: 'Play '
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 68388735891267584
-    m_Localized: "Lautst\xE4rke: "
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68388769835769856
-    m_Localized: "SFX Lautst\xE4rke: "
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68388834956533760
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68388912941228032
-    m_Localized: 'Play '
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 68388974278729728
-    m_Localized: "SFX Lautst\xE4rke: "
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68388989797654528
-    m_Localized: "Lautst\xE4rke: "
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68389103924666368
-    m_Localized: 'Play '
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 68389137109999616
-    m_Localized: "SFX Lautst\xE4rke: "
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68389152402432000
-    m_Localized: "Lautst\xE4rke:"
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68391121129037824
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68391135792324608
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68391208802574336
-    m_Localized: 'Play '
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 68391240171773952
-    m_Localized: "SFX Lautst\xE4rke: "
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68391253107007488
-    m_Localized: "Lautst\xE4rke: "
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68391987118596096
-    m_Localized: 'Play '
+    m_Localized: Play
     m_Metadata:
       m_Items: []
   - m_Id: 68392010719944704
-    m_Localized: 'Menu '
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   - m_Id: 68392072053252096
-    m_Localized: "SFX Lautst\xE4rke: "
+    m_Localized: 'SFX volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68392084187373568
-    m_Localized: "Lautst\xE4rke: "
-    m_Metadata:
-      m_Items: []
-  - m_Id: 68392205411147776
-    m_Localized: 'Hey warte mal ich bereite alles vor!!! '
+    m_Localized: 'Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 68392336667697152
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   - m_Id: 68392352685744128
-    m_Localized: 'Du hast einen Checkpoint erreicht! '
+    m_Localized: You have reached a checkpoint!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 73182199086571520
+    m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
   references:
