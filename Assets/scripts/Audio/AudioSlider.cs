@@ -16,7 +16,7 @@ public class AudioSlider : MonoBehaviour
     [Header("🧠 Speicher-Key")]
     public string volumeKey = "Volume_Music"; // Jeder Regler hat eigenen Key
 
-    private float currentVolume = 0.5f; // 0.5 = 50%
+    private float currentVolume = 0.2f; // 0.5 = 50%
     private const float MIN_NON_ZERO = 0.0000001f;
 
     private void Start()
