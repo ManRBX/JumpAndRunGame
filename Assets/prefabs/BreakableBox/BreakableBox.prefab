@@ -164,18 +164,18 @@ MonoBehaviour:
     shouldBreakChance: 0.34
     showDestructionEffectChance: 0.377
     startInvisibleChance: 0.311
-  globalPowerUpChance: 0.594
+  globalPowerUpChance: 0.614
   possiblePowerUps:
   - powerUpPrefab: {fileID: 4756770654157351645, guid: 96ad94ee65246f8488933265fc878128, type: 3}
-    individualChance: 0.422
+    individualChance: 0.512
   - powerUpPrefab: {fileID: 7798149906328121320, guid: f202168a615b9f44898e53477d3d0bc7, type: 3}
-    individualChance: 0.388
+    individualChance: 0.679
   - powerUpPrefab: {fileID: 8057363333860591337, guid: 55465dd149e1d324d8989ad0ba5d29d5, type: 3}
-    individualChance: 0.379
+    individualChance: 0.538
   - powerUpPrefab: {fileID: 8057363333860591337, guid: 569883a48fcebe343a6f4de94d430528, type: 3}
-    individualChance: 0.447
+    individualChance: 0.658
   - powerUpPrefab: {fileID: 8057363333860591337, guid: db5b9288a4528804ebf0a2b78c893a04, type: 3}
-    individualChance: 0.476
+    individualChance: 0.575
   powerUpCooldownSeconds: 20
   coinPrefab: {fileID: 3373244725094660810, guid: f9ea7272ba9a7784caf3981490a0365e, type: 3}
   coinSpawnYOffset: 1.2
