@@ -22781,23 +22781,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopEntries:
   - itemToBuy: {fileID: 11400000, guid: 911a0d7c307ad0d47b8cda780372b38d, type: 2}
-    price: 1320
+    price: 240
     button: {fileID: 1062731779}
     priceText: {fileID: 1957990399}
   - itemToBuy: {fileID: 11400000, guid: 0aa1c5024030d5744b2fcab2c4890713, type: 2}
-    price: 1990
+    price: 350
     button: {fileID: 169509253}
     priceText: {fileID: 1756526414}
   - itemToBuy: {fileID: 11400000, guid: 919a2afe79d917c4e9b7c5fe3c52af0b, type: 2}
-    price: 1800
+    price: 210
     button: {fileID: 1762515283}
     priceText: {fileID: 1614806644}
   - itemToBuy: {fileID: 11400000, guid: 3f56353c66f8e0447a35deb9edb0faae, type: 2}
-    price: 1350
+    price: 390
     button: {fileID: 1147490597}
     priceText: {fileID: 971286385}
   - itemToBuy: {fileID: 11400000, guid: 695c6554a3dfb674fa2fc97d23bbc9a4, type: 2}
-    price: 1680
+    price: 420
     button: {fileID: 1514444312}
     priceText: {fileID: 469514870}
 --- !u!1 &2016295676
