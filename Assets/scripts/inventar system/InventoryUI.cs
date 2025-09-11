@@ -32,6 +32,10 @@ public class InventoryUI : MonoBehaviour
 
     private KeyBindManager keyBindManager;
 
+    // 🔄 Globale Cooldown-Steuerung
+    private bool isGlobalCooldown = false;
+    private float cooldownDuration = 20f;
+
     private void Awake()
     {
         if (Instance == null)
@@ -141,7 +145,8 @@ public class InventoryUI : MonoBehaviour
         if (name.Contains("health"))
             return true;
 
-        return canUsePowerUp || item == activePowerUpItem;
+        // alle anderen PowerUps nur wenn kein Global-Cooldown läuft
+        return canUsePowerUp && !isGlobalCooldown;
     }
 
     private void UseItemWithRules(InventoryItem item, Button buttonToDisable)
@@ -156,22 +161,34 @@ public class InventoryUI : MonoBehaviour
             if (!canUsePowerUp && item != activePowerUpItem)
                 return;
 
+            // 🚫 Global Cooldown starten
+            isGlobalCooldown = true;
             canUsePowerUp = false;
             activePowerUpItem = item;
 
-            if (buttonToDisable != null)
-                buttonToDisable.interactable = false;
-
-            StartCoroutine(PowerUpCooldown());
+            DisableAllButtons();
+            StartCoroutine(GlobalCooldownRoutine());
         }
 
         InventoryManager.Instance.UseItem(item);
         RefreshUI();
     }
 
-    private IEnumerator PowerUpCooldown()
+    // ❌ Alle Buttons deaktivieren
+    private void DisableAllButtons()
     {
-        yield return new WaitForSeconds(10f);
+        foreach (var slot in slots)
+        {
+            if (slot.button != null)
+                slot.button.interactable = false;
+        }
+    }
+
+    // ⏱️ 20 Sekunden warten, dann wieder freigeben
+    private IEnumerator GlobalCooldownRoutine()
+    {
+        yield return new WaitForSeconds(cooldownDuration);
+        isGlobalCooldown = false;
         canUsePowerUp = true;
         activePowerUpItem = null;
         RefreshUI();

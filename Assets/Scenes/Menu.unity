@@ -22789,7 +22789,7 @@ MonoBehaviour:
     button: {fileID: 169509253}
     priceText: {fileID: 1756526414}
   - itemToBuy: {fileID: 11400000, guid: 919a2afe79d917c4e9b7c5fe3c52af0b, type: 2}
-    price: 210
+    price: 280
     button: {fileID: 1762515283}
     priceText: {fileID: 1614806644}
   - itemToBuy: {fileID: 11400000, guid: 3f56353c66f8e0447a35deb9edb0faae, type: 2}
@@ -22797,7 +22797,7 @@ MonoBehaviour:
     button: {fileID: 1147490597}
     priceText: {fileID: 971286385}
   - itemToBuy: {fileID: 11400000, guid: 695c6554a3dfb674fa2fc97d23bbc9a4, type: 2}
-    price: 420
+    price: 190
     button: {fileID: 1514444312}
     priceText: {fileID: 469514870}
 --- !u!1 &2016295676
