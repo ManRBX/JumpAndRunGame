@@ -4,32 +4,30 @@ public class CollectibleItem : MonoBehaviour
 {
     private bool collected = false;
 
-    // Make sure this GameObject has a 2D collider (e.g., BoxCollider2D or CircleCollider2D)
-    // and that the "Is Trigger" option is enabled.
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collected)
+        if (collected || !other.CompareTag("Player"))
             return;
 
-        if (other.CompareTag("Player"))
-        {
-            Collect();
-        }
+        collected = true;
+        Collect();
     }
 
     private void Collect()
     {
-        collected = true;
-        Debug.Log("A collectible has been collected!");
+        Debug.Log("✅ Collectible eingesammelt!");
+        gameObject.SetActive(false); // Nur deaktivieren, nicht löschen!
 
-        // Inform the manager that this item has been collected, if the MiniGame is active.
         if (MiniGameController.Instance != null && MiniGameController.Instance.miniGameActive)
-        {
             MiniGameController.Instance.CollectiblePicked();
-        }
 
-        // Disable the item so it cannot be collected again.
-        gameObject.SetActive(false);
+        // Wenn es das letzte war -> Erfolgsmeldung anzeigen
+        if (MiniGameController.Instance != null &&
+            MiniGameController.Instance.CollectedCount >= MiniGameController.Instance.requiredCollectibles)
+        {
+            var starter = FindFirstObjectByType<Starter>();
+            if (starter != null)
+                starter.ShowMiniGameSuccessMessage();
+        }
     }
 }

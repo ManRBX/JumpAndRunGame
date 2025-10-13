@@ -11,6 +11,7 @@ public class MiniGameController : MonoBehaviour
     public float gameDuration = 10f;
     public TMP_Text timerText;
     public TMP_Text collectibleCountText;
+    public int CollectedCount => collectedCount;
 
     [Header("Current MiniGame Status")]
     public bool miniGameActive = false;
@@ -26,13 +27,9 @@ public class MiniGameController : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     private void Start()
@@ -43,7 +40,7 @@ public class MiniGameController : MonoBehaviour
         if (!PlayerPrefs.HasKey(LivesKey))
         {
             PlayerPrefs.SetInt(LivesKey, 3);
-            PlayerPrefsKeyTracker.TrackKey(LivesKey); // Track default value
+            PlayerPrefsKeyTracker.TrackKey(LivesKey);
             PlayerPrefs.Save();
         }
     }
@@ -65,7 +62,9 @@ public class MiniGameController : MonoBehaviour
         if (timerText != null)
         {
             timerText.gameObject.SetActive(true);
+            timerText.text = "Time: " + Mathf.Ceil(gameDuration);
         }
+
         if (collectibleCountText != null)
         {
             collectibleCountText.gameObject.SetActive(true);
@@ -73,7 +72,7 @@ public class MiniGameController : MonoBehaviour
         }
 
         timerCoroutine = StartCoroutine(TimerCountdown(onComplete, onFailed));
-        Debug.Log($"MiniGame started! Collect {requiredCollectibles} items in {duration} seconds.");
+        Debug.Log($"MiniGame gestartet – {requiredCollectibles} sammeln in {duration}s!");
     }
 
     public void CollectiblePicked()
@@ -81,17 +80,19 @@ public class MiniGameController : MonoBehaviour
         if (!miniGameActive) return;
 
         collectedCount++;
-        Debug.Log($"Collectible collected! ({collectedCount} of {requiredCollectibles})");
+        Debug.Log($"Collectible collected! ({collectedCount}/{requiredCollectibles})");
 
         if (collectibleCountText != null)
-        {
             collectibleCountText.text = $"Collected: {collectedCount} / {requiredCollectibles}";
-        }
 
         if (collectedCount >= requiredCollectibles)
-        {
-            EndMiniGame(true);
-        }
+            StartCoroutine(HandleMiniGameSuccess());
+    }
+
+    private IEnumerator HandleMiniGameSuccess()
+    {
+        yield return new WaitForSeconds(0.2f);
+        EndMiniGame(true);
     }
 
     private IEnumerator TimerCountdown(Action onComplete, Action onFailed)
@@ -102,59 +103,57 @@ public class MiniGameController : MonoBehaviour
         {
             timer -= Time.deltaTime;
             if (timerText != null)
-            {
                 timerText.text = "Time: " + Mathf.Ceil(timer);
-            }
             yield return null;
         }
 
-        if (collectedCount >= requiredCollectibles)
-        {
-            onComplete?.Invoke();
-            EndMiniGame(true);
-        }
-        else
-        {
-            onFailed?.Invoke();
-            EndMiniGame(false);
-        }
+        if (!miniGameActive) yield break;
+
+        bool success = (collectedCount >= requiredCollectibles);
+
+        if (success) onComplete?.Invoke();
+        else onFailed?.Invoke();
+
+        EndMiniGame(success);
     }
 
     public void EndMiniGame(bool success)
     {
         if (!miniGameActive || rewardGiven) return;
-
         miniGameActive = false;
         rewardGiven = true;
 
         if (timerCoroutine != null)
-        {
             StopCoroutine(timerCoroutine);
-        }
+
+        StartCoroutine(EndMiniGameDelayed(success));
+    }
+
+    private IEnumerator EndMiniGameDelayed(bool success)
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (timerText != null)
+            timerText.text = "Time: 0";
 
         if (timerText != null) timerText.gameObject.SetActive(false);
         if (collectibleCountText != null) collectibleCountText.gameObject.SetActive(false);
 
         if (success)
         {
-            Debug.Log("🎉 Congratulations! You collected all items!");
-
+            Debug.Log("🎉 Alle Collectibles gesammelt!");
             int currentLives = PlayerPrefs.GetInt(LivesKey, 3) + 1;
             PlayerPrefs.SetInt(LivesKey, currentLives);
-            PlayerPrefsKeyTracker.TrackKey(LivesKey); // ✅ Track geänderte Leben
+            PlayerPrefsKeyTracker.TrackKey(LivesKey);
             PlayerPrefs.Save();
 
-            Debug.Log($"✅ New life added! Total lives: {currentLives}");
-
-            PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
+            var healthUI = FindFirstObjectByType<PlayerHealthUI>();
             if (healthUI != null)
-            {
                 healthUI.UpdateLivesUI();
-            }
         }
         else
         {
-            Debug.Log("⏳ Time's up! MiniGame not successful.");
+            Debug.Log("⏳ Zeit abgelaufen! MiniGame nicht erfolgreich.");
         }
 
         OnMiniGameEnded?.Invoke(success);
@@ -162,7 +161,10 @@ public class MiniGameController : MonoBehaviour
         var remainingItems = GameObject.FindGameObjectsWithTag("Collectible");
         foreach (GameObject item in remainingItems)
         {
-            item.SetActive(false);
+            if (item != null && item.activeSelf)
+                item.SetActive(false);
         }
+
+        Debug.Log("📦 MiniGame beendet – nur aktive Collectibles deaktiviert.");
     }
 }
