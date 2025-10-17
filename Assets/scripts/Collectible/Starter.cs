@@ -1,97 +1,236 @@
 ﻿using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class Starter : MonoBehaviour
 {
-    [Header("Starter Settings")]
-    [Tooltip("Number of collectible items that need to be collected in this MiniGame.")]
-    public int numberOfCollectibles = 3;
-
-    [Tooltip("MiniGame duration in seconds.")]
-    public float miniGameDuration = 10f;
-
-    [Tooltip("Collectible objects that become visible when the starter is activated.")]
+    [Header("🎮 MiniGame Einstellungen")]
+    public int numberOfCollectibles = 10;
+    public float miniGameDuration = 30f;
     public GameObject[] collectibleItems;
-
-    [Tooltip("Prefab for the coins that the collectibles should transform into.")]
     public GameObject coinPrefab;
+
+    [Header("🧾 UI Elemente")]
+    public TMP_Text progressText;
+    public TMP_Text resultText;
+    public float resultHideAfterSeconds = 4f;
+
+    [Header("💬 Texte")]
+    [TextArea] public string successMessage = "🎉 Du hast alle gesammelt! Belohnung: +1 Leben";
+    [TextArea] public string failMessage = "❌ Du hast nur {collected}/{total} gesammelt!";
+    [TextArea] public string successEndMessage = "✅ MiniGame geschafft!";
+    [TextArea] public string failEndMessage = "❌ MiniGame nicht geschafft!";
+
+    [Header("⏳ Verhalten nach Ende")]
+    public float invisibleDurationAfterEnd = 30f;
 
     private bool isActivated = false;
     private bool rewardGiven = false;
+    private SpriteRenderer spriteRenderer;
+    private Collider2D starterCollider;
+
+    private bool isQuitting = false; // 🧠 merkt sich, ob Szene/Spiel beendet wird
+
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        starterCollider = GetComponent<Collider2D>();
+
         foreach (var item in collectibleItems)
+            if (item != null) item.SetActive(false);
+
+        if (progressText) progressText.gameObject.SetActive(false);
+        if (resultText) resultText.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (isActivated && MiniGameController.Instance != null && MiniGameController.Instance.miniGameActive)
         {
-            if (item != null)
-                item.SetActive(false);
+            int count = MiniGameController.Instance.CollectedCount;
+            if (progressText != null)
+                progressText.text = $"{count}/{numberOfCollectibles}";
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isActivated) return;
-
-        if (other.CompareTag("Player"))
-        {
-            ActivateStarter();
-        }
+        if (isActivated || !other.CompareTag("Player")) return;
+        ActivateStarter();
     }
 
     private void ActivateStarter()
     {
+        if (this == null || isQuitting) return; // 🚫 wenn schon zerstört
+
         isActivated = true;
-        Debug.Log("Starter activated – MiniGame is starting!");
+        rewardGiven = false;
+
+        Debug.Log("🎯 Starter aktiviert – MiniGame beginnt!");
+
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+        if (starterCollider != null) starterCollider.enabled = false;
+
+        if (progressText)
+        {
+            progressText.text = $"0/{numberOfCollectibles}";
+            progressText.gameObject.SetActive(true);
+        }
+
+        if (resultText)
+            resultText.gameObject.SetActive(false);
 
         if (MiniGameController.Instance != null)
         {
             MiniGameController.Instance.StartMiniGame(
                 numberOfCollectibles,
                 miniGameDuration,
-                OnMiniGameComplete,
-                OnMiniGameFailed);
+                SafeCall(OnMiniGameComplete),
+                SafeCall(OnMiniGameFailed)
+            );
         }
 
         foreach (var item in collectibleItems)
-        {
-            if (item != null)
-                item.SetActive(true);
-        }
+            if (item != null) item.SetActive(true);
+    }
 
-        gameObject.SetActive(false);
+    // 🧠 „Safe Wrapper“ für Actions, verhindert Fehler falls Starter zerstört wird
+    private System.Action SafeCall(System.Action original)
+    {
+        return () =>
+        {
+            if (this == null || isQuitting) return;
+            original?.Invoke();
+        };
     }
 
     private void OnMiniGameComplete()
     {
+        if (this == null || isQuitting) return;
         if (rewardGiven) return;
         rewardGiven = true;
 
-        Debug.Log("✅ MiniGame successfully completed! +1 Life awarded!");
+        Debug.Log("✅ MiniGame abgeschlossen! +1 Leben vergeben!");
 
         int currentLives = PlayerPrefs.GetInt("GlobalLives", 3);
         currentLives++;
         PlayerPrefs.SetInt("GlobalLives", currentLives);
-        PlayerPrefsKeyTracker.TrackKey("GlobalLives"); // ✅ Track für JSON
+        PlayerPrefsKeyTracker.TrackKey("GlobalLives");
         PlayerPrefs.Save();
 
-        PlayerHealthUI healthUI = FindFirstObjectByType<PlayerHealthUI>();
-        if (healthUI != null)
+        if (resultText != null)
         {
-            healthUI.UpdateLivesUI();
+            string finalMsg = $"{successMessage}\n<size=80%>{successEndMessage}</size>";
+            resultText.text = finalMsg;
+            resultText.gameObject.SetActive(true);
+
+            TryStartCoroutine(HideAfter(resultText, resultHideAfterSeconds));
         }
+
+        if (progressText)
+            progressText.text = $"{numberOfCollectibles}/{numberOfCollectibles}";
+
+        var healthUI = FindFirstObjectByType<PlayerHealthUI>();
+        if (healthUI != null)
+            healthUI.UpdateLivesUI();
+
+        TryStartCoroutine(ReenableStarterAfterDelay());
     }
 
     private void OnMiniGameFailed()
     {
-        Debug.Log("❌ MiniGame failed – Collectibles are being converted into coins!");
+        if (this == null || isQuitting) return;
+        if (rewardGiven) return;
+        rewardGiven = true;
+
+        Debug.Log("❌ MiniGame fehlgeschlagen – Items werden zu Coins!");
+
+        int collected = MiniGameController.Instance != null ? MiniGameController.Instance.CollectedCount : 0;
+
+        if (resultText != null)
+        {
+            string msg = failMessage
+                .Replace("{collected}", collected.ToString())
+                .Replace("{total}", numberOfCollectibles.ToString());
+            string finalMsg = $"{msg}\n<size=80%>{failEndMessage}</size>";
+
+            resultText.text = finalMsg;
+            resultText.gameObject.SetActive(true);
+
+            TryStartCoroutine(HideAfter(resultText, resultHideAfterSeconds));
+        }
 
         foreach (var item in collectibleItems)
         {
             if (item != null && item.activeSelf)
             {
-                Vector3 spawnPosition = item.transform.position;
-                Destroy(item);
-                Instantiate(coinPrefab, spawnPosition, Quaternion.identity);
+                Vector3 pos = item.transform.position;
+                item.SetActive(false);
+
+                if (coinPrefab != null)
+                    Instantiate(coinPrefab, pos, Quaternion.identity);
             }
         }
+
+        TryStartCoroutine(ReenableStarterAfterDelay());
+    }
+
+    // ✅ sichere Coroutine-Startfunktion
+    private void TryStartCoroutine(IEnumerator routine)
+    {
+        if (this != null && !isQuitting && gameObject.activeInHierarchy)
+        {
+            try
+            {
+                StartCoroutine(routine);
+            }
+            catch (MissingReferenceException)
+            {
+                Debug.LogWarning("⚠️ Coroutine konnte nicht gestartet werden (Starter zerstört).");
+            }
+        }
+    }
+
+    private IEnumerator HideAfter(TMP_Text text, float seconds)
+    {
+        if (text == null) yield break;
+        yield return new WaitForSeconds(seconds);
+        if (text != null)
+            text.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ReenableStarterAfterDelay()
+    {
+        yield return new WaitForSeconds(invisibleDurationAfterEnd);
+
+        if (this == null || isQuitting) yield break;
+
+        if (spriteRenderer != null) spriteRenderer.enabled = true;
+        if (starterCollider != null) starterCollider.enabled = true;
+        isActivated = false;
+        rewardGiven = false;
+
+        Debug.Log("🔁 Starter wieder aktiviert (nicht zerstört).");
+    }
+
+    public void ShowMiniGameSuccessMessage()
+    {
+        if (this == null || isQuitting) return;
+
+        if (resultText != null)
+        {
+            string finalMsg = $"{successMessage}\n<size=80%>{successEndMessage}</size>";
+            resultText.text = finalMsg;
+            resultText.gameObject.SetActive(true);
+            TryStartCoroutine(HideAfter(resultText, resultHideAfterSeconds));
+        }
+
+        if (progressText != null)
+            progressText.text = $"{numberOfCollectibles}/{numberOfCollectibles}";
     }
 }
