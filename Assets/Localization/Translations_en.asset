@@ -738,6 +738,14 @@ MonoBehaviour:
     m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
+  - m_Id: 95635356781633536
+    m_Localized: "Du ben\xF6tigst einen Schl\xFCssel! "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95635377530855424
+    m_Localized: "Du hast einen Schl\xFCssel! Dr\xFCcke E um hindurch zu gehen."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
