@@ -707,6 +707,14 @@ MonoBehaviour:
     m_Key: Door 1
     m_Metadata:
       m_Items: []
+  - m_Id: 102223679738339328
+    m_Key: "T\xFCren-ohne-Schl\xFCssel/Checkpoint anfang"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102224417235394560
+    m_Key: "T\xFCren-ohne-Schl\xFCssel/checkpoint"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
