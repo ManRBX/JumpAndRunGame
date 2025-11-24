@@ -281,8 +281,8 @@ MonoBehaviour:
   wallCheckDistance: 0.5
   attackCooldown: 1
   damageStunTime: 0.5
-  pointsOnDeath: 20
-  respawnTime: 120
+  pointsOnDeath: 33
+  respawnTime: 60
   deathAnimationDuration: 1
   deathEffect: {fileID: 0}
   playerRespawnCheckRadius: 30
