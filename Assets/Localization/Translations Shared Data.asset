@@ -699,6 +699,22 @@ MonoBehaviour:
     m_Key: Level05/checkpoints/Checkpoint (1)
     m_Metadata:
       m_Items: []
+  - m_Id: 95635356781633536
+    m_Key: Door
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95635377530855424
+    m_Key: Door 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102223679738339328
+    m_Key: "T\xFCren-ohne-Schl\xFCssel/Checkpoint anfang"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102224417235394560
+    m_Key: "T\xFCren-ohne-Schl\xFCssel/checkpoint"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

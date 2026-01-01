@@ -249,13 +249,19 @@ MonoBehaviour:
   attackCooldown: 1.5
   damageStunTime: 0.5
   pointsOnDeath: 50
-  respawnTime: 120
+  respawnTime: 60
   deathAnimationDuration: 0.5
   deathEffect: {fileID: 0}
   playerRespawnCheckRadius: 30
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  stepSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  audioPlayDistance: 10
+  customFieldSize: {x: 10, y: 5}
+  customFieldOffset: {x: 0, y: 0}
 --- !u!114 &1094005212770804468
 MonoBehaviour:
   m_ObjectHideFlags: 0

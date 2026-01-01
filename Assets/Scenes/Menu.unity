@@ -3457,7 +3457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &258279221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3602,7 +3602,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: 350
+          value: 465
         - localeIdentifier:
             m_Code: de-AT
           value: 465
@@ -3613,7 +3613,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: -200
+          value: -100
         - localeIdentifier:
             m_Code: de-AT
           value: -100
@@ -11138,7 +11138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &965249178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11217,7 +11217,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: 350
+          value: 465
         - localeIdentifier:
             m_Code: de-AT
           value: 465
@@ -11228,7 +11228,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: -200
+          value: -300
         - localeIdentifier:
             m_Code: de-AT
           value: -300
@@ -13762,7 +13762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094320944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13841,7 +13841,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: 350
+          value: 235
         - localeIdentifier:
             m_Code: de-AT
           value: 235
@@ -13852,7 +13852,7 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: de
-          value: -200
+          value: -300
         - localeIdentifier:
             m_Code: de-AT
           value: -300

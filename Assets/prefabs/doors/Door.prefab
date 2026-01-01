@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2979548757294018864}
   - component: {fileID: 8757614145783073630}
   - component: {fileID: 987284962384512006}
+  - component: {fileID: -3509364278612326532}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -148,7 +149,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportDestination: {fileID: 0}
-  teleportKey: 101
+  actionName: OpenDoor
   playerTag: Player
   teleportSound: {fileID: 2863573979270078206, guid: 5cdda17485107f5488abee6fb67ac459, type: 3}
   teleportCooldown: 5
+  requiresKey: 0
+  requiredKeyName: 
+  messageText: {fileID: 0}
+  noKeyMessage: "Du ben\xF6tigst einen Schl\xFCssel!"
+  hasKeyMessage: "Du hast einen Schl\xFCssel! Dr\xFCcke E um hindurch zu gehen."
+  messageDisplayDuration: 3
+--- !u!114 &-3509364278612326532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2922102816675704248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 5785093196738461820
+  references:
+    version: 2
+    RefIds:
+    - rid: 5785093196738461820
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 987284962384512006}
+        m_TrackedProperties:
+          items:
+          - rid: 5785093196738461821
+          - rid: 5785093196738461822
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 5785093196738461821
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:f1f9dc8052b79a64481bbf1da35b7873
+          m_TableEntryReference:
+            m_KeyId: 95635356781633536
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: noKeyMessage
+    - rid: 5785093196738461822
+      type: {class: LocalizedStringProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          m_TableReference:
+            m_TableCollectionName: GUID:f1f9dc8052b79a64481bbf1da35b7873
+          m_TableEntryReference:
+            m_KeyId: 95635377530855424
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
+        m_PropertyPath: hasKeyMessage

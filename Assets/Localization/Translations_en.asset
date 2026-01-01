@@ -738,6 +738,22 @@ MonoBehaviour:
     m_Localized: You have reached a checkpoint!
     m_Metadata:
       m_Items: []
+  - m_Id: 95635356781633536
+    m_Localized: You need a key!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 95635377530855424
+    m_Localized: You have a key! Press E to go through.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102223679738339328
+    m_Localized: You have reached a checkpoint!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102224417235394560
+    m_Localized: You have reached a checkpoint!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
