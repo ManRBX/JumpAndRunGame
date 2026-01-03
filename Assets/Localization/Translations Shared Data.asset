@@ -715,6 +715,34 @@ MonoBehaviour:
     m_Key: "T\xFCren-ohne-Schl\xFCssel/checkpoint"
     m_Metadata:
       m_Items: []
+  - m_Id: 119530518414876672
+    m_Key: Menu/Canvas/Main menu panel/Credits/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537506024677376
+    m_Key: Menu/Canvas/Credits/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537521371635712
+    m_Key: Menu/Canvas/Credits/Text (TMP) (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537547481178112
+    m_Key: Menu/Canvas/Credits/Text (TMP) (2)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537558281510912
+    m_Key: Menu/Canvas/Credits/Text (TMP) (4)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537572412121088
+    m_Key: Menu/Canvas/Credits/Text (TMP) (3)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537588363059200
+    m_Key: Menu/Canvas/Credits/Text (TMP) (5)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
