@@ -750,6 +750,57 @@ MonoBehaviour:
     m_Localized: Du hast einen Checkpoint erreicht!
     m_Metadata:
       m_Items: []
+  - m_Id: 119530518414876672
+    m_Localized: Mitwirkende
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537506024677376
+    m_Localized: 'Erstellt von
+
+      Manuel Kepplinger
+
+      (VertexVienna)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537521371635712
+    m_Localized: 'Game Director
+
+      Programmierung
+
+      Spieldesign
+
+      Leveldesign
+
+      UI/UX
+
+      
+
+      Manuel
+      Kepplinger'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537547481178112
+    m_Localized: 'Soundeffekte & Musik
+
+      OpenGameArt.org
+
+      Freesound.org'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537558281510912
+    m_Localized: "\xA9 2025 Manuel Kepplinger\r\nJumpVerse ist ein Projekt von VertexVienna.\r\nAlle
+      Rechte vorbehalten."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537572412121088
+    m_Localized: "Testen / Qualit\xE4tssicherung\r\nManuel Kepplinger\r\nFreunde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 119537588363059200
+    m_Localized: "Zus\xE4tzliche Assets\r\nCharaktere, Gegner, Animationen & Umgebungs-Assets\r\nErsteller
+      im Unity Asset Store"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
