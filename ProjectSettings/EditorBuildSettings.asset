@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 2bdea2bc0703cbe46bf1c74d2f44e856
   - enabled: 1
+    path: Assets/Scenes/Game-End-Demo-Version.unity
+    guid: be1b34a48e7385b45812432b12aeb052
+  - enabled: 1
     path: Assets/Scenes/Bonus levels/No-save-zone.unity
     guid: 87e507b22027ef54e8d38eaf3c6044eb
   - enabled: 1

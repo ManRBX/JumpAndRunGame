@@ -800,6 +800,28 @@ MonoBehaviour:
       im Unity Asset Store"
     m_Metadata:
       m_Items: []
+  - m_Id: 127458962993831936
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127459333636087808
+    m_Localized: 'Weitere Level kommen bald!
+
+      Danke, dass du Jump Verse getestet
+      hast!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127460624613498880
+    m_Localized: du hast einen checkpoint erreich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127461955172556800
+    m_Localized: 'Weitere Level kommen bald!
+
+      Danke, dass du Jump Verse getestet
+      hast!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

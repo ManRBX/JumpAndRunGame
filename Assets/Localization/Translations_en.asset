@@ -816,6 +816,26 @@ MonoBehaviour:
 '
     m_Metadata:
       m_Items: []
+  - m_Id: 127458962993831936
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127459333636087808
+    m_Localized: 'More levels are coming soon.
+
+      Thanks for testing Jump Verse!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127460624613498880
+    m_Localized: You have reached a checkpoint!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127461955172556800
+    m_Localized: 'More levels are coming soon.
+
+      Thanks for testing Jump Verse!'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

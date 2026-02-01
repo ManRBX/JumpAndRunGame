@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2825701548032
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 3536866762752
@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 282212132970496
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 26801200417464320
@@ -71,7 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 26803729247232000
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 26830321000374272
@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27574744709586944
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27574854159949824
@@ -99,15 +99,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27574980358168576
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27576231984619520
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27576260010958848
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27576394677477376
@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576665872785408
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27576718259642368
@@ -139,15 +139,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27576796097536000
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577047176962048
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27578655377973248
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27578631797596160
@@ -163,11 +163,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578557122207744
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27578112949608448
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27578098953216000
@@ -179,11 +179,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27578035183017984
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577839397101568
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577773936599040
@@ -195,7 +195,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577723558813696
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577571968278528
@@ -207,15 +207,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 27577528607563776
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577485292986368
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577199568609280
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 27577182992719872
@@ -379,7 +379,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 40550874773184512
-    m_Localized: Basst
+    m_Localized: "Zur\xFCck"
     m_Metadata:
       m_Items: []
   - m_Id: 40550497990467584
@@ -773,7 +773,7 @@ MonoBehaviour:
 
       UI/UX
 
-      
+
 
       Manuel
       Kepplinger'
@@ -799,6 +799,28 @@ MonoBehaviour:
   - m_Id: 119537588363059200
     m_Localized: "Zus\xE4tzliche Assets\r\nCharaktere, Gegner, Animationen & Umgebungs-Assets\r\nErsteller
       im Unity Asset Store"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127458962993831936
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127459333636087808
+    m_Localized: 'Weitere Level kommen bald!
+
+      Danke, dass du Jump Verse getestet
+      hast!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127460624613498880
+    m_Localized: du hast einen checkpoint erreich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127461955172556800
+    m_Localized: 'Weitere Level kommen bald!
+
+      Danke, dass du Jump Verse getestet
+      hast!'
     m_Metadata:
       m_Items: []
   references:
