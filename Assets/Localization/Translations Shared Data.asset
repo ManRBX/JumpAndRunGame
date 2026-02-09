@@ -743,6 +743,23 @@ MonoBehaviour:
     m_Key: Menu/Canvas/Credits/Text (TMP) (5)
     m_Metadata:
       m_Items: []
+  - m_Id: 127458962993831936
+    m_Key: Game-End-Demo-Version/Canvas/Main menu panel/Button panel/Menu/Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127459333636087808
+    m_Key: Game-End-Demo-Version/Canvas/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127460624613498880
+    m_Key: Level03/Canvas/checkpoint text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 127461955172556800
+    m_Key: Menu/Canvas/Level Selection panel/Scroll View/Level Pages/Page2/Cooming
+      Soon/Text (Legacy)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
