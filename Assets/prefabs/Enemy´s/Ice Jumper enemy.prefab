@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1644692499477750609}
   - component: {fileID: 7858971832481728360}
   - component: {fileID: 4105626280728032636}
+  - component: {fileID: 5706931611066947875}
   m_Layer: 0
   m_Name: Ice Jumper enemy
   m_TagString: Enemy
@@ -66,6 +67,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5970592976148746977}
   - {fileID: 4866419842154927240}
   - {fileID: 864978141179607765}
   - {fileID: 7224605124539614157}
@@ -282,6 +284,47 @@ MonoBehaviour:
   fireRate: 3
   shootRange: 8
   player: {fileID: 0}
+--- !u!114 &5706931611066947875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933914681721782268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 6105979669044264960
+  references:
+    version: 2
+    RefIds:
+    - rid: 6105979669044264960
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 7858971832481728360}
+        m_TrackedProperties:
+          items:
+          - rid: 6105979669044264961
+        m_UpdateType: 0
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 6105979669044264961
+      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: deathSound
+        m_TypeString: UnityEngine.AudioSource, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: de
+          value: {fileID: 0}
+        - localeIdentifier:
+            m_Code: en
+          value: {fileID: 0}
 --- !u!1 &4695148774638411756
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,3 +614,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1333751005820852041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3530687116889630382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1333751005820852041}
+    m_Modifications:
+    - target: {fileID: 6519709854835617869, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_Name
+      value: death sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9199467
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 37.718998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.0472708
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+--- !u!4 &5970592976148746977 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
+  m_PrefabInstance: {fileID: 3530687116889630382}
+  m_PrefabAsset: {fileID: 0}
