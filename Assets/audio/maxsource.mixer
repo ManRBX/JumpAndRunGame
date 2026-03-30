@@ -313,7 +313,7 @@ AudioMixerController:
   - guid: 45a34de5a4197e4459c3c870758d3663
     name: Enemy_Ortner_SFX
   - guid: 4ec8e2211eea25e4c8bb8d3524c07809
-    name: Lava_Ortner_SFX
+    name: Lava_SFX
   - guid: c7c6e90cff7a3d247b617405977cbf4d
     name: Musik
   - guid: aba21a0092911804ba624ced00e69a3e
@@ -405,16 +405,18 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 84a693a09a81f4343b171af96becbcfb
   m_FloatValues:
+    4ec8e2211eea25e4c8bb8d3524c07809: 9.3
     2cd43e81f45abb143915e7e772a2fbf2: 0.04171297
     54ce3b623b35486418a07a0805a420b8: -0.16685188
     495768a211c1f72418e7b02db2759a96: -0.02577656
     1a0db373db9c57441a3d38b1522ac6f4: -0.025776558
     557c12f924bce3645b67666772cdf9e0: -0.02577656
-    7b7336cb2372ad5489953af86002c5a6: 0.04171297
-    c7c6e90cff7a3d247b617405977cbf4d: -11.3
-    254a111fc7511624ab3695f8a6c4f058: -16.425776
+    5ffef5ab290a7784abaa27ed885de90c: 9.3
+    7b7336cb2372ad5489953af86002c5a6: 9.3
+    c7c6e90cff7a3d247b617405977cbf4d: -41.339725
+    254a111fc7511624ab3695f8a6c4f058: -34.139465
     1bcc2d8fda95ffb45906d9637dc14c9e: 0.35032237
-    51e905efbb6e7ba44a3e7e45ec3f2383: 20
+    51e905efbb6e7ba44a3e7e45ec3f2383: 9.3
   m_TransitionOverrides: {}
 --- !u!244 &1050775429512643980
 AudioMixerEffectController:

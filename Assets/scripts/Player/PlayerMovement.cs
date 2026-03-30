@@ -10,6 +10,13 @@ public class FallBrakeLine
     [HideInInspector] public bool wasAboveLastFrame = true;
 }
 
+[System.Serializable]
+public class SlidingZone
+{
+    public Collider2D triggerCollider;
+    public bool enableSliding = true;
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -22,10 +29,13 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime = 0.2f;
 
     [Header("Slide Settings")]
-    public bool enableSliding = true;
+    public bool enableSliding = false; // 🔥 START AUS
     public float acceleration = 10f;
     public float deceleration = 8f;
     [Range(0f, 1f)] public float slideFactor = 0.5f;
+
+    [Header("Sliding Zonen (Inspector)")]
+    public List<SlidingZone> slidingZones = new List<SlidingZone>();
 
     [Header("Ground & Wall Check")]
     public Transform[] groundCheckPoints;
@@ -120,19 +130,14 @@ public class PlayerMovement : MonoBehaviour
         else if (move < 0 && facingRight)
             Flip();
 
-        // 🔊 Schrittgeräusch abspielen wenn Boden + Bewegung
         bool isWalking = Mathf.Abs(move) > 0f && isGrounded;
 
         if (walkingSound != null)
         {
             if (isWalking && !walkingSound.isPlaying)
-            {
                 walkingSound.Play();
-            }
             else if (!isWalking && walkingSound.isPlaying)
-            {
                 walkingSound.Stop();
-            }
         }
     }
 
@@ -255,6 +260,19 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
 
+    // 🔥 FINAL: Sliding wird EINMAL gesetzt und bleibt
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        foreach (var zone in slidingZones)
+        {
+            if (zone.triggerCollider == other)
+            {
+                enableSliding = zone.enableSliding;
+                Debug.Log("Sliding jetzt: " + (enableSliding ? "AN" : "AUS"));
+            }
+        }
+    }
+
     public IEnumerator ApplySpeedBoost(float multiplier, float boostDuration)
     {
         float originalSpeed = speed;
@@ -293,62 +311,15 @@ public class PlayerMovement : MonoBehaviour
             if (justCrossedFromAbove)
             {
                 line.brakeActive = !line.brakeActive;
-                Debug.Log($"🌀 Linie getriggert: {line.lineTransform.name} → Brake {(line.brakeActive ? "AN" : "AUS")}");
 
                 if (line.brakeActive)
-                {
                     applyBrake = true;
-                }
             }
 
             line.wasAboveLastFrame = currentY > lineY;
         }
 
         return applyBrake;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (fallBrakeLines != null)
-        {
-            foreach (var line in fallBrakeLines)
-            {
-                if (line.lineTransform != null)
-                {
-                    Gizmos.color = line.brakeActive ? Color.green : Color.red;
-                    Vector3 left = line.lineTransform.position + Vector3.left * 10f;
-                    Vector3 right = line.lineTransform.position + Vector3.right * 10f;
-                    Gizmos.DrawLine(left, right);
-                }
-            }
-        }
-
-        if (groundCheckPoints != null)
-        {
-            Gizmos.color = Color.cyan;
-            foreach (var point in groundCheckPoints)
-            {
-                if (point != null)
-                {
-                    Gizmos.DrawWireSphere(point.position, 0.1f);
-                    Gizmos.DrawLine(point.position, point.position + Vector3.down * groundCheckDistance);
-                }
-            }
-        }
-
-        if (wallCheckPoints != null)
-        {
-            Gizmos.color = Color.magenta;
-            foreach (var point in wallCheckPoints)
-            {
-                if (point != null)
-                {
-                    Vector3 direction = transform.localScale.x > 0 ? Vector3.right : Vector3.left;
-                    Gizmos.DrawWireSphere(point.position, 0.1f);
-                    Gizmos.DrawLine(point.position, point.position + direction * wallCheckDistance);
-                }
-            }
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
