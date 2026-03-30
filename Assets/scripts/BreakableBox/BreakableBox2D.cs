@@ -18,15 +18,29 @@ public class BreakableBox2D : MonoBehaviour
     [SerializeField] private float fragmentSpawnYOffset = 1f;
     [SerializeField] private float fragmentCooldown = 20f;
 
-    [Header("\ud83d\udcca Zufallsverhalten")]
+    [Header("📊 Zufallsverhalten")]
     public BoxBehaviorChances behaviorChances = new BoxBehaviorChances();
 
-    [Header("\ud83c\udff1 PowerUp Drops")]
+    [Header("🏁 Drop-Modus")]
+    [Tooltip("Wenn aktiv: Diese Box droppt IMMER eine Ladder und sonst nix (keine Coins/PowerUps).")]
+    public bool ladderOnlyMode = false;
+
+    [Header("🪜 Ladder Drops (nur wenn ladderOnlyMode=true)")]
+    [Tooltip("Liste der möglichen Ladder-Prefabs (wie bei PowerUps).")]
+    public List<LadderDrop> possibleLadders = new List<LadderDrop>();
+
+    [Tooltip("Spawn-Offset für die Ladder. Standard: 1 Einheit nach oben.")]
+    public Vector2 ladderSpawnOffset = new Vector2(0f, 1f);
+
+    [Tooltip("Wenn true: die Box wird beim Ladder-Drop IMMER zerstört (egal was destroyOnBreak ist).")]
+    public bool forceDestroyBoxOnLadderDrop = true;
+
+    [Header("🏁 PowerUp Drops")]
     [Range(0f, 1f)] public float globalPowerUpChance = 0.4f;
     public List<PowerUpDrop> possiblePowerUps = new List<PowerUpDrop>();
     [SerializeField] private float powerUpCooldownSeconds = 30f;
 
-    [Header("\ud83d\udcb0 Coin Drop")]
+    [Header("💰 Coin Drop")]
     public GameObject coinPrefab;
     public float coinSpawnYOffset = 1.2f;
 
@@ -97,12 +111,10 @@ public class BreakableBox2D : MonoBehaviour
     {
         if (!isBroken) isBroken = true;
 
+        // --- Fragmente weiterhin optional ---
         TrySpawnFragments();
 
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null && brokenSprite != null)
-            sr.sprite = brokenSprite;
-
+        // --- Punkte vergeben wie bisher ---
         string currentLevel = SceneManager.GetActiveScene().name;
 
         int globalPoints = PlayerPrefs.GetInt("GlobalPoints", 0) + awardedPoints;
@@ -113,7 +125,6 @@ public class BreakableBox2D : MonoBehaviour
         PlayerPrefs.SetInt($"{currentLevel}_Points", levelPoints);
         PlayerPrefsKeyTracker.TrackKey($"{currentLevel}_Points");
 
-        TryDropReward();
         PlayerPrefs.Save();
 
         CoinStatsDisplay statsDisplay = FindFirstObjectByType<CoinStatsDisplay>();
@@ -123,6 +134,33 @@ public class BreakableBox2D : MonoBehaviour
         if (destructionSound != null && !destructionSound.isPlaying)
             destructionSound.Play();
 
+        // ✅ LADDER-ONLY MODE: IMMER Ladder, sonst nix
+        if (ladderOnlyMode)
+        {
+            SpawnLadderGuaranteed();
+
+            // Box optisch/physisch entfernen
+            if (forceDestroyBoxOnLadderDrop)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                // Alternative: nur sprite wechseln / collider aus
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                if (sr != null && brokenSprite != null) sr.sprite = brokenSprite;
+
+                Collider2D col = GetComponent<Collider2D>();
+                if (col != null) col.enabled = false;
+            }
+
+            return; // ❌ keine Coins / PowerUps
+        }
+
+        // --- Normaler Modus wie bisher ---
+        TryDropReward();
+
+        // optional destruction effect & destroy logic
         if (Random.value <= behaviorChances.shouldBreakChance)
         {
             if (Random.value <= behaviorChances.showDestructionEffectChance)
@@ -130,14 +168,26 @@ public class BreakableBox2D : MonoBehaviour
 
             if (destroyOnBreak)
                 Destroy(gameObject);
+            else
+            {
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                if (sr != null && brokenSprite != null)
+                    sr.sprite = brokenSprite;
+            }
+        }
+        else
+        {
+            // Falls shouldBreakChance nicht triggert, aber du trotzdem brokenSprite willst:
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (sr != null && brokenSprite != null)
+                sr.sprite = brokenSprite;
         }
     }
-
 
     void TrySpawnFragments()
     {
         if (fragmentsPrefabs == null || fragmentsPrefabs.Length == 0) return;
-        if (Random.value > randomSettings.fragmentSpawnChance) return;
+        if (randomSettings != null && Random.value > randomSettings.fragmentSpawnChance) return;
 
         float currentTime = Time.time;
         List<int> availableIndices = new List<int>();
@@ -183,7 +233,7 @@ public class BreakableBox2D : MonoBehaviour
             return;
 
         bool dropPowerUp = Random.value <= globalPowerUpChance && possiblePowerUps.Count > 0;
-        bool dropCoin = Random.value <= randomSettings.coinAwardChance && coinPrefab != null;
+        bool dropCoin = randomSettings != null && Random.value <= randomSettings.coinAwardChance && coinPrefab != null;
 
         if (!dropPowerUp && !dropCoin)
             return;
@@ -222,19 +272,63 @@ public class BreakableBox2D : MonoBehaviour
             GameObject coinObj = Instantiate(coinPrefab, spawnPos, Quaternion.identity);
 
             Coin pickup = coinObj.GetComponent<Coin>();
-            if (pickup != null)
+            if (pickup != null && randomSettings != null)
                 pickup.coinValue = randomSettings.awardedCoins;
 
             string currentLevel = SceneManager.GetActiveScene().name;
 
-            int globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0) + randomSettings.awardedCoins;
+            int add = (randomSettings != null) ? randomSettings.awardedCoins : 1;
+
+            int globalCoins = PlayerPrefs.GetInt("GlobalCoins", 0) + add;
             PlayerPrefs.SetInt("GlobalCoins", globalCoins);
             PlayerPrefsKeyTracker.TrackKey("GlobalCoins");
 
-            int levelCoins = PlayerPrefs.GetInt($"{currentLevel}_Coins", 0) + randomSettings.awardedCoins;
+            int levelCoins = PlayerPrefs.GetInt($"{currentLevel}_Coins", 0) + add;
             PlayerPrefs.SetInt($"{currentLevel}_Coins", levelCoins);
             PlayerPrefsKeyTracker.TrackKey($"{currentLevel}_Coins");
         }
+    }
+
+    // ✅ LADDER SPAWN
+    void SpawnLadderGuaranteed()
+    {
+        if (possibleLadders == null || possibleLadders.Count == 0)
+        {
+            Debug.LogWarning("🪜 ladderOnlyMode ist aktiv, aber possibleLadders ist leer!");
+            return;
+        }
+
+        // Gewichtete Auswahl wie bei PowerUps: individualChance
+        List<GameObject> valid = new List<GameObject>();
+        foreach (var ld in possibleLadders)
+        {
+            if (ld == null || ld.ladderPrefab == null) continue;
+            if (Random.value <= Mathf.Clamp01(ld.individualChance))
+                valid.Add(ld.ladderPrefab);
+        }
+
+        // Wenn durch Pech nix valid wurde, nimm trotzdem irgendeine (weil: IMMER ladder)
+        GameObject chosen = null;
+        if (valid.Count > 0) chosen = valid[Random.Range(0, valid.Count)];
+        else
+        {
+            // fallback: erste gültige
+            foreach (var ld in possibleLadders)
+            {
+                if (ld != null && ld.ladderPrefab != null) { chosen = ld.ladderPrefab; break; }
+            }
+        }
+
+        if (chosen == null)
+        {
+            Debug.LogWarning("🪜 Keine Ladder Prefabs gültig.");
+            return;
+        }
+
+        Vector3 spawnPos = transform.position + new Vector3(ladderSpawnOffset.x, ladderSpawnOffset.y, 0f);
+        Instantiate(chosen, spawnPos, Quaternion.identity);
+
+        Debug.Log($"🪜 Ladder gespawnt: {chosen.name} @ {spawnPos}");
     }
 
     void PlayDestructionEffect()
@@ -245,4 +339,12 @@ public class BreakableBox2D : MonoBehaviour
         ParticleSystem ps = fx.GetComponent<ParticleSystem>();
         Destroy(fx, ps ? ps.main.duration : 2f);
     }
+}
+
+[System.Serializable]
+public class LadderDrop
+{
+    public GameObject ladderPrefab;
+    [Range(0f, 1f)]
+    public float individualChance = 1f;
 }

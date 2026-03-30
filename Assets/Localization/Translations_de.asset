@@ -822,6 +822,22 @@ MonoBehaviour:
       hast!'
     m_Metadata:
       m_Items: []
+  - m_Id: 150434123992784896
+    m_Localized: "Lava SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631129210150912
+    m_Localized: "SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631141935669248
+    m_Localized: "Lava SFX Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631246982012928
+    m_Localized: "Lautst\xE4rke:"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

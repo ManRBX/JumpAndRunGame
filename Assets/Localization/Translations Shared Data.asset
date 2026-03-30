@@ -760,6 +760,22 @@ MonoBehaviour:
       Soon/Text (Legacy)
     m_Metadata:
       m_Items: []
+  - m_Id: 150434123992784896
+    m_Key: Level01/Canvas/Options Panel/Lava SFX Volum Text (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631129210150912
+    m_Key: Menu/Canvas/optionen Panel/SFX Volume 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631141935669248
+    m_Key: Menu/Canvas/optionen Panel/SFX Volume (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 150631246982012928
+    m_Key: Menu/Canvas/optionen Panel/Volum
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -3,21 +3,24 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Audio;
 
-public class AudioSlider : MonoBehaviour
+public class AudioVolumeSlider : MonoBehaviour
 {
-    [Header("🎛 UI-Elemente")]
+    [Header("🎛 UI")]
     public Slider volumeSlider;
     public TMP_Text volumeText;
 
-    [Header("🎚️ AudioMixer")]
-    public AudioMixer audioMixer; // Im Inspector setzen
-    public string exposedParameter = "MusicVolume"; // z. B. MusicVolume, SFXVolume
+    [Header("🎚 Mixer")]
+    public AudioMixer audioMixer;
+    public string exposedParameter = "MasterVolume";
 
-    [Header("🧠 Speicher-Key")]
-    public string volumeKey = "Volume_Music"; // Jeder Regler hat eigenen Key
+    [Header("💾 Save Key")]
+    public string volumeKey = "Volume_Master";
 
-    private float currentVolume = 0.2f; // 0.5 = 50%
-    private const float MIN_NON_ZERO = 0.0000001f;
+    [Header("⚙ Default")]
+    [Range(0f, 1f)]
+    public float defaultVolume = 0.5f;
+
+    private float currentVolume;
 
     private void Start()
     {
@@ -25,66 +28,56 @@ public class AudioSlider : MonoBehaviour
 
         if (PlayerPrefs.HasKey(volumeKey))
         {
-            try
-            {
-                currentVolume = PlayerPrefs.GetFloat(volumeKey);
-
-                if (Mathf.Approximately(currentVolume, MIN_NON_ZERO))
-                    currentVolume = 0f;
-            }
-            catch
-            {
-                Debug.LogWarning($"⚠️ PlayerPrefs-Key '{volumeKey}' war kein Float. Reset auf 0.5f.");
-                PlayerPrefs.DeleteKey(volumeKey);
-                currentVolume = 0.5f;
-            }
+            currentVolume = PlayerPrefs.GetFloat(volumeKey);
         }
-
-        SetMixerVolume(currentVolume);
-
-        if (volumeSlider != null)
+        else
         {
-            volumeSlider.onValueChanged.RemoveAllListeners();
-            volumeSlider.onValueChanged.AddListener(OnVolumeChange);
-            volumeSlider.value = currentVolume;
+            currentVolume = defaultVolume;
         }
 
-        UpdateVolumeText(currentVolume);
+        ApplyVolume(currentVolume);
+
+        volumeSlider.onValueChanged.RemoveAllListeners();
+        volumeSlider.onValueChanged.AddListener(OnVolumeChange);
+
+        volumeSlider.value = currentVolume;
+
+        UpdateText(currentVolume);
     }
 
-    private void OnVolumeChange(float newVolume)
+    private void OnVolumeChange(float value)
     {
-        currentVolume = newVolume;
+        currentVolume = value;
 
-        SetMixerVolume(currentVolume);
+        ApplyVolume(currentVolume);
 
-        float savedVolume = Mathf.Approximately(currentVolume, 0f) ? MIN_NON_ZERO : currentVolume;
-
-        PlayerPrefs.SetFloat(volumeKey, savedVolume);
+        PlayerPrefs.SetFloat(volumeKey, currentVolume);
         PlayerPrefs.Save();
 
-        PlayerPrefsKeyTracker.TrackKey(volumeKey);
-        UpdateVolumeText(currentVolume);
+        UpdateText(currentVolume);
     }
 
-    private void SetMixerVolume(float volume)
+    private void ApplyVolume(float volume)
     {
-        if (audioMixer == null || string.IsNullOrEmpty(exposedParameter))
+        if (audioMixer == null)
             return;
 
-        float dB = (volume <= 0.0001f) ? -80f : Mathf.Log10(volume) * 20f;
+        float dB;
 
-        bool result = audioMixer.SetFloat(exposedParameter, dB);
+        if (volume <= 0.0001f)
+            dB = -80f;
+        else
+            dB = Mathf.Log10(volume) * 20f;
 
-        Debug.Log($"🔊 Set Mixer '{exposedParameter}' auf {dB} dB | Erfolg: {result}");
+        audioMixer.SetFloat(exposedParameter, dB);
     }
 
-    private void UpdateVolumeText(float volume)
+    private void UpdateText(float volume)
     {
         if (volumeText != null)
         {
-            int volumePercent = Mathf.RoundToInt(volume * 100f);
-            volumeText.text = $"{volumePercent}%";
+            int percent = Mathf.RoundToInt(volume * 100f);
+            volumeText.text = percent + "%";
         }
     }
 }
