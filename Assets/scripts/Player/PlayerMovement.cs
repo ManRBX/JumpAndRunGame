@@ -249,8 +249,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            anim.SetBool("IsFalling", rb.linearVelocity.y < -0.1f);
-            anim.SetBool("IsJumping", rb.linearVelocity.y > 0.1f && !anim.GetBool("IsFalling"));
+            anim.SetBool("IsJumping", true);
+            anim.SetBool("IsFalling", false);
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -26,6 +25,10 @@ public class PlayerShooting : MonoBehaviour
     [Header("Default Settings")]
     public int defaultAmmo = 30;
 
+    [Header("🚫 Shooting Block Panels")]
+    [Tooltip("Wenn eines dieser Panels aktiv ist, kann der Spieler nicht schießen.")]
+    public GameObject[] panelsThatBlockShooting;
+
     private void Start()
     {
         if (!PlayerPrefs.HasKey(AmmoKey))
@@ -48,7 +51,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if (GameStateManager.IsGamePaused)
+        if (GameStateManager.IsGamePaused || IsAnyBlockingPanelActive())
             return;
 
         KeyCode shootKey = KeyBindManager.Instance?.GetKeyCodeForAction("Shoot") ?? KeyCode.Mouse0;
@@ -60,12 +63,39 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    private bool IsAnyBlockingPanelActive()
+    {
+        if (panelsThatBlockShooting == null || panelsThatBlockShooting.Length == 0)
+            return false;
+
+        foreach (GameObject panel in panelsThatBlockShooting)
+        {
+            if (panel != null && panel.activeInHierarchy)
+                return true;
+        }
+
+        return false;
+    }
+
     private void Shoot()
     {
+        if (bulletPrefab == null || firePoint == null)
+        {
+            Debug.LogWarning("⚠️ BulletPrefab oder FirePoint fehlt!");
+            return;
+        }
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
+        if (rb == null)
+        {
+            Debug.LogWarning("⚠️ Bullet hat keinen Rigidbody2D!");
+            return;
+        }
+
         bullet.transform.Rotate(0f, 0f, 90f);
+
         if (transform.localScale.x < 0)
         {
             bullet.transform.Rotate(0f, 0f, 180f);
