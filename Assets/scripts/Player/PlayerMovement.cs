@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime = 0.2f;
 
     [Header("Slide Settings")]
-    public bool enableSliding = false; // 🔥 START AUS
+    public bool enableSliding = false;
     public float acceleration = 10f;
     public float deceleration = 8f;
     [Range(0f, 1f)] public float slideFactor = 0.5f;
@@ -49,6 +49,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("🔊 Sounds")]
     public AudioSource walkingSound;
     public AudioSource jumpSound;
+
+    [Header("🎞️ Jump Animation")]
+    [Tooltip("Exakter Animator-State-Name vom Jump-State, z.B. 'Jump'.")]
+    public string jumpStateName = "Jump";
+
+    [Tooltip("Wie lange die Jump-Animation abgespielt wird, bevor sie eingefroren wird.")]
+    public float jumpAnimationPlayTime = 1f;
+
+    private Coroutine jumpFreezeCoroutine;
+    private bool jumpAnimationLocked = false;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -71,7 +81,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        rb.gravityScale = 3f;
+
+        if (rb != null)
+            rb.gravityScale = 3f;
+
         keyBindManager = KeyBindManager.Instance;
     }
 
@@ -104,8 +117,12 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleMovement()
     {
+        if (rb == null || anim == null) return;
+
         float move = GetInputMovement();
-        anim.SetBool("IsRunning", move != 0);
+
+        if (!jumpAnimationLocked)
+            anim.SetBool("IsRunning", move != 0 && isGrounded);
 
         float targetSpeed = move * speed;
 
@@ -155,7 +172,10 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJumpInput()
     {
-        if (keyBindManager == null || !Input.GetKeyDown(keyBindManager.GetKeyCodeForAction("Jump"))) return;
+        if (keyBindManager == null) return;
+
+        KeyCode jumpKey = keyBindManager.GetKeyCodeForAction("Jump");
+        if (jumpKey == KeyCode.None || !Input.GetKeyDown(jumpKey)) return;
 
         if (coyoteTimeCounter > 0f && isGrounded)
         {
@@ -174,8 +194,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
+        if (rb == null) return;
+
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        anim.SetTrigger("JumpTrigger");
+        PlayJumpAnimationThenFreeze();
 
         if (jumpSound != null)
             jumpSound.Play();
@@ -183,14 +205,20 @@ public class PlayerMovement : MonoBehaviour
 
     void WallJump()
     {
+        if (rb == null) return;
+
         wallJumping = true;
         float wallJumpDir = facingRight ? -1 : 1;
 
         facingRight = !facingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(
+            -transform.localScale.x,
+            transform.localScale.y,
+            transform.localScale.z
+        );
 
         rb.linearVelocity = new Vector2(wallJumpDir * speed * 1.5f, jumpForce);
-        anim.SetTrigger("WallJump");
+        PlayJumpAnimationThenFreeze();
 
         if (jumpSound != null)
             jumpSound.Play();
@@ -200,20 +228,59 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(StopWallJump), 0.3f);
     }
 
+    void PlayJumpAnimationThenFreeze()
+    {
+        if (anim == null) return;
+
+        anim.speed = 1f;
+        jumpAnimationLocked = true;
+
+        anim.SetBool("IsJumping", false);
+        anim.SetBool("IsFalling", false);
+        anim.SetBool("IsRunning", false);
+
+        anim.Play(jumpStateName, 0, 0f);
+
+        if (jumpFreezeCoroutine != null)
+            StopCoroutine(jumpFreezeCoroutine);
+
+        jumpFreezeCoroutine = StartCoroutine(FreezeJumpAfterDelay());
+    }
+
+    private IEnumerator FreezeJumpAfterDelay()
+    {
+        yield return new WaitForSeconds(jumpAnimationPlayTime);
+
+        if (!isGrounded && anim != null)
+        {
+            anim.speed = 0f;
+        }
+    }
+
     void EnableWallJump() => canWallJump = true;
 
     void StopWallJump()
     {
         wallJumping = false;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y);
+
+        if (rb != null)
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.8f, rb.linearVelocity.y);
     }
 
     void CheckGround()
     {
         isGrounded = false;
 
+        if (groundCheckPoints == null || groundCheckPoints.Length == 0)
+        {
+            coyoteTimeCounter -= Time.fixedDeltaTime;
+            return;
+        }
+
         foreach (Transform point in groundCheckPoints)
         {
+            if (point == null) continue;
+
             if (Physics2D.Raycast(point.position, Vector2.down, groundCheckDistance, groundLayer))
             {
                 isGrounded = true;
@@ -230,8 +297,13 @@ public class PlayerMovement : MonoBehaviour
     {
         isTouchingWall = false;
 
+        if (wallCheckPoints == null || wallCheckPoints.Length == 0)
+            return;
+
         foreach (Transform point in wallCheckPoints)
         {
+            if (point == null) continue;
+
             if (Physics2D.Raycast(point.position, facingRight ? Vector2.right : Vector2.left, wallCheckDistance, wallLayer))
             {
                 isTouchingWall = true;
@@ -242,25 +314,45 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateAnimationStates()
     {
+        if (anim == null) return;
+
         if (isGrounded)
         {
+            if (jumpAnimationLocked)
+            {
+                anim.speed = 1f;
+                jumpAnimationLocked = false;
+
+                if (jumpFreezeCoroutine != null)
+                {
+                    StopCoroutine(jumpFreezeCoroutine);
+                    jumpFreezeCoroutine = null;
+                }
+            }
+
             anim.SetBool("IsJumping", false);
             anim.SetBool("IsFalling", false);
         }
         else
         {
+            // Keine Fall-Animation.
+            // Jump läuft kurz und friert danach ein.
             anim.SetBool("IsJumping", true);
             anim.SetBool("IsFalling", false);
+            anim.SetBool("IsRunning", false);
         }
     }
 
     void Flip()
     {
         facingRight = !facingRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(
+            -transform.localScale.x,
+            transform.localScale.y,
+            transform.localScale.z
+        );
     }
 
-    // 🔥 FINAL: Sliding wird EINMAL gesetzt und bleibt
     void OnTriggerEnter2D(Collider2D other)
     {
         foreach (var zone in slidingZones)
