@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
 using Unity.Cinemachine;
+using TMPro;
+
+[System.Serializable]
+public class SceneCharacter
+{
+    public string characterName;
+    public GameObject characterObject;
+}
 
 public class CharacterSceneSelector : MonoBehaviour
 {
     [Header("🎮 Player Varianten in dieser Szene")]
-    [Tooltip("Alle Player-Objekte, die bereits in der Szene liegen. Reihenfolge muss gleich sein wie im Auswahlmenü.")]
-    public GameObject[] playerCharacters;
+    public SceneCharacter[] playerCharacters;
 
     [Header("📍 Optionaler Spawnpunkt")]
-    [Tooltip("Wenn gesetzt, wird der aktive Charakter an diese Position gesetzt.")]
     public Transform spawnPoint;
 
     [Header("🎥 Cinemachine")]
     public CinemachineCamera virtualCamera;
+
+    [Header("🧾 UI Anzeige")]
+    public TMP_Text characterNameText;
+    public string namePrefix = "Character: ";
 
     [Header("⚙️ Einstellungen")]
     public string selectedCharacterKey = "GlobalSelectedCharacter";
@@ -27,7 +37,7 @@ public class CharacterSceneSelector : MonoBehaviour
     {
         if (playerCharacters == null || playerCharacters.Length == 0)
         {
-            Debug.LogWarning("⚠️ Keine Player-Charaktere im CharacterSceneSelector eingetragen!");
+            Debug.LogWarning("⚠️ Keine Charaktere eingetragen!");
             return;
         }
 
@@ -35,22 +45,24 @@ public class CharacterSceneSelector : MonoBehaviour
 
         if (selectedIndex < 0 || selectedIndex >= playerCharacters.Length)
         {
-            Debug.LogWarning($"⚠️ Ungültiger Charakter-Index {selectedIndex}. Nutze Default {defaultCharacterIndex}.");
             selectedIndex = defaultCharacterIndex;
         }
 
         GameObject activePlayer = null;
+        string activeName = "Unknown";
 
         for (int i = 0; i < playerCharacters.Length; i++)
         {
-            if (playerCharacters[i] == null) continue;
+            if (playerCharacters[i] == null || playerCharacters[i].characterObject == null)
+                continue;
 
-            bool shouldBeActive = i == selectedIndex;
-            playerCharacters[i].SetActive(shouldBeActive);
+            bool isSelected = i == selectedIndex;
+            playerCharacters[i].characterObject.SetActive(isSelected);
 
-            if (shouldBeActive)
+            if (isSelected)
             {
-                activePlayer = playerCharacters[i];
+                activePlayer = playerCharacters[i].characterObject;
+                activeName = playerCharacters[i].characterName;
 
                 if (spawnPoint != null)
                     activePlayer.transform.position = spawnPoint.position;
@@ -61,9 +73,11 @@ public class CharacterSceneSelector : MonoBehaviour
         {
             virtualCamera.Follow = activePlayer.transform;
             virtualCamera.LookAt = activePlayer.transform;
-            Debug.Log("🎥 Cinemachine folgt jetzt: " + activePlayer.name);
         }
 
-        Debug.Log($"✅ Aktiver Charakter: Index {selectedIndex}");
+        if (characterNameText != null)
+            characterNameText.text = namePrefix + activeName;
+
+        Debug.Log($"✅ Aktiver Charakter: {activeName} | Index {selectedIndex}");
     }
 }
