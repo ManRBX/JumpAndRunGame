@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Unity.Cinemachine;
-using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class SceneCharacter
@@ -21,7 +21,7 @@ public class CharacterSceneSelector : MonoBehaviour
     public CinemachineCamera virtualCamera;
 
     [Header("🧾 UI Anzeige")]
-    public TMP_Text characterNameText;
+    public Text characterNameText;
     public string namePrefix = "Character: ";
 
     [Header("⚙️ Einstellungen")]
@@ -45,6 +45,7 @@ public class CharacterSceneSelector : MonoBehaviour
 
         if (selectedIndex < 0 || selectedIndex >= playerCharacters.Length)
         {
+            Debug.LogWarning($"⚠️ Ungültiger Charakter-Index {selectedIndex}. Verwende Default {defaultCharacterIndex}.");
             selectedIndex = defaultCharacterIndex;
         }
 
@@ -57,6 +58,7 @@ public class CharacterSceneSelector : MonoBehaviour
                 continue;
 
             bool isSelected = i == selectedIndex;
+
             playerCharacters[i].characterObject.SetActive(isSelected);
 
             if (isSelected)
@@ -69,14 +71,20 @@ public class CharacterSceneSelector : MonoBehaviour
             }
         }
 
+        // 🎥 Cinemachine aktualisieren
         if (virtualCamera != null && activePlayer != null)
         {
             virtualCamera.Follow = activePlayer.transform;
             virtualCamera.LookAt = activePlayer.transform;
+
+            Debug.Log("🎥 Kamera folgt jetzt: " + activePlayer.name);
         }
 
+        // 🧾 UI aktualisieren
         if (characterNameText != null)
+        {
             characterNameText.text = namePrefix + activeName;
+        }
 
         Debug.Log($"✅ Aktiver Charakter: {activeName} | Index {selectedIndex}");
     }

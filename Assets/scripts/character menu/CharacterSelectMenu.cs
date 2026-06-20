@@ -1,66 +1,196 @@
 ﻿using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class CharacterEntry
 {
-    [Tooltip("Muss gleich sein wie der Button-Wert, z.B. 0, 1, 2...")]
+    [Header("🎭 Charakter Daten")]
     public int characterIndex;
 
-    [Tooltip("Name, der im Menü angezeigt wird.")]
     public string characterName;
+
+    public bool unlockedByDefault = false;
+
+    [Header("📝 Normaler Unity UI Text")]
+    public Text characterText;
 }
 
 public class CharacterSelectMenu : MonoBehaviour
 {
     [Header("💾 Speicher-Key")]
     public string selectedCharacterKey = "GlobalSelectedCharacter";
+    public string unlockKeyPrefix = "CharacterUnlocked_";
 
-    [Header("🧾 UI")]
-    public TMP_Text selectedCharacterText;
+    [Header("🧾 Anzeige")]
+    [Tooltip("Normaler Unity UI Text für die Anzeige des ausgewählten Charakters.")]
+    public Text selectedCharacterText;
+
+    [Header("💬 Texte")]
+    public string selectedPrefix = "Ausgewählt: ";
+    public string lockedText = "🔒 Gesperrt: ";
+    public string unlockHintText = "Finde diesen Charakter im Level.";
+
+    [Header("🎨 Farben")]
+    public Color unlockedColor = Color.white;
+    public Color lockedColor = Color.gray;
+    public Color selectedColor = Color.green;
+
+    [Header("▶ Auswahl-Markierung")]
+    public string selectedMarker = "▶ ";
 
     [Header("🎭 Charaktere")]
-    [Tooltip("Hier trägst du Index + Namen ein. Index muss mit dem Button-OnClick-Wert zusammenpassen.")]
     public CharacterEntry[] characters;
 
     private void Start()
     {
+        EnsureDefaultUnlocks();
         RefreshUI();
+        UpdateCharacterVisuals();
     }
 
     public void SelectCharacter(int characterIndex)
     {
+        CharacterEntry character = GetCharacter(characterIndex);
+
+        if (character == null)
+        {
+            Debug.LogWarning($"⚠️ Charakter Index {characterIndex} existiert nicht.");
+            return;
+        }
+
+        if (!IsCharacterUnlocked(characterIndex))
+        {
+            if (selectedCharacterText != null)
+            {
+                selectedCharacterText.text =
+                    lockedText + character.characterName + "\n" +
+                    unlockHintText;
+            }
+
+            Debug.Log($"🔒 Charakter gesperrt: {character.characterName}");
+            return;
+        }
+
         PlayerPrefs.SetInt(selectedCharacterKey, characterIndex);
         PlayerPrefsKeyTracker.TrackKey(selectedCharacterKey);
         PlayerPrefs.Save();
 
-        Debug.Log($"🎭 Charakter gewählt: Index {characterIndex} | Name: {GetCharacterName(characterIndex)}");
+        Debug.Log($"🎭 Charakter gewählt: {character.characterName}");
 
         RefreshUI();
+        UpdateCharacterVisuals();
     }
 
     private void RefreshUI()
     {
-        if (selectedCharacterText == null) return;
+        if (selectedCharacterText == null)
+            return;
 
         int selectedIndex = PlayerPrefs.GetInt(selectedCharacterKey, 0);
-        selectedCharacterText.text = "Ausgewählt: " + GetCharacterName(selectedIndex);
+
+        CharacterEntry character = GetCharacter(selectedIndex);
+
+        if (character != null)
+        {
+            selectedCharacterText.text =
+                selectedPrefix + character.characterName;
+        }
+        else
+        {
+            selectedCharacterText.text =
+                selectedPrefix + "Charakter " + selectedIndex;
+        }
     }
 
-    private string GetCharacterName(int characterIndex)
+    private void UpdateCharacterVisuals()
     {
-        if (characters != null)
+        if (characters == null)
+            return;
+
+        int selectedIndex = PlayerPrefs.GetInt(selectedCharacterKey, 0);
+
+        foreach (CharacterEntry character in characters)
         {
-            foreach (CharacterEntry character in characters)
+            if (character == null || character.characterText == null)
+                continue;
+
+            bool unlocked = IsCharacterUnlocked(character.characterIndex);
+            bool selected = unlocked &&
+                            character.characterIndex == selectedIndex;
+
+            if (selected)
             {
-                if (character != null && character.characterIndex == characterIndex)
-                {
-                    if (!string.IsNullOrWhiteSpace(character.characterName))
-                        return character.characterName;
-                }
+                character.characterText.color = selectedColor;
+                character.characterText.text =
+                    selectedMarker + character.characterName;
+            }
+            else if (unlocked)
+            {
+                character.characterText.color = unlockedColor;
+                character.characterText.text =
+                    character.characterName;
+            }
+            else
+            {
+                character.characterText.color = lockedColor;
+                character.characterText.text =
+                    character.characterName;
+            }
+        }
+    }
+
+    private void EnsureDefaultUnlocks()
+    {
+        if (characters == null)
+            return;
+
+        foreach (CharacterEntry character in characters)
+        {
+            if (character == null)
+                continue;
+
+            if (character.characterIndex == 0 ||
+                character.unlockedByDefault)
+            {
+                string key = GetUnlockKey(character.characterIndex);
+
+                PlayerPrefs.SetInt(key, 1);
+                PlayerPrefsKeyTracker.TrackKey(key);
             }
         }
 
-        return "Charakter " + characterIndex;
+        PlayerPrefs.Save();
+    }
+
+    private bool IsCharacterUnlocked(int characterIndex)
+    {
+        if (characterIndex == 0)
+            return true;
+
+        string key = GetUnlockKey(characterIndex);
+
+        return PlayerPrefs.GetInt(key, 0) == 1;
+    }
+
+    private CharacterEntry GetCharacter(int characterIndex)
+    {
+        if (characters == null)
+            return null;
+
+        foreach (CharacterEntry character in characters)
+        {
+            if (character != null &&
+                character.characterIndex == characterIndex)
+            {
+                return character;
+            }
+        }
+
+        return null;
+    }
+
+    private string GetUnlockKey(int characterIndex)
+    {
+        return unlockKeyPrefix + characterIndex;
     }
 }
