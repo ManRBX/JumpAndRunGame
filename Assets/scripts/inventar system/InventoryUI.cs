@@ -11,6 +11,10 @@ public class InventorySlot
     public Button button;
     public TMP_Text text;
     public Image icon;
+
+    [Header("🎭 Erlaubte Charaktere per Index (leer = alle dürfen)")]
+    [Tooltip("Trag hier die Character-Indizes ein die dieses PowerUp benutzen dürfen. Leer lassen = alle.")]
+    public List<int> allowedCharacterIndices = new List<int>();
 }
 
 public class InventoryUI : MonoBehaviour
@@ -26,13 +30,16 @@ public class InventoryUI : MonoBehaviour
     [Header("🎮 Tastenzuweisung")]
     public TMP_Text inventoryKeyLabel;
 
+    [Header("⚙️ Character Key")]
+    public string selectedCharacterKey = "GlobalSelectedCharacter";
+    public int defaultCharacterIndex = 0;
+
     private bool isOpen = false;
     private bool canUsePowerUp = true;
     private InventoryItem activePowerUpItem;
 
     private KeyBindManager keyBindManager;
 
-    // 🔄 Globale Cooldown-Steuerung
     private bool isGlobalCooldown = false;
     private float cooldownDuration = 20f;
 
@@ -60,6 +67,12 @@ public class InventoryUI : MonoBehaviour
 
         HandleInventoryToggle();
         UpdateInventoryKeyLabel();
+    }
+
+    // Liest den aktiven Character-Namen direkt aus PlayerPrefs
+    private string GetActiveCharacterName()
+    {
+        return PlayerPrefs.GetString("GlobalSelectedCharacterName", "").ToLower();
     }
 
     private void HandleInventoryToggle()
@@ -105,7 +118,7 @@ public class InventoryUI : MonoBehaviour
 
             if (slot.button != null)
             {
-                bool canUse = amount > 0 && CanUseThisItem(slot.item);
+                bool canUse = amount > 0 && CanUseThisItem(slot.item) && IsAllowedForCurrentCharacter(slot);
                 slot.button.interactable = canUse;
 
                 slot.button.onClick.RemoveAllListeners();
@@ -124,6 +137,17 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    // Prüft ob der aktive Character diesen Slot benutzen darf
+    private bool IsAllowedForCurrentCharacter(InventorySlot slot)
+    {
+        // Leer = alle Characters dürfen
+        if (slot.allowedCharacterIndices == null || slot.allowedCharacterIndices.Count == 0)
+            return true;
+
+        int activeIndex = PlayerPrefs.GetInt(selectedCharacterKey, defaultCharacterIndex);
+        return slot.allowedCharacterIndices.Contains(activeIndex);
+    }
+
     private bool CanUseThisItem(InventoryItem item)
     {
         if (item == null) return false;
@@ -138,14 +162,12 @@ public class InventoryUI : MonoBehaviour
                 int currentAmmo = PlayerPrefs.GetInt("GlobalAmmo", 0);
                 return currentAmmo < shooter.maxAmmo;
             }
-
             return false;
         }
 
         if (name.Contains("health"))
             return true;
 
-        // alle anderen PowerUps nur wenn kein Global-Cooldown läuft
         return canUsePowerUp && !isGlobalCooldown;
     }
 
@@ -161,7 +183,6 @@ public class InventoryUI : MonoBehaviour
             if (!canUsePowerUp && item != activePowerUpItem)
                 return;
 
-            // 🚫 Global Cooldown starten
             isGlobalCooldown = true;
             canUsePowerUp = false;
             activePowerUpItem = item;
@@ -174,7 +195,6 @@ public class InventoryUI : MonoBehaviour
         RefreshUI();
     }
 
-    // ❌ Alle Buttons deaktivieren
     private void DisableAllButtons()
     {
         foreach (var slot in slots)
@@ -184,7 +204,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    // ⏱️ 20 Sekunden warten, dann wieder freigeben
     private IEnumerator GlobalCooldownRoutine()
     {
         yield return new WaitForSeconds(cooldownDuration);
@@ -199,7 +218,7 @@ public class InventoryUI : MonoBehaviour
         if (index < 0 || index >= slots.Count) return;
 
         var slot = slots[index];
-        if (slot != null && CanUseThisItem(slot.item))
+        if (slot != null && CanUseThisItem(slot.item) && IsAllowedForCurrentCharacter(slot))
         {
             UseItemWithRules(slot.item, slot.button);
         }

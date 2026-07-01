@@ -6,9 +6,7 @@ public class CharacterEntry
 {
     [Header("🎭 Charakter Daten")]
     public int characterIndex;
-
     public string characterName;
-
     public bool unlockedByDefault = false;
 
     [Header("📝 Normaler Unity UI Text")]
@@ -22,7 +20,6 @@ public class CharacterSelectMenu : MonoBehaviour
     public string unlockKeyPrefix = "CharacterUnlocked_";
 
     [Header("🧾 Anzeige")]
-    [Tooltip("Normaler Unity UI Text für die Anzeige des ausgewählten Charakters.")]
     public Text selectedCharacterText;
 
     [Header("💬 Texte")]
@@ -66,16 +63,25 @@ public class CharacterSelectMenu : MonoBehaviour
                     lockedText + character.characterName + "\n" +
                     unlockHintText;
             }
-
             Debug.Log($"🔒 Charakter gesperrt: {character.characterName}");
             return;
         }
 
+        // Auswahl speichern
         PlayerPrefs.SetInt(selectedCharacterKey, characterIndex);
         PlayerPrefsKeyTracker.TrackKey(selectedCharacterKey);
+
+        // Namen des ausgewählten Characters speichern
+        PlayerPrefs.SetString("GlobalSelectedCharacterName", character.characterName);
+        PlayerPrefsKeyTracker.TrackKey("GlobalSelectedCharacterName");
+
+        // Zeitstempel der letzten Auswahl speichern
+        PlayerPrefs.SetString("GlobalSelectedCharacterTime", System.DateTime.Now.ToString());
+        PlayerPrefsKeyTracker.TrackKey("GlobalSelectedCharacterTime");
+
         PlayerPrefs.Save();
 
-        Debug.Log($"🎭 Charakter gewählt: {character.characterName}");
+        Debug.Log($"🎭 Charakter gewählt: {character.characterName} | Index {characterIndex}");
 
         RefreshUI();
         UpdateCharacterVisuals();
@@ -83,79 +89,66 @@ public class CharacterSelectMenu : MonoBehaviour
 
     private void RefreshUI()
     {
-        if (selectedCharacterText == null)
-            return;
+        if (selectedCharacterText == null) return;
 
         int selectedIndex = PlayerPrefs.GetInt(selectedCharacterKey, 0);
-
         CharacterEntry character = GetCharacter(selectedIndex);
 
         if (character != null)
-        {
-            selectedCharacterText.text =
-                selectedPrefix + character.characterName;
-        }
+            selectedCharacterText.text = selectedPrefix + character.characterName;
         else
-        {
-            selectedCharacterText.text =
-                selectedPrefix + "Charakter " + selectedIndex;
-        }
+            selectedCharacterText.text = selectedPrefix + "Charakter " + selectedIndex;
     }
 
     private void UpdateCharacterVisuals()
     {
-        if (characters == null)
-            return;
+        if (characters == null) return;
 
         int selectedIndex = PlayerPrefs.GetInt(selectedCharacterKey, 0);
 
         foreach (CharacterEntry character in characters)
         {
-            if (character == null || character.characterText == null)
-                continue;
+            if (character == null || character.characterText == null) continue;
 
             bool unlocked = IsCharacterUnlocked(character.characterIndex);
-            bool selected = unlocked &&
-                            character.characterIndex == selectedIndex;
+            bool selected = unlocked && character.characterIndex == selectedIndex;
 
             if (selected)
             {
                 character.characterText.color = selectedColor;
-                character.characterText.text =
-                    selectedMarker + character.characterName;
+                character.characterText.text = selectedMarker + character.characterName;
             }
             else if (unlocked)
             {
                 character.characterText.color = unlockedColor;
-                character.characterText.text =
-                    character.characterName;
+                character.characterText.text = character.characterName;
             }
             else
             {
                 character.characterText.color = lockedColor;
-                character.characterText.text =
-                    character.characterName;
+                character.characterText.text = character.characterName;
             }
         }
     }
 
     private void EnsureDefaultUnlocks()
     {
-        if (characters == null)
-            return;
+        if (characters == null) return;
 
         foreach (CharacterEntry character in characters)
         {
-            if (character == null)
-                continue;
+            if (character == null) continue;
 
-            if (character.characterIndex == 0 ||
-                character.unlockedByDefault)
+            if (character.characterIndex == 0 || character.unlockedByDefault)
             {
                 string key = GetUnlockKey(character.characterIndex);
-
                 PlayerPrefs.SetInt(key, 1);
                 PlayerPrefsKeyTracker.TrackKey(key);
+
+                // Name des freigeschalteten Characters speichern
+                string nameKey = key + "_Name";
+                PlayerPrefs.SetString(nameKey, character.characterName);
+                PlayerPrefsKeyTracker.TrackKey(nameKey);
             }
         }
 
@@ -164,26 +157,18 @@ public class CharacterSelectMenu : MonoBehaviour
 
     private bool IsCharacterUnlocked(int characterIndex)
     {
-        if (characterIndex == 0)
-            return true;
-
-        string key = GetUnlockKey(characterIndex);
-
-        return PlayerPrefs.GetInt(key, 0) == 1;
+        if (characterIndex == 0) return true;
+        return PlayerPrefs.GetInt(GetUnlockKey(characterIndex), 0) == 1;
     }
 
     private CharacterEntry GetCharacter(int characterIndex)
     {
-        if (characters == null)
-            return null;
+        if (characters == null) return null;
 
         foreach (CharacterEntry character in characters)
         {
-            if (character != null &&
-                character.characterIndex == characterIndex)
-            {
+            if (character != null && character.characterIndex == characterIndex)
                 return character;
-            }
         }
 
         return null;

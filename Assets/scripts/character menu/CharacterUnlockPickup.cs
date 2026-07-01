@@ -34,14 +34,25 @@ public class CharacterUnlockPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-
         UnlockCharacter();
     }
 
     private void UnlockCharacter()
     {
+        // Unlock speichern
         PlayerPrefs.SetInt(UnlockKey, 1);
         PlayerPrefsKeyTracker.TrackKey(UnlockKey);
+
+        // Unlock-Zeitstempel speichern
+        string timeKey = UnlockKey + "_Time";
+        PlayerPrefs.SetString(timeKey, System.DateTime.Now.ToString());
+        PlayerPrefsKeyTracker.TrackKey(timeKey);
+
+        // Unlock-Name speichern
+        string nameKey = UnlockKey + "_Name";
+        PlayerPrefs.SetString(nameKey, characterName);
+        PlayerPrefsKeyTracker.TrackKey(nameKey);
+
         PlayerPrefs.Save();
 
         Debug.Log($"✅ Charakter freigeschaltet: {characterName} | Index {characterIndexToUnlock} | Key: {UnlockKey}");
@@ -71,5 +82,11 @@ public class CharacterUnlockPickup : MonoBehaviour
     {
         if (unlockMessageText != null)
             unlockMessageText.gameObject.SetActive(false);
+    }
+
+    // Statische Hilfsmethode: prüfen ob ein Character freigeschaltet ist
+    public static bool IsUnlocked(string prefix, int index)
+    {
+        return PlayerPrefs.GetInt(prefix + index, 0) == 1;
     }
 }

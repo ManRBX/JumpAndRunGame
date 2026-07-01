@@ -356,6 +356,7 @@ MonoBehaviour:
   acceleration: 10
   deceleration: 8
   slideFactor: 0.5
+  slidingZones: []
   groundCheckPoints:
   - {fileID: 4404933194621075933}
   - {fileID: 4919721637864100927}
@@ -367,6 +368,10 @@ MonoBehaviour:
   fallBrakeLines: []
   zoneMaxFallSpeed: -10
   zoneAirDrag: 3
+  walkingSound: {fileID: 0}
+  jumpSound: {fileID: 0}
+  jumpStateName: Jump
+  jumpAnimationPlayTime: 1
 --- !u!114 &1232777033841536234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,17 +384,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3d8e41c90b07c4096dc0c914ac5dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 50
   currentHealth: 0
   defaultLives: 5
-  invincibleSafeTags:
-  - Enemy
-  - Spike
-  - Enemy_Projectil
+  invincibleSafeTags: []
   invincibilityDuration: 1
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   damageFlashDuration: 0.1
   gameOverPanel: {fileID: 0}
+  deathSound: {fileID: 0}
+  healthText: {fileID: 0}
+  healthTextScreenOffset: {x: 0, y: 0}
+  healthTextDisplayTime: 2
 --- !u!114 &6369268848354313587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +417,7 @@ MonoBehaviour:
   shotText: {fileID: 0}
   gameOverPanel: {fileID: 0}
   defaultAmmo: 30
+  panelsThatBlockShooting: []
 --- !u!114 &6730816259622673345
 MonoBehaviour:
   m_ObjectHideFlags: 0

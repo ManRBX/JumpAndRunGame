@@ -776,6 +776,10 @@ MonoBehaviour:
     m_Key: Menu/Canvas/optionen Panel/Volum
     m_Metadata:
       m_Items: []
+  - m_Id: 184401423942803456
+    m_Key: Menu/Canvas/Store panel/Wings/Wings text
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

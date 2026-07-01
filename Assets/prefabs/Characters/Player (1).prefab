@@ -408,6 +408,8 @@ MonoBehaviour:
   damageFlashDuration: 0.1
   gameOverPanel: {fileID: 0}
   deathSound: {fileID: 0}
+  healthText: {fileID: 0}
+  healthTextDisplayTime: 2
 --- !u!114 &1562144623386540249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,10 +422,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3879b5ddd0086fc4a9fde0ce193fd5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4861833167383457531, guid: 646b4592764a70c498ed74e90ad29e42, type: 3}
+  bulletPrefab: {fileID: 3487356740434970144, guid: fe024371bd0638249a5fef6ee4f3586f, type: 3}
   firePoint: {fileID: 3783706046695443659}
   bulletForce: 20
   maxAmmo: 999
+  bulletDamage: 2
   fireRate: 0.5
   ammoText: {fileID: 0}
   shotText: {fileID: 0}
