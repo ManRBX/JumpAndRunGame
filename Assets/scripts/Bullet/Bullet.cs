@@ -3,6 +3,7 @@
 public class Bullet : MonoBehaviour
 {
     public float lifeTime = 2f;
+    public int damage = 1;   // wird von PlayerShooting gesetzt
 
     [Header("🔊 Schuss-Sound")]
     public AudioSource shootSound;
@@ -11,7 +12,6 @@ public class Bullet : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().gravityScale = 0;
         Destroy(gameObject, lifeTime);
-
         if (shootSound != null)
             shootSound.Play();
     }
@@ -26,23 +26,19 @@ public class Bullet : MonoBehaviour
         else if (collision.CompareTag("Enemy"))
         {
             Debug.Log("Bullet hit an enemy!");
-
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1);
-
+                enemy.TakeDamage(damage);
                 if (enemy.health <= 0)
                 {
                     int kills = PlayerPrefs.GetInt("EnemyKills", 0) + 1;
                     PlayerPrefs.SetInt("EnemyKills", kills);
                     PlayerPrefsKeyTracker.TrackKey("EnemyKills");
                     PlayerPrefs.Save();
-
                     Debug.Log($"Enemy killed! Total count: {kills}");
                 }
             }
-
             Destroy(gameObject);
         }
     }

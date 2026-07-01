@@ -13,6 +13,9 @@ public class PlayerShooting : MonoBehaviour
     private const string AmmoKey = "GlobalAmmo";
     private const string ShotsFiredKey = "ShotsFired";
 
+    [Header("Damage Settings")]
+    public int bulletDamage = 1;   // Schaden den jeder Schuss macht
+
     [Header("Cooldown Settings")]
     public float fireRate = 0.5f;
     private float nextFireTime = 0f;
@@ -93,6 +96,11 @@ public class PlayerShooting : MonoBehaviour
             Debug.LogWarning("⚠️ Bullet hat keinen Rigidbody2D!");
             return;
         }
+
+        // Schaden an die Bullet uebergeben (falls Bullet-Script ein "damage" Feld hat)
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        if (bulletScript != null)
+            bulletScript.damage = bulletDamage;
 
         bullet.transform.Rotate(0f, 0f, 90f);
 

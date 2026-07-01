@@ -266,7 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f318fe19dddc294fb3a4cba58c93cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
+  health: 5
+  healthText: {fileID: 0}
+  healthTextScreenOffset: {x: 0, y: 0}
+  healthTextDisplayTime: 2
   speed: 2
   leftDistance: 5
   rightDistance: 5
@@ -281,6 +284,7 @@ MonoBehaviour:
     m_Bits: 8
   wallCheckDistance: 0.5
   attackCooldown: 1
+  attackDamage: 10
   damageStunTime: 0.5
   pointsOnDeath: 33
   respawnTime: 60
@@ -292,8 +296,8 @@ MonoBehaviour:
     m_Bits: 64
   stepSound: {fileID: 1402667748147694872}
   jumpSound: {fileID: 5243459159308418394}
-  deathSound: {fileID: 2952620745918299149}
-  audioPlayDistance: 20
+  deathSound: {fileID: 0}
+  audioPlayDistance: 15
   customFieldSize: {x: 20, y: 10}
   customFieldOffset: {x: 0, y: 0}
 --- !u!114 &3079355632990167078
@@ -632,10 +636,5 @@ PrefabInstance:
 --- !u!4 &1435648096973191007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7071860415357580367, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
-  m_PrefabInstance: {fileID: 8198866627752985360}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &2952620745918299149 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6427174529443643165, guid: 8195e96285f3f4a4b99df645e5ba1fc4, type: 3}
   m_PrefabInstance: {fileID: 8198866627752985360}
   m_PrefabAsset: {fileID: 0}

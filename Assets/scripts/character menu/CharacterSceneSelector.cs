@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
 using Unity.Cinemachine;
+using UnityEngine.UI;
+
+[System.Serializable]
+public class SceneCharacter
+{
+    public string characterName;
+    public GameObject characterObject;
+    public Sprite characterImage; // Bild das angezeigt wird wenn dieser Character aktiv ist
+}
 
 public class CharacterSceneSelector : MonoBehaviour
 {
     [Header("🎮 Player Varianten in dieser Szene")]
-    [Tooltip("Alle Player-Objekte, die bereits in der Szene liegen. Reihenfolge muss gleich sein wie im Auswahlmenü.")]
-    public GameObject[] playerCharacters;
+    public SceneCharacter[] playerCharacters;
 
     [Header("📍 Optionaler Spawnpunkt")]
-    [Tooltip("Wenn gesetzt, wird der aktive Charakter an diese Position gesetzt.")]
     public Transform spawnPoint;
 
     [Header("🎥 Cinemachine")]
     public CinemachineCamera virtualCamera;
+
+    [Header("🧾 UI Anzeige")]
+    public Text characterNameText;
+    public string namePrefix = "Character: ";
+
+    [Header("🖼️ Character Bild")]
+    public Image characterImage; // Das Image das gewechselt wird
 
     [Header("⚙️ Einstellungen")]
     public string selectedCharacterKey = "GlobalSelectedCharacter";
@@ -27,7 +41,7 @@ public class CharacterSceneSelector : MonoBehaviour
     {
         if (playerCharacters == null || playerCharacters.Length == 0)
         {
-            Debug.LogWarning("⚠️ Keine Player-Charaktere im CharacterSceneSelector eingetragen!");
+            Debug.LogWarning("⚠️ Keine Charaktere eingetragen!");
             return;
         }
 
@@ -35,35 +49,83 @@ public class CharacterSceneSelector : MonoBehaviour
 
         if (selectedIndex < 0 || selectedIndex >= playerCharacters.Length)
         {
-            Debug.LogWarning($"⚠️ Ungültiger Charakter-Index {selectedIndex}. Nutze Default {defaultCharacterIndex}.");
+            Debug.LogWarning($"⚠️ Ungültiger Charakter-Index {selectedIndex}. Verwende Default {defaultCharacterIndex}.");
+            selectedIndex = defaultCharacterIndex;
+        }
+
+        string unlockKey = "CharacterUnlocked_" + selectedIndex;
+        bool isUnlocked = selectedIndex == defaultCharacterIndex || PlayerPrefs.GetInt(unlockKey, 0) == 1;
+
+        if (!isUnlocked)
+        {
+            Debug.LogWarning($"⚠️ Charakter {selectedIndex} nicht freigeschaltet! Verwende Default.");
             selectedIndex = defaultCharacterIndex;
         }
 
         GameObject activePlayer = null;
+        string activeName = "Unknown";
+        Sprite activeSprite = null;
 
         for (int i = 0; i < playerCharacters.Length; i++)
         {
-            if (playerCharacters[i] == null) continue;
+            if (playerCharacters[i] == null || playerCharacters[i].characterObject == null)
+                continue;
 
-            bool shouldBeActive = i == selectedIndex;
-            playerCharacters[i].SetActive(shouldBeActive);
+            bool isSelected = i == selectedIndex;
+            playerCharacters[i].characterObject.SetActive(isSelected);
 
-            if (shouldBeActive)
+            if (isSelected)
             {
-                activePlayer = playerCharacters[i];
+                activePlayer = playerCharacters[i].characterObject;
+                activeName = playerCharacters[i].characterName;
+                activeSprite = playerCharacters[i].characterImage;
 
                 if (spawnPoint != null)
                     activePlayer.transform.position = spawnPoint.position;
             }
         }
 
+        // Character Bild wechseln
+        if (characterImage != null && activeSprite != null)
+            characterImage.sprite = activeSprite;
+
+        // PlayerPrefs speichern
+        PlayerPrefs.SetInt(selectedCharacterKey, selectedIndex);
+        PlayerPrefs.SetString("GlobalSelectedCharacterName", activeName);
+        PlayerPrefsKeyTracker.TrackKey(selectedCharacterKey);
+        PlayerPrefsKeyTracker.TrackKey("GlobalSelectedCharacterName");
+        PlayerPrefs.Save();
+
+        // Cinemachine aktualisieren
         if (virtualCamera != null && activePlayer != null)
         {
             virtualCamera.Follow = activePlayer.transform;
             virtualCamera.LookAt = activePlayer.transform;
-            Debug.Log("🎥 Cinemachine folgt jetzt: " + activePlayer.name);
+            Debug.Log("🎥 Kamera folgt jetzt: " + activePlayer.name);
         }
 
-        Debug.Log($"✅ Aktiver Charakter: Index {selectedIndex}");
+        // UI aktualisieren
+        if (characterNameText != null)
+            characterNameText.text = namePrefix + activeName;
+
+        Debug.Log($"✅ Aktiver Charakter: {activeName} | Index {selectedIndex}");
+    }
+
+    public void SelectCharacter(int index)
+    {
+        string unlockKey = "CharacterUnlocked_" + index;
+        bool isUnlocked = index == defaultCharacterIndex || PlayerPrefs.GetInt(unlockKey, 0) == 1;
+
+        if (!isUnlocked)
+        {
+            Debug.LogWarning($"⚠️ Charakter {index} ist noch nicht freigeschaltet!");
+            return;
+        }
+
+        PlayerPrefs.SetInt(selectedCharacterKey, index);
+        PlayerPrefsKeyTracker.TrackKey(selectedCharacterKey);
+        PlayerPrefs.Save();
+
+        ActivateSelectedCharacter();
     }
 }
