@@ -839,6 +839,67 @@ MonoBehaviour:
     m_Localized: "Lava SFX Lautst\xE4rke:"
     m_Metadata:
       m_Items: []
+  - m_Id: 184401423942803456
+    m_Localized: "Fl\xFCgel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193210975257616384
+    m_Localized: "Gl\xFCckwunsch!\n\nDu hast das Tutorial-Level erfolgreich abgeschlossen.\n\nJetzt
+      kennst du die wichtigsten Steuerungen\nund kannst dein Abenteuer beginnen.\n\nGehe
+      durch die T\xFCr, um zum Hauptmen\xFC\nzur\xFCckzukehren und weitere Level
+      zu spielen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211063056982016
+    m_Localized: "Achtung!\n\nDieser Gegner kann schie\xDFen.\n\nDr\xFCcke die linke
+      Maustaste (LMB),\num zu schie\xDFen und den Gegner\nzu besiegen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211085282598912
+    m_Localized: "Gut gemacht!\n\nFast geschafft!\n\nDr\xFCcke W, um nach oben zu
+      klettern,\noder S, um nach unten zu klettern."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211102542159872
+    m_Localized: "Vorsicht!\n\nDie Spikes verursachen Schaden.\nSpringe mit der Leertaste
+      dar\xFCber."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211124298014720
+    m_Localized: "Vorsicht!\n\nSpringe mit der Leertaste\n\xFCber die Lava, um weiterzukommen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211294599340032
+    m_Localized: "Vorsicht!\n\nSpringe mit der Leertaste\n\xFCber die Lava, um weiterzukommen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211312425132032
+    m_Localized: "Gut gemacht!\n\nSpringe gegen die Bl\xF6cke.\nDaraus erh\xE4ltst
+      du zuf\xE4llig\nein Item.\n\nDr\xFCcke C, um dein Inventar\nzu \xF6ffnen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211336655626240
+    m_Localized: "Achtung!\n\nDr\xFCcke die linke Maustaste (LMB),\num zu schie\xDFen
+      und den Gegner\nzu besiegen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211356331106304
+    m_Localized: 'Steuerung
+
+
+      A / D          Bewegen
+
+      Leertaste     
+      Springen
+
+      W / S          Klettern'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211369929039872
+    m_Localized: "Willkommen im Tutorial!\n\nHier lernst du Schritt f\xFCr Schritt\ndie
+      wichtigsten Steuerungen.\nLos geht's!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

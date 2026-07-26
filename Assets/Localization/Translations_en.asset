@@ -853,6 +853,130 @@ MonoBehaviour:
     m_Localized: Wings
     m_Metadata:
       m_Items: []
+  - m_Id: 193210975257616384
+    m_Localized: 'Well done!
+
+
+      You have successfully completed the tutorial
+      level.
+
+
+      Now you''re ready to take on the real challenges!
+
+
+      Go
+      through the door to return
+
+      to the main menu and explore more levels.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211063056982016
+    m_Localized: 'Warning!
+
+
+      This enemy can shoot.
+
+
+      Use the left mouse
+      button (LMB)
+
+      to shoot and defeat the enemy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211085282598912
+    m_Localized: 'Well done!
+
+
+      You''re almost there!
+
+
+      Press W to climb
+      up
+
+      or S to climb down.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211102542159872
+    m_Localized: 'Warning!
+
+
+      Spikes deal damage.
+
+
+      Press the Spacebar
+
+      to
+      jump over them.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211124298014720
+    m_Localized: 'Warning!
+
+
+      Jump over the lava
+
+      by pressing the Spacebar
+
+      to
+      continue.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211294599340032
+    m_Localized: 'Warning!
+
+
+      Press the Spacebar
+
+      to jump over the lava
+
+      and
+      continue.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211312425132032
+    m_Localized: 'Well done!
+
+
+      Hit the blocks
+
+      to receive a random item.
+
+
+      Press
+      C to open
+
+      your inventory.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211336655626240
+    m_Localized: 'Warning!
+
+
+      Press the left mouse button (LMB)
+
+      to shoot
+      and defeat
+
+      the enemy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211356331106304
+    m_Localized: 'Controls
+
+
+      A / D          Move
+
+      Spacebar       Jump
+
+      W
+      / S          Climb'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211369929039872
+    m_Localized: "Welcome to the Tutorial!\n\nHere, you\u2019ll learn the most important
+      controls\nstep by step.\n\nLet\u2019s get started!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
