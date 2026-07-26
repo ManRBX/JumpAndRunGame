@@ -780,6 +780,46 @@ MonoBehaviour:
     m_Key: Menu/Canvas/Store panel/Wings/Wings text
     m_Metadata:
       m_Items: []
+  - m_Id: 193210975257616384
+    m_Key: Tutorial/texte/Enemy shooter (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211063056982016
+    m_Key: Tutorial/texte/Enemy shooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211085282598912
+    m_Key: Tutorial/texte/Ladders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211102542159872
+    m_Key: Tutorial/texte/Spikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211124298014720
+    m_Key: Tutorial/texte/Lava
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211294599340032
+    m_Key: Tutorial/texte/Lava 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211312425132032
+    m_Key: Tutorial/texte/Breakablebox
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211336655626240
+    m_Key: Tutorial/texte/Enemy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211356331106304
+    m_Key: Tutorial/texte/Bewegung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 193211369929039872
+    m_Key: Tutorial/texte/Welcome
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
