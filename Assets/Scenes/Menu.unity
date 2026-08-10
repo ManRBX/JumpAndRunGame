@@ -992,7 +992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &55265350
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23533,6 +23533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622430609}
   - component: {fileID: 1622430608}
+  - component: {fileID: 1622430610}
   m_Layer: 0
   m_Name: SteamManager
   m_TagString: Untagged
@@ -23567,6 +23568,100 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622430610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622430606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a1aebf97f6d3c48ab79543b31eaf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievements:
+  - achievementID: TutorialComplete
+    playerPrefsKey: Tutorial_Complete
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Coin10
+    playerPrefsKey: TotalCoins
+    requiredValue: 10
+    comparison: 1
+  - achievementID: Coin20
+    playerPrefsKey: TotalCoins
+    requiredValue: 20
+    comparison: 1
+  - achievementID: Coin50
+    playerPrefsKey: TotalCoins
+    requiredValue: 50
+    comparison: 1
+  - achievementID: Coin100
+    playerPrefsKey: TotalCoins
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Coin150
+    playerPrefsKey: TotalCoins
+    requiredValue: 150
+    comparison: 1
+  - achievementID: Coin100
+    playerPrefsKey: TotalCoins
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Coin150
+    playerPrefsKey: TotalCoins
+    requiredValue: 150
+    comparison: 1
+  - achievementID: Coin200
+    playerPrefsKey: TotalCoins
+    requiredValue: 200
+    comparison: 1
+  - achievementID: Coin300
+    playerPrefsKey: TotalCoins
+    requiredValue: 300
+    comparison: 1
+  - achievementID: Coin400
+    playerPrefsKey: TotalCoins
+    requiredValue: 400
+    comparison: 1
+  - achievementID: Coin450
+    playerPrefsKey: TotalCoins
+    requiredValue: 450
+    comparison: 1
+  - achievementID: Coin500
+    playerPrefsKey: TotalCoins
+    requiredValue: 500
+    comparison: 1
+  - achievementID: Coin600
+    playerPrefsKey: TotalCoins
+    requiredValue: 600
+    comparison: 1
+  - achievementID: Coin700
+    playerPrefsKey: TotalCoins
+    requiredValue: 700
+    comparison: 1
+  - achievementID: Enemy10
+    playerPrefsKey: EnemyKills
+    requiredValue: 10
+    comparison: 1
+  - achievementID: Enemy20
+    playerPrefsKey: EnemyKills
+    requiredValue: 20
+    comparison: 1
+  - achievementID: Enemy50
+    playerPrefsKey: EnemyKills
+    requiredValue: 50
+    comparison: 1
+  - achievementID: Enemy100
+    playerPrefsKey: EnemyKills
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Enemy200
+    playerPrefsKey: EnemyKills
+    requiredValue: 200
+    comparison: 1
+  checkInterval: 1
 --- !u!1 &1629350274
 GameObject:
   m_ObjectHideFlags: 0
@@ -28428,7 +28523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0014343262, y: 0}
+  m_AnchoredPosition: {x: -0.0014038086, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1852451065

@@ -1,176 +1,335 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LevelEnd : MonoBehaviour
 {
     public enum TriggerType
     {
-        LevelComplete, // beendet Level; optional nextLevel freischalten
-        LevelUnlock,   // setzt nur ein Unlock-Flag für targetID (kein Scene-Load)
-        SecretFound    // setzt nur ein Secret-Flag für targetID (kein Scene-Load)
+        LevelComplete,
+        LevelUnlock,
+        SecretFound
     }
 
     [Header("🔗 Level Infos")]
     [Tooltip("Nur bei LevelComplete verwendet. Wenn leer, wird returnScene geladen.")]
     public string nextLevelName;
-    [Tooltip("Name des aktuellen Levels für den Coin-Key. Fallback: targetID.")]
+
+    [Tooltip("PlayerPrefs-Key zum Freischalten des nächsten Levels, z.B. Level02_Unlocked.")]
+    public string nextLevelUnlockKey;
+
+    [Tooltip("Name des aktuellen Levels für Speicher-Keys. Wenn leer, wird der aktuelle Szenenname verwendet.")]
     public string currentLevelName;
-    [Tooltip("Fallback/Standard Szene, z. B. 'Menu'.")]
+
+    [Tooltip("Fallback-Szene, zum Beispiel Menu.")]
     public string returnScene = "Menu";
-    [Tooltip("Nach LevelComplete wirklich nextLevel laden (sonst returnScene).")]
+
+    [Tooltip("Nach LevelComplete das nächste Level laden. Sonst wird returnScene geladen.")]
     public bool loadNextLevelOnComplete = true;
 
     [Header("🎯 Trigger Modus")]
     public TriggerType triggerType = TriggerType.LevelComplete;
 
-    [Tooltip("ID für Flags/Keys (z. B. 'Level02'). Bei LevelUnlock/SecretFound erforderlich.")]
+    [Tooltip("Kompletter PlayerPrefs-Key, z.B. Level01_Completed oder SecretFound_Room01.")]
     public string targetID;
 
-    [Header("🪙 Coin Gate (nur LevelComplete)")]
-    [Tooltip("Minimale Special Coins zum Passieren (0 = kein Check).")]
+    [Header("🪙 Coin Gate")]
+    [Tooltip("Minimale Special Coins zum Abschließen. 0 deaktiviert die Prüfung.")]
     public int achievementCoinsRequired = 0;
-    [Tooltip("Wenn gesetzt, überschreibt dies den automatisch gebauten Coin-Key.")]
+
+    [Tooltip("Überschreibt den automatisch erzeugten Coin-Key.")]
     public string coinKeyOverride;
 
-    [Header("🎬 Feedback (optional)")]
+    [Header("🎬 Feedback")]
     public float loadDelay = 0.35f;
     public AudioSource successSfx;
     public GameObject successFx;
-    public TMP_Text feedbackText; // optional „✅ …“-Einblendung
-    [Tooltip("Während des Delays optionalen Input-Blocker aktivieren.")]
+
+    [Tooltip("Normaler Unity UI Text.")]
+    public Text feedbackText;
+
+    [Tooltip("Während des Delays optional aktivieren.")]
     public GameObject inputBlocker;
 
     [Header("⚙️ Verhalten")]
     [Tooltip("Nur einmal auslösen, solange dieses Objekt lebt.")]
     public bool triggerOnce = true;
-    [Tooltip("Wenn false und reArmOnExit=true: Trigger wird beim Verlassen zurückgesetzt.")]
+
+    [Tooltip("Bei triggerOnce=false nach dem Verlassen erneut aktivieren.")]
     public bool reArmOnExit = false;
-    [Tooltip("Abklingzeit zwischen Auslösungen (nur wenn triggerOnce=false).")]
+
+    [Tooltip("Abklingzeit zwischen Auslösungen.")]
     public float retriggerCooldown = 0f;
 
-    // --- intern ---
-    private bool _fired;
-    private float _nextAllowedTime = 0f;
+    private bool fired;
+    private float nextAllowedTime;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player"))
+            return;
 
-        if (triggerOnce && _fired) return;
-        if (!triggerOnce && Time.time < _nextAllowedTime) return;
+        if (triggerOnce && fired)
+            return;
 
-        // 1) Coin‑Gate (nur LevelComplete)
-        if (triggerType == TriggerType.LevelComplete && achievementCoinsRequired > 0)
+        if (!triggerOnce && Time.time < nextAllowedTime)
+            return;
+
+        if (triggerType == TriggerType.LevelComplete &&
+            achievementCoinsRequired > 0)
         {
-            string coinKey = BuildCoinKey(); // -> "<Level>-special-coins"
+            string coinKey = BuildCoinKey();
             int levelCoins = PlayerPrefs.GetInt(coinKey, 0);
-            Debug.Log($"[LevelEnd] CoinGate {coinKey}: {levelCoins}/{achievementCoinsRequired}");
+
+            Debug.Log(
+                $"[LevelEnd] CoinGate: {coinKey} = " +
+                $"{levelCoins}/{achievementCoinsRequired}"
+            );
 
             if (levelCoins < achievementCoinsRequired)
             {
-                Debug.Log($"[LevelEnd] ❌ Mind. {achievementCoinsRequired} Special Coins nötig.");
-                if (feedbackText) feedbackText.text = $"❌ {achievementCoinsRequired} Special Coins benötigt!";
+                Debug.LogWarning(
+                    $"[LevelEnd] Nicht genug Special Coins. " +
+                    $"{levelCoins}/{achievementCoinsRequired}"
+                );
+
+                if (feedbackText != null)
+                {
+                    feedbackText.text =
+                        $"❌ {achievementCoinsRequired} Special Coins benötigt!";
+                }
+
                 return;
             }
         }
 
-        _fired = true;
+        fired = true;
+
         if (!triggerOnce && retriggerCooldown > 0f)
-            _nextAllowedTime = Time.time + retriggerCooldown;
+        {
+            nextAllowedTime = Time.time + retriggerCooldown;
+        }
 
         StartCoroutine(FinishRoutine());
     }
 
-    // Optionaler Re‑Arm
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player"))
+            return;
+
         if (!triggerOnce && reArmOnExit)
-            _fired = false;
+        {
+            fired = false;
+        }
     }
 
     private IEnumerator FinishRoutine()
     {
-        // 2) Flags/Progression (ohne Achievements)
         switch (triggerType)
         {
             case TriggerType.LevelComplete:
-                // Optional: nächstes Level als „Unlocked“ markieren
-                if (!string.IsNullOrEmpty(nextLevelName))
-                {
-                    string unlockKey = nextLevelName + "_Unlocked";
-                    PlayerPrefs.SetInt(unlockKey, 1);
-                    PlayerPrefs.Save();
-                    Debug.Log($"[LevelEnd] 🔓 Freigeschaltet: {nextLevelName}  (Key: {unlockKey})");
-                }
+                SaveLevelCompleted();
+                UnlockNextLevel();
                 break;
 
             case TriggerType.LevelUnlock:
-                if (!string.IsNullOrEmpty(targetID))
-                {
-                    string unlockKey = targetID + "_Unlocked";
-                    PlayerPrefs.SetInt(unlockKey, 1);
-                    PlayerPrefs.Save();
-                    Debug.Log($"[LevelEnd] 🔓 LevelUnlock Flag gesetzt: {unlockKey}");
-                }
-                else
-                {
-                    Debug.LogWarning("[LevelEnd] LevelUnlock: targetID ist leer – kein Flag gesetzt.");
-                }
+                SaveLevelUnlock();
                 break;
 
             case TriggerType.SecretFound:
-                if (!string.IsNullOrEmpty(targetID))
-                {
-                    string secretKey = "SecretFound_" + targetID;
-                    PlayerPrefs.SetInt(secretKey, 1);
-                    PlayerPrefs.Save();
-                    Debug.Log($"[LevelEnd] 🕵️ SecretFlag gesetzt: {secretKey}");
-                }
-                else
-                {
-                    Debug.LogWarning("[LevelEnd] SecretFound: targetID ist leer – kein Flag gesetzt.");
-                }
+                SaveSecretFound();
                 break;
         }
 
-        // 3) Feedback
-        if (successFx) Instantiate(successFx, transform.position, Quaternion.identity);
-        if (successSfx) successSfx.Play();
-        if (feedbackText) feedbackText.text = "✅ Erfolgreich!";
-        if (inputBlocker) inputBlocker.SetActive(true);
+        PlayerPrefs.Save();
 
-        // 4) kurze Pause
-        if (loadDelay > 0f) yield return new WaitForSeconds(loadDelay);
+        PlayFeedback();
 
-        // 5) Szene laden (nur bei LevelComplete sinnvoll)
-        string sceneToLoad = returnScene;
-        if (triggerType == TriggerType.LevelComplete && loadNextLevelOnComplete && !string.IsNullOrEmpty(nextLevelName))
-            sceneToLoad = nextLevelName;
+        if (loadDelay > 0f)
+        {
+            yield return new WaitForSeconds(loadDelay);
+        }
 
-        SafeLoadScene(sceneToLoad);
+        if (triggerType == TriggerType.LevelComplete)
+        {
+            string sceneToLoad = returnScene;
+
+            if (loadNextLevelOnComplete &&
+                !string.IsNullOrWhiteSpace(nextLevelName))
+            {
+                sceneToLoad = nextLevelName;
+            }
+
+            SafeLoadScene(sceneToLoad);
+        }
+    }
+
+    private void SaveLevelCompleted()
+    {
+        if (string.IsNullOrWhiteSpace(targetID))
+        {
+            Debug.LogWarning(
+                "[LevelEnd] LevelComplete: targetID ist leer. " +
+                "Completed-Key konnte nicht gespeichert werden."
+            );
+
+            return;
+        }
+
+        PlayerPrefs.SetInt(targetID, 1);
+        PlayerPrefsKeyTracker.TrackKey(targetID);
+
+        Debug.Log(
+            $"[LevelEnd] ✅ Level abgeschlossen: " +
+            $"{targetID} = 1"
+        );
+    }
+
+    private void UnlockNextLevel()
+    {
+        if (string.IsNullOrWhiteSpace(nextLevelUnlockKey))
+        {
+            Debug.LogWarning(
+                "[LevelEnd] ⚠️ Next Level Unlock Key ist leer. " +
+                "Das nächste Level wurde NICHT freigeschaltet."
+            );
+
+            return;
+        }
+
+        PlayerPrefs.SetInt(nextLevelUnlockKey, 1);
+        PlayerPrefsKeyTracker.TrackKey(nextLevelUnlockKey);
+
+        Debug.Log(
+            $"[LevelEnd] 🔓 Nächstes Level freigeschaltet: " +
+            $"{nextLevelUnlockKey} = 1"
+        );
+    }
+
+    private void SaveLevelUnlock()
+    {
+        if (string.IsNullOrWhiteSpace(targetID))
+        {
+            Debug.LogWarning(
+                "[LevelEnd] LevelUnlock: targetID ist leer."
+            );
+
+            return;
+        }
+
+        PlayerPrefs.SetInt(targetID, 1);
+        PlayerPrefsKeyTracker.TrackKey(targetID);
+
+        Debug.Log(
+            $"[LevelEnd] 🔓 Unlock gespeichert: " +
+            $"{targetID} = 1"
+        );
+    }
+
+    private void SaveSecretFound()
+    {
+        if (string.IsNullOrWhiteSpace(targetID))
+        {
+            Debug.LogWarning(
+                "[LevelEnd] SecretFound: targetID ist leer."
+            );
+
+            return;
+        }
+
+        PlayerPrefs.SetInt(targetID, 1);
+        PlayerPrefsKeyTracker.TrackKey(targetID);
+
+        Debug.Log(
+            $"[LevelEnd] 🕵️ Secret gespeichert: " +
+            $"{targetID} = 1"
+        );
+    }
+
+    private void PlayFeedback()
+    {
+        if (successFx != null)
+        {
+            Instantiate(
+                successFx,
+                transform.position,
+                Quaternion.identity
+            );
+        }
+
+        if (successSfx != null)
+        {
+            successSfx.Play();
+        }
+
+        if (feedbackText != null)
+        {
+            feedbackText.text = "✅ Erfolgreich!";
+        }
+
+        if (inputBlocker != null)
+        {
+            inputBlocker.SetActive(true);
+        }
+    }
+
+    private string GetCurrentLevelName()
+    {
+        if (!string.IsNullOrWhiteSpace(currentLevelName))
+        {
+            return currentLevelName;
+        }
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (!string.IsNullOrWhiteSpace(sceneName))
+        {
+            return sceneName;
+        }
+
+        return targetID;
     }
 
     private string BuildCoinKey()
     {
-        if (!string.IsNullOrEmpty(coinKeyOverride))
+        if (!string.IsNullOrWhiteSpace(coinKeyOverride))
+        {
             return coinKeyOverride;
+        }
 
-        string baseName = !string.IsNullOrEmpty(currentLevelName) ? currentLevelName : targetID;
-        return string.IsNullOrEmpty(baseName) ? "UNKNOWN-special-coins" : (baseName + "-special-coins");
+        string levelName = GetCurrentLevelName();
+
+        if (string.IsNullOrWhiteSpace(levelName))
+        {
+            return "UNKNOWN-special-coins";
+        }
+
+        return levelName + "-special-coins";
     }
 
-    private void SafeLoadScene(string name)
+    private void SafeLoadScene(string sceneName)
     {
-        if (string.IsNullOrEmpty(name))
+        if (string.IsNullOrWhiteSpace(sceneName))
         {
-            Debug.LogWarning("[LevelEnd] ⚠️ Kein Szenenname angegeben. Abbruch.");
+            Debug.LogWarning(
+                "[LevelEnd] Kein Szenenname angegeben."
+            );
+
             return;
         }
 
-        Debug.Log($"[LevelEnd] ➡️ Lade Szene: {name}");
-        SceneManager.LoadScene(name);
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError(
+                $"[LevelEnd] Szene '{sceneName}' ist nicht in den Build Settings."
+            );
+
+            return;
+        }
+
+        Debug.Log($"[LevelEnd] ➡️ Lade Szene: {sceneName}");
+        SceneManager.LoadScene(sceneName);
     }
 }
