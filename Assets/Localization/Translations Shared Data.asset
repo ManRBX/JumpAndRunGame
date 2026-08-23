@@ -820,6 +820,14 @@ MonoBehaviour:
     m_Key: Tutorial/texte/Welcome
     m_Metadata:
       m_Items: []
+  - m_Id: 201087921425473536
+    m_Key: "Level01/texte/wand und b\xF6den text"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 201102659760939008
+    m_Key: Level01/Text (TMP)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
