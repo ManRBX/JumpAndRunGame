@@ -4789,7 +4789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af637f8e4124bb4eb3577b3f144edc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameVersion: 2.1.0
+  gameVersion: 2.2.8
   prefix: v
   textColor: {r: 1, g: 1, b: 1, a: 1}
   fontSize: 24
@@ -23777,6 +23777,30 @@ MonoBehaviour:
     comparison: 0
   - achievementID: Level06Completed
     playerPrefsKey: Level06_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level07Completed
+    playerPrefsKey: Level07_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level08Completed
+    playerPrefsKey: Level08_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level09Completed
+    playerPrefsKey: Level09_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level10Completed
+    playerPrefsKey: Level10_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level11Completed
+    playerPrefsKey: Level11_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level12Completed
+    playerPrefsKey: Level12_Completed
     requiredValue: 1
     comparison: 0
   checkInterval: 1
