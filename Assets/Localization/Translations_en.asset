@@ -977,6 +977,38 @@ MonoBehaviour:
       controls\nstep by step.\n\nLet\u2019s get started!"
     m_Metadata:
       m_Items: []
+  - m_Id: 201087921425473536
+    m_Localized: 'Info
+
+
+      You can walk through some walls.
+
+      Give it a
+      try!
+
+      Then go to the left.
+
+      You can also drop down through
+
+      certain
+      platforms.
+
+      Simply press S to drop through
+
+      this platform.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 201102659760939008
+    m_Localized: 'Info
+
+      Jump down here.
+
+      Use A and D to jump off the
+      walls
+
+      and make your way back up.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      steam_banner_20260428_212947_0: -3299150771940564254
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

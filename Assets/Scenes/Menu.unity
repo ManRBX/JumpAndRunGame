@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ca092ba728f79143af53b3e410c5a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level01AlwaysUnlocked: 1
 --- !u!114 &3297001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +250,11 @@ MonoBehaviour:
   - levelName: No-Save-Zone
     button: {fileID: 965249180}
   bonusEntries: []
+  unlockedButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  unlockedTextColor: {r: 1, g: 1, b: 1, a: 1}
+  lockedButtonColor: {r: 0, g: 0, b: 0, a: 1}
+  lockedTextColor: {r: 0, g: 0, b: 0, a: 1}
+  firstNormalLevelAlwaysUnlocked: 1
 --- !u!1 &4247214
 GameObject:
   m_ObjectHideFlags: 0
@@ -23533,6 +23539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1622430609}
   - component: {fileID: 1622430608}
+  - component: {fileID: 1622430610}
   m_Layer: 0
   m_Name: SteamManager
   m_TagString: Untagged
@@ -23567,6 +23574,212 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1622430610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622430606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a1aebf97f6d3c48ab79543b31eaf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievements:
+  - achievementID: TutorialComplete
+    playerPrefsKey: Tutorial_Complete
+    requiredValue: 1
+    comparison: 0
+  - achievementID: 'Level01Completed '
+    playerPrefsKey: 'Level01_Completed '
+    requiredValue: 1
+    comparison: 0
+  - achievementID: CharakterNovaFreigeschalten
+    playerPrefsKey: CharacterUnlocked_1
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Coin10
+    playerPrefsKey: TotalCoins
+    requiredValue: 10
+    comparison: 1
+  - achievementID: Coin20
+    playerPrefsKey: TotalCoins
+    requiredValue: 20
+    comparison: 1
+  - achievementID: Coin50
+    playerPrefsKey: TotalCoins
+    requiredValue: 50
+    comparison: 1
+  - achievementID: Coin100
+    playerPrefsKey: TotalCoins
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Coin150
+    playerPrefsKey: TotalCoins
+    requiredValue: 150
+    comparison: 1
+  - achievementID: Coin100
+    playerPrefsKey: TotalCoins
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Coin150
+    playerPrefsKey: TotalCoins
+    requiredValue: 150
+    comparison: 1
+  - achievementID: Coin200
+    playerPrefsKey: TotalCoins
+    requiredValue: 200
+    comparison: 1
+  - achievementID: Coin300
+    playerPrefsKey: TotalCoins
+    requiredValue: 300
+    comparison: 1
+  - achievementID: Coin400
+    playerPrefsKey: TotalCoins
+    requiredValue: 400
+    comparison: 1
+  - achievementID: Coin450
+    playerPrefsKey: TotalCoins
+    requiredValue: 450
+    comparison: 1
+  - achievementID: Coin500
+    playerPrefsKey: TotalCoins
+    requiredValue: 500
+    comparison: 1
+  - achievementID: Coin600
+    playerPrefsKey: TotalCoins
+    requiredValue: 600
+    comparison: 1
+  - achievementID: Coin700
+    playerPrefsKey: TotalCoins
+    requiredValue: 700
+    comparison: 1
+  - achievementID: Enemy10
+    playerPrefsKey: EnemyKills
+    requiredValue: 10
+    comparison: 1
+  - achievementID: Enemy20
+    playerPrefsKey: EnemyKills
+    requiredValue: 20
+    comparison: 1
+  - achievementID: Enemy50
+    playerPrefsKey: EnemyKills
+    requiredValue: 50
+    comparison: 1
+  - achievementID: Enemy100
+    playerPrefsKey: EnemyKills
+    requiredValue: 100
+    comparison: 1
+  - achievementID: Enemy200
+    playerPrefsKey: EnemyKills
+    requiredValue: 200
+    comparison: 1
+  - achievementID: Enemy300
+    playerPrefsKey: EnemyKills
+    requiredValue: 300
+    comparison: 1
+  - achievementID: Enemy400
+    playerPrefsKey: EnemyKills
+    requiredValue: 400
+    comparison: 1
+  - achievementID: Enemy500
+    playerPrefsKey: EnemyKills
+    requiredValue: 500
+    comparison: 1
+  - achievementID: Enemy600
+    playerPrefsKey: EnemyKills
+    requiredValue: 600
+    comparison: 1
+  - achievementID: Enemy700
+    playerPrefsKey: EnemyKills
+    requiredValue: 700
+    comparison: 1
+  - achievementID: Enemy800
+    playerPrefsKey: EnemyKills
+    requiredValue: 800
+    comparison: 1
+  - achievementID: Enemy900
+    playerPrefsKey: EnemyKills
+    requiredValue: 900
+    comparison: 1
+  - achievementID: Enemy1000
+    playerPrefsKey: EnemyKills
+    requiredValue: 1000
+    comparison: 1
+  - achievementID: Enemy1150
+    playerPrefsKey: EnemyKills
+    requiredValue: 1150
+    comparison: 1
+  - achievementID: Enemy1250
+    playerPrefsKey: EnemyKills
+    requiredValue: 1250
+    comparison: 1
+  - achievementID: Enemy1370
+    playerPrefsKey: EnemyKills
+    requiredValue: 1370
+    comparison: 1
+  - achievementID: Enemy1450
+    playerPrefsKey: EnemyKills
+    requiredValue: 1450
+    comparison: 1
+  - achievementID: Enemy1500
+    playerPrefsKey: EnemyKills
+    requiredValue: 1500
+    comparison: 1
+  - achievementID: Coin800
+    playerPrefsKey: TotalCoins
+    requiredValue: 800
+    comparison: 1
+  - achievementID: Coin900
+    playerPrefsKey: TotalCoins
+    requiredValue: 900
+    comparison: 1
+  - achievementID: Coin1000
+    playerPrefsKey: TotalCoins
+    requiredValue: 1000
+    comparison: 1
+  - achievementID: Coin1100
+    playerPrefsKey: TotalCoins
+    requiredValue: 1100
+    comparison: 1
+  - achievementID: Coin1200
+    playerPrefsKey: TotalCoins
+    requiredValue: 1200
+    comparison: 1
+  - achievementID: Coin1300
+    playerPrefsKey: TotalCoins
+    requiredValue: 1300
+    comparison: 1
+  - achievementID: Coin1400
+    playerPrefsKey: TotalCoins
+    requiredValue: 1400
+    comparison: 1
+  - achievementID: Coin1500
+    playerPrefsKey: TotalCoins
+    requiredValue: 1500
+    comparison: 1
+  - achievementID: Level02Completed
+    playerPrefsKey: Level02_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level03Completed
+    playerPrefsKey: Level03_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level04Completed
+    playerPrefsKey: Level04_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level05Completed
+    playerPrefsKey: Level05_Completed
+    requiredValue: 1
+    comparison: 0
+  - achievementID: Level06Completed
+    playerPrefsKey: Level06_Completed
+    requiredValue: 1
+    comparison: 0
+  checkInterval: 1
 --- !u!1 &1629350274
 GameObject:
   m_ObjectHideFlags: 0
@@ -28428,7 +28641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0014343262, y: 0}
+  m_AnchoredPosition: {x: -0.0014038086, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1852451065

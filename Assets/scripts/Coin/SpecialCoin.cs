@@ -1,118 +1,199 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpecialCoin : MonoBehaviour
 {
-    public int coinIndex;           // Index der Münze (für mehrere Münzen im Level)
-    public AudioSource collectSoundSource; // AudioSource, die du im Editor zuweisen kannst
+    [Header("Coin Settings")]
+    [Tooltip("Eindeutiger Index der Münze innerhalb des Levels.")]
+    public int coinIndex;
 
-    private string coinKey;         // Key zum Speichern, ob die Münze gesammelt wurde
-    private string levelKey;        // Key für die speziellen Münzen im Level
-    private string globalKey = "GlobalSpecialCoins"; // Globaler Key für alle speziellen Münzen
-    private SpriteRenderer spriteRenderer;  // SpriteRenderer für die Transparenz
+    [Header("Sound")]
+    [Tooltip("AudioSource für den Einsammel-Sound.")]
+    public AudioSource collectSoundSource;
 
-    void Start()
+    private string coinKey;
+    private string levelKey;
+
+    private const string GlobalKey = "GlobalSpecialCoins";
+
+    private SpriteRenderer[] spriteRenderers;
+    private Collider2D[] coinColliders;
+
+    private bool collected = false;
+
+    private void Start()
     {
-        // Bestimme den aktuellen Levelnamen
-        string currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string currentLevel = SceneManager.GetActiveScene().name;
 
-        coinKey = $"{currentLevel}.Coin{coinIndex}";  // Key für diese Münze im aktuellen Level
-        levelKey = $"{currentLevel}-special-coins";   // Key für die Münzen im Level
+        coinKey = $"{currentLevel}.Coin{coinIndex}";
+        levelKey = $"{currentLevel}-special-coins";
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // Alle SpriteRenderer finden, auch in Child-Objekten
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
 
-        // Überprüfe, ob die Münze bereits gesammelt wurde, falls ja, setze die Transparenz auf 0
-        if (IsCoinCollected())
-        {
-            SetTransparency(0f);
-        }
+        // Alle Collider finden
+        coinColliders = GetComponentsInChildren<Collider2D>(true);
 
         if (collectSoundSource != null && collectSoundSource.isPlaying)
         {
-            Debug.Log("🛑 Sound spielt ungewollt! Stoppe ihn...");
             collectSoundSource.Stop();
+        }
+
+        // Bereits früher eingesammelt?
+        if (IsCoinCollected())
+        {
+            collected = true;
+
+            SetCoinTransparency(0f);
+            DisableCoinColliders();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))  // Wenn der Spieler die Münze berührt
+        if (collected)
+            return;
+
+        if (!collision.CompareTag("Player"))
+            return;
+
+        collected = true;
+
+        // Coins zählen
+        AddSpecialCoin();
+
+        // Einzelnen Coin speichern
+        PlayerPrefs.SetInt(coinKey, 1);
+        PlayerPrefsKeyTracker.TrackKey(coinKey);
+
+        PlayerPrefs.Save();
+
+        // UI aktualisieren
+        SpecialCoinUI uiManager =
+            FindFirstObjectByType<SpecialCoinUI>();
+
+        if (uiManager != null)
         {
-            if (!IsCoinCollected())  // Nur, wenn die Münze noch nicht eingesammelt wurde
-            {
-                AddSpecialCoin();  // Füge eine spezielle Münze hinzu
+            uiManager.UpdateCoinUI();
+        }
 
-                // Spiele den Sound ab, wenn die Münze eingesammelt wurde
-                if (collectSoundSource != null)
-                {
-                    collectSoundSource.Play();
-                }
+        // Sound abspielen
+        if (collectSoundSource != null)
+        {
+            collectSoundSource.Play();
+        }
 
-                // Speichere, dass die Münze jetzt eingesammelt wurde
-                PlayerPrefs.SetInt(coinKey, 1);
-                PlayerPrefsKeyTracker.TrackKey(coinKey); // Tracke die eingesammelte Münze
-                PlayerPrefs.Save();
+        // ==================================================
+        // COIN SOFORT 100 % TRANSPARENT MACHEN
+        // ==================================================
 
-                // UI aktualisieren
-                SpecialCoinUI uiManager = FindObjectOfType<SpecialCoinUI>();
-                if (uiManager != null)
-                {
-                    uiManager.UpdateCoinUI();
-                }
+        SetCoinTransparency(0f);
 
-                // Setze die Transparenz auf 0, damit die Münze nicht mehr sichtbar ist
-                SetTransparency(0f);
-            }
+        // Collider deaktivieren
+        DisableCoinColliders();
+
+        Debug.Log(
+            $"⭐ Special Coin {coinIndex} eingesammelt! " +
+            $"Coin wurde vollständig transparent gemacht."
+        );
+    }
+
+    private void AddSpecialCoin()
+    {
+        int currentCoins = GetSpecialCoins();
+
+        currentCoins++;
+
+        PlayerPrefs.SetInt(
+            levelKey,
+            currentCoins
+        );
+
+        PlayerPrefsKeyTracker.TrackKey(levelKey);
+
+        AddGlobalSpecialCoin();
+
+        PlayerPrefs.Save();
+
+        Debug.Log(
+            $"⭐ Special Coin gesammelt. " +
+            $"Level Coins: {currentCoins} | " +
+            $"Key: {levelKey}"
+        );
+    }
+
+    private int GetSpecialCoins()
+    {
+        return PlayerPrefs.GetInt(
+            levelKey,
+            0
+        );
+    }
+
+    private void AddGlobalSpecialCoin()
+    {
+        int globalSpecialCoins =
+            PlayerPrefs.GetInt(
+                GlobalKey,
+                0
+            );
+
+        globalSpecialCoins++;
+
+        PlayerPrefs.SetInt(
+            GlobalKey,
+            globalSpecialCoins
+        );
+
+        PlayerPrefsKeyTracker.TrackKey(
+            GlobalKey
+        );
+
+        Debug.Log(
+            $"🌍 Globale Special Coins: " +
+            $"{globalSpecialCoins}"
+        );
+    }
+
+    private bool IsCoinCollected()
+    {
+        return PlayerPrefs.GetInt(
+            coinKey,
+            0
+        ) > 0;
+    }
+
+    private void SetCoinTransparency(float alpha)
+    {
+        if (spriteRenderers == null)
+            return;
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            if (spriteRenderer == null)
+                continue;
+
+            Color currentColor =
+                spriteRenderer.color;
+
+            currentColor.a = alpha;
+
+            spriteRenderer.color =
+                currentColor;
         }
     }
 
-    // Fügt eine spezielle Münze hinzu (Punkte und Speicherung)
-    void AddSpecialCoin()
+    private void DisableCoinColliders()
     {
-        int currentCoins = GetSpecialCoins();
-        currentCoins++;
+        if (coinColliders == null)
+            return;
 
-        PlayerPrefs.SetInt(levelKey, currentCoins);  // Speichern der Münzen im Level
-        PlayerPrefsKeyTracker.TrackKey(levelKey);  // Tracke die Anzahl der Münzen im Level
-        PlayerPrefs.Save();
-
-        AddGlobalSpecialCoin();  // Fügt auch globale Münzen hinzu
-
-        Debug.Log($"Special coin collected! Total special coins for this level: {currentCoins}");
-    }
-
-    // Gibt die Anzahl der Münzen im aktuellen Level zurück
-    int GetSpecialCoins()
-    {
-        return PlayerPrefs.GetInt(levelKey, 0);
-    }
-
-    // Fügt eine globale Münze hinzu
-    void AddGlobalSpecialCoin()
-    {
-        int globalSpecialCoins = PlayerPrefs.GetInt(globalKey, 0);
-        globalSpecialCoins++;
-
-        PlayerPrefs.SetInt(globalKey, globalSpecialCoins);  // Speichern der globalen Münzen
-        PlayerPrefsKeyTracker.TrackKey(globalKey);  // Tracke die globalen Münzen
-        PlayerPrefs.Save();
-
-        Debug.Log($"Total global special coins: {globalSpecialCoins}");
-    }
-
-    // Überprüft, ob die Münze bereits gesammelt wurde
-    bool IsCoinCollected()
-    {
-        return PlayerPrefs.GetInt(coinKey, 0) > 0;
-    }
-
-    // Setzt die Transparenz der Münze (um sie unsichtbar zu machen, wenn sie gesammelt wurde)
-    private void SetTransparency(float alpha)
-    {
-        if (spriteRenderer != null)
+        foreach (Collider2D coinCollider in coinColliders)
         {
-            Color color = spriteRenderer.color;
-            color.a = alpha;
-            spriteRenderer.color = color;
+            if (coinCollider == null)
+                continue;
+
+            coinCollider.enabled = false;
         }
     }
 }

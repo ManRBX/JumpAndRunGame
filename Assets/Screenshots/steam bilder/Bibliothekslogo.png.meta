@@ -260,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bibliothekslogo_0: -7421728543155442295
+      Bibliothekslogo_1: -8777833194258809674
+      Bibliothekslogo_2: -4211040729321325536
+      Bibliothekslogo_3: 5737649492423026982
+      Bibliothekslogo_4: -3014705186703438717
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

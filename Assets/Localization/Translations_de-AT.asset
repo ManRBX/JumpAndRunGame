@@ -900,6 +900,17 @@ MonoBehaviour:
       wichtigsten Steuerungen.\nLos geht's!"
     m_Metadata:
       m_Items: []
+  - m_Id: 201087921425473536
+    m_Localized: "Info\n\nDu kannst durch manche W\xE4nde gehen.\nProbier es einfach
+      mal aus!\nGehe danach nach links.\nDu kannst auch durch bestimmte B\xF6den\nnach
+      unten fallen.\nDr\xFCcke einfach S, um durch diesen\nBoden zu fallen."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 201102659760939008
+    m_Localized: "Info\nSpringe hier nach unten.\nNutze A und D, um an den W\xE4nden\nzu
+      springen und wieder nach oben\nzu gelangen."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
