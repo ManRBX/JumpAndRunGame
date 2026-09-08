@@ -906,6 +906,14 @@ MonoBehaviour:
       springen und wieder nach oben\nzu gelangen."
     m_Metadata:
       m_Items: []
+  - m_Id: 209401731355648000
+    m_Localized: "DLC Level\xB4s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 209404844040921088
+    m_Localized: Halloween 2026
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

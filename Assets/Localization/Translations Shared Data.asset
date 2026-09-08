@@ -828,6 +828,14 @@ MonoBehaviour:
     m_Key: Level01/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 209401731355648000
+    m_Key: "Menu/Canvas/Level Selection panel/DLC Level\xB4s/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 209404844040921088
+    m_Key: "Menu/Canvas/DLC Level\xB4s/Halloween 2026/Text (Legacy)"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
