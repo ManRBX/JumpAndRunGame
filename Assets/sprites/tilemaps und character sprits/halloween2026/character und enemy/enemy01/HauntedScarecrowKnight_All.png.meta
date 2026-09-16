@@ -1,0 +1,1318 @@
+fileFormatVersion: 2
+guid: 0e4834ec10200b144a711fcbe6c0cdd0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3299866951890611127
+    second: HauntedScarecrowKnight_All_0
+  - first:
+      213: 3184403559178307984
+    second: HauntedScarecrowKnight_All_1
+  - first:
+      213: -5546178586610217370
+    second: HauntedScarecrowKnight_All_2
+  - first:
+      213: -8271559326402550527
+    second: HauntedScarecrowKnight_All_3
+  - first:
+      213: -7400758855156213585
+    second: HauntedScarecrowKnight_All_4
+  - first:
+      213: -7933789739511825492
+    second: HauntedScarecrowKnight_All_5
+  - first:
+      213: 5307851190171298471
+    second: HauntedScarecrowKnight_All_6
+  - first:
+      213: 3122100938301944794
+    second: HauntedScarecrowKnight_All_7
+  - first:
+      213: 1796103562408001099
+    second: HauntedScarecrowKnight_All_8
+  - first:
+      213: 7075852709635926506
+    second: HauntedScarecrowKnight_All_9
+  - first:
+      213: -4053006944338845901
+    second: HauntedScarecrowKnight_All_10
+  - first:
+      213: 1564565444705203814
+    second: HauntedScarecrowKnight_All_11
+  - first:
+      213: -8312787359739480328
+    second: HauntedScarecrowKnight_All_12
+  - first:
+      213: 9161218054812442034
+    second: HauntedScarecrowKnight_All_13
+  - first:
+      213: -9139739143846732019
+    second: HauntedScarecrowKnight_All_14
+  - first:
+      213: -7089723651806359191
+    second: HauntedScarecrowKnight_All_15
+  - first:
+      213: 6050320741433891999
+    second: HauntedScarecrowKnight_All_16
+  - first:
+      213: -1995450671161417925
+    second: HauntedScarecrowKnight_All_17
+  - first:
+      213: 7273043485049227414
+    second: HauntedScarecrowKnight_All_18
+  - first:
+      213: 2568835250551792069
+    second: HauntedScarecrowKnight_All_19
+  - first:
+      213: -5780282304507786500
+    second: HauntedScarecrowKnight_All_20
+  - first:
+      213: -3429583346248303326
+    second: HauntedScarecrowKnight_All_21
+  - first:
+      213: -703111071299406335
+    second: HauntedScarecrowKnight_All_22
+  - first:
+      213: 7536766442621591118
+    second: HauntedScarecrowKnight_All_23
+  - first:
+      213: -1247881306965745286
+    second: HauntedScarecrowKnight_All_24
+  - first:
+      213: 8796469810937451985
+    second: HauntedScarecrowKnight_All_25
+  - first:
+      213: -2180405259044078095
+    second: HauntedScarecrowKnight_All_26
+  - first:
+      213: 2344981775058148777
+    second: HauntedScarecrowKnight_All_27
+  - first:
+      213: 3930627160993987896
+    second: HauntedScarecrowKnight_All_28
+  - first:
+      213: -2245243450268562765
+    second: HauntedScarecrowKnight_All_29
+  - first:
+      213: 6901003057454536410
+    second: HauntedScarecrowKnight_All_30
+  - first:
+      213: -1182713641141652919
+    second: HauntedScarecrowKnight_All_31
+  - first:
+      213: 2866862091987697819
+    second: HauntedScarecrowKnight_All_32
+  - first:
+      213: 6858019298901694771
+    second: HauntedScarecrowKnight_All_33
+  - first:
+      213: -1437702124967106010
+    second: HauntedScarecrowKnight_All_34
+  - first:
+      213: -7461905488678724464
+    second: HauntedScarecrowKnight_All_35
+  - first:
+      213: -7376290976463220585
+    second: HauntedScarecrowKnight_All_36
+  - first:
+      213: -4903491091289735429
+    second: HauntedScarecrowKnight_All_37
+  - first:
+      213: 999194678935491429
+    second: HauntedScarecrowKnight_All_38
+  - first:
+      213: -1478193855206306601
+    second: HauntedScarecrowKnight_All_39
+  - first:
+      213: 1120896737293142545
+    second: HauntedScarecrowKnight_All_40
+  - first:
+      213: -934327809677002696
+    second: HauntedScarecrowKnight_All_41
+  - first:
+      213: 1278175313849989345
+    second: HauntedScarecrowKnight_All_42
+  - first:
+      213: 3573053914647482677
+    second: HauntedScarecrowKnight_All_43
+  - first:
+      213: 7834556148773397758
+    second: HauntedScarecrowKnight_All_44
+  - first:
+      213: 3407120837508720997
+    second: HauntedScarecrowKnight_All_45
+  - first:
+      213: -5534055138564769129
+    second: HauntedScarecrowKnight_All_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 290
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 944528e9d748432d0800000000000000
+      internalID: -3299866951890611127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 290
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09900565a26413c20800000000000000
+      internalID: 3184403559178307984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_2
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 290
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66e483cd5f30803b0800000000000000
+      internalID: -5546178586610217370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_3
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 308
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 105e4330e94853d80800000000000000
+      internalID: -8271559326402550527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_4
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 290
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa8561a38093b4990800000000000000
+      internalID: -7400758855156213585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_5
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 290
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab32c5544485e190800000000000000
+      internalID: -7933789739511825492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_6
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 290
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aa6bc6098649a940800000000000000
+      internalID: 5307851190171298471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_7
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 243
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3b664034ee35b20800000000000000
+      internalID: 3122100938301944794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 243
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4e74218caa0de810800000000000000
+      internalID: 1796103562408001099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_9
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 243
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae9a5d8cc8a723260800000000000000
+      internalID: 7075852709635926506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_10
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 243
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33fdd7a68a3d0c7c0800000000000000
+      internalID: -4053006944338845901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_11
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 243
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66631878bf376b510800000000000000
+      internalID: 1564565444705203814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_12
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 243
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f6fe5970fb03ac80800000000000000
+      internalID: -8312787359739480328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_13
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 191
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bd9dfa584f232f70800000000000000
+      internalID: 9161218054812442034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_14
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 190
+        width: 42
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f584f4caf192180800000000000000
+      internalID: -9139739143846732019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_15
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 195
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9619562d6ed3c9d90800000000000000
+      internalID: -7089723651806359191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_16
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 196
+        width: 41
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c585a88ae07f350800000000000000
+      internalID: 6050320741433891999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_17
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 193
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3fdb9adf2cbe44e0800000000000000
+      internalID: -1995450671161417925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_18
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 190
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6980452f38a0fe460800000000000000
+      internalID: 7273043485049227414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_19
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 143
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c124a3dc0656a320800000000000000
+      internalID: 2568835250551792069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_20
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 144
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfa465a8edf48cfa0800000000000000
+      internalID: -5780282304507786500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_21
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 145
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22d36470e1ca760d0800000000000000
+      internalID: -3429583346248303326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_22
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 143
+        width: 36
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 106fd85b43c0e36f0800000000000000
+      internalID: -703111071299406335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_23
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 144
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e5b87e529f79860800000000000000
+      internalID: 7536766442621591118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_24
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 142
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71e4781092aeaee0800000000000000
+      internalID: -1247881306965745286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_25
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 98
+        width: 43
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5df56ffa6531a70800000000000000
+      internalID: 8796469810937451985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_26
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 97
+        width: 47
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fdb84c18f4adb1e0800000000000000
+      internalID: -2180405259044078095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_27
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 97
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad1b1b008c0b8020800000000000000
+      internalID: 2344981775058148777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_28
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 116
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d7c8bd3946c8630800000000000000
+      internalID: 3930627160993987896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_29
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 97
+        width: 50
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba48705afa47d0e0800000000000000
+      internalID: -2245243450268562765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_30
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 96
+        width: 44
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad65679b7b945cf50800000000000000
+      internalID: 6901003057454536410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_31
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 97
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9423ebca538269fe0800000000000000
+      internalID: -1182713641141652919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_32
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 49
+        width: 32
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90c5f422e329c720800000000000000
+      internalID: 2866862091987697819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_33
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 49
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3391fcd87349c2f50800000000000000
+      internalID: 6858019298901694771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_34
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 49
+        width: 32
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ae28cd8814c0ce0800000000000000
+      internalID: -1437702124967106010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_35
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 49
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09c54cf2e7cf17890800000000000000
+      internalID: -7461905488678724464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_36
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 49
+        width: 37
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7909dfb207622a990800000000000000
+      internalID: -7376290976463220585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_37
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 49
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfef16015dc43fbb0800000000000000
+      internalID: -4903491091289735429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_38
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 5
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 563196b344adddd00800000000000000
+      internalID: 999194678935491429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_39
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 2
+        width: 37
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc434f35866c7be0800000000000000
+      internalID: -1478193855206306601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_40
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a8040d4a93e8f00800000000000000
+      internalID: 1120896737293142545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_41
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 3
+        width: 47
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838fe60bec99803f0800000000000000
+      internalID: -934327809677002696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_42
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 27
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8b3b60dadfcb110800000000000000
+      internalID: 1278175313849989345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_43
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 3
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 531d1e1ca99069130800000000000000
+      internalID: 3573053914647482677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_44
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 21
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4ad7cde4fe9bc60800000000000000
+      internalID: 7834556148773397758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_45
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 3
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 569e98a9956884f20800000000000000
+      internalID: 3407120837508720997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HauntedScarecrowKnight_All_46
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 3
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79afb621c261333b0800000000000000
+      internalID: -5534055138564769129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
