@@ -1,0 +1,284 @@
+[
+  {
+    "index": 1,
+    "neighbors": "none",
+    "diagonals_present": "none",
+    "file": "01_N-none_D-none_16x16.png"
+  },
+  {
+    "index": 2,
+    "neighbors": "N",
+    "diagonals_present": "none",
+    "file": "02_N-N_D-none_16x16.png"
+  },
+  {
+    "index": 3,
+    "neighbors": "E",
+    "diagonals_present": "none",
+    "file": "03_N-E_D-none_16x16.png"
+  },
+  {
+    "index": 4,
+    "neighbors": "NE",
+    "diagonals_present": "none",
+    "file": "04_N-NE_D-none_16x16.png"
+  },
+  {
+    "index": 5,
+    "neighbors": "NE",
+    "diagonals_present": "NE",
+    "file": "05_N-NE_D-NE_16x16.png"
+  },
+  {
+    "index": 6,
+    "neighbors": "S",
+    "diagonals_present": "none",
+    "file": "06_N-S_D-none_16x16.png"
+  },
+  {
+    "index": 7,
+    "neighbors": "NS",
+    "diagonals_present": "none",
+    "file": "07_N-NS_D-none_16x16.png"
+  },
+  {
+    "index": 8,
+    "neighbors": "ES",
+    "diagonals_present": "none",
+    "file": "08_N-ES_D-none_16x16.png"
+  },
+  {
+    "index": 9,
+    "neighbors": "ES",
+    "diagonals_present": "SE",
+    "file": "09_N-ES_D-SE_16x16.png"
+  },
+  {
+    "index": 10,
+    "neighbors": "NES",
+    "diagonals_present": "none",
+    "file": "10_N-NES_D-none_16x16.png"
+  },
+  {
+    "index": 11,
+    "neighbors": "NES",
+    "diagonals_present": "NE",
+    "file": "11_N-NES_D-NE_16x16.png"
+  },
+  {
+    "index": 12,
+    "neighbors": "NES",
+    "diagonals_present": "SE",
+    "file": "12_N-NES_D-SE_16x16.png"
+  },
+  {
+    "index": 13,
+    "neighbors": "NES",
+    "diagonals_present": "NESE",
+    "file": "13_N-NES_D-NESE_16x16.png"
+  },
+  {
+    "index": 14,
+    "neighbors": "W",
+    "diagonals_present": "none",
+    "file": "14_N-W_D-none_16x16.png"
+  },
+  {
+    "index": 15,
+    "neighbors": "NW",
+    "diagonals_present": "none",
+    "file": "15_N-NW_D-none_16x16.png"
+  },
+  {
+    "index": 16,
+    "neighbors": "NW",
+    "diagonals_present": "NW",
+    "file": "16_N-NW_D-NW_16x16.png"
+  },
+  {
+    "index": 17,
+    "neighbors": "EW",
+    "diagonals_present": "none",
+    "file": "17_N-EW_D-none_16x16.png"
+  },
+  {
+    "index": 18,
+    "neighbors": "NEW",
+    "diagonals_present": "none",
+    "file": "18_N-NEW_D-none_16x16.png"
+  },
+  {
+    "index": 19,
+    "neighbors": "NEW",
+    "diagonals_present": "NE",
+    "file": "19_N-NEW_D-NE_16x16.png"
+  },
+  {
+    "index": 20,
+    "neighbors": "NEW",
+    "diagonals_present": "NW",
+    "file": "20_N-NEW_D-NW_16x16.png"
+  },
+  {
+    "index": 21,
+    "neighbors": "NEW",
+    "diagonals_present": "NENW",
+    "file": "21_N-NEW_D-NENW_16x16.png"
+  },
+  {
+    "index": 22,
+    "neighbors": "SW",
+    "diagonals_present": "none",
+    "file": "22_N-SW_D-none_16x16.png"
+  },
+  {
+    "index": 23,
+    "neighbors": "SW",
+    "diagonals_present": "SW",
+    "file": "23_N-SW_D-SW_16x16.png"
+  },
+  {
+    "index": 24,
+    "neighbors": "NSW",
+    "diagonals_present": "none",
+    "file": "24_N-NSW_D-none_16x16.png"
+  },
+  {
+    "index": 25,
+    "neighbors": "NSW",
+    "diagonals_present": "SW",
+    "file": "25_N-NSW_D-SW_16x16.png"
+  },
+  {
+    "index": 26,
+    "neighbors": "NSW",
+    "diagonals_present": "NW",
+    "file": "26_N-NSW_D-NW_16x16.png"
+  },
+  {
+    "index": 27,
+    "neighbors": "NSW",
+    "diagonals_present": "SWNW",
+    "file": "27_N-NSW_D-SWNW_16x16.png"
+  },
+  {
+    "index": 28,
+    "neighbors": "ESW",
+    "diagonals_present": "none",
+    "file": "28_N-ESW_D-none_16x16.png"
+  },
+  {
+    "index": 29,
+    "neighbors": "ESW",
+    "diagonals_present": "SE",
+    "file": "29_N-ESW_D-SE_16x16.png"
+  },
+  {
+    "index": 30,
+    "neighbors": "ESW",
+    "diagonals_present": "SW",
+    "file": "30_N-ESW_D-SW_16x16.png"
+  },
+  {
+    "index": 31,
+    "neighbors": "ESW",
+    "diagonals_present": "SESW",
+    "file": "31_N-ESW_D-SESW_16x16.png"
+  },
+  {
+    "index": 32,
+    "neighbors": "NESW",
+    "diagonals_present": "none",
+    "file": "32_N-NESW_D-none_16x16.png"
+  },
+  {
+    "index": 33,
+    "neighbors": "NESW",
+    "diagonals_present": "NE",
+    "file": "33_N-NESW_D-NE_16x16.png"
+  },
+  {
+    "index": 34,
+    "neighbors": "NESW",
+    "diagonals_present": "SE",
+    "file": "34_N-NESW_D-SE_16x16.png"
+  },
+  {
+    "index": 35,
+    "neighbors": "NESW",
+    "diagonals_present": "NESE",
+    "file": "35_N-NESW_D-NESE_16x16.png"
+  },
+  {
+    "index": 36,
+    "neighbors": "NESW",
+    "diagonals_present": "SW",
+    "file": "36_N-NESW_D-SW_16x16.png"
+  },
+  {
+    "index": 37,
+    "neighbors": "NESW",
+    "diagonals_present": "NESW",
+    "file": "37_N-NESW_D-NESW_16x16.png"
+  },
+  {
+    "index": 38,
+    "neighbors": "NESW",
+    "diagonals_present": "SESW",
+    "file": "38_N-NESW_D-SESW_16x16.png"
+  },
+  {
+    "index": 39,
+    "neighbors": "NESW",
+    "diagonals_present": "NESESW",
+    "file": "39_N-NESW_D-NESESW_16x16.png"
+  },
+  {
+    "index": 40,
+    "neighbors": "NESW",
+    "diagonals_present": "NW",
+    "file": "40_N-NESW_D-NW_16x16.png"
+  },
+  {
+    "index": 41,
+    "neighbors": "NESW",
+    "diagonals_present": "NENW",
+    "file": "41_N-NESW_D-NENW_16x16.png"
+  },
+  {
+    "index": 42,
+    "neighbors": "NESW",
+    "diagonals_present": "SENW",
+    "file": "42_N-NESW_D-SENW_16x16.png"
+  },
+  {
+    "index": 43,
+    "neighbors": "NESW",
+    "diagonals_present": "NESENW",
+    "file": "43_N-NESW_D-NESENW_16x16.png"
+  },
+  {
+    "index": 44,
+    "neighbors": "NESW",
+    "diagonals_present": "SWNW",
+    "file": "44_N-NESW_D-SWNW_16x16.png"
+  },
+  {
+    "index": 45,
+    "neighbors": "NESW",
+    "diagonals_present": "NESWNW",
+    "file": "45_N-NESW_D-NESWNW_16x16.png"
+  },
+  {
+    "index": 46,
+    "neighbors": "NESW",
+    "diagonals_present": "SESWNW",
+    "file": "46_N-NESW_D-SESWNW_16x16.png"
+  },
+  {
+    "index": 47,
+    "neighbors": "NESW",
+    "diagonals_present": "NESESWNW",
+    "file": "47_N-NESW_D-NESESWNW_16x16.png"
+  }
+]
