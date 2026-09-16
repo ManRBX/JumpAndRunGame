@@ -1,0 +1,146 @@
+[
+  {
+    "index": 1,
+    "name": "rock_wall_01",
+    "file": "01_rock_wall_01_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 2,
+    "name": "rock_wall_02",
+    "file": "02_rock_wall_02_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 3,
+    "name": "rock_wall_03",
+    "file": "03_rock_wall_03_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 4,
+    "name": "rock_wall_04",
+    "file": "04_rock_wall_04_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 5,
+    "name": "rock_wall_05",
+    "file": "05_rock_wall_05_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 6,
+    "name": "rock_wall_06",
+    "file": "06_rock_wall_06_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 7,
+    "name": "rock_wall_07",
+    "file": "07_rock_wall_07_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 8,
+    "name": "rock_wall_08",
+    "file": "08_rock_wall_08_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 9,
+    "name": "rock_wall_09",
+    "file": "09_rock_wall_09_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 10,
+    "name": "rock_wall_10",
+    "file": "10_rock_wall_10_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 11,
+    "name": "rock_wall_11",
+    "file": "11_rock_wall_11_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 12,
+    "name": "rock_wall_12",
+    "file": "12_rock_wall_12_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 13,
+    "name": "cave_opening_01",
+    "file": "13_cave_opening_01_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 14,
+    "name": "cave_opening_02",
+    "file": "14_cave_opening_02_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 15,
+    "name": "cave_opening_03",
+    "file": "15_cave_opening_03_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 16,
+    "name": "cave_opening_04",
+    "file": "16_cave_opening_04_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 17,
+    "name": "distant_rock_01",
+    "file": "17_distant_rock_01_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 18,
+    "name": "distant_rock_02",
+    "file": "18_distant_rock_02_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 19,
+    "name": "distant_rock_03",
+    "file": "19_distant_rock_03_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 20,
+    "name": "distant_rock_04",
+    "file": "20_distant_rock_04_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 21,
+    "name": "fog_01",
+    "file": "21_fog_01_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 22,
+    "name": "fog_02",
+    "file": "22_fog_02_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 23,
+    "name": "fog_03",
+    "file": "23_fog_03_16x16.png",
+    "size": "16x16"
+  },
+  {
+    "index": 24,
+    "name": "fog_04",
+    "file": "24_fog_04_16x16.png",
+    "size": "16x16"
+  }
+]

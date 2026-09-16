@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: c3a981ca19a1c704087dcb549083e07b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6968076898941277622
+    second: Rocks_Extra_Deco_Sheet_64px_0
+  - first:
+      213: -1345598952403412746
+    second: Rocks_Extra_Deco_Sheet_64px_1
+  - first:
+      213: 5108634334295727656
+    second: Rocks_Extra_Deco_Sheet_64px_2
+  - first:
+      213: 4149581224624284195
+    second: Rocks_Extra_Deco_Sheet_64px_3
+  - first:
+      213: 2854966332061966571
+    second: Rocks_Extra_Deco_Sheet_64px_4
+  - first:
+      213: -8787434566453018024
+    second: Rocks_Extra_Deco_Sheet_64px_5
+  - first:
+      213: 2927225615293874490
+    second: Rocks_Extra_Deco_Sheet_64px_6
+  - first:
+      213: 4600479248424654974
+    second: Rocks_Extra_Deco_Sheet_64px_7
+  - first:
+      213: -3305527462672938730
+    second: Rocks_Extra_Deco_Sheet_64px_8
+  - first:
+      213: -1697332820061793490
+    second: Rocks_Extra_Deco_Sheet_64px_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 22
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 69
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4aeff69afa6c4f90800000000000000
+      internalID: -6968076898941277622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 69
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f85bdfc1e8735de0800000000000000
+      internalID: -1345598952403412746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 69
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e9f0f3cd385e640800000000000000
+      internalID: 5108634334295727656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 69
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3226c5c6326469930800000000000000
+      internalID: 4149581224624284195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_4
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 69
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be0e044b0c0ee9720800000000000000
+      internalID: 2854966332061966571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 5
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8524493d1d2cc0680800000000000000
+      internalID: -8787434566453018024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 5
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a31040120389f9820800000000000000
+      internalID: 2927225615293874490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_7
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 5
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7858e6808f28df30800000000000000
+      internalID: 4600479248424654974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_8
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 5
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 619c41049486022d0800000000000000
+      internalID: -3305527462672938730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rocks_Extra_Deco_Sheet_64px_9
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 5
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23da920bccd178e0800000000000000
+      internalID: -1697332820061793490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Rocks_Extra_Deco_Sheet_64px_0: -6968076898941277622
+      Rocks_Extra_Deco_Sheet_64px_1: -1345598952403412746
+      Rocks_Extra_Deco_Sheet_64px_2: 5108634334295727656
+      Rocks_Extra_Deco_Sheet_64px_3: 4149581224624284195
+      Rocks_Extra_Deco_Sheet_64px_4: 2854966332061966571
+      Rocks_Extra_Deco_Sheet_64px_5: -8787434566453018024
+      Rocks_Extra_Deco_Sheet_64px_6: 2927225615293874490
+      Rocks_Extra_Deco_Sheet_64px_7: 4600479248424654974
+      Rocks_Extra_Deco_Sheet_64px_8: -3305527462672938730
+      Rocks_Extra_Deco_Sheet_64px_9: -1697332820061793490
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

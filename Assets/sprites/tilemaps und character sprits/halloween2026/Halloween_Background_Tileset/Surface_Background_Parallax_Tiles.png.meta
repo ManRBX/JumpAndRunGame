@@ -1,0 +1,743 @@
+fileFormatVersion: 2
+guid: ec8eacf03951eb94d8afad0da444cf82
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8059604970020889147
+    second: Surface_Background_Parallax_Tiles_0
+  - first:
+      213: 1088963734643282671
+    second: Surface_Background_Parallax_Tiles_1
+  - first:
+      213: -1853965993139269215
+    second: Surface_Background_Parallax_Tiles_2
+  - first:
+      213: -7036041734575986610
+    second: Surface_Background_Parallax_Tiles_3
+  - first:
+      213: 4684414480901740895
+    second: Surface_Background_Parallax_Tiles_4
+  - first:
+      213: -1716831279097882853
+    second: Surface_Background_Parallax_Tiles_5
+  - first:
+      213: -126535425967206497
+    second: Surface_Background_Parallax_Tiles_6
+  - first:
+      213: 820594569190777172
+    second: Surface_Background_Parallax_Tiles_7
+  - first:
+      213: 9149424294707769434
+    second: Surface_Background_Parallax_Tiles_8
+  - first:
+      213: 2363271435482314494
+    second: Surface_Background_Parallax_Tiles_9
+  - first:
+      213: 6440982674712273949
+    second: Surface_Background_Parallax_Tiles_10
+  - first:
+      213: -4696283423358922879
+    second: Surface_Background_Parallax_Tiles_11
+  - first:
+      213: 3717325392465370689
+    second: Surface_Background_Parallax_Tiles_12
+  - first:
+      213: 6786837082881656173
+    second: Surface_Background_Parallax_Tiles_13
+  - first:
+      213: -5364762586447851761
+    second: Surface_Background_Parallax_Tiles_14
+  - first:
+      213: 914117634042885716
+    second: Surface_Background_Parallax_Tiles_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 822
+        width: 236
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9d1884cbb1cf43479403077c11e822d
+      internalID: 792581493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_1
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 823
+        width: 237
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b75bf2d7ea33a4097854041f16f9ff
+      internalID: -756162217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_2
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 823
+        width: 236
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba3b94657a92dc448aa82919bb22825
+      internalID: 1139101486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_3
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 823
+        width: 235
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb5f636c2afa45448e925f0ca9d7516
+      internalID: -959140360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_4
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 823
+        width: 237
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098bfe2149a59fb49aa8c0e3bed68f9b
+      internalID: -1783433262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 823
+        width: 234
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929efd0b099346541b32ea434e1aa453
+      internalID: 1704961364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 619
+        width: 236
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddd01324a96cc89469888834e064daf2
+      internalID: 813923603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_7
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 618
+        width: 238
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 589d4d1d1a2e21f43bbf4a795fa97860
+      internalID: 545133762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 618
+        width: 237
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1960b4184c5f4eb4aadee60019195ee9
+      internalID: -709024334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_9
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 617
+        width: 238
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6504ba923fb1b6e478bc196c57c5f244
+      internalID: -2134976509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_10
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 617
+        width: 238
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7d9dce92594134786cee710f472f85
+      internalID: -890419128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_11
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 617
+        width: 237
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 742c72ad5c8d8834b85e105b672ad70a
+      internalID: 670565535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_12
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 408
+        width: 361
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f240ce73940bfcc41ae97ad65e5ea3c4
+      internalID: 1320138818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_13
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 409
+        width: 362
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dfb2f5ca2bcf454b8145bd34fc7a165
+      internalID: 1082637785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_14
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 408
+        width: 362
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe8217803798baf4ab905d230cd93bb1
+      internalID: -1254454046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_15
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 408
+        width: 361
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af03b7704d1d34b42857808f55882437
+      internalID: -452830231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_16
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 238
+        width: 361
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf0eadde3852dc459dd07efba666d1b
+      internalID: 1352302789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_17
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 238
+        width: 363
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ca34c072139e84c9afc4d95f31f03e
+      internalID: 1228537473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_18
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 238
+        width: 361
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb27fb8525625e41954414509a8b972
+      internalID: 1466503782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_19
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 239
+        width: 362
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f4b31e7124e8444cb2fe8b7b44e18ba
+      internalID: 773391249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_20
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 55
+        width: 360
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d8361ae9ac757b439b9a324ce0bf487
+      internalID: 991525603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_21
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 55
+        width: 362
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a63da3193f0535141b1e8692f7e4ab6a
+      internalID: -1581477117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_22
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 55
+        width: 362
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3fd6bd97d2f3444b988e01605b0df3
+      internalID: -1337968535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Surface_Background_Parallax_Tiles_23
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 56
+        width: 359
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef0b648c79dd7764a970a37f9e514259
+      internalID: -751623406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5d013e632ac562442a9e5d8c1bf638e2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Surface_Background_Parallax_Tiles_0: 792581493
+      Surface_Background_Parallax_Tiles_1: -756162217
+      Surface_Background_Parallax_Tiles_10: -890419128
+      Surface_Background_Parallax_Tiles_11: 670565535
+      Surface_Background_Parallax_Tiles_12: 1320138818
+      Surface_Background_Parallax_Tiles_13: 1082637785
+      Surface_Background_Parallax_Tiles_14: -1254454046
+      Surface_Background_Parallax_Tiles_15: -452830231
+      Surface_Background_Parallax_Tiles_16: 1352302789
+      Surface_Background_Parallax_Tiles_17: 1228537473
+      Surface_Background_Parallax_Tiles_18: 1466503782
+      Surface_Background_Parallax_Tiles_19: 773391249
+      Surface_Background_Parallax_Tiles_2: 1139101486
+      Surface_Background_Parallax_Tiles_20: 991525603
+      Surface_Background_Parallax_Tiles_21: -1581477117
+      Surface_Background_Parallax_Tiles_22: -1337968535
+      Surface_Background_Parallax_Tiles_23: -751623406
+      Surface_Background_Parallax_Tiles_3: -959140360
+      Surface_Background_Parallax_Tiles_4: -1783433262
+      Surface_Background_Parallax_Tiles_5: 1704961364
+      Surface_Background_Parallax_Tiles_6: 813923603
+      Surface_Background_Parallax_Tiles_7: 545133762
+      Surface_Background_Parallax_Tiles_8: -709024334
+      Surface_Background_Parallax_Tiles_9: -2134976509
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
