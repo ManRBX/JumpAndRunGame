@@ -1,0 +1,237 @@
+[
+  {
+    "index": 1,
+    "neighbors": "none",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 2,
+    "neighbors": "N",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 3,
+    "neighbors": "E",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 4,
+    "neighbors": "NE",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 5,
+    "neighbors": "NE",
+    "diagonals_present": "NE"
+  },
+  {
+    "index": 6,
+    "neighbors": "S",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 7,
+    "neighbors": "NS",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 8,
+    "neighbors": "ES",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 9,
+    "neighbors": "ES",
+    "diagonals_present": "SE"
+  },
+  {
+    "index": 10,
+    "neighbors": "NES",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 11,
+    "neighbors": "NES",
+    "diagonals_present": "NE"
+  },
+  {
+    "index": 12,
+    "neighbors": "NES",
+    "diagonals_present": "SE"
+  },
+  {
+    "index": 13,
+    "neighbors": "NES",
+    "diagonals_present": "NESE"
+  },
+  {
+    "index": 14,
+    "neighbors": "W",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 15,
+    "neighbors": "NW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 16,
+    "neighbors": "NW",
+    "diagonals_present": "NW"
+  },
+  {
+    "index": 17,
+    "neighbors": "EW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 18,
+    "neighbors": "NEW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 19,
+    "neighbors": "NEW",
+    "diagonals_present": "NE"
+  },
+  {
+    "index": 20,
+    "neighbors": "NEW",
+    "diagonals_present": "NW"
+  },
+  {
+    "index": 21,
+    "neighbors": "NEW",
+    "diagonals_present": "NENW"
+  },
+  {
+    "index": 22,
+    "neighbors": "SW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 23,
+    "neighbors": "SW",
+    "diagonals_present": "SW"
+  },
+  {
+    "index": 24,
+    "neighbors": "NSW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 25,
+    "neighbors": "NSW",
+    "diagonals_present": "SW"
+  },
+  {
+    "index": 26,
+    "neighbors": "NSW",
+    "diagonals_present": "NW"
+  },
+  {
+    "index": 27,
+    "neighbors": "NSW",
+    "diagonals_present": "SWNW"
+  },
+  {
+    "index": 28,
+    "neighbors": "ESW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 29,
+    "neighbors": "ESW",
+    "diagonals_present": "SE"
+  },
+  {
+    "index": 30,
+    "neighbors": "ESW",
+    "diagonals_present": "SW"
+  },
+  {
+    "index": 31,
+    "neighbors": "ESW",
+    "diagonals_present": "SESW"
+  },
+  {
+    "index": 32,
+    "neighbors": "NESW",
+    "diagonals_present": "none"
+  },
+  {
+    "index": 33,
+    "neighbors": "NESW",
+    "diagonals_present": "NE"
+  },
+  {
+    "index": 34,
+    "neighbors": "NESW",
+    "diagonals_present": "SE"
+  },
+  {
+    "index": 35,
+    "neighbors": "NESW",
+    "diagonals_present": "NESE"
+  },
+  {
+    "index": 36,
+    "neighbors": "NESW",
+    "diagonals_present": "SW"
+  },
+  {
+    "index": 37,
+    "neighbors": "NESW",
+    "diagonals_present": "NESW"
+  },
+  {
+    "index": 38,
+    "neighbors": "NESW",
+    "diagonals_present": "SESW"
+  },
+  {
+    "index": 39,
+    "neighbors": "NESW",
+    "diagonals_present": "NESESW"
+  },
+  {
+    "index": 40,
+    "neighbors": "NESW",
+    "diagonals_present": "NW"
+  },
+  {
+    "index": 41,
+    "neighbors": "NESW",
+    "diagonals_present": "NENW"
+  },
+  {
+    "index": 42,
+    "neighbors": "NESW",
+    "diagonals_present": "SENW"
+  },
+  {
+    "index": 43,
+    "neighbors": "NESW",
+    "diagonals_present": "NESENW"
+  },
+  {
+    "index": 44,
+    "neighbors": "NESW",
+    "diagonals_present": "SWNW"
+  },
+  {
+    "index": 45,
+    "neighbors": "NESW",
+    "diagonals_present": "NESWNW"
+  },
+  {
+    "index": 46,
+    "neighbors": "NESW",
+    "diagonals_present": "SESWNW"
+  },
+  {
+    "index": 47,
+    "neighbors": "NESW",
+    "diagonals_present": "NESESWNW"
+  }
+]
