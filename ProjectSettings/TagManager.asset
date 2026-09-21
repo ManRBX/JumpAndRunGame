@@ -60,8 +60,14 @@ TagManager:
   - name: background
     uniqueID: 670044025
     locked: 0
+  - name: background fog
+    uniqueID: 4122088135
+    locked: 0
   - name: foreground
     uniqueID: 2773101283
+    locked: 0
+  - name: foreground fog
+    uniqueID: 1122154483
     locked: 0
   m_RenderingLayers:
   - Default
