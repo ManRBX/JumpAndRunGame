@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: 21c23fcc48fbd45478b4a15b24ff758c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3524362572989143053
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_0
+  - first:
+      213: 922395093005689184
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_1
+  - first:
+      213: 8220848991652025235
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_2
+  - first:
+      213: 8514795537217096479
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_3
+  - first:
+      213: -6736527761047035605
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_4
+  - first:
+      213: 6335843277612747412
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_5
+  - first:
+      213: 5166020108179460691
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_6
+  - first:
+      213: 2843656029475952993
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_7
+  - first:
+      213: 3191872541622601077
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_8
+  - first:
+      213: -3694430400622019887
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_9
+  - first:
+      213: 7871209218755428199
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_10
+  - first:
+      213: -8906937777216478297
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_11
+  - first:
+      213: -554130447035323646
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_12
+  - first:
+      213: 1267574121743306982
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_13
+  - first:
+      213: -5937969417334153446
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_14
+  - first:
+      213: 7214113182586072878
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_15
+  - first:
+      213: -5511191737265551940
+    second: Halloween_Collectibles_Spritesheet_4x3_64x64_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 129
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0813b6561d09e030800000000000000
+      internalID: 3524362572989143053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 129
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061ea2533710dcc00800000000000000
+      internalID: 922395093005689184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 129
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3931c8b1a92561270800000000000000
+      internalID: 8220848991652025235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 129
+        width: 52
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1b08e28d61aa2670800000000000000
+      internalID: 8514795537217096479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 73
+        width: 61
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21eb3761bb0382a0800000000000000
+      internalID: -6736527761047035605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_5
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 80
+        width: 62
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a87aa64ef6de750800000000000000
+      internalID: 6335843277612747412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 70
+        width: 49
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352df8aeae361b740800000000000000
+      internalID: 5166020108179460691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_7
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 65
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169df4ca712b67720800000000000000
+      internalID: 2843656029475952993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 120
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5750db35a2fcb4c20800000000000000
+      internalID: 3191872541622601077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_9
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 88
+        width: 11
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1da3583ef1fbabcc0800000000000000
+      internalID: -3694430400622019887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_10
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 65
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76f72bcb4172c3d60800000000000000
+      internalID: 7871209218755428199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_11
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 71
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a321885843346480800000000000000
+      internalID: -8906937777216478297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_12
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 65
+        width: 25
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b2b395b455f48f0800000000000000
+      internalID: -554130447035323646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_13
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1
+        width: 51
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0dcf4a2f3579110800000000000000
+      internalID: 1267574121743306982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_14
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1
+        width: 47
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f1aa09648189da0800000000000000
+      internalID: -5937969417334153446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_15
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 2
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f6181b7bdad1460800000000000000
+      internalID: 7214113182586072878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Collectibles_Spritesheet_4x3_64x64_16
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 2
+        width: 62
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb5083380505483b0800000000000000
+      internalID: -5511191737265551940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Halloween_Collectibles_Spritesheet_4x3_64x64_0: 3524362572989143053
+      Halloween_Collectibles_Spritesheet_4x3_64x64_1: 922395093005689184
+      Halloween_Collectibles_Spritesheet_4x3_64x64_10: 7871209218755428199
+      Halloween_Collectibles_Spritesheet_4x3_64x64_11: -8906937777216478297
+      Halloween_Collectibles_Spritesheet_4x3_64x64_12: -554130447035323646
+      Halloween_Collectibles_Spritesheet_4x3_64x64_13: 1267574121743306982
+      Halloween_Collectibles_Spritesheet_4x3_64x64_14: -5937969417334153446
+      Halloween_Collectibles_Spritesheet_4x3_64x64_15: 7214113182586072878
+      Halloween_Collectibles_Spritesheet_4x3_64x64_16: -5511191737265551940
+      Halloween_Collectibles_Spritesheet_4x3_64x64_2: 8220848991652025235
+      Halloween_Collectibles_Spritesheet_4x3_64x64_3: 8514795537217096479
+      Halloween_Collectibles_Spritesheet_4x3_64x64_4: -6736527761047035605
+      Halloween_Collectibles_Spritesheet_4x3_64x64_5: 6335843277612747412
+      Halloween_Collectibles_Spritesheet_4x3_64x64_6: 5166020108179460691
+      Halloween_Collectibles_Spritesheet_4x3_64x64_7: 2843656029475952993
+      Halloween_Collectibles_Spritesheet_4x3_64x64_8: 3191872541622601077
+      Halloween_Collectibles_Spritesheet_4x3_64x64_9: -3694430400622019887
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

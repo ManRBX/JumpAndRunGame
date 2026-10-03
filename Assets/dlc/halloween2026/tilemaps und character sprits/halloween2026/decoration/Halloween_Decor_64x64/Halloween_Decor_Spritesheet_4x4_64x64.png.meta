@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 54f99ed5eb03e3e4a88faab1191f3008
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1970603350903950918
+    second: Halloween_Decor_Spritesheet_4x4_64x64_0
+  - first:
+      213: -4702690240372150682
+    second: Halloween_Decor_Spritesheet_4x4_64x64_1
+  - first:
+      213: -6532670566989967830
+    second: Halloween_Decor_Spritesheet_4x4_64x64_2
+  - first:
+      213: 1444642530528452980
+    second: Halloween_Decor_Spritesheet_4x4_64x64_3
+  - first:
+      213: 5030745386926850261
+    second: Halloween_Decor_Spritesheet_4x4_64x64_4
+  - first:
+      213: -6369732479530853678
+    second: Halloween_Decor_Spritesheet_4x4_64x64_5
+  - first:
+      213: 2304732308931639076
+    second: Halloween_Decor_Spritesheet_4x4_64x64_6
+  - first:
+      213: -720223073302870118
+    second: Halloween_Decor_Spritesheet_4x4_64x64_7
+  - first:
+      213: 8023973825885993038
+    second: Halloween_Decor_Spritesheet_4x4_64x64_8
+  - first:
+      213: 7885878164018465536
+    second: Halloween_Decor_Spritesheet_4x4_64x64_9
+  - first:
+      213: -3913437023347456480
+    second: Halloween_Decor_Spritesheet_4x4_64x64_10
+  - first:
+      213: -3144010743923147579
+    second: Halloween_Decor_Spritesheet_4x4_64x64_11
+  - first:
+      213: -946327309293445907
+    second: Halloween_Decor_Spritesheet_4x4_64x64_12
+  - first:
+      213: 1541937277508383225
+    second: Halloween_Decor_Spritesheet_4x4_64x64_13
+  - first:
+      213: 8111612176981197013
+    second: Halloween_Decor_Spritesheet_4x4_64x64_14
+  - first:
+      213: 6236960932253230218
+    second: Halloween_Decor_Spritesheet_4x4_64x64_15
+  - first:
+      213: 3401148470144239035
+    second: Halloween_Decor_Spritesheet_4x4_64x64_16
+  - first:
+      213: 6985604864144874059
+    second: Halloween_Decor_Spritesheet_4x4_64x64_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 193
+        width: 59
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab1fc2c61b207a4e0800000000000000
+      internalID: -1970603350903950918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 193
+        width: 52
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66eebed6420bcbeb0800000000000000
+      internalID: -4702690240372150682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 193
+        width: 47
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ec9eb1bba4755a0800000000000000
+      internalID: -6532670566989967830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_3
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 195
+        width: 62
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 471e19b3ab66c0410800000000000000
+      internalID: 1444642530528452980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 129
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0c53f764cc0d540800000000000000
+      internalID: 5030745386926850261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_5
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 133
+        width: 62
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2da9b43ee0a2a97a0800000000000000
+      internalID: -6369732479530853678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_6
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 144
+        width: 62
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4277c30f2dd0cff10800000000000000
+      internalID: 2304732308931639076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_7
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 131
+        width: 62
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a970eb44ee04106f0800000000000000
+      internalID: -720223073302870118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 65
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4877fa8ea1ea5f60800000000000000
+      internalID: 8023973825885993038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_9
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 65
+        width: 56
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00b8454b864407d60800000000000000
+      internalID: 7885878164018465536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_10
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 68
+        width: 62
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0264384f2cda0b9c0800000000000000
+      internalID: -3913437023347456480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_11
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 72
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ccf276d2ea3e54d0800000000000000
+      internalID: -3144010743923147579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_12
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 65
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec10587358fdd2f0800000000000000
+      internalID: -946327309293445907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_13
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 5
+        width: 62
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1f1dbc8cf066510800000000000000
+      internalID: 1541937277508383225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_14
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d082bc3c4c329070800000000000000
+      internalID: 8111612176981197013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_15
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8461fc4ce22e8650800000000000000
+      internalID: 6236960932253230218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_16
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 4
+        width: 62
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb58f47738e433f20800000000000000
+      internalID: 3401148470144239035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Halloween_Decor_Spritesheet_4x4_64x64_17
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1
+        width: 52
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4a9894dc9ad1f060800000000000000
+      internalID: 6985604864144874059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Halloween_Decor_Spritesheet_4x4_64x64_0: -1970603350903950918
+      Halloween_Decor_Spritesheet_4x4_64x64_1: -4702690240372150682
+      Halloween_Decor_Spritesheet_4x4_64x64_10: -3913437023347456480
+      Halloween_Decor_Spritesheet_4x4_64x64_11: -3144010743923147579
+      Halloween_Decor_Spritesheet_4x4_64x64_12: -946327309293445907
+      Halloween_Decor_Spritesheet_4x4_64x64_13: 1541937277508383225
+      Halloween_Decor_Spritesheet_4x4_64x64_14: 8111612176981197013
+      Halloween_Decor_Spritesheet_4x4_64x64_15: 6236960932253230218
+      Halloween_Decor_Spritesheet_4x4_64x64_16: 3401148470144239035
+      Halloween_Decor_Spritesheet_4x4_64x64_17: 6985604864144874059
+      Halloween_Decor_Spritesheet_4x4_64x64_2: -6532670566989967830
+      Halloween_Decor_Spritesheet_4x4_64x64_3: 1444642530528452980
+      Halloween_Decor_Spritesheet_4x4_64x64_4: 5030745386926850261
+      Halloween_Decor_Spritesheet_4x4_64x64_5: -6369732479530853678
+      Halloween_Decor_Spritesheet_4x4_64x64_6: 2304732308931639076
+      Halloween_Decor_Spritesheet_4x4_64x64_7: -720223073302870118
+      Halloween_Decor_Spritesheet_4x4_64x64_8: 8023973825885993038
+      Halloween_Decor_Spritesheet_4x4_64x64_9: 7885878164018465536
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
